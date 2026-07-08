@@ -197,6 +197,10 @@ p {
   padding-bottom: 10px;
 }
 
+.catalog-results {
+  scroll-margin-top: 18px;
+}
+
 .catalog-results-heading h2 {
   font-size: 1.35rem;
 }

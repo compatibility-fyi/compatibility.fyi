@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { listProjects, loadDataset } from '../../lib/data';
 import type { ProjectSummary } from '../../types/compatibility';
 import { Layout } from '../components/Layout';
@@ -15,6 +15,7 @@ interface CatalogProject extends ProjectSummary {
 export function LandingPage() {
   const [query, setQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const resultsRef = useRef<HTMLDivElement>(null);
 
   const categories = useMemo(() => {
     const counts = new Map<string, number>();
@@ -54,6 +55,19 @@ export function LandingPage() {
       .sort(compareCatalogProjects);
   }, [query, selectedCategory]);
 
+  function selectCategory(category: string) {
+    setSelectedCategory(category);
+
+    window.requestAnimationFrame(() => {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      resultsRef.current?.scrollIntoView({
+        behavior: prefersReducedMotion ? 'auto' : 'smooth',
+        block: 'start',
+      });
+    });
+  }
+
   return (
     <Layout>
       <section className="catalog-intro" aria-labelledby="catalog-title">
@@ -72,7 +86,7 @@ export function LandingPage() {
           type="search"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-          placeholder="Search Keycloak, CloudNativePG, Gateway API..."
+          placeholder="Search projects..."
         />
       </section>
 
@@ -85,7 +99,7 @@ export function LandingPage() {
                 className={category.name === selectedCategory ? 'active' : undefined}
                 key={category.name}
                 type="button"
-                onClick={() => setSelectedCategory(category.name)}
+                onClick={() => selectCategory(category.name)}
               >
                 <span>{category.name}</span>
                 <span>{category.count}</span>
@@ -94,7 +108,7 @@ export function LandingPage() {
           </nav>
         </aside>
 
-        <div className="catalog-results">
+        <div ref={resultsRef} className="catalog-results">
           <div className="catalog-results-heading">
             <h2>{selectedCategory === 'All' ? 'All projects' : selectedCategory}</h2>
             <span>
