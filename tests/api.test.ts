@@ -12,6 +12,7 @@ describe('api', () => {
     expect(body.projects).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ id: 'argocd' }),
+        expect.objectContaining({ id: 'cert-manager' }),
         expect.objectContaining({ id: 'cloudnativepg' }),
         expect.objectContaining({ id: 'flux' }),
         expect.objectContaining({ id: 'keycloak' }),
@@ -117,6 +118,24 @@ describe('api', () => {
     expect(response.status).toBe(200);
     expect(body.compatible).toBe('compatible');
     expect(body.matchedRange).toBe('>=1.34 <1.37');
+    expect(body.relationship).toBe('runtime');
+  });
+
+  it('checks cert-manager matrix data', async () => {
+    const response = await handleApiRequest(
+      new Request(
+        'https://compatibility.fyi/api/v1/check?project=cert-manager&version=1.20&dependency=openshift&dependencyVersion=4.21',
+      ),
+    );
+    const body = (await response.json()) as {
+      compatible: string;
+      matchedRange: string | null;
+      relationship: string | null;
+    };
+
+    expect(response.status).toBe(200);
+    expect(body.compatible).toBe('compatible');
+    expect(body.matchedRange).toBe('>=4.19 <4.22');
     expect(body.relationship).toBe('runtime');
   });
 

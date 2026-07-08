@@ -1,5 +1,6 @@
 import envoyGatewayYaml from '../../data/envoy-gateway.yaml?raw';
 import argocdYaml from '../../data/argocd.yaml?raw';
+import certManagerYaml from '../../data/cert-manager.yaml?raw';
 import cloudnativepgYaml from '../../data/cloudnativepg.yaml?raw';
 import keycloakYaml from '../../data/keycloak.yaml?raw';
 import fluxYaml from '../../data/flux.yaml?raw';
@@ -7,7 +8,14 @@ import type { CompatibilityDataset, ProjectSummary } from '../types/compatibilit
 import { parseCompatibilityYaml } from './validation';
 import { compareVersions } from './version';
 
-const dataSources = [keycloakYaml, envoyGatewayYaml, cloudnativepgYaml, argocdYaml, fluxYaml];
+const dataSources = [
+  keycloakYaml,
+  envoyGatewayYaml,
+  cloudnativepgYaml,
+  argocdYaml,
+  fluxYaml,
+  certManagerYaml,
+];
 
 export function loadDataset(): CompatibilityDataset {
   return dataSources.map(parseCompatibilityYaml).reduce<CompatibilityDataset>(

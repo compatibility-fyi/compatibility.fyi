@@ -1,0 +1,66 @@
+x-cert-manager-releases-source: &cert_manager_releases_source
+  title: cert-manager Supported Releases
+  url: https://cert-manager.io/docs/releases/
+  accessedAt: '2026-07-08'
+
+projects:
+  cert-manager:
+    name: cert-manager
+    category: Security
+    website: https://cert-manager.io/
+    description: X.509 certificate controller compatibility for Kubernetes and OpenShift runtime versions.
+    dependencyKind:
+      singular: dependency
+      plural: dependencies
+      examples:
+        - Kubernetes
+        - OpenShift
+    versions:
+      '1.20':
+        dependencies:
+          kubernetes:
+            status: compatible
+            ranges:
+              - '>=1.32 <1.36'
+            relationship: runtime
+            confidence: high
+            notes:
+              - cert-manager supported releases list 1.20 with Kubernetes 1.32 through 1.35.
+            sources:
+              - *cert_manager_releases_source
+            lastVerified: '2026-07-08'
+          openshift:
+            status: compatible
+            ranges:
+              - '>=4.19 <4.22'
+            relationship: runtime
+            confidence: high
+            notes:
+              - cert-manager supported releases list 1.20 with OpenShift 4.19 through 4.21.
+            sources:
+              - *cert_manager_releases_source
+            lastVerified: '2026-07-08'
+      '1.19':
+        dependencies:
+          kubernetes:
+            status: compatible
+            ranges:
+              - '>=1.31 <1.36'
+            relationship: runtime
+            confidence: high
+            notes:
+              - cert-manager supported releases list 1.19 with Kubernetes 1.31 through 1.35.
+            sources:
+              - *cert_manager_releases_source
+            lastVerified: '2026-07-08'
+          openshift:
+            status: compatible
+            ranges:
+              - '>=4.18 <4.21'
+            relationship: runtime
+            confidence: high
+            notes:
+              - cert-manager supported releases list 1.19 with OpenShift 4.18 through 4.20.
+            sources:
+              - *cert_manager_releases_source
+            lastVerified: '2026-07-08'

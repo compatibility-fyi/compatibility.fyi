@@ -387,6 +387,7 @@ function formatDependencyName(dependency: string): string {
     'envoy-proxy': 'Envoy Proxy',
     'gateway-api': 'Gateway API',
     kubernetes: 'Kubernetes',
+    openshift: 'OpenShift',
     'rate-limit': 'Rate Limit',
   };
 
