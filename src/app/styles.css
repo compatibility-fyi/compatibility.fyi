@@ -130,6 +130,7 @@ p {
   border: 1px solid #cfd7e6;
   border-radius: 6px;
   color: #111827;
+  min-width: 0;
   min-height: 44px;
   outline: 0;
   padding: 10px 12px;
@@ -377,6 +378,7 @@ p {
 .select-field {
   display: grid;
   gap: 8px;
+  min-width: 0;
 }
 
 .select-field {
@@ -407,6 +409,7 @@ p {
 .compatibility-checker {
   border-top: 1px solid #d8dee8;
   margin-bottom: 34px;
+  min-width: 0;
   padding-top: 24px;
 }
 
@@ -415,6 +418,7 @@ p {
   gap: 14px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-top: 16px;
+  min-width: 0;
 }
 
 .compound-result {
@@ -422,6 +426,7 @@ p {
   border-radius: 6px;
   display: grid;
   margin-top: 16px;
+  min-width: 0;
 }
 
 .compound-result-row {
@@ -486,6 +491,7 @@ p {
   display: flex;
   gap: 16px;
   justify-content: space-between;
+  min-width: 0;
 }
 
 .table-wrap {
@@ -998,6 +1004,15 @@ th {
   .docs-definition-grid,
   .endpoint-heading {
     grid-template-columns: 1fr;
+  }
+
+  .section-title-row {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .section-title-row h2 {
+    min-width: 0;
   }
 
   .catalog-layout {
