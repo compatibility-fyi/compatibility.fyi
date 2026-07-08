@@ -1,0 +1,53 @@
+{
+  "name": "compatibility.fyi",
+  "version": "0.0.0",
+  "private": false,
+  "type": "module",
+  "description": "Machine-readable software compatibility metadata.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rxbn/compatibility.fyi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rxbn/compatibility.fyi/issues"
+  },
+  "homepage": "https://compatibility.fyi",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b --pretty false",
+    "test": "vitest run",
+    "validate:data": "tsx scripts/validate-data.ts data/*.yaml",
+    "lint": "npm run validate:data && eslint . && prettier --check .",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^5.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "semver": "^7.7.2",
+    "yaml": "^2.8.0"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.10.0",
+    "@cloudflare/workers-types": "^5.20260708.1",
+    "@eslint/js": "^9.30.1",
+    "@types/node": "^24.0.10",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@types/semver": "^7.7.0",
+    "eslint": "^9.30.1",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "prettier": "^3.6.2",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.35.1",
+    "vite": "^7.0.2",
+    "vitest": "^3.2.4",
+    "wrangler": "^4.24.0"
+  }
+}

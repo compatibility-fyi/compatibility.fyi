@@ -1,0 +1,25 @@
+projects:
+  keycloak:
+    name: Keycloak
+    description: Placeholder compatibility metadata for the Keycloak project.
+    versions:
+      '25':
+        dependencies:
+          postgresql:
+            status: unknown
+            ranges: []
+            confidence: low
+            notes:
+              - Placeholder seed data only. This entry is unverified and must not be used as a real compatibility claim.
+            sources: []
+            lastVerified: null
+      '26':
+        dependencies:
+          postgresql:
+            status: unknown
+            ranges: []
+            confidence: low
+            notes:
+              - Placeholder seed data only. This entry is unverified and must not be used as a real compatibility claim.
+            sources: []
+            lastVerified: null
