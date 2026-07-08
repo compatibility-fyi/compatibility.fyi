@@ -1,3 +1,8 @@
+x-rhacm-217-source: &rhacm_217_source
+  title: Red Hat Advanced Cluster Management for Kubernetes 2.17 Support Matrix
+  url: https://access.redhat.com/articles/7142376
+  accessedAt: '2026-07-08'
+
 x-rhacm-216-source: &rhacm_216_source
   title: Red Hat Advanced Cluster Management for Kubernetes 2.16 Support Matrix
   url: https://access.redhat.com/articles/7136928
@@ -38,6 +43,11 @@ x-mce-28-source: &mce_28_source
   url: https://access.redhat.com/articles/7099674
   accessedAt: '2026-07-08'
 
+x-mce-217-source: &mce_217_source
+  title: The multicluster engine for Kubernetes operator 2.17 Support Matrix
+  url: https://access.redhat.com/articles/7142379
+  accessedAt: '2026-07-08'
+
 projects:
   red-hat-advanced-cluster-management:
     name: Red Hat Advanced Cluster Management for Kubernetes
@@ -52,6 +62,57 @@ projects:
         - OpenShift hosted cluster
         - OpenShift management cluster
     versions:
+      '2.17':
+        dependencies:
+          multicluster-engine:
+            status: compatible
+            ranges:
+              - '2.17'
+            relationship: bundled
+            confidence: high
+            notes:
+              - RHACM 2.17 is released with MCE 2.17 for cluster management.
+              - Red Hat notes MCE 2.11 was the immediate previous release and MCE 2.17 aligns the MCE version with RHACM 2.17.
+            sources:
+              - *rhacm_217_source
+              - *mce_217_source
+            lastVerified: '2026-07-08'
+          openshift-management-cluster:
+            status: compatible
+            ranges:
+              - '>=4.20 <4.23'
+            relationship: hub runtime
+            confidence: high
+            notes:
+              - RHACM and MCE 2.17 list OpenShift 4.20, 4.21, and 4.22 as supported hub cluster versions.
+            sources:
+              - *rhacm_217_source
+              - *mce_217_source
+            lastVerified: '2026-07-08'
+          openshift-hosted-cluster:
+            status: compatible
+            ranges:
+              - '>=4.20 <4.23'
+            relationship: hosted control planes
+            confidence: high
+            notes:
+              - RHACM and MCE 2.17 list hosted control planes for OpenShift 4.20 through 4.22 on OpenShift Virtualization, AWS, bare metal, non-bare-metal agent machines, IBM Power, and IBM Z.
+            sources:
+              - *rhacm_217_source
+              - *mce_217_source
+            lastVerified: '2026-07-08'
+          openshift-hosted-cluster-azure:
+            status: compatible
+            ranges:
+              - '4.22'
+            relationship: hosted control planes
+            confidence: high
+            notes:
+              - RHACM and MCE 2.17 list hosted control planes for OpenShift 4.22 on Azure.
+            sources:
+              - *rhacm_217_source
+              - *mce_217_source
+            lastVerified: '2026-07-08'
       '2.16':
         dependencies:
           multicluster-engine:
