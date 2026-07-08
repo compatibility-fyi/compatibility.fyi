@@ -21,8 +21,8 @@ export function LandingPage() {
             <a className="button primary" href="/docs/api">
               Read the API docs
             </a>
-            <a className="button secondary" href="/projects/keycloak">
-              View Keycloak data
+            <a className="button secondary" href="/projects">
+              Browse projects
             </a>
           </div>
         </div>
@@ -32,16 +32,14 @@ export function LandingPage() {
             src="/compatibility-fyi-logo.png"
             alt="compatibility.fyi logo"
           />
-          <div className="query-panel" aria-label="Compatibility search mockup">
-            <label htmlFor="query">Compatibility query</label>
+          <div className="query-panel" aria-label="Example compatibility query">
+            <div className="query-panel-header">
+              <span>Example query</span>
+              <code>GET /api/v1/check</code>
+            </div>
             <div className="search-box">
               <span aria-hidden="true">/</span>
-              <input
-                id="query"
-                readOnly
-                value="keycloak 26 postgresql 17"
-                aria-label="Example compatibility query"
-              />
+              <code>project=keycloak&version=26&dependency=postgresql&dependencyVersion=17</code>
             </div>
             <div className="api-result">
               <span className="status-dot compatible" />

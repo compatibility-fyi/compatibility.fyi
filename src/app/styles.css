@@ -158,12 +158,20 @@ h2 {
   padding: 22px;
 }
 
-.query-panel label {
+.query-panel-header {
+  align-items: center;
   color: #566177;
-  display: block;
+  display: flex;
   font-size: 0.85rem;
   font-weight: 700;
+  gap: 12px;
+  justify-content: space-between;
   margin-bottom: 10px;
+}
+
+.query-panel-header code {
+  color: #2f7f62;
+  font-size: 0.78rem;
 }
 
 .search-box {
@@ -190,6 +198,12 @@ h2 {
   min-width: 0;
   outline: 0;
   width: 100%;
+}
+
+.search-box code {
+  display: block;
+  font-size: clamp(0.78rem, 2vw, 1rem);
+  overflow-wrap: anywhere;
 }
 
 .api-result {
@@ -245,6 +259,41 @@ code,
   border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
   border-radius: 8px;
   padding: 16px;
+}
+
+.project-list {
+  display: grid;
+  gap: 14px;
+  padding-bottom: 56px;
+}
+
+.project-list-item {
+  align-items: center;
+  border: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+  border-radius: 8px;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  padding: 18px;
+}
+
+.project-list-item h2 {
+  font-size: 1.35rem;
+  margin-bottom: 8px;
+}
+
+.project-list-item p {
+  color: #4a5567;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.project-meta {
+  color: #566177;
+  display: grid;
+  font-size: 0.88rem;
+  gap: 6px;
+  justify-items: end;
 }
 
 .band {
@@ -349,8 +398,10 @@ th {
   .band p,
   .page-heading p,
   .docs-grid p,
+  .project-list-item p,
   th,
-  .query-panel label {
+  .query-panel-header,
+  .project-meta {
     color: #aab7c9;
   }
 
@@ -380,8 +431,13 @@ th {
   }
 
   .hero,
-  .section-grid {
+  .section-grid,
+  .project-list-item {
     grid-template-columns: 1fr;
+  }
+
+  .project-meta {
+    justify-items: start;
   }
 
   .hero {
