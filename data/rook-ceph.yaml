@@ -1,0 +1,105 @@
+x-rook-maintenance-source: &rook_maintenance_source
+  title: Rook Ceph Maintenance and Support
+  url: https://rook.io/docs/rook/v1.20/Getting-Started/maintenance-and-support/
+  accessedAt: '2026-07-08'
+
+projects:
+  rook-ceph:
+    name: Rook Ceph
+    category: Storage
+    website: https://rook.io/
+    description: Rook Ceph operator compatibility for Kubernetes and Ceph versions.
+    versions:
+      '1.20':
+        dependencies:
+          kubernetes:
+            ranges:
+              - '>=1.31 <1.37'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Rook 1.20 support matrix lists Kubernetes 1.31 through 1.36.
+            sources:
+              - *rook_maintenance_source
+            lastVerified: '2026-07-08'
+          ceph:
+            ranges:
+              - '>=19.2.0 <20.0.0'
+              - '>=20.2.1 <21.0.0'
+            relationship: managed storage cluster
+            confidence: high
+            notes:
+              - Rook 1.20 support matrix lists Ceph Squid 19.2.0+ and Ceph Tentacle 20.2.1+.
+            sources:
+              - *rook_maintenance_source
+            lastVerified: '2026-07-08'
+      '1.19':
+        dependencies:
+          kubernetes:
+            ranges:
+              - '>=1.30 <1.36'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Rook 1.19 support matrix lists Kubernetes 1.30 through 1.35.
+            sources:
+              - *rook_maintenance_source
+            lastVerified: '2026-07-08'
+          ceph:
+            ranges:
+              - '>=19.2.0 <20.0.0'
+              - '>=20.2.1 <21.0.0'
+            relationship: managed storage cluster
+            confidence: high
+            notes:
+              - Rook 1.19 support matrix lists Ceph Squid 19.2.0+ and Ceph Tentacle 20.2.1+.
+            sources:
+              - *rook_maintenance_source
+            lastVerified: '2026-07-08'
+      '1.18':
+        dependencies:
+          kubernetes:
+            ranges:
+              - '>=1.29 <1.35'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Rook 1.18 support matrix lists Kubernetes 1.29 through 1.34.
+            sources:
+              - *rook_maintenance_source
+            lastVerified: '2026-07-08'
+          ceph:
+            ranges:
+              - '>=18.2.0 <19.0.0'
+              - '>=19.2.0 <20.0.0'
+              - '>=20.2.0 <21.0.0'
+            relationship: managed storage cluster
+            confidence: high
+            notes:
+              - Rook 1.18 support matrix lists Ceph Reef 18.2.0+, Ceph Squid 19.2.0+, and Ceph Tentacle 20.2.0+.
+            sources:
+              - *rook_maintenance_source
+            lastVerified: '2026-07-08'
+      '1.17':
+        dependencies:
+          kubernetes:
+            ranges:
+              - '>=1.28 <1.34'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Rook 1.17 support matrix lists Kubernetes 1.28 through 1.33.
+            sources:
+              - *rook_maintenance_source
+            lastVerified: '2026-07-08'
+          ceph:
+            ranges:
+              - '>=18.2.0 <19.0.0'
+              - '>=19.2.0 <20.0.0'
+            relationship: managed storage cluster
+            confidence: high
+            notes:
+              - Rook 1.17 support matrix lists Ceph Reef 18.2.0+ and Ceph Squid 19.2.0+.
+            sources:
+              - *rook_maintenance_source
+            lastVerified: '2026-07-08'

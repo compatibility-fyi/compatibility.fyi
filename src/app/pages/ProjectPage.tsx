@@ -429,7 +429,7 @@ function formatRange(range: string): string {
     return `${lowerMajor}.${lowerMinor}.x`;
   }
 
-  if (upperMajor === lowerMajor + 1 && upperMinor === 0 && upperPatch === 0) {
+  if (lowerPatch === 0 && upperMajor === lowerMajor + 1 && upperMinor === 0 && upperPatch === 0) {
     return `${lowerMajor}.${lowerMinor}+`;
   }
 

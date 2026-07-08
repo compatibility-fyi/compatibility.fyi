@@ -16,11 +16,9 @@ container images, Helm chart defaults, and vendor documentation. That makes simp
 - Is this Renovate update actually compatible?
 
 The MVP focuses on architecture, API shape, validation, and contribution workflow. It currently
-includes source-backed Keycloak database compatibility data, Envoy Gateway multi-axis
-compatibility data, CloudNativePG Kubernetes and PostgreSQL operand compatibility data, Argo CD
-tested Kubernetes compatibility data, Flux Kubernetes compatibility data, cert-manager runtime
-compatibility data, Cilium Kubernetes compatibility data, Helm Kubernetes version-skew data, Calico
-tested Kubernetes compatibility data, and CoreDNS kubeadm default version mappings.
+includes source-backed compatibility data for Keycloak, Envoy Gateway, CloudNativePG, Argo CD, Flux,
+cert-manager, Cilium, Helm, Calico, CoreDNS, Nextcloud, Red Hat Advanced Cluster Management,
+Istio, Prometheus Operator, Rook Ceph, Longhorn, and External Secrets Operator.
 
 ## Local development
 
@@ -153,11 +151,19 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Roadmap
 
+Near-term data additions:
+
 - Kubernetes version skew
-- Istio
-- Argo CD
-- cert-manager
 - Crossplane
+- Harbor
+- Backstage
+- Grafana, Loki, Mimir, and Tempo
+- KEDA
+- Knative
+- vSphere CSI, if a complete reliable public compatibility matrix can be found
+
+Compatibility domains to expand:
+
 - PostgreSQL client compatibility
 - Java runtime compatibility
 - GitHub Action compatibility
