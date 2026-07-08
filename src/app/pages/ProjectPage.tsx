@@ -151,7 +151,7 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
         </div>
         <div className="checker-grid">
           <label className="select-field">
-            <span>{project.name} version</span>
+            <span>Project version</span>
             <select
               value={activeCheckVersion}
               onChange={(event) => {

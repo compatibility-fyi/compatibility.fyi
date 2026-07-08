@@ -120,6 +120,8 @@ p {
   color: #4b5563;
   font-size: 0.86rem;
   font-weight: 700;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .catalog-search input,
@@ -459,6 +461,11 @@ p {
   font-size: 0.84rem;
   font-weight: 500;
   margin-top: 3px;
+  overflow-wrap: anywhere;
+}
+
+.compound-result-row strong {
+  overflow-wrap: anywhere;
 }
 
 .status-badge {
