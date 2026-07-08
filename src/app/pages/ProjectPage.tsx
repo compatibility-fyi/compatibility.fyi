@@ -288,8 +288,12 @@ function CompoundResult({ checks }: { checks: CompatibilityCheckResponse[] }) {
             <strong>{formatDependencyName(check.dependency)}</strong>
             <small>{check.dependencyVersion}</small>
           </span>
-          <StatusBadge status={check.compatible} />
-          <span>{check.matchedRange ? formatRange(check.matchedRange) : 'No matching range'}</span>
+          <span className="compound-result-value">
+            <StatusBadge status={check.compatible} />
+            <span>
+              {check.matchedRange ? formatRange(check.matchedRange) : 'No matching range'}
+            </span>
+          </span>
         </div>
       ))}
     </div>

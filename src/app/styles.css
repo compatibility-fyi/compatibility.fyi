@@ -425,12 +425,22 @@ p {
   border-bottom: 1px solid #d8dee8;
   display: grid;
   gap: 14px;
-  grid-template-columns: minmax(180px, 1fr) auto minmax(160px, 0.8fr);
+  grid-template-columns: minmax(180px, 1fr) minmax(220px, auto);
   padding: 10px 12px;
 }
 
 .compound-result-row:last-child {
   border-bottom: 0;
+}
+
+.compound-result-value {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: flex-end;
+  justify-self: end;
+  text-align: right;
 }
 
 .compound-result-row small,
@@ -1009,6 +1019,12 @@ th {
   .compound-result-row {
     align-items: start;
     grid-template-columns: 1fr;
+  }
+
+  .compound-result-value {
+    justify-content: flex-start;
+    justify-self: start;
+    text-align: left;
   }
 
   .catalog-project {
