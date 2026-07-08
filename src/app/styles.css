@@ -98,7 +98,8 @@ p {
 .catalog-search {
   display: grid;
   gap: 8px;
-  margin: 0 0 28px;
+  grid-area: search;
+  margin: 0;
 }
 
 .catalog-search label,
@@ -143,14 +144,22 @@ p {
   align-items: start;
   display: grid;
   gap: 28px;
+  grid-template-areas:
+    'search search'
+    'sidebar results';
   grid-template-columns: 230px minmax(0, 1fr);
 }
 
 .catalog-sidebar {
   border-right: 1px solid #d8dee8;
+  grid-area: sidebar;
   padding-right: 18px;
   position: sticky;
   top: 16px;
+}
+
+.catalog-results {
+  grid-area: results;
 }
 
 .catalog-sidebar h2 {
@@ -959,6 +968,13 @@ th {
   .docs-definition-grid,
   .endpoint-heading {
     grid-template-columns: 1fr;
+  }
+
+  .catalog-layout {
+    grid-template-areas:
+      'sidebar'
+      'search'
+      'results';
   }
 
   .catalog-sidebar,

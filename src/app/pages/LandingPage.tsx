@@ -79,18 +79,18 @@ export function LandingPage() {
         </p>
       </section>
 
-      <section className="catalog-search" aria-label="Project search">
-        <label htmlFor="project-search">Search compatibility metadata</label>
-        <input
-          id="project-search"
-          type="search"
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-          placeholder="Search projects..."
-        />
-      </section>
-
       <section className="catalog-layout">
+        <div className="catalog-search" aria-label="Project search">
+          <label htmlFor="project-search">Search compatibility metadata</label>
+          <input
+            id="project-search"
+            type="search"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="Search projects..."
+          />
+        </div>
+
         <aside className="catalog-sidebar" aria-label="Categories">
           <h2>Categories</h2>
           <nav>
