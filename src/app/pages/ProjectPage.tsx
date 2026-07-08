@@ -136,7 +136,7 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
         </div>
         <div>
           <span className="summary-value">{dependencyCount}</span>
-          <span className="summary-label">Compatibility</span>
+          <span className="summary-label">Dependencies</span>
         </div>
         <div>
           <span className="summary-value">{rows.length}</span>
