@@ -4,6 +4,7 @@ import calicoYaml from '../../data/calico.yaml?raw';
 import certManagerYaml from '../../data/cert-manager.yaml?raw';
 import ciliumYaml from '../../data/cilium.yaml?raw';
 import cloudnativepgYaml from '../../data/cloudnativepg.yaml?raw';
+import corednsYaml from '../../data/coredns.yaml?raw';
 import keycloakYaml from '../../data/keycloak.yaml?raw';
 import fluxYaml from '../../data/flux.yaml?raw';
 import helmYaml from '../../data/helm.yaml?raw';
@@ -21,6 +22,7 @@ const dataSources = [
   ciliumYaml,
   helmYaml,
   calicoYaml,
+  corednsYaml,
 ];
 
 export function loadDataset(): CompatibilityDataset {

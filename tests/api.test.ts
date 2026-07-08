@@ -16,6 +16,7 @@ describe('api', () => {
         expect.objectContaining({ id: 'cert-manager' }),
         expect.objectContaining({ id: 'cilium' }),
         expect.objectContaining({ id: 'cloudnativepg' }),
+        expect.objectContaining({ id: 'coredns' }),
         expect.objectContaining({ id: 'flux' }),
         expect.objectContaining({ id: 'helm' }),
         expect.objectContaining({ id: 'keycloak' }),
@@ -194,6 +195,24 @@ describe('api', () => {
     expect(body.compatible).toBe('compatible');
     expect(body.matchedRange).toBe('>=1.34 <1.37');
     expect(body.relationship).toBe('runtime');
+  });
+
+  it('checks CoreDNS kubeadm default mappings', async () => {
+    const response = await handleApiRequest(
+      new Request(
+        'https://compatibility.fyi/api/v1/check?project=coredns&version=1.11.3&dependency=kubernetes&dependencyVersion=1.32',
+      ),
+    );
+    const body = (await response.json()) as {
+      compatible: string;
+      matchedRange: string | null;
+      relationship: string | null;
+    };
+
+    expect(response.status).toBe(200);
+    expect(body.compatible).toBe('compatible');
+    expect(body.matchedRange).toBe('>=1.31 <1.33');
+    expect(body.relationship).toBe('kubeadm-default');
   });
 
   it('checks compound CloudNativePG compatibility from POST JSON', async () => {
