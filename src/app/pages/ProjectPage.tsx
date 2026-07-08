@@ -393,6 +393,7 @@ function formatDependencyName(dependency: string): string {
     mysql: 'MySQL',
     oidc: 'OIDC',
     openshift: 'OpenShift',
+    php: 'PHP',
     postgresql: 'PostgreSQL',
     sql: 'SQL',
     tls: 'TLS',
