@@ -1,14 +1,60 @@
+import type { ReactNode } from 'react';
+
 import { CodeBlock } from '../components/CodeBlock';
 import { Layout } from '../components/Layout';
 
-const checkResponse = `{
+interface Parameter {
+  name: string;
+  location: string;
+  required: string;
+  description: string;
+}
+
+interface ResponseField {
+  name: string;
+  description: string;
+}
+
+const projectIndexResponse = `{
+  "projects": [
+    {
+      "id": "cloudnativepg",
+      "name": "CloudNativePG",
+      "category": "Database",
+      "website": "https://cloudnative-pg.io/",
+      "versions": ["1.30", "1.29", "1.28"]
+    }
+  ]
+}`;
+
+const projectResponse = `{
+  "id": "red-hat-advanced-cluster-management",
+  "name": "Red Hat Advanced Cluster Management for Kubernetes",
+  "category": "Cluster management",
+  "versions": {
+    "2.16": {
+      "dependencies": {
+        "multicluster-engine": {
+          "ranges": ["2.11"],
+          "relationship": "bundled"
+        },
+        "openshift-management-cluster": {
+          "ranges": [">=4.19 <4.22"],
+          "relationship": "hub runtime"
+        }
+      }
+    }
+  }
+}`;
+
+const singleCheckResponse = `{
   "project": "keycloak",
   "version": "26",
   "dependency": "postgresql",
   "dependencyVersion": "17",
   "compatible": "compatible",
   "matchedRange": ">=14.0.0 <19.0.0",
-  "relationship": null,
+  "relationship": "database",
   "confidence": "high",
   "notes": [
     "Keycloak current 26.x supported configurations list PostgreSQL 18.x, 17.x, 16.x, 15.x, and 14.x."
@@ -18,98 +64,390 @@ const checkResponse = `{
       "title": "Keycloak Supported Configurations - Supported Databases",
       "url": "https://www.keycloak.org/server/supported-configurations",
       "accessedAt": "2026-07-08"
-    },
-    {
-      "title": "Keycloak database configuration guide",
-      "url": "https://www.keycloak.org/server/db",
-      "accessedAt": "2026-07-08"
     }
   ]
 }`;
 
-const projectsResponse = `{
-  "projects": [
-    {
-      "id": "example-project",
-      "name": "Example Project",
-      "category": "Example Category",
-      "website": "https://example.com/",
-      "versions": ["2.0", "1.0"]
-    }
-  ]
-}`;
-
-export function DocsApiPage() {
-  return (
-    <Layout>
-      <section className="page-heading">
-        <p className="eyebrow">API</p>
-        <h1>HTTP API v1</h1>
-        <p>
-          The API is intentionally small, cacheable, and shaped for automation clients. Responses
-          avoid HTML and return explicit unknown states when evidence is missing.
-        </p>
-      </section>
-
-      <section className="docs-grid">
-        <article>
-          <h2>GET /api/v1/projects</h2>
-          <p>Returns the known project index.</p>
-          <CodeBlock>{`curl https://compatibility.fyi/api/v1/projects`}</CodeBlock>
-          <CodeBlock>{projectsResponse}</CodeBlock>
-        </article>
-
-        <article>
-          <h2>GET /api/v1/projects/:project</h2>
-          <p>Returns the complete compatibility document for a project.</p>
-          <CodeBlock>{`curl https://compatibility.fyi/api/v1/projects/example-project`}</CodeBlock>
-        </article>
-
-        <article>
-          <h2>GET /api/v1/check</h2>
-          <p>
-            Checks one project/dependency version pair and returns compatible, incompatible, or
-            unknown.
-          </p>
-          <CodeBlock>
-            {`curl "https://compatibility.fyi/api/v1/check?project=keycloak&version=26&dependency=postgresql&dependencyVersion=17"`}
-          </CodeBlock>
-          <CodeBlock>{checkResponse}</CodeBlock>
-        </article>
-
-        <article>
-          <h2>POST /api/v1/check</h2>
-          <p>Checks a compound project version combination across multiple dependencies.</p>
-          <CodeBlock>{`curl -X POST https://compatibility.fyi/api/v1/check \\
-  -H "content-type: application/json" \\
-  -d '{
-    "project": "cloudnativepg",
-    "version": "1.30",
-    "dependencies": {
-      "postgresql": "18",
-      "kubernetes": "1.36"
-    }
-  }'`}</CodeBlock>
-          <CodeBlock>{`{
-  "project": "cloudnativepg",
-  "version": "1.30",
+const compoundCheckResponse = `{
+  "project": "red-hat-advanced-cluster-management",
+  "version": "2.16",
   "dependencies": {
-    "postgresql": "18",
-    "kubernetes": "1.36"
+    "multicluster-engine": "2.11",
+    "openshift-management-cluster": "4.21.22",
+    "openshift-hosted-cluster": "4.21.22"
   },
   "compatible": "compatible",
   "checks": [
     {
-      "dependency": "postgresql",
-      "dependencyVersion": "18",
+      "dependency": "multicluster-engine",
+      "dependencyVersion": "2.11",
       "compatible": "compatible",
-      "matchedRange": ">=14.0.0 <19.0.0",
-      "relationship": "operand"
+      "matchedRange": "2.11",
+      "relationship": "bundled"
+    },
+    {
+      "dependency": "openshift-management-cluster",
+      "dependencyVersion": "4.21.22",
+      "compatible": "compatible",
+      "matchedRange": ">=4.19 <4.22",
+      "relationship": "hub runtime"
     }
   ]
-}`}</CodeBlock>
-        </article>
+}`;
+
+const endpointRows = [
+  ['GET', '/api/v1/projects', 'Discover project ids and high-level metadata.'],
+  ['GET', '/api/v1/projects/{project}', 'Inspect versions, dependency keys, ranges, and evidence.'],
+  ['GET', '/api/v1/check', 'Check one project/dependency version pair.'],
+  ['POST', '/api/v1/check', 'Check a full project version combination.'],
+];
+
+const singleCheckParameters: Parameter[] = [
+  {
+    name: 'project',
+    location: 'query',
+    required: 'yes',
+    description: 'Project id from the project index, for example keycloak.',
+  },
+  {
+    name: 'version',
+    location: 'query',
+    required: 'yes',
+    description: 'Project version to evaluate.',
+  },
+  {
+    name: 'dependency',
+    location: 'query',
+    required: 'yes',
+    description: 'Dependency key from the project document.',
+  },
+  {
+    name: 'dependencyVersion',
+    location: 'query',
+    required: 'yes',
+    description: 'Dependency version to test against the documented ranges.',
+  },
+];
+
+const compoundCheckParameters: Parameter[] = [
+  {
+    name: 'project',
+    location: 'body',
+    required: 'yes',
+    description: 'Project id from the project index.',
+  },
+  {
+    name: 'version',
+    location: 'body',
+    required: 'yes',
+    description: 'Project version to evaluate.',
+  },
+  {
+    name: 'dependencies',
+    location: 'body',
+    required: 'yes',
+    description: 'JSON object where keys are dependency ids and values are dependency versions.',
+  },
+];
+
+const responseFields: ResponseField[] = [
+  {
+    name: 'compatible',
+    description: 'Aggregate or single check result: compatible, incompatible, or unknown.',
+  },
+  {
+    name: 'matchedRange',
+    description: 'The documented range that matched the requested dependency version, or null.',
+  },
+  {
+    name: 'relationship',
+    description: 'How the project uses the dependency, such as runtime, bundled, or installer.',
+  },
+  {
+    name: 'confidence',
+    description: 'Evidence quality: high, medium, or low.',
+  },
+  {
+    name: 'sources',
+    description: 'Source documents used to verify the entry.',
+  },
+];
+
+export function DocsApiPage() {
+  return (
+    <Layout>
+      <section className="page-heading docs-heading">
+        <p className="eyebrow">API</p>
+        <h1>HTTP API v1</h1>
+        <p>
+          Query compatibility metadata as JSON. Start with the project index, inspect a project for
+          its version and dependency keys, then run single or compound compatibility checks.
+        </p>
       </section>
+
+      <div className="docs-layout">
+        <aside className="docs-toc" aria-label="API sections">
+          <strong>API reference</strong>
+          <nav>
+            <a href="#quickstart">Quickstart</a>
+            <a href="#endpoints">Endpoints</a>
+            <a href="#projects">Projects</a>
+            <a href="#project">Project document</a>
+            <a href="#single-check">Single check</a>
+            <a href="#compound-check">Combination check</a>
+            <a href="#semantics">Result semantics</a>
+          </nav>
+        </aside>
+
+        <div className="docs-content">
+          <section id="quickstart" className="docs-section docs-callout">
+            <div>
+              <p className="eyebrow">Quickstart</p>
+              <h2>Discover, inspect, check</h2>
+              <p>
+                Dependency keys are project-specific. Use the project document as the source of
+                truth before calling the check endpoint.
+              </p>
+            </div>
+            <div className="quickstart-steps">
+              <div className="quickstart-step">
+                <h3>1. List projects</h3>
+                <p>Find the stable project id to use in later requests.</p>
+                <CodeBlock copyable>{`curl https://compatibility.fyi/api/v1/projects`}</CodeBlock>
+              </div>
+              <div className="quickstart-step">
+                <h3>2. Inspect one project</h3>
+                <p>Read the available versions, dependency keys, ranges, evidence, and sources.</p>
+                <CodeBlock
+                  copyable
+                >{`curl https://compatibility.fyi/api/v1/projects/red-hat-advanced-cluster-management`}</CodeBlock>
+              </div>
+              <div className="quickstart-step">
+                <h3>3. Check compatibility</h3>
+                <p>Ask whether one dependency version is compatible with one project version.</p>
+                <CodeBlock copyable>
+                  {`curl "https://compatibility.fyi/api/v1/check?project=keycloak&version=26&dependency=postgresql&dependencyVersion=17"`}
+                </CodeBlock>
+              </div>
+            </div>
+          </section>
+
+          <section id="endpoints" className="docs-section">
+            <h2>Endpoints</h2>
+            <div className="docs-table-wrap">
+              <table className="docs-table">
+                <thead>
+                  <tr>
+                    <th>Method</th>
+                    <th>Path</th>
+                    <th>Purpose</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {endpointRows.map(([method, path, purpose]) => (
+                    <tr key={`${method}-${path}`}>
+                      <td>
+                        <span className={`method-badge ${method.toLowerCase()}`}>{method}</span>
+                      </td>
+                      <td>
+                        <code>{path}</code>
+                      </td>
+                      <td>{purpose}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <EndpointSection
+            id="projects"
+            method="GET"
+            path="/api/v1/projects"
+            title="List projects"
+            description="Returns the public project index. Use this endpoint to discover stable project ids for tools and integrations."
+          >
+            <CodeBlock copyable>{`curl https://compatibility.fyi/api/v1/projects`}</CodeBlock>
+            <CodeBlock>{projectIndexResponse}</CodeBlock>
+          </EndpointSection>
+
+          <EndpointSection
+            id="project"
+            method="GET"
+            path="/api/v1/projects/{project}"
+            title="Get project compatibility data"
+            description="Returns the complete compatibility document for one project, including known versions, dependency keys, ranges, confidence, notes, sources, and verification dates."
+          >
+            <ParameterTable
+              parameters={[
+                {
+                  name: 'project',
+                  location: 'path',
+                  required: 'yes',
+                  description: 'Project id from /api/v1/projects.',
+                },
+              ]}
+            />
+            <CodeBlock
+              copyable
+            >{`curl https://compatibility.fyi/api/v1/projects/red-hat-advanced-cluster-management`}</CodeBlock>
+            <CodeBlock>{projectResponse}</CodeBlock>
+          </EndpointSection>
+
+          <EndpointSection
+            id="single-check"
+            method="GET"
+            path="/api/v1/check"
+            title="Check one dependency"
+            description="Checks one dependency version against one project version. This is the simplest endpoint for Renovate-style compatibility decisions."
+          >
+            <ParameterTable parameters={singleCheckParameters} />
+            <CodeBlock copyable>
+              {`curl "https://compatibility.fyi/api/v1/check?project=keycloak&version=26&dependency=postgresql&dependencyVersion=17"`}
+            </CodeBlock>
+            <CodeBlock>{singleCheckResponse}</CodeBlock>
+          </EndpointSection>
+
+          <EndpointSection
+            id="compound-check"
+            method="POST"
+            path="/api/v1/check"
+            title="Check a combination"
+            description="Checks a project version against multiple dependencies in one request and returns an aggregate result plus individual checks."
+          >
+            <ParameterTable parameters={compoundCheckParameters} />
+            <CodeBlock copyable>{`curl -X POST https://compatibility.fyi/api/v1/check \\
+  -H "content-type: application/json" \\
+  -d '{
+    "project": "red-hat-advanced-cluster-management",
+    "version": "2.16",
+    "dependencies": {
+      "multicluster-engine": "2.11",
+      "openshift-management-cluster": "4.21.22",
+      "openshift-hosted-cluster": "4.21.22"
+    }
+  }'`}</CodeBlock>
+            <CodeBlock>{compoundCheckResponse}</CodeBlock>
+            <p className="docs-note">
+              A GET variant is also accepted by passing a URL-encoded JSON object in the
+              <code>dependencies</code> query parameter. POST is recommended for compound checks
+              because it is easier to read and avoids URL length limits.
+            </p>
+          </EndpointSection>
+
+          <section id="semantics" className="docs-section">
+            <h2>Result semantics</h2>
+            <div className="docs-definition-grid">
+              <div>
+                <span className="status-badge compatible">compatible</span>
+                <p>The dependency version matched a documented compatible range.</p>
+              </div>
+              <div>
+                <span className="status-badge incompatible">incompatible</span>
+                <p>
+                  The dependency is known for that project version, but the requested version did
+                  not match any documented compatible range.
+                </p>
+              </div>
+              <div>
+                <span className="status-badge unknown">unknown</span>
+                <p>The project, project version, dependency, or evidence is not known.</p>
+              </div>
+            </div>
+
+            <h3>Response fields</h3>
+            <ResponseFieldTable fields={responseFields} />
+
+            <h3>Evidence model</h3>
+            <p>
+              High confidence means the entry is backed by official project documentation or tagged
+              upstream source and includes a verification date. Compatibility data can still become
+              stale, so clients should expose sources and verification dates where possible.
+            </p>
+          </section>
+        </div>
+      </div>
     </Layout>
+  );
+}
+
+interface EndpointSectionProps {
+  id: string;
+  method: 'GET' | 'POST';
+  path: string;
+  title: string;
+  description: string;
+  children: ReactNode;
+}
+
+function EndpointSection({ id, method, path, title, description, children }: EndpointSectionProps) {
+  return (
+    <section id={id} className="docs-section endpoint-section">
+      <div className="endpoint-heading">
+        <div>
+          <h2>{title}</h2>
+          <p>{description}</p>
+        </div>
+        <div className="endpoint-route">
+          <span className={`method-badge ${method.toLowerCase()}`}>{method}</span>
+          <code>{path}</code>
+        </div>
+      </div>
+      {children}
+    </section>
+  );
+}
+
+function ParameterTable({ parameters }: { parameters: Parameter[] }) {
+  return (
+    <div className="docs-table-wrap">
+      <table className="docs-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>In</th>
+            <th>Required</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {parameters.map((parameter) => (
+            <tr key={`${parameter.location}-${parameter.name}`}>
+              <td>
+                <code>{parameter.name}</code>
+              </td>
+              <td>{parameter.location}</td>
+              <td>{parameter.required}</td>
+              <td>{parameter.description}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function ResponseFieldTable({ fields }: { fields: ResponseField[] }) {
+  return (
+    <div className="docs-table-wrap">
+      <table className="docs-table">
+        <thead>
+          <tr>
+            <th>Field</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {fields.map((field) => (
+            <tr key={field.name}>
+              <td>
+                <code>{field.name}</code>
+              </td>
+              <td>{field.description}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
