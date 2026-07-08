@@ -81,7 +81,9 @@ export function LandingPage() {
 
       <section className="catalog-layout">
         <div className="catalog-search" aria-label="Project search">
-          <label htmlFor="project-search">Search compatibility metadata</label>
+          <label className="sr-only" htmlFor="project-search">
+            Search projects
+          </label>
           <input
             id="project-search"
             type="search"
