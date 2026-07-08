@@ -1,66 +1,167 @@
+import { useMemo, useState } from 'react';
+import { listProjects, loadDataset } from '../../lib/data';
+import type { ProjectSummary } from '../../types/compatibility';
 import { Layout } from '../components/Layout';
 
-const examples = [
-  'Is Keycloak 26 compatible with PostgreSQL 17?',
-  'Which Gateway API version is supported by Envoy Gateway 1.8?',
-  'Is this Renovate update actually compatible?',
-];
+const projects = listProjects(loadDataset()).map((project) => ({
+  ...project,
+  category: project.category ?? 'Uncategorized',
+}));
+
+interface CatalogProject extends ProjectSummary {
+  category: string;
+}
 
 export function LandingPage() {
+  const [query, setQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+
+  const categories = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const project of projects) {
+      counts.set(project.category, (counts.get(project.category) ?? 0) + 1);
+    }
+
+    return [
+      { count: projects.length, name: 'All' },
+      ...[...counts.entries()]
+        .map(([name, count]) => ({ count, name }))
+        .sort((left, right) => left.name.localeCompare(right.name)),
+    ];
+  }, []);
+
+  const visibleProjects = useMemo(() => {
+    const normalizedQuery = query.trim().toLowerCase();
+
+    return projects.filter((project) => {
+      const matchesCategory = selectedCategory === 'All' || project.category === selectedCategory;
+      const matchesQuery =
+        !normalizedQuery ||
+        [
+          project.id,
+          project.name,
+          project.category,
+          project.dependencyKind?.singular,
+          project.dependencyKind?.plural,
+          project.dependencyKind?.examples?.join(' '),
+          project.versions.join(' '),
+        ]
+          .join(' ')
+          .toLowerCase()
+          .includes(normalizedQuery);
+
+      return matchesCategory && matchesQuery;
+    });
+  }, [query, selectedCategory]);
+
   return (
     <Layout>
-      <section className="hero">
-        <div className="hero-copy">
-          <p className="eyebrow">Open compatibility metadata</p>
-          <h1>compatibility.fyi</h1>
-          <p className="lede">
-            Machine-readable software compatibility metadata for projects, versions, and the
-            dependencies they need to work together.
-          </p>
-          <div className="hero-actions">
-            <a className="button primary" href="/docs/api">
-              Read the API docs
-            </a>
-            <a className="button secondary" href="/projects">
-              Browse projects
-            </a>
-          </div>
-        </div>
-        <div className="hero-product">
-          <img
-            className="hero-logo"
-            src="/compatibility-fyi-logo.png"
-            alt="compatibility.fyi logo"
-          />
-        </div>
-      </section>
-
-      <section className="section-grid">
-        <div>
-          <h2>Compatibility data should be queryable.</h2>
-          <p>
-            Lifecycle metadata has endoflife.date. Compatibility data is still scattered through
-            release notes, support matrices, Helm charts, GitHub issues, and tribal knowledge.
-            compatibility.fyi is a small open-source attempt to make that metadata explicit.
-          </p>
-        </div>
-        <div className="examples">
-          {examples.map((example) => (
-            <div className="example" key={example}>
-              {example}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="band">
-        <h2>Built for maintainers and automation.</h2>
+      <section className="catalog-intro" aria-labelledby="catalog-title">
+        <h1 id="catalog-title">compatibility.fyi</h1>
         <p>
-          The MVP ships a typed YAML format, validation, official Keycloak database compatibility
-          data, a small compatibility engine, and a Worker API that tools such as Renovate,
-          Dependabot, Helm, Argo CD, and Backstage could consume.
+          Compatibility information is scattered across support matrices, release notes, source
+          trees, and upgrade guides. compatibility.fyi collects that evidence in one open catalog so
+          humans and automation can answer whether two software versions are known to work together.
         </p>
+      </section>
+
+      <section className="catalog-search" aria-label="Project search">
+        <label htmlFor="project-search">Search compatibility metadata</label>
+        <input
+          id="project-search"
+          type="search"
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+          placeholder="Search Keycloak, PostgreSQL, Gateway API..."
+        />
+      </section>
+
+      <section className="catalog-layout">
+        <aside className="catalog-sidebar" aria-label="Categories">
+          <h2>Categories</h2>
+          <nav>
+            {categories.map((category) => (
+              <button
+                className={category.name === selectedCategory ? 'active' : undefined}
+                key={category.name}
+                type="button"
+                onClick={() => setSelectedCategory(category.name)}
+              >
+                <span>{category.name}</span>
+                <span>{category.count}</span>
+              </button>
+            ))}
+          </nav>
+        </aside>
+
+        <div className="catalog-results">
+          <div className="catalog-results-heading">
+            <h2>{selectedCategory === 'All' ? 'All projects' : selectedCategory}</h2>
+            <span>
+              {visibleProjects.length} {visibleProjects.length === 1 ? 'project' : 'projects'}
+            </span>
+          </div>
+
+          {visibleProjects.length > 0 ? (
+            <div className="catalog-table" role="table" aria-label="Compatibility projects">
+              <div className="catalog-row catalog-row-header" role="row">
+                <span role="columnheader">Project</span>
+                <span role="columnheader">Compatibility target</span>
+                <span role="columnheader">Known versions</span>
+              </div>
+              {visibleProjects.map((project) => (
+                <ProjectRow key={project.id} project={project} />
+              ))}
+            </div>
+          ) : (
+            <p className="empty-state">No projects match that search.</p>
+          )}
+        </div>
+      </section>
+
+      <section className="catalog-notes">
+        <article>
+          <h2>API-first metadata</h2>
+          <p>
+            The data lives in YAML, is validated in CI, and is served through a small API for tools
+            like Renovate, Dependabot, Helm, Argo CD, and Backstage.
+          </p>
+        </article>
+        <article>
+          <h2>Compatibility, not lifecycle</h2>
+          <p>
+            Lifecycle databases answer whether a version is maintained. compatibility.fyi answers
+            whether two pieces of software are known to work together.
+          </p>
+        </article>
       </section>
     </Layout>
   );
+}
+
+function ProjectRow({ project }: { project: CatalogProject }) {
+  const target = project.dependencyKind?.singular ?? 'dependency';
+
+  return (
+    <a className="catalog-row" href={`/projects/${project.id}`} role="row">
+      <span role="cell">
+        <span className="catalog-project">
+          <span>
+            <strong>{project.name}</strong>
+            <small>{project.category}</small>
+          </span>
+        </span>
+      </span>
+      <span role="cell">{formatLabel(target)}</span>
+      <span role="cell">{project.versions.length} versions</span>
+    </a>
+  );
+}
+
+function formatLabel(label: string): string {
+  if (label === label.toLowerCase()) {
+    return label.charAt(0).toUpperCase() + label.slice(1);
+  }
+
+  return label;
 }

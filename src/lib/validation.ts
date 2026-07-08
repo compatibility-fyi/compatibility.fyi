@@ -27,14 +27,14 @@ export function assertDataset(value: unknown): asserts value is CompatibilityDat
   for (const [projectId, project] of Object.entries(projects)) {
     const projectRecord = asRecord(project, `projects.${projectId}`);
     assertString(projectRecord.name, `projects.${projectId}.name`);
+    if (projectRecord.category !== undefined) {
+      assertString(projectRecord.category, `projects.${projectId}.category`);
+    }
     if (projectRecord.description !== undefined) {
       assertString(projectRecord.description, `projects.${projectId}.description`);
     }
     if (projectRecord.website !== undefined) {
       assertUrl(projectRecord.website, `projects.${projectId}.website`);
-    }
-    if (projectRecord.logo !== undefined) {
-      assertUrl(projectRecord.logo, `projects.${projectId}.logo`);
     }
     if (projectRecord.dependencyKind !== undefined) {
       assertDependencyKind(projectRecord.dependencyKind, `projects.${projectId}.dependencyKind`);

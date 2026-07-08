@@ -48,8 +48,8 @@ export function DocsApiPage() {
     {
       "id": "keycloak",
       "name": "Keycloak",
+      "category": "Authentication",
       "website": "https://www.keycloak.org/",
-      "logo": "https://raw.githubusercontent.com/keycloak/keycloak-misc/main/logo/logo.svg",
       "dependencyKind": {
         "singular": "database",
         "plural": "databases",

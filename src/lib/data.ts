@@ -22,9 +22,9 @@ export function listProjects(dataset: CompatibilityDataset): ProjectSummary[] {
     .map(([id, project]) => ({
       id,
       name: project.name,
+      category: project.category,
       description: project.description,
       website: project.website,
-      logo: project.logo,
       dependencyKind: project.dependencyKind,
       versions: Object.keys(project.versions).sort((left, right) => compareVersions(right, left)),
     }))

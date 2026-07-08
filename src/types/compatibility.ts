@@ -29,9 +29,9 @@ export interface DependencyKind {
 
 export interface ProjectCompatibility {
   name: string;
+  category?: string;
   description?: string;
   website?: string;
-  logo?: string;
   dependencyKind?: DependencyKind;
   versions: Record<string, ProjectVersion>;
 }
@@ -43,9 +43,9 @@ export interface CompatibilityDataset {
 export interface ProjectSummary {
   id: string;
   name: string;
+  category?: string;
   description?: string;
   website?: string;
-  logo?: string;
   dependencyKind?: DependencyKind;
   versions: string[];
 }
