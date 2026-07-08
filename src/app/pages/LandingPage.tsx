@@ -33,26 +33,28 @@ export function LandingPage() {
   const visibleProjects = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
 
-    return projects.filter((project) => {
-      const matchesCategory = selectedCategory === 'All' || project.category === selectedCategory;
-      const matchesQuery =
-        !normalizedQuery ||
-        [
-          project.id,
-          project.name,
-          project.category,
-          project.description,
-          project.dependencyKind?.singular,
-          project.dependencyKind?.plural,
-          project.dependencyKind?.examples?.join(' '),
-          project.versions.join(' '),
-        ]
-          .join(' ')
-          .toLowerCase()
-          .includes(normalizedQuery);
+    return projects
+      .filter((project) => {
+        const matchesCategory = selectedCategory === 'All' || project.category === selectedCategory;
+        const matchesQuery =
+          !normalizedQuery ||
+          [
+            project.id,
+            project.name,
+            project.category,
+            project.description,
+            project.dependencyKind?.singular,
+            project.dependencyKind?.plural,
+            project.dependencyKind?.examples?.join(' '),
+            project.versions.join(' '),
+          ]
+            .join(' ')
+            .toLowerCase()
+            .includes(normalizedQuery);
 
-      return matchesCategory && matchesQuery;
-    });
+        return matchesCategory && matchesQuery;
+      })
+      .sort(compareCatalogProjects);
   }, [query, selectedCategory]);
 
   return (
@@ -152,5 +154,12 @@ function ProjectRow({ project }: { project: CatalogProject }) {
       </span>
       <span role="cell">{project.versions.length} versions</span>
     </a>
+  );
+}
+
+function compareCatalogProjects(left: CatalogProject, right: CatalogProject): number {
+  return (
+    left.name.localeCompare(right.name, undefined, { sensitivity: 'base' }) ||
+    left.id.localeCompare(right.id)
   );
 }
