@@ -1,0 +1,118 @@
+x-grafana-13-install-source: &grafana_13_install_source
+  title: Grafana 13.0 Install Grafana - Supported databases
+  url: https://archive.grafana.com/docs/grafana/v13.0/setup-grafana/installation/
+  accessedAt: '2026-07-08'
+
+x-grafana-12-install-source: &grafana_12_install_source
+  title: Grafana 12.0 Install Grafana - Supported databases
+  url: https://archive.grafana.com/docs/grafana/v12.0/setup-grafana/installation/
+  accessedAt: '2026-07-08'
+
+x-grafana-11-install-source: &grafana_11_install_source
+  title: Grafana 11.0 Install Grafana - Supported databases
+  url: https://archive.grafana.com/docs/grafana/v11.0/setup-grafana/installation/
+  accessedAt: '2026-07-08'
+
+projects:
+  grafana:
+    name: Grafana
+    category: Observability
+    website: https://grafana.com/oss/grafana/
+    description: Grafana server compatibility for supported configuration databases.
+    versions:
+      '13':
+        dependencies:
+          postgresql:
+            ranges:
+              - '>=12.0.0'
+            relationship: configuration database
+            confidence: high
+            notes:
+              - Grafana 13.0 install documentation lists PostgreSQL 12+ as a supported database.
+            sources:
+              - *grafana_13_install_source
+            lastVerified: '2026-07-08'
+          mysql:
+            ranges:
+              - '>=8.0.0'
+            relationship: configuration database
+            confidence: high
+            notes:
+              - Grafana 13.0 install documentation lists MySQL 8.0+ as a supported database.
+            sources:
+              - *grafana_13_install_source
+            lastVerified: '2026-07-08'
+          sqlite:
+            ranges:
+              - '>=3.0.0'
+            relationship: embedded configuration database
+            confidence: high
+            notes:
+              - Grafana 13.0 uses SQLite 3 by default, but SQLite is not recommended for production or high availability.
+            sources:
+              - *grafana_13_install_source
+            lastVerified: '2026-07-08'
+      '12':
+        dependencies:
+          postgresql:
+            ranges:
+              - '>=12.0.0'
+            relationship: configuration database
+            confidence: high
+            notes:
+              - Grafana 12.0 install documentation lists PostgreSQL 12+ as a supported database.
+            sources:
+              - *grafana_12_install_source
+            lastVerified: '2026-07-08'
+          mysql:
+            ranges:
+              - '>=8.0.0'
+            relationship: configuration database
+            confidence: high
+            notes:
+              - Grafana 12.0 install documentation lists MySQL 8.0+ as a supported database.
+            sources:
+              - *grafana_12_install_source
+            lastVerified: '2026-07-08'
+          sqlite:
+            ranges:
+              - '>=3.0.0'
+            relationship: embedded configuration database
+            confidence: high
+            notes:
+              - Grafana 12.0 uses SQLite 3 by default, but SQLite is not recommended for growing environments or high availability.
+            sources:
+              - *grafana_12_install_source
+            lastVerified: '2026-07-08'
+      '11':
+        dependencies:
+          postgresql:
+            ranges:
+              - '>=12.0.0'
+            relationship: configuration database
+            confidence: high
+            notes:
+              - Grafana 11.0 install documentation lists PostgreSQL 12+ as a supported database.
+            sources:
+              - *grafana_11_install_source
+            lastVerified: '2026-07-08'
+          mysql:
+            ranges:
+              - '>=8.0.0'
+            relationship: configuration database
+            confidence: high
+            notes:
+              - Grafana 11.0 install documentation lists MySQL 8.0+ as a supported database.
+            sources:
+              - *grafana_11_install_source
+            lastVerified: '2026-07-08'
+          sqlite:
+            ranges:
+              - '>=3.0.0'
+            relationship: embedded configuration database
+            confidence: high
+            notes:
+              - Grafana 11.0 uses SQLite 3 by default, but SQLite is not recommended for growing environments or high availability.
+            sources:
+              - *grafana_11_install_source
+            lastVerified: '2026-07-08'
