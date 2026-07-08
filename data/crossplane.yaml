@@ -1,0 +1,81 @@
+x-crossplane-v23-install-source: &crossplane_v23_install_source
+  title: Crossplane v2.3 Install Crossplane
+  url: https://docs.crossplane.io/latest/get-started/install/
+  accessedAt: '2026-07-08'
+
+x-crossplane-v120-install-source: &crossplane_v120_install_source
+  title: Crossplane v1.20 Install Crossplane
+  url: https://docs.crossplane.io/v1.20/software/install/
+  accessedAt: '2026-07-08'
+
+x-crossplane-v2-upgrade-source: &crossplane_v2_upgrade_source
+  title: Upgrade to Crossplane v2
+  url: https://docs.crossplane.io/latest/guides/upgrade-to-crossplane-v2/
+  accessedAt: '2026-07-08'
+
+projects:
+  crossplane:
+    name: Crossplane
+    category: Control plane
+    website: https://www.crossplane.io/
+    description: Crossplane installation and v2 upgrade compatibility requirements.
+    versions:
+      '2.3':
+        dependencies:
+          helm:
+            ranges:
+              - '>=3.2.0'
+            relationship: installer
+            confidence: high
+            notes:
+              - Crossplane v2.3 installation prerequisites require Helm 3.2.0 or later.
+              - The same page requires an actively supported Kubernetes version, but that moving target is intentionally not encoded as a static range.
+            sources:
+              - *crossplane_v23_install_source
+            lastVerified: '2026-07-08'
+          crossplane-upgrade-source:
+            ranges:
+              - '1.20'
+            relationship: upgrade source
+            confidence: high
+            notes:
+              - Crossplane v2 upgrade documentation says to upgrade to Crossplane v2 only from Crossplane 1.20.
+            sources:
+              - *crossplane_v2_upgrade_source
+            lastVerified: '2026-07-08'
+      '2.0':
+        dependencies:
+          helm:
+            ranges:
+              - '>=3.2.0'
+            relationship: installer
+            confidence: high
+            notes:
+              - Crossplane v2 installation prerequisites require Helm 3.2.0 or later.
+              - The v2 install page requires an actively supported Kubernetes version, but that moving target is intentionally not encoded as a static range.
+            sources:
+              - *crossplane_v23_install_source
+            lastVerified: '2026-07-08'
+          crossplane-upgrade-source:
+            ranges:
+              - '1.20'
+            relationship: upgrade source
+            confidence: high
+            notes:
+              - Crossplane v2 upgrade documentation says to upgrade to Crossplane v2 only from Crossplane 1.20.
+            sources:
+              - *crossplane_v2_upgrade_source
+            lastVerified: '2026-07-08'
+      '1.20':
+        dependencies:
+          helm:
+            ranges:
+              - '>=3.2.0'
+            relationship: installer
+            confidence: high
+            notes:
+              - Crossplane v1.20 installation prerequisites require Helm 3.2.0 or later.
+              - The same page requires an actively supported Kubernetes version, but that moving target is intentionally not encoded as a static range.
+            sources:
+              - *crossplane_v120_install_source
+            lastVerified: '2026-07-08'

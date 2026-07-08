@@ -18,7 +18,7 @@ container images, Helm chart defaults, and vendor documentation. That makes simp
 The MVP focuses on architecture, API shape, validation, and contribution workflow. It currently
 includes source-backed compatibility data for Keycloak, Envoy Gateway, CloudNativePG, Argo CD, Flux,
 cert-manager, Cilium, Helm, Calico, CoreDNS, Nextcloud, Red Hat Advanced Cluster Management,
-Istio, Prometheus Operator, Rook Ceph, Longhorn, and External Secrets Operator.
+Istio, Prometheus Operator, Rook Ceph, Longhorn, External Secrets Operator, Harbor, and Crossplane.
 
 ## Local development
 
@@ -154,8 +154,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 Near-term data additions:
 
 - Kubernetes version skew
-- Crossplane
-- Harbor
 - Backstage
 - Grafana, Loki, Mimir, and Tempo
 - KEDA
