@@ -13,6 +13,7 @@ describe('api', () => {
       expect.arrayContaining([
         expect.objectContaining({ id: 'argocd' }),
         expect.objectContaining({ id: 'cert-manager' }),
+        expect.objectContaining({ id: 'cilium' }),
         expect.objectContaining({ id: 'cloudnativepg' }),
         expect.objectContaining({ id: 'flux' }),
         expect.objectContaining({ id: 'keycloak' }),
@@ -136,6 +137,24 @@ describe('api', () => {
     expect(response.status).toBe(200);
     expect(body.compatible).toBe('compatible');
     expect(body.matchedRange).toBe('>=4.19 <4.22');
+    expect(body.relationship).toBe('runtime');
+  });
+
+  it('checks Cilium matrix data', async () => {
+    const response = await handleApiRequest(
+      new Request(
+        'https://compatibility.fyi/api/v1/check?project=cilium&version=1.19&dependency=kubernetes&dependencyVersion=1.35',
+      ),
+    );
+    const body = (await response.json()) as {
+      compatible: string;
+      matchedRange: string | null;
+      relationship: string | null;
+    };
+
+    expect(response.status).toBe(200);
+    expect(body.compatible).toBe('compatible');
+    expect(body.matchedRange).toBe('>=1.32 <1.36');
     expect(body.relationship).toBe('runtime');
   });
 

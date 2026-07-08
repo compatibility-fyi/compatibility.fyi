@@ -1,6 +1,7 @@
 import envoyGatewayYaml from '../../data/envoy-gateway.yaml?raw';
 import argocdYaml from '../../data/argocd.yaml?raw';
 import certManagerYaml from '../../data/cert-manager.yaml?raw';
+import ciliumYaml from '../../data/cilium.yaml?raw';
 import cloudnativepgYaml from '../../data/cloudnativepg.yaml?raw';
 import keycloakYaml from '../../data/keycloak.yaml?raw';
 import fluxYaml from '../../data/flux.yaml?raw';
@@ -15,6 +16,7 @@ const dataSources = [
   argocdYaml,
   fluxYaml,
   certManagerYaml,
+  ciliumYaml,
 ];
 
 export function loadDataset(): CompatibilityDataset {

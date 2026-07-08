@@ -18,8 +18,8 @@ container images, Helm chart defaults, and vendor documentation. That makes simp
 The MVP focuses on architecture, API shape, validation, and contribution workflow. It currently
 includes source-backed Keycloak database compatibility data, Envoy Gateway multi-axis
 compatibility data, CloudNativePG Kubernetes and PostgreSQL operand compatibility data, Argo CD
-tested Kubernetes compatibility data, Flux Kubernetes compatibility data, and cert-manager runtime
-compatibility data.
+tested Kubernetes compatibility data, Flux Kubernetes compatibility data, cert-manager runtime
+compatibility data, and Cilium Kubernetes compatibility data.
 
 ## Local development
 
