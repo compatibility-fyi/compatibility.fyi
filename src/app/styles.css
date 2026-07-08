@@ -124,7 +124,7 @@ h2 {
 }
 
 .query-panel,
-.warning {
+.notice {
   border: 1px solid color-mix(in srgb, currentColor 12%, transparent);
   border-radius: 8px;
   width: 100%;
@@ -189,6 +189,10 @@ h2 {
   background: #d89b31;
 }
 
+.status-dot.compatible {
+  background: #38d996;
+}
+
 code,
 .code-block {
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
@@ -234,7 +238,7 @@ code,
   font-size: clamp(2.8rem, 8vw, 5rem);
 }
 
-.warning {
+.notice {
   background: color-mix(in srgb, canvas 85%, #d89b31);
   line-height: 1.6;
   margin: 12px 0 34px;

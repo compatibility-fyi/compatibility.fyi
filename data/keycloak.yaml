@@ -1,25 +1,243 @@
 projects:
   keycloak:
     name: Keycloak
-    description: Placeholder compatibility metadata for the Keycloak project.
+    description: Official database compatibility metadata for Keycloak.
     versions:
-      '25':
-        dependencies:
-          postgresql:
-            status: unknown
-            ranges: []
-            confidence: low
-            notes:
-              - Placeholder seed data only. This entry is unverified and must not be used as a real compatibility claim.
-            sources: []
-            lastVerified: null
       '26':
         dependencies:
           postgresql:
-            status: unknown
-            ranges: []
-            confidence: low
+            status: compatible
+            ranges:
+              - '>=14.0.0 <19.0.0'
+            confidence: high
             notes:
-              - Placeholder seed data only. This entry is unverified and must not be used as a real compatibility claim.
-            sources: []
-            lastVerified: null
+              - Keycloak current 26.x supported configurations list PostgreSQL 18.x, 17.x, 16.x, 15.x, and 14.x.
+            sources:
+              - title: Keycloak Supported Configurations - Supported Databases
+                url: https://www.keycloak.org/server/supported-configurations
+                accessedAt: '2026-07-08'
+              - title: Keycloak database configuration guide
+                url: https://www.keycloak.org/server/db
+                accessedAt: '2026-07-08'
+            lastVerified: '2026-07-08'
+          amazon-aurora-postgresql:
+            status: compatible
+            ranges:
+              - '>=15.0.0 <18.0.0'
+            confidence: high
+            notes:
+              - Keycloak current 26.x supported configurations list Amazon Aurora PostgreSQL 17.x, 16.x, and 15.x.
+            sources:
+              - title: Keycloak Supported Configurations - Supported Databases
+                url: https://www.keycloak.org/server/supported-configurations
+                accessedAt: '2026-07-08'
+              - title: Keycloak database configuration guide
+                url: https://www.keycloak.org/server/db
+                accessedAt: '2026-07-08'
+            lastVerified: '2026-07-08'
+          enterprisedb-advanced:
+            status: compatible
+            ranges:
+              - '>=17.0.0 <19.0.0'
+            confidence: high
+            notes:
+              - Keycloak current 26.x supported configurations list EnterpriseDB Advanced 18.x and 17.x.
+            sources:
+              - title: Keycloak Supported Configurations - Supported Databases
+                url: https://www.keycloak.org/server/supported-configurations
+                accessedAt: '2026-07-08'
+              - title: Keycloak database configuration guide
+                url: https://www.keycloak.org/server/db
+                accessedAt: '2026-07-08'
+            lastVerified: '2026-07-08'
+          mariadb:
+            status: compatible
+            ranges:
+              - '>=10.6.0 <10.7.0'
+              - '>=10.11.0 <10.12.0'
+              - '>=11.4.0 <11.5.0'
+              - '>=11.8.0 <11.9.0'
+            confidence: high
+            notes:
+              - Keycloak current 26.x supported configurations list MariaDB Server 11.8 LTS, 11.4 LTS, 10.11 LTS, and 10.6 LTS.
+            sources:
+              - title: Keycloak Supported Configurations - Supported Databases
+                url: https://www.keycloak.org/server/supported-configurations
+                accessedAt: '2026-07-08'
+              - title: Keycloak database configuration guide
+                url: https://www.keycloak.org/server/db
+                accessedAt: '2026-07-08'
+            lastVerified: '2026-07-08'
+          mssql:
+            status: compatible
+            ranges:
+              - '>=2019.0.0 <2020.0.0'
+              - '>=2022.0.0 <2023.0.0'
+            confidence: high
+            notes:
+              - Keycloak current 26.x supported configurations list Microsoft SQL Server 2022 and 2019.
+            sources:
+              - title: Keycloak Supported Configurations - Supported Databases
+                url: https://www.keycloak.org/server/supported-configurations
+                accessedAt: '2026-07-08'
+              - title: Keycloak database configuration guide
+                url: https://www.keycloak.org/server/db
+                accessedAt: '2026-07-08'
+            lastVerified: '2026-07-08'
+          mysql:
+            status: compatible
+            ranges:
+              - '>=8.0.0 <8.1.0'
+              - '>=8.4.0 <8.5.0'
+            confidence: high
+            notes:
+              - Keycloak current 26.x supported configurations list MySQL 8.4 LTS and 8.0 LTS.
+            sources:
+              - title: Keycloak Supported Configurations - Supported Databases
+                url: https://www.keycloak.org/server/supported-configurations
+                accessedAt: '2026-07-08'
+              - title: Keycloak database configuration guide
+                url: https://www.keycloak.org/server/db
+                accessedAt: '2026-07-08'
+            lastVerified: '2026-07-08'
+          oracle:
+            status: compatible
+            ranges:
+              - '>=19.3.0 <20.0.0'
+              - '>=23.5.0 <24.0.0'
+            confidence: high
+            notes:
+              - Keycloak current 26.x supported configurations list Oracle Database 23.x from 23.5 and 19c from 19.3.
+            sources:
+              - title: Keycloak Supported Configurations - Supported Databases
+                url: https://www.keycloak.org/server/supported-configurations
+                accessedAt: '2026-07-08'
+              - title: Keycloak database configuration guide
+                url: https://www.keycloak.org/server/db
+                accessedAt: '2026-07-08'
+            lastVerified: '2026-07-08'
+          azure-sql-database:
+            status: compatible
+            ranges:
+              - latest
+            confidence: high
+            notes:
+              - Keycloak current 26.x supported configurations list Azure SQL Database latest.
+            sources:
+              - title: Keycloak Supported Configurations - Supported Databases
+                url: https://www.keycloak.org/server/supported-configurations
+                accessedAt: '2026-07-08'
+              - title: Keycloak database configuration guide
+                url: https://www.keycloak.org/server/db
+                accessedAt: '2026-07-08'
+            lastVerified: '2026-07-08'
+          azure-sql-managed-instance:
+            status: compatible
+            ranges:
+              - latest
+            confidence: high
+            notes:
+              - Keycloak current 26.x supported configurations list Azure SQL Managed Instance latest.
+            sources:
+              - title: Keycloak Supported Configurations - Supported Databases
+                url: https://www.keycloak.org/server/supported-configurations
+                accessedAt: '2026-07-08'
+              - title: Keycloak database configuration guide
+                url: https://www.keycloak.org/server/db
+                accessedAt: '2026-07-08'
+            lastVerified: '2026-07-08'
+      '25':
+        dependencies:
+          postgresql:
+            status: compatible
+            ranges:
+              - '>=16.0.0 <17.0.0'
+            confidence: high
+            notes:
+              - Keycloak 25.0.6 documentation listed tested database versions, not broader supported ranges; PostgreSQL was tested at version 16.
+            sources:
+              - title: Keycloak 25.0.6 database guide source
+                url: https://raw.githubusercontent.com/keycloak/keycloak/25.0.6/docs/guides/server/db.adoc
+                accessedAt: '2026-07-08'
+              - title: Keycloak 25.0.6 root pom database versions
+                url: https://raw.githubusercontent.com/keycloak/keycloak/25.0.6/pom.xml
+                accessedAt: '2026-07-08'
+              - title: Keycloak 25.0.0 release notes
+                url: https://www.keycloak.org/2024/06/keycloak-2500-released
+                accessedAt: '2026-07-08'
+            lastVerified: '2026-07-08'
+          amazon-aurora-postgresql:
+            status: compatible
+            ranges:
+              - '>=16.1.0 <16.2.0'
+            confidence: high
+            notes:
+              - Keycloak 25.0.6 documentation listed tested database versions, not broader supported ranges; Amazon Aurora PostgreSQL was tested at version 16.1.
+            sources:
+              - title: Keycloak 25.0.6 database guide source
+                url: https://raw.githubusercontent.com/keycloak/keycloak/25.0.6/docs/guides/server/db.adoc
+                accessedAt: '2026-07-08'
+              - title: Keycloak 25.0.6 root pom database versions
+                url: https://raw.githubusercontent.com/keycloak/keycloak/25.0.6/pom.xml
+                accessedAt: '2026-07-08'
+            lastVerified: '2026-07-08'
+          mariadb:
+            status: compatible
+            ranges:
+              - '>=10.11.0 <10.12.0'
+            confidence: high
+            notes:
+              - Keycloak 25.0.6 documentation listed tested database versions, not broader supported ranges; MariaDB was tested at version 10.11.
+            sources:
+              - title: Keycloak 25.0.6 database guide source
+                url: https://raw.githubusercontent.com/keycloak/keycloak/25.0.6/docs/guides/server/db.adoc
+                accessedAt: '2026-07-08'
+              - title: Keycloak 25.0.6 root pom database versions
+                url: https://raw.githubusercontent.com/keycloak/keycloak/25.0.6/pom.xml
+                accessedAt: '2026-07-08'
+            lastVerified: '2026-07-08'
+          mssql:
+            status: compatible
+            ranges:
+              - '>=2022.0.0 <2023.0.0'
+            confidence: high
+            notes:
+              - Keycloak 25.0.6 documentation listed tested database versions, not broader supported ranges; Microsoft SQL Server was tested at version 2022.
+            sources:
+              - title: Keycloak 25.0.6 database guide source
+                url: https://raw.githubusercontent.com/keycloak/keycloak/25.0.6/docs/guides/server/db.adoc
+                accessedAt: '2026-07-08'
+              - title: Keycloak 25.0.6 root pom database versions
+                url: https://raw.githubusercontent.com/keycloak/keycloak/25.0.6/pom.xml
+                accessedAt: '2026-07-08'
+            lastVerified: '2026-07-08'
+          mysql:
+            status: compatible
+            ranges:
+              - '>=8.0.0 <8.1.0'
+            confidence: high
+            notes:
+              - Keycloak 25.0.6 documentation listed tested database versions, not broader supported ranges; MySQL was tested at version 8.0.
+            sources:
+              - title: Keycloak 25.0.6 database guide source
+                url: https://raw.githubusercontent.com/keycloak/keycloak/25.0.6/docs/guides/server/db.adoc
+                accessedAt: '2026-07-08'
+              - title: Keycloak 25.0.6 root pom database versions
+                url: https://raw.githubusercontent.com/keycloak/keycloak/25.0.6/pom.xml
+                accessedAt: '2026-07-08'
+            lastVerified: '2026-07-08'
+          oracle:
+            status: compatible
+            ranges:
+              - '>=19.3.0 <20.0.0'
+            confidence: high
+            notes:
+              - Keycloak 25.0.6 documentation listed tested database versions, not broader supported ranges; Oracle Database was tested at version 19.3.
+            sources:
+              - title: Keycloak 25.0.6 database guide source
+                url: https://raw.githubusercontent.com/keycloak/keycloak/25.0.6/docs/guides/server/db.adoc
+                accessedAt: '2026-07-08'
+              - title: Keycloak 25.0.6 root pom database versions
+                url: https://raw.githubusercontent.com/keycloak/keycloak/25.0.6/pom.xml
+                accessedAt: '2026-07-08'
+            lastVerified: '2026-07-08'

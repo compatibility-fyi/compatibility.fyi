@@ -41,8 +41,17 @@ export function checkCompatibility(
 }
 
 function findVersionKey(versions: string[], requestedVersion: string): string | null {
-  const normalizedRequest = normalizeVersion(requestedVersion).normalized;
+  const normalizedRequest = normalizeVersion(requestedVersion);
+
   return (
-    versions.find((version) => normalizeVersion(version).normalized === normalizedRequest) ?? null
+    versions.find((version) => {
+      const normalizedVersion = normalizeVersion(version);
+
+      if (normalizedRequest.semver && normalizedVersion.semver) {
+        return normalizedRequest.semver === normalizedVersion.semver;
+      }
+
+      return normalizedVersion.normalized === normalizedRequest.normalized;
+    }) ?? null
   );
 }

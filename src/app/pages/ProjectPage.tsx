@@ -21,9 +21,10 @@ export function ProjectPage() {
         <p>{project.description}</p>
       </section>
 
-      <section className="warning">
-        <strong>Unverified seed data.</strong> The entries on this page are placeholders for the MVP
-        architecture and must not be used as real compatibility claims.
+      <section className="notice">
+        <strong>Source-backed data.</strong> Keycloak 26 entries use the current official supported
+        database ranges. Keycloak 25 entries encode the exact database versions listed as tested in
+        the tagged upstream documentation.
       </section>
 
       <section className="table-section">

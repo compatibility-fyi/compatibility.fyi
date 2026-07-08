@@ -23,17 +23,22 @@ describe('api', () => {
     expect(body.versions).toHaveProperty('26');
   });
 
-  it('checks compatibility and keeps seed data unknown', async () => {
+  it('checks compatibility from source-backed Keycloak data', async () => {
     const response = handleApiRequest(
       new Request(
         'https://compatibility.fyi/api/v1/check?project=keycloak&version=26&dependency=postgresql&dependencyVersion=17',
       ),
     );
-    const body = (await response.json()) as { compatible: string; matchedRange: string | null };
+    const body = (await response.json()) as {
+      compatible: string;
+      matchedRange: string | null;
+      confidence: string;
+    };
 
     expect(response.status).toBe(200);
-    expect(body.compatible).toBe('unknown');
-    expect(body.matchedRange).toBeNull();
+    expect(body.compatible).toBe('compatible');
+    expect(body.matchedRange).toBe('>=14.0.0 <19.0.0');
+    expect(body.confidence).toBe('high');
   });
 
   it('reports missing check parameters', async () => {

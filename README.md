@@ -15,8 +15,8 @@ container images, Helm chart defaults, and vendor documentation. That makes simp
 - Which Gateway API version is supported by Envoy Gateway 1.8?
 - Is this Renovate update actually compatible?
 
-The MVP focuses on architecture, API shape, validation, and contribution workflow. Seed data is
-explicitly unverified and marked with `confidence: low`.
+The MVP focuses on architecture, API shape, validation, and contribution workflow. It currently
+includes source-backed Keycloak database compatibility data.
 
 ## Local development
 
@@ -56,13 +56,17 @@ projects:
       '26':
         dependencies:
           postgresql:
-            status: unknown
-            ranges: []
-            confidence: low
+            status: compatible
+            ranges:
+              - '>=14.0.0 <19.0.0'
+            confidence: high
             notes:
-              - Placeholder seed data only.
-            sources: []
-            lastVerified: null
+              - Keycloak current 26.x supported configurations list PostgreSQL 18.x, 17.x, 16.x, 15.x, and 14.x.
+            sources:
+              - title: Keycloak Supported Configurations - Supported Databases
+                url: https://www.keycloak.org/server/supported-configurations
+                accessedAt: '2026-07-08'
+            lastVerified: '2026-07-08'
 ```
 
 Statuses are `compatible`, `incompatible`, or `unknown`. Confidence levels are `low`, `medium`, or
@@ -94,15 +98,23 @@ curl "https://compatibility.fyi/api/v1/check?project=keycloak&version=26&depende
 
 ```json
 {
-  "compatible": "unknown",
   "project": "keycloak",
   "version": "26",
   "dependency": "postgresql",
   "dependencyVersion": "17",
-  "matchedRange": null,
-  "confidence": "low",
-  "notes": [],
-  "sources": []
+  "compatible": "compatible",
+  "matchedRange": ">=14.0.0 <19.0.0",
+  "confidence": "high",
+  "notes": [
+    "Keycloak current 26.x supported configurations list PostgreSQL 18.x, 17.x, 16.x, 15.x, and 14.x."
+  ],
+  "sources": [
+    {
+      "title": "Keycloak Supported Configurations - Supported Databases",
+      "url": "https://www.keycloak.org/server/supported-configurations",
+      "accessedAt": "2026-07-08"
+    }
+  ]
 }
 ```
 

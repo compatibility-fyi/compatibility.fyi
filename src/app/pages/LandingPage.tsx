@@ -22,7 +22,7 @@ export function LandingPage() {
               Read the API docs
             </a>
             <a className="button secondary" href="/projects/keycloak">
-              View seed project
+              View Keycloak data
             </a>
           </div>
         </div>
@@ -38,9 +38,9 @@ export function LandingPage() {
             />
           </div>
           <div className="api-result">
-            <span className="status-dot unknown" />
-            <span>unknown</span>
-            <code>confidence: low</code>
+            <span className="status-dot compatible" />
+            <span>compatible</span>
+            <code>confidence: high</code>
           </div>
         </div>
       </section>
@@ -66,8 +66,9 @@ export function LandingPage() {
       <section className="band">
         <h2>Built for maintainers and automation.</h2>
         <p>
-          The MVP ships a typed YAML format, validation, a small compatibility engine, and a Worker
-          API that tools such as Renovate, Dependabot, Helm, Argo CD, and Backstage could consume.
+          The MVP ships a typed YAML format, validation, official Keycloak database compatibility
+          data, a small compatibility engine, and a Worker API that tools such as Renovate,
+          Dependabot, Helm, Argo CD, and Backstage could consume.
         </p>
       </section>
     </Layout>

@@ -2,15 +2,28 @@ import { CodeBlock } from '../components/CodeBlock';
 import { Layout } from '../components/Layout';
 
 const checkResponse = `{
-  "compatible": "unknown",
   "project": "keycloak",
   "version": "26",
   "dependency": "postgresql",
   "dependencyVersion": "17",
-  "matchedRange": null,
-  "confidence": "low",
-  "notes": [],
-  "sources": []
+  "compatible": "compatible",
+  "matchedRange": ">=14.0.0 <19.0.0",
+  "confidence": "high",
+  "notes": [
+    "Keycloak current 26.x supported configurations list PostgreSQL 18.x, 17.x, 16.x, 15.x, and 14.x."
+  ],
+  "sources": [
+    {
+      "title": "Keycloak Supported Configurations - Supported Databases",
+      "url": "https://www.keycloak.org/server/supported-configurations",
+      "accessedAt": "2026-07-08"
+    },
+    {
+      "title": "Keycloak database configuration guide",
+      "url": "https://www.keycloak.org/server/db",
+      "accessedAt": "2026-07-08"
+    }
+  ]
 }`;
 
 export function DocsApiPage() {
@@ -35,7 +48,7 @@ export function DocsApiPage() {
     {
       "id": "keycloak",
       "name": "Keycloak",
-      "description": "Placeholder compatibility metadata for the Keycloak project.",
+      "description": "Official database compatibility metadata for Keycloak.",
       "versions": ["26", "25"]
     }
   ]
