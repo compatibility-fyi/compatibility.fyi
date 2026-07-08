@@ -1,0 +1,206 @@
+x-rhacm-216-source: &rhacm_216_source
+  title: Red Hat Advanced Cluster Management for Kubernetes 2.16 Support Matrix
+  url: https://access.redhat.com/articles/7136928
+  accessedAt: '2026-07-08'
+
+x-rhacm-215-source: &rhacm_215_source
+  title: Red Hat Advanced Cluster Management for Kubernetes 2.15 Support Matrix
+  url: https://access.redhat.com/articles/7133095
+  accessedAt: '2026-07-08'
+
+x-rhacm-214-source: &rhacm_214_source
+  title: Red Hat Advanced Cluster Management for Kubernetes 2.14 Support Matrix
+  url: https://access.redhat.com/articles/7120842
+  accessedAt: '2026-07-08'
+
+x-rhacm-213-source: &rhacm_213_source
+  title: Red Hat Advanced Cluster Management for Kubernetes 2.13 Support Matrix
+  url: https://access.redhat.com/articles/7099672
+  accessedAt: '2026-07-08'
+
+x-mce-211-source: &mce_211_source
+  title: The multicluster engine for Kubernetes operator 2.11 Support Matrix
+  url: https://access.redhat.com/articles/7136929
+  accessedAt: '2026-07-08'
+
+x-mce-210-source: &mce_210_source
+  title: The multicluster engine for Kubernetes operator 2.10 Support Matrix
+  url: https://access.redhat.com/articles/7133096
+  accessedAt: '2026-07-08'
+
+x-mce-29-source: &mce_29_source
+  title: The multicluster engine for Kubernetes operator 2.9 Support Matrix
+  url: https://access.redhat.com/articles/7120837
+  accessedAt: '2026-07-08'
+
+x-mce-28-source: &mce_28_source
+  title: The multicluster engine for Kubernetes operator 2.8 Support Matrix
+  url: https://access.redhat.com/articles/7099674
+  accessedAt: '2026-07-08'
+
+projects:
+  red-hat-advanced-cluster-management:
+    name: Red Hat Advanced Cluster Management for Kubernetes
+    category: Cluster management
+    website: https://www.redhat.com/en/technologies/management/advanced-cluster-management
+    description: Red Hat Advanced Cluster Management compatibility for bundled MCE and hosted control planes.
+    dependencyKind:
+      singular: dependency
+      plural: dependencies
+      examples:
+        - MCE
+        - OpenShift hosted cluster
+        - OpenShift management cluster
+    versions:
+      '2.16':
+        dependencies:
+          multicluster-engine:
+            status: compatible
+            ranges:
+              - '2.11'
+            relationship: bundled
+            confidence: high
+            notes:
+              - RHACM 2.16 is released with MCE 2.11 for cluster management.
+            sources:
+              - *rhacm_216_source
+              - *mce_211_source
+            lastVerified: '2026-07-08'
+          openshift-management-cluster:
+            status: compatible
+            ranges:
+              - '>=4.19 <4.22'
+            relationship: hub runtime
+            confidence: high
+            notes:
+              - MCE 2.11 lists OpenShift 4.19, 4.20, and 4.21 as supported hub cluster versions.
+            sources:
+              - *mce_211_source
+              - *rhacm_216_source
+            lastVerified: '2026-07-08'
+          openshift-hosted-cluster:
+            status: compatible
+            ranges:
+              - '>=4.19 <4.22'
+            relationship: hosted control planes
+            confidence: high
+            notes:
+              - Hosted control planes support for RHACM 2.16 follows MCE 2.11 and its bundled HyperShift Operator.
+            sources:
+              - *mce_211_source
+              - *rhacm_216_source
+            lastVerified: '2026-07-08'
+      '2.15':
+        dependencies:
+          multicluster-engine:
+            status: compatible
+            ranges:
+              - '2.10'
+            relationship: bundled
+            confidence: high
+            notes:
+              - RHACM 2.15 is released with MCE 2.10 for cluster management.
+            sources:
+              - *rhacm_215_source
+              - *mce_210_source
+            lastVerified: '2026-07-08'
+          openshift-management-cluster:
+            status: compatible
+            ranges:
+              - '>=4.18 <4.22'
+            relationship: hub runtime
+            confidence: high
+            notes:
+              - MCE 2.10 lists OpenShift 4.18, 4.19, 4.20, and 4.21 as supported hub cluster versions.
+            sources:
+              - *mce_210_source
+              - *rhacm_215_source
+            lastVerified: '2026-07-08'
+          openshift-hosted-cluster:
+            status: compatible
+            ranges:
+              - '>=4.18 <4.21'
+            relationship: hosted control planes
+            confidence: high
+            notes:
+              - Hosted control planes support for RHACM 2.15 follows MCE 2.10 and its bundled HyperShift Operator.
+            sources:
+              - *mce_210_source
+              - *rhacm_215_source
+            lastVerified: '2026-07-08'
+      '2.14':
+        dependencies:
+          multicluster-engine:
+            status: compatible
+            ranges:
+              - '2.9'
+            relationship: bundled
+            confidence: high
+            notes:
+              - RHACM 2.14 is released with MCE 2.9 for cluster management.
+            sources:
+              - *rhacm_214_source
+              - *mce_29_source
+            lastVerified: '2026-07-08'
+          openshift-management-cluster:
+            status: compatible
+            ranges:
+              - '>=4.17 <4.20'
+            relationship: hub runtime
+            confidence: high
+            notes:
+              - MCE 2.9 lists OpenShift 4.17, 4.18, and 4.19 as supported hub cluster versions.
+            sources:
+              - *mce_29_source
+              - *rhacm_214_source
+            lastVerified: '2026-07-08'
+          openshift-hosted-cluster:
+            status: compatible
+            ranges:
+              - '>=4.17 <4.20'
+            relationship: hosted control planes
+            confidence: high
+            notes:
+              - Hosted control planes support for RHACM 2.14 follows MCE 2.9 and its bundled HyperShift Operator.
+            sources:
+              - *mce_29_source
+              - *rhacm_214_source
+            lastVerified: '2026-07-08'
+      '2.13':
+        dependencies:
+          multicluster-engine:
+            status: compatible
+            ranges:
+              - '2.8'
+            relationship: bundled
+            confidence: high
+            notes:
+              - RHACM 2.13 is released with MCE 2.8 for cluster management.
+            sources:
+              - *rhacm_213_source
+              - *mce_28_source
+            lastVerified: '2026-07-08'
+          openshift-management-cluster:
+            status: compatible
+            ranges:
+              - '>=4.16 <4.20'
+            relationship: hub runtime
+            confidence: high
+            notes:
+              - MCE 2.8 lists OpenShift 4.16, 4.17, 4.18, and 4.19 as supported hub cluster versions.
+            sources:
+              - *mce_28_source
+              - *rhacm_213_source
+            lastVerified: '2026-07-08'
+          openshift-hosted-cluster:
+            status: compatible
+            ranges:
+              - '>=4.16 <4.19'
+            relationship: hosted control planes
+            confidence: high
+            notes:
+              - Hosted control planes support for RHACM 2.13 follows MCE 2.8 and its bundled HyperShift Operator.
+            sources:
+              - *mce_28_source
+              - *rhacm_213_source
+            lastVerified: '2026-07-08'
