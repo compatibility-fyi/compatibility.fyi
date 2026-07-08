@@ -216,7 +216,7 @@ p {
   color: inherit;
   display: grid;
   gap: 18px;
-  grid-template-columns: minmax(180px, 1.5fr) minmax(140px, 1fr) minmax(110px, 0.7fr);
+  grid-template-columns: minmax(180px, 1fr) minmax(110px, auto);
   padding: 13px 0;
 }
 

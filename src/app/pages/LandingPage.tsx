@@ -107,7 +107,6 @@ export function LandingPage() {
             <div className="catalog-table" role="table" aria-label="Compatibility projects">
               <div className="catalog-row catalog-row-header" role="row">
                 <span role="columnheader">Project</span>
-                <span role="columnheader">Compatibility target</span>
                 <span role="columnheader">Known versions</span>
               </div>
               {visibleProjects.map((project) => (
@@ -141,8 +140,6 @@ export function LandingPage() {
 }
 
 function ProjectRow({ project }: { project: CatalogProject }) {
-  const target = project.dependencyKind?.singular ?? 'dependency';
-
   return (
     <a className="catalog-row" href={`/projects/${project.id}`} role="row">
       <span role="cell">
@@ -153,16 +150,7 @@ function ProjectRow({ project }: { project: CatalogProject }) {
           </span>
         </span>
       </span>
-      <span role="cell">{formatLabel(target)}</span>
       <span role="cell">{project.versions.length} versions</span>
     </a>
   );
-}
-
-function formatLabel(label: string): string {
-  if (label === label.toLowerCase()) {
-    return label.charAt(0).toUpperCase() + label.slice(1);
-  }
-
-  return label;
 }

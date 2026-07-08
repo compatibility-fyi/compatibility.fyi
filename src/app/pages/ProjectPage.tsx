@@ -59,7 +59,6 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
     plural: 'dependencies',
     singular: 'dependency',
   };
-  const dependencyKindTitle = formatLabelTitle(dependencyKind.singular);
   const dependencySearchExamples = dependencyKind.examples?.join(', ');
   const checkDependencies = project
     ? Object.entries(project.versions[activeCheckVersion]?.dependencies ?? {})
@@ -137,7 +136,7 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
         </div>
         <div>
           <span className="summary-value">{dependencyCount}</span>
-          <span className="summary-label">{dependencyKindTitle} targets</span>
+          <span className="summary-label">Compatibility</span>
         </div>
         <div>
           <span className="summary-value">{rows.length}</span>
@@ -222,7 +221,7 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
 
       <section className="table-section">
         <div className="section-title-row">
-          <h2>{dependencyKindTitle} compatibility</h2>
+          <h2>Compatibility matrix</h2>
           <span>{filteredRows.length} entries</span>
         </div>
         <div className="table-wrap">
@@ -230,8 +229,8 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
             <thead>
               <tr>
                 <th>{project.name}</th>
-                <th>{dependencyKindTitle}</th>
-                <th>Supported {dependencyKind.singular} versions</th>
+                <th>Dependency</th>
+                <th>Supported versions</th>
                 <th>Evidence</th>
               </tr>
             </thead>
