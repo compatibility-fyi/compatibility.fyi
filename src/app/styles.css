@@ -1018,13 +1018,23 @@ th {
 
   .compound-result-row {
     align-items: start;
-    grid-template-columns: 1fr;
+    gap: 10px;
+    grid-template-columns: minmax(0, 1fr) auto;
   }
 
   .compound-result-value {
+    align-items: flex-end;
+    flex-direction: column-reverse;
+    gap: 7px;
     justify-content: flex-start;
-    justify-self: start;
-    text-align: left;
+    justify-self: end;
+    text-align: right;
+  }
+
+  .compound-result-range {
+    color: #9aa7ba;
+    font-size: 0.88rem;
+    max-width: 170px;
   }
 
   .catalog-project {
