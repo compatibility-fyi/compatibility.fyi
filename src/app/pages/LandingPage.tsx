@@ -138,8 +138,8 @@ export function LandingPage() {
         <article>
           <h2>Structured Compatibility Data</h2>
           <p>
-            Compatibility knowledge should not live only in prose, release notes, and scattered
-            support tables. compatibility.fyi turns source-backed compatibility claims into
+            Compatibility evidence is often buried in release notes, support tables, issue trackers,
+            and source trees. compatibility.fyi turns source-backed compatibility claims into
             versioned YAML and JSON that can be reviewed, diffed, validated, and queried.
           </p>
         </article>
