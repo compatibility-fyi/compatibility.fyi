@@ -41,6 +41,7 @@ export function LandingPage() {
           project.id,
           project.name,
           project.category,
+          project.description,
           project.dependencyKind?.singular,
           project.dependencyKind?.plural,
           project.dependencyKind?.examples?.join(' '),
@@ -72,7 +73,7 @@ export function LandingPage() {
           type="search"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-          placeholder="Search Keycloak, PostgreSQL, Gateway API..."
+          placeholder="Search Keycloak, CloudNativePG, Gateway API..."
         />
       </section>
 

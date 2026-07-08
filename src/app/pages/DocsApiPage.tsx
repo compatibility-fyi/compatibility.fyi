@@ -59,6 +59,18 @@ export function DocsApiPage() {
       "versions": ["26", "25"]
     },
     {
+      "id": "cloudnativepg",
+      "name": "CloudNativePG",
+      "category": "Databases",
+      "website": "https://cloudnative-pg.io/",
+      "dependencyKind": {
+        "singular": "dependency",
+        "plural": "dependencies",
+        "examples": ["PostgreSQL", "Kubernetes"]
+      },
+      "versions": ["1.30", "1.29", "1.28", "1.27", "1.26"]
+    },
+    {
       "id": "envoy-gateway",
       "name": "Envoy Gateway",
       "category": "Networking",
@@ -98,32 +110,28 @@ export function DocsApiPage() {
           <CodeBlock>{`curl -X POST https://compatibility.fyi/api/v1/check \\
   -H "content-type: application/json" \\
   -d '{
-    "project": "envoy-gateway",
-    "version": "1.8",
+    "project": "cloudnativepg",
+    "version": "1.30",
     "dependencies": {
-      "gateway-api": "1.5.1",
-      "kubernetes": "1.34",
-      "envoy-proxy": "distroless-v1.38.0",
-      "rate-limit": "fe26676d"
+      "postgresql": "18",
+      "kubernetes": "1.36"
     }
   }'`}</CodeBlock>
           <CodeBlock>{`{
-  "project": "envoy-gateway",
-  "version": "1.8",
+  "project": "cloudnativepg",
+  "version": "1.30",
   "dependencies": {
-    "gateway-api": "1.5.1",
-    "kubernetes": "1.34",
-    "envoy-proxy": "distroless-v1.38.0",
-    "rate-limit": "fe26676d"
+    "postgresql": "18",
+    "kubernetes": "1.36"
   },
   "compatible": "compatible",
   "checks": [
     {
-      "dependency": "gateway-api",
-      "dependencyVersion": "1.5.1",
+      "dependency": "postgresql",
+      "dependencyVersion": "18",
       "compatible": "compatible",
-      "matchedRange": "1.5.1",
-      "relationship": "compiled"
+      "matchedRange": ">=14.0.0 <19.0.0",
+      "relationship": "operand"
     }
   ]
 }`}</CodeBlock>

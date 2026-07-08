@@ -10,7 +10,10 @@ describe('api', () => {
 
     expect(response.status).toBe(200);
     expect(body.projects).toEqual(
-      expect.arrayContaining([expect.objectContaining({ id: 'keycloak' })]),
+      expect.arrayContaining([
+        expect.objectContaining({ id: 'cloudnativepg' }),
+        expect.objectContaining({ id: 'keycloak' }),
+      ]),
     );
   });
 
@@ -59,6 +62,44 @@ describe('api', () => {
     expect(body.compatible).toBe('compatible');
     expect(body.matchedRange).toBe('1.5.1');
     expect(body.relationship).toBe('compiled');
+  });
+
+  it('checks CloudNativePG matrix data', async () => {
+    const response = await handleApiRequest(
+      new Request(
+        'https://compatibility.fyi/api/v1/check?project=cloudnativepg&version=1.30&dependency=kubernetes&dependencyVersion=1.36',
+      ),
+    );
+    const body = (await response.json()) as {
+      compatible: string;
+      matchedRange: string | null;
+      relationship: string | null;
+    };
+
+    expect(response.status).toBe(200);
+    expect(body.compatible).toBe('compatible');
+    expect(body.matchedRange).toBe('>=1.34 <1.37');
+    expect(body.relationship).toBe('runtime');
+  });
+
+  it('checks compound CloudNativePG compatibility from POST JSON', async () => {
+    const response = await handleApiRequest(
+      new Request('https://compatibility.fyi/api/v1/check', {
+        method: 'POST',
+        body: JSON.stringify({
+          project: 'cloudnativepg',
+          version: '1.30',
+          dependencies: {
+            postgresql: '18',
+            kubernetes: '1.36',
+          },
+        }),
+      }),
+    );
+    const body = (await response.json()) as { compatible: string };
+
+    expect(response.status).toBe(200);
+    expect(body.compatible).toBe('compatible');
   });
 
   it('checks compound Envoy Gateway compatibility from GET JSON dependencies', async () => {

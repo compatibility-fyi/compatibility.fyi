@@ -1,0 +1,170 @@
+x-cloudnativepg-support-source: &cloudnativepg_support_source
+  title: CloudNativePG Supported Releases
+  url: https://cloudnative-pg.io/docs/1.29/supported_releases/
+  accessedAt: '2026-07-08'
+
+x-cloudnativepg-release-130-source: &cloudnativepg_release_130_source
+  title: CloudNativePG 1.30 Release Notes - Supported versions
+  url: https://cloudnative-pg.io/docs/1.30/release_notes/v1.30
+  accessedAt: '2026-07-08'
+
+x-cloudnativepg-release-129-source: &cloudnativepg_release_129_source
+  title: CloudNativePG 1.29 Release Notes - Supported versions
+  url: https://cloudnative-pg.io/docs/devel/release_notes/v1.29/
+  accessedAt: '2026-07-08'
+
+x-cloudnativepg-release-128-source: &cloudnativepg_release_128_source
+  title: CloudNativePG 1.28 Release Notes - Supported versions
+  url: https://cloudnative-pg.io/docs/devel/release_notes/v1.28/
+  accessedAt: '2026-07-08'
+
+x-cloudnativepg-release-127-source: &cloudnativepg_release_127_source
+  title: CloudNativePG 1.27 Release Notes - Supported versions
+  url: https://cloudnative-pg.io/docs/devel/release_notes/v1.27/
+  accessedAt: '2026-07-08'
+
+x-cloudnativepg-release-126-source: &cloudnativepg_release_126_source
+  title: CloudNativePG 1.26 Release Notes - Supported versions
+  url: https://cloudnative-pg.io/docs/devel/release_notes/v1.26/
+  accessedAt: '2026-07-08'
+
+projects:
+  cloudnativepg:
+    name: CloudNativePG
+    category: Databases
+    website: https://cloudnative-pg.io/
+    description: PostgreSQL operator compatibility for Kubernetes and PostgreSQL operand versions.
+    dependencyKind:
+      singular: dependency
+      plural: dependencies
+      examples:
+        - PostgreSQL
+        - Kubernetes
+    versions:
+      '1.30':
+        dependencies:
+          kubernetes:
+            status: compatible
+            ranges:
+              - '>=1.34 <1.37'
+            relationship: runtime
+            confidence: high
+            notes:
+              - CloudNativePG 1.30 release notes list Kubernetes 1.36, 1.35, and 1.34 as supported.
+            sources:
+              - *cloudnativepg_release_130_source
+              - *cloudnativepg_support_source
+            lastVerified: '2026-07-08'
+          postgresql:
+            status: compatible
+            ranges:
+              - '>=14.0.0 <19.0.0'
+            relationship: operand
+            confidence: high
+            notes:
+              - CloudNativePG 1.30 release notes list PostgreSQL 18, 17, 16, 15, and 14 as supported.
+            sources:
+              - *cloudnativepg_release_130_source
+              - *cloudnativepg_support_source
+            lastVerified: '2026-07-08'
+      '1.29':
+        dependencies:
+          kubernetes:
+            status: compatible
+            ranges:
+              - '>=1.33 <1.36'
+            relationship: runtime
+            confidence: high
+            notes:
+              - CloudNativePG supported releases list 1.29.x with Kubernetes 1.33, 1.34, and 1.35.
+            sources:
+              - *cloudnativepg_support_source
+              - *cloudnativepg_release_129_source
+            lastVerified: '2026-07-08'
+          postgresql:
+            status: compatible
+            ranges:
+              - '>=14.0.0 <19.0.0'
+            relationship: operand
+            confidence: high
+            notes:
+              - CloudNativePG supported releases list 1.29.x with PostgreSQL 14 through 18.
+            sources:
+              - *cloudnativepg_support_source
+              - *cloudnativepg_release_129_source
+            lastVerified: '2026-07-08'
+      '1.28':
+        dependencies:
+          kubernetes:
+            status: compatible
+            ranges:
+              - '>=1.32 <1.36'
+            relationship: runtime
+            confidence: high
+            notes:
+              - CloudNativePG supported releases list 1.28.x with Kubernetes 1.32, 1.33, 1.34, and 1.35.
+            sources:
+              - *cloudnativepg_support_source
+              - *cloudnativepg_release_128_source
+            lastVerified: '2026-07-08'
+          postgresql:
+            status: compatible
+            ranges:
+              - '>=14.0.0 <19.0.0'
+            relationship: operand
+            confidence: high
+            notes:
+              - CloudNativePG 1.28 release notes list PostgreSQL 18, 17, 16, 15, and 14 as supported.
+            sources:
+              - *cloudnativepg_release_128_source
+            lastVerified: '2026-07-08'
+      '1.27':
+        dependencies:
+          kubernetes:
+            status: compatible
+            ranges:
+              - '>=1.31 <1.34'
+            relationship: runtime
+            confidence: high
+            notes:
+              - CloudNativePG 1.27 release notes list Kubernetes 1.33, 1.32, and 1.31 as supported.
+            sources:
+              - *cloudnativepg_release_127_source
+              - *cloudnativepg_support_source
+            lastVerified: '2026-07-08'
+          postgresql:
+            status: compatible
+            ranges:
+              - '>=13.0.0 <18.0.0'
+            relationship: operand
+            confidence: high
+            notes:
+              - CloudNativePG 1.27 release notes list PostgreSQL 17, 16, 15, 14, and 13 as supported.
+            sources:
+              - *cloudnativepg_release_127_source
+            lastVerified: '2026-07-08'
+      '1.26':
+        dependencies:
+          kubernetes:
+            status: compatible
+            ranges:
+              - '>=1.30 <1.34'
+            relationship: runtime
+            confidence: high
+            notes:
+              - CloudNativePG 1.26 release notes list Kubernetes 1.33, 1.32, 1.31, and 1.30 as supported.
+            sources:
+              - *cloudnativepg_release_126_source
+              - *cloudnativepg_support_source
+            lastVerified: '2026-07-08'
+          postgresql:
+            status: compatible
+            ranges:
+              - '>=13.0.0 <18.0.0'
+            relationship: operand
+            confidence: high
+            notes:
+              - CloudNativePG 1.26 release notes list PostgreSQL 17, 16, 15, 14, and 13 as supported.
+            sources:
+              - *cloudnativepg_release_126_source
+            lastVerified: '2026-07-08'

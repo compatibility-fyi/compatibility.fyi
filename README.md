@@ -17,7 +17,7 @@ container images, Helm chart defaults, and vendor documentation. That makes simp
 
 The MVP focuses on architecture, API shape, validation, and contribution workflow. It currently
 includes source-backed Keycloak database compatibility data and Envoy Gateway multi-axis
-compatibility data.
+compatibility data, plus CloudNativePG Kubernetes and PostgreSQL operand compatibility data.
 
 ## Local development
 
