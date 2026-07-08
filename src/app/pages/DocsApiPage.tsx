@@ -27,6 +27,23 @@ const checkResponse = `{
   ]
 }`;
 
+const projectsResponse = `{
+  "projects": [
+    {
+      "id": "example-project",
+      "name": "Example Project",
+      "category": "Example Category",
+      "website": "https://example.com/",
+      "dependencyKind": {
+        "singular": "dependency",
+        "plural": "dependencies",
+        "examples": ["Kubernetes", "PostgreSQL"]
+      },
+      "versions": ["2.0", "1.0"]
+    }
+  ]
+}`;
+
 export function DocsApiPage() {
   return (
     <Layout>
@@ -44,52 +61,13 @@ export function DocsApiPage() {
           <h2>GET /api/v1/projects</h2>
           <p>Returns the known project index.</p>
           <CodeBlock>{`curl https://compatibility.fyi/api/v1/projects`}</CodeBlock>
-          <CodeBlock>{`{
-  "projects": [
-    {
-      "id": "keycloak",
-      "name": "Keycloak",
-      "category": "Authentication",
-      "website": "https://www.keycloak.org/",
-      "dependencyKind": {
-        "singular": "database",
-        "plural": "databases",
-        "examples": ["PostgreSQL", "MySQL", "Oracle"]
-      },
-      "versions": ["26", "25"]
-    },
-    {
-      "id": "cloudnativepg",
-      "name": "CloudNativePG",
-      "category": "Databases",
-      "website": "https://cloudnative-pg.io/",
-      "dependencyKind": {
-        "singular": "dependency",
-        "plural": "dependencies",
-        "examples": ["PostgreSQL", "Kubernetes"]
-      },
-      "versions": ["1.30", "1.29", "1.28", "1.27", "1.26"]
-    },
-    {
-      "id": "envoy-gateway",
-      "name": "Envoy Gateway",
-      "category": "Networking",
-      "website": "https://gateway.envoyproxy.io/",
-      "dependencyKind": {
-        "singular": "dependency",
-        "plural": "dependencies",
-        "examples": ["Gateway API", "Kubernetes", "Envoy Proxy"]
-      },
-      "versions": ["1.8", "1.7", "1.6", "1.5", "1.4", "1.3", "1.2", "1.1", "1.0", "0.6", "0.5", "0.4", "0.3", "0.2"]
-    }
-  ]
-}`}</CodeBlock>
+          <CodeBlock>{projectsResponse}</CodeBlock>
         </article>
 
         <article>
-          <h2>GET /api/v1/projects/keycloak</h2>
+          <h2>GET /api/v1/projects/:project</h2>
           <p>Returns the complete compatibility document for a project.</p>
-          <CodeBlock>{`curl https://compatibility.fyi/api/v1/projects/keycloak`}</CodeBlock>
+          <CodeBlock>{`curl https://compatibility.fyi/api/v1/projects/example-project`}</CodeBlock>
         </article>
 
         <article>

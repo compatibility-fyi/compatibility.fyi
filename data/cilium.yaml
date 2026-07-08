@@ -3,6 +3,16 @@ x-cilium-kubernetes-source: &cilium_kubernetes_source
   url: https://docs.cilium.io/en/stable/network/kubernetes/compatibility/
   accessedAt: '2026-07-08'
 
+x-cilium-118-kubernetes-source: &cilium_118_kubernetes_source
+  title: Cilium 1.18 Kubernetes Compatibility
+  url: https://docs.cilium.io/en/v1.18/network/kubernetes/compatibility/
+  accessedAt: '2026-07-08'
+
+x-cilium-117-kubernetes-source: &cilium_117_kubernetes_source
+  title: Cilium 1.17 Kubernetes Compatibility
+  url: https://docs.cilium.io/en/v1.17/network/kubernetes/compatibility/
+  accessedAt: '2026-07-08'
+
 projects:
   cilium:
     name: Cilium
@@ -27,4 +37,30 @@ projects:
               - Cilium 1.19 stable docs list Kubernetes 1.32, 1.33, 1.34, and 1.35 as e2e tested and guaranteed compatible.
             sources:
               - *cilium_kubernetes_source
+            lastVerified: '2026-07-08'
+      '1.18':
+        dependencies:
+          kubernetes:
+            status: compatible
+            ranges:
+              - '>=1.30 <1.34'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Cilium 1.18 docs list Kubernetes 1.30, 1.31, 1.32, and 1.33 as e2e tested and guaranteed compatible.
+            sources:
+              - *cilium_118_kubernetes_source
+            lastVerified: '2026-07-08'
+      '1.17':
+        dependencies:
+          kubernetes:
+            status: compatible
+            ranges:
+              - '>=1.29 <1.33'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Cilium 1.17 docs list Kubernetes 1.29, 1.30, 1.31, and 1.32 as e2e tested and guaranteed compatible.
+            sources:
+              - *cilium_117_kubernetes_source
             lastVerified: '2026-07-08'

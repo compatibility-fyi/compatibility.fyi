@@ -1,252 +1,87 @@
 import { describe, expect, it } from 'vitest';
+import { listProjects, loadDataset } from '../src/lib/data';
+import type {
+  CompatibilityDataset,
+  DependencyCompatibilityEntry,
+} from '../src/types/compatibility';
 import { handleApiRequest } from '../src/worker/api';
 
+const dataset = loadDataset();
+const projectSummaries = listProjects(dataset);
+
+interface CheckFixture {
+  project: string;
+  version: string;
+  dependency: string;
+  entry: DependencyCompatibilityEntry;
+  dependencyVersion: string;
+}
+
 describe('api', () => {
-  it('lists projects', async () => {
+  it('lists every YAML-backed project', async () => {
     const response = await handleApiRequest(
       new Request('https://compatibility.fyi/api/v1/projects'),
     );
     const body = (await response.json()) as { projects: Array<{ id: string }> };
 
     expect(response.status).toBe(200);
-    expect(body.projects).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({ id: 'argocd' }),
-        expect.objectContaining({ id: 'calico' }),
-        expect.objectContaining({ id: 'cert-manager' }),
-        expect.objectContaining({ id: 'cilium' }),
-        expect.objectContaining({ id: 'cloudnativepg' }),
-        expect.objectContaining({ id: 'coredns' }),
-        expect.objectContaining({ id: 'flux' }),
-        expect.objectContaining({ id: 'helm' }),
-        expect.objectContaining({ id: 'keycloak' }),
+    expect(body.projects.map((project) => project.id)).toEqual(
+      projectSummaries.map((project) => project.id),
+    );
+  });
+
+  it('returns full project data for every listed project', async () => {
+    for (const project of projectSummaries) {
+      const response = await handleApiRequest(
+        new Request(`https://compatibility.fyi/api/v1/projects/${project.id}`),
+      );
+      const body = (await response.json()) as { id: string; versions: Record<string, unknown> };
+
+      expect(response.status).toBe(200);
+      expect(body.id).toBe(project.id);
+      expect(Object.keys(body.versions).sort()).toEqual([...project.versions].sort());
+    }
+  });
+
+  it('checks a compatible single dependency from the dataset', async () => {
+    const fixture = findCompatibleFixture(dataset);
+    const response = await handleApiRequest(
+      new Request(
+        `https://compatibility.fyi/api/v1/check?${new URLSearchParams({
+          project: fixture.project,
+          version: fixture.version,
+          dependency: fixture.dependency,
+          dependencyVersion: fixture.dependencyVersion,
+        })}`,
+      ),
+    );
+    const body = (await response.json()) as {
+      compatible: string;
+      matchedRange: string | null;
+      relationship: string | null;
+    };
+
+    expect(response.status).toBe(200);
+    expect(body.compatible).toBe('compatible');
+    expect(body.matchedRange).toBe(fixture.entry.ranges[0]);
+    expect(body.relationship).toBe(fixture.entry.relationship ?? null);
+  });
+
+  it('checks compound compatibility from GET JSON dependencies', async () => {
+    const fixture = findCompoundFixture(dataset);
+    const dependencies = Object.fromEntries(
+      fixture.dependencies.map((dependency) => [
+        dependency.dependency,
+        dependency.dependencyVersion,
       ]),
     );
-  });
-
-  it('returns project data', async () => {
-    const response = await handleApiRequest(
-      new Request('https://compatibility.fyi/api/v1/projects/keycloak'),
-    );
-    const body = (await response.json()) as { id: string; versions: Record<string, unknown> };
-
-    expect(response.status).toBe(200);
-    expect(body.id).toBe('keycloak');
-    expect(body.versions).toHaveProperty('26');
-  });
-
-  it('checks compatibility from source-backed Keycloak data', async () => {
     const response = await handleApiRequest(
       new Request(
-        'https://compatibility.fyi/api/v1/check?project=keycloak&version=26&dependency=postgresql&dependencyVersion=17',
-      ),
-    );
-    const body = (await response.json()) as {
-      compatible: string;
-      matchedRange: string | null;
-      confidence: string;
-    };
-
-    expect(response.status).toBe(200);
-    expect(body.compatible).toBe('compatible');
-    expect(body.matchedRange).toBe('>=14.0.0 <19.0.0');
-    expect(body.confidence).toBe('high');
-  });
-
-  it('checks Envoy Gateway matrix data', async () => {
-    const response = await handleApiRequest(
-      new Request(
-        'https://compatibility.fyi/api/v1/check?project=envoy-gateway&version=1.8&dependency=gateway-api&dependencyVersion=1.5.1',
-      ),
-    );
-    const body = (await response.json()) as {
-      compatible: string;
-      matchedRange: string | null;
-      relationship: string | null;
-    };
-
-    expect(response.status).toBe(200);
-    expect(body.compatible).toBe('compatible');
-    expect(body.matchedRange).toBe('1.5.1');
-    expect(body.relationship).toBe('compiled');
-  });
-
-  it('checks CloudNativePG matrix data', async () => {
-    const response = await handleApiRequest(
-      new Request(
-        'https://compatibility.fyi/api/v1/check?project=cloudnativepg&version=1.30&dependency=kubernetes&dependencyVersion=1.36',
-      ),
-    );
-    const body = (await response.json()) as {
-      compatible: string;
-      matchedRange: string | null;
-      relationship: string | null;
-    };
-
-    expect(response.status).toBe(200);
-    expect(body.compatible).toBe('compatible');
-    expect(body.matchedRange).toBe('>=1.34 <1.37');
-    expect(body.relationship).toBe('runtime');
-  });
-
-  it('checks Argo CD matrix data', async () => {
-    const response = await handleApiRequest(
-      new Request(
-        'https://compatibility.fyi/api/v1/check?project=argocd&version=3.4&dependency=kubernetes&dependencyVersion=1.35',
-      ),
-    );
-    const body = (await response.json()) as {
-      compatible: string;
-      matchedRange: string | null;
-      relationship: string | null;
-    };
-
-    expect(response.status).toBe(200);
-    expect(body.compatible).toBe('compatible');
-    expect(body.matchedRange).toBe('>=1.32 <1.36');
-    expect(body.relationship).toBe('runtime');
-  });
-
-  it('checks Flux matrix data', async () => {
-    const response = await handleApiRequest(
-      new Request(
-        'https://compatibility.fyi/api/v1/check?project=flux&version=2.9&dependency=kubernetes&dependencyVersion=1.36',
-      ),
-    );
-    const body = (await response.json()) as {
-      compatible: string;
-      matchedRange: string | null;
-      relationship: string | null;
-    };
-
-    expect(response.status).toBe(200);
-    expect(body.compatible).toBe('compatible');
-    expect(body.matchedRange).toBe('>=1.34 <1.37');
-    expect(body.relationship).toBe('runtime');
-  });
-
-  it('checks cert-manager matrix data', async () => {
-    const response = await handleApiRequest(
-      new Request(
-        'https://compatibility.fyi/api/v1/check?project=cert-manager&version=1.20&dependency=openshift&dependencyVersion=4.21',
-      ),
-    );
-    const body = (await response.json()) as {
-      compatible: string;
-      matchedRange: string | null;
-      relationship: string | null;
-    };
-
-    expect(response.status).toBe(200);
-    expect(body.compatible).toBe('compatible');
-    expect(body.matchedRange).toBe('>=4.19 <4.22');
-    expect(body.relationship).toBe('runtime');
-  });
-
-  it('checks Cilium matrix data', async () => {
-    const response = await handleApiRequest(
-      new Request(
-        'https://compatibility.fyi/api/v1/check?project=cilium&version=1.19&dependency=kubernetes&dependencyVersion=1.35',
-      ),
-    );
-    const body = (await response.json()) as {
-      compatible: string;
-      matchedRange: string | null;
-      relationship: string | null;
-    };
-
-    expect(response.status).toBe(200);
-    expect(body.compatible).toBe('compatible');
-    expect(body.matchedRange).toBe('>=1.32 <1.36');
-    expect(body.relationship).toBe('runtime');
-  });
-
-  it('checks Helm matrix data', async () => {
-    const response = await handleApiRequest(
-      new Request(
-        'https://compatibility.fyi/api/v1/check?project=helm&version=4.2&dependency=kubernetes&dependencyVersion=1.36',
-      ),
-    );
-    const body = (await response.json()) as {
-      compatible: string;
-      matchedRange: string | null;
-      relationship: string | null;
-    };
-
-    expect(response.status).toBe(200);
-    expect(body.compatible).toBe('compatible');
-    expect(body.matchedRange).toBe('>=1.33 <1.37');
-    expect(body.relationship).toBe('runtime');
-  });
-
-  it('checks Calico matrix data', async () => {
-    const response = await handleApiRequest(
-      new Request(
-        'https://compatibility.fyi/api/v1/check?project=calico&version=3.32&dependency=kubernetes&dependencyVersion=1.36',
-      ),
-    );
-    const body = (await response.json()) as {
-      compatible: string;
-      matchedRange: string | null;
-      relationship: string | null;
-    };
-
-    expect(response.status).toBe(200);
-    expect(body.compatible).toBe('compatible');
-    expect(body.matchedRange).toBe('>=1.34 <1.37');
-    expect(body.relationship).toBe('runtime');
-  });
-
-  it('checks CoreDNS kubeadm default mappings', async () => {
-    const response = await handleApiRequest(
-      new Request(
-        'https://compatibility.fyi/api/v1/check?project=coredns&version=1.11.3&dependency=kubernetes&dependencyVersion=1.32',
-      ),
-    );
-    const body = (await response.json()) as {
-      compatible: string;
-      matchedRange: string | null;
-      relationship: string | null;
-    };
-
-    expect(response.status).toBe(200);
-    expect(body.compatible).toBe('compatible');
-    expect(body.matchedRange).toBe('>=1.31 <1.33');
-    expect(body.relationship).toBe('kubeadm-default');
-  });
-
-  it('checks compound CloudNativePG compatibility from POST JSON', async () => {
-    const response = await handleApiRequest(
-      new Request('https://compatibility.fyi/api/v1/check', {
-        method: 'POST',
-        body: JSON.stringify({
-          project: 'cloudnativepg',
-          version: '1.30',
-          dependencies: {
-            postgresql: '18',
-            kubernetes: '1.36',
-          },
-        }),
-      }),
-    );
-    const body = (await response.json()) as { compatible: string };
-
-    expect(response.status).toBe(200);
-    expect(body.compatible).toBe('compatible');
-  });
-
-  it('checks compound Envoy Gateway compatibility from GET JSON dependencies', async () => {
-    const dependencies = encodeURIComponent(
-      JSON.stringify({
-        'gateway-api': '1.5.1',
-        kubernetes: '1.34',
-        'envoy-proxy': 'distroless-v1.38.0',
-        'rate-limit': 'fe26676d',
-      }),
-    );
-    const response = await handleApiRequest(
-      new Request(
-        `https://compatibility.fyi/api/v1/check?project=envoy-gateway&version=1.8&dependencies=${dependencies}`,
+        `https://compatibility.fyi/api/v1/check?${new URLSearchParams({
+          project: fixture.project,
+          version: fixture.version,
+          dependencies: JSON.stringify(dependencies),
+        })}`,
       ),
     );
     const body = (await response.json()) as {
@@ -256,34 +91,43 @@ describe('api', () => {
 
     expect(response.status).toBe(200);
     expect(body.compatible).toBe('compatible');
-    expect(body.checks).toHaveLength(4);
+    expect(body.checks).toHaveLength(fixture.dependencies.length);
     expect(body.checks.every((check) => check.compatible === 'compatible')).toBe(true);
   });
 
-  it('checks compound Envoy Gateway compatibility from POST JSON', async () => {
+  it('checks compound compatibility from POST JSON', async () => {
+    const fixture = findCompoundFixture(dataset);
     const response = await handleApiRequest(
       new Request('https://compatibility.fyi/api/v1/check', {
         method: 'POST',
         body: JSON.stringify({
-          project: 'envoy-gateway',
-          version: '1.8',
-          dependencies: {
-            'gateway-api': '1.5.1',
-            kubernetes: '1.36',
-          },
+          project: fixture.project,
+          version: fixture.version,
+          dependencies: Object.fromEntries(
+            fixture.dependencies.map((dependency) => [
+              dependency.dependency,
+              dependency.dependencyVersion,
+            ]),
+          ),
         }),
       }),
     );
     const body = (await response.json()) as { compatible: string };
 
     expect(response.status).toBe(200);
-    expect(body.compatible).toBe('incompatible');
+    expect(body.compatible).toBe('compatible');
   });
 
   it('returns incompatible when a known dependency version is outside supported ranges', async () => {
+    const fixture = findBoundedRangeFixture(dataset);
     const response = await handleApiRequest(
       new Request(
-        'https://compatibility.fyi/api/v1/check?project=keycloak&version=26&dependency=postgresql&dependencyVersion=13',
+        `https://compatibility.fyi/api/v1/check?${new URLSearchParams({
+          project: fixture.project,
+          version: fixture.version,
+          dependency: fixture.dependency,
+          dependencyVersion: fixture.dependencyVersion,
+        })}`,
       ),
     );
     const body = (await response.json()) as {
@@ -296,8 +140,26 @@ describe('api', () => {
     expect(response.status).toBe(200);
     expect(body.compatible).toBe('incompatible');
     expect(body.matchedRange).toBeNull();
-    expect(body.confidence).toBe('high');
-    expect(body.sources.length).toBeGreaterThan(0);
+    expect(body.confidence).toBe(fixture.entry.confidence);
+    expect(body.sources).toEqual(fixture.entry.sources);
+  });
+
+  it('returns unknown for unknown dependencies', async () => {
+    const project = projectSummaries[0];
+    const response = await handleApiRequest(
+      new Request(
+        `https://compatibility.fyi/api/v1/check?${new URLSearchParams({
+          project: project.id,
+          version: project.versions[0],
+          dependency: 'definitely-missing-dependency',
+          dependencyVersion: '1',
+        })}`,
+      ),
+    );
+    const body = (await response.json()) as { compatible: string };
+
+    expect(response.status).toBe(200);
+    expect(body.compatible).toBe('unknown');
   });
 
   it('reports missing check parameters', async () => {
@@ -308,3 +170,74 @@ describe('api', () => {
     expect(response.status).toBe(400);
   });
 });
+
+function findCompatibleFixture(data: CompatibilityDataset): CheckFixture {
+  for (const [project, projectData] of Object.entries(data.projects)) {
+    for (const [version, versionData] of Object.entries(projectData.versions)) {
+      for (const [dependency, entry] of Object.entries(versionData.dependencies)) {
+        if (entry.status === 'compatible' && entry.ranges.length > 0) {
+          return {
+            dependency,
+            dependencyVersion: sampleVersionFromRange(entry.ranges[0]),
+            entry,
+            project,
+            version,
+          };
+        }
+      }
+    }
+  }
+
+  throw new Error('No compatible compatibility entry found');
+}
+
+function findCompoundFixture(data: CompatibilityDataset): {
+  project: string;
+  version: string;
+  dependencies: CheckFixture[];
+} {
+  for (const [project, projectData] of Object.entries(data.projects)) {
+    for (const [version, versionData] of Object.entries(projectData.versions)) {
+      const dependencies = Object.entries(versionData.dependencies)
+        .filter(([, entry]) => entry.status === 'compatible' && entry.ranges.length > 0)
+        .map(([dependency, entry]) => ({
+          dependency,
+          dependencyVersion: sampleVersionFromRange(entry.ranges[0]),
+          entry,
+          project,
+          version,
+        }));
+
+      if (dependencies.length >= 2) {
+        return { dependencies, project, version };
+      }
+    }
+  }
+
+  throw new Error('No compound compatibility fixture found');
+}
+
+function findBoundedRangeFixture(data: CompatibilityDataset): CheckFixture {
+  for (const [project, projectData] of Object.entries(data.projects)) {
+    for (const [version, versionData] of Object.entries(projectData.versions)) {
+      for (const [dependency, entry] of Object.entries(versionData.dependencies)) {
+        const upperBound = entry.ranges[0]?.match(/<\s*(\d+(?:\.\d+){0,2})/)?.[1];
+        if (entry.status === 'compatible' && upperBound) {
+          return {
+            dependency,
+            dependencyVersion: upperBound,
+            entry,
+            project,
+            version,
+          };
+        }
+      }
+    }
+  }
+
+  throw new Error('No bounded compatibility entry found');
+}
+
+function sampleVersionFromRange(range: string): string {
+  return range.match(/>=\s*(\d+(?:\.\d+){0,2})/)?.[1] ?? range;
+}

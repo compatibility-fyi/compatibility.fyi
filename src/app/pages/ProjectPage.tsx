@@ -374,24 +374,36 @@ function getConfidenceExplanation(confidence: DependencyCompatibilityEntry['conf
 }
 
 function formatDependencyName(dependency: string): string {
-  const names: Record<string, string> = {
-    'amazon-aurora-postgresql': 'Amazon Aurora PostgreSQL',
-    'azure-sql-database': 'Azure SQL Database',
-    'azure-sql-managed-instance': 'Azure SQL Managed Instance',
-    'enterprisedb-advanced': 'EnterpriseDB Advanced',
+  const wordLabels: Record<string, string> = {
+    api: 'API',
+    aurora: 'Aurora',
+    aws: 'AWS',
+    azure: 'Azure',
+    coredns: 'CoreDNS',
+    cni: 'CNI',
+    dns: 'DNS',
+    eks: 'EKS',
+    gcp: 'GCP',
+    gke: 'GKE',
+    ip: 'IP',
+    jdbc: 'JDBC',
+    kubernetes: 'Kubernetes',
+    ldap: 'LDAP',
     mariadb: 'MariaDB',
     mssql: 'Microsoft SQL Server',
     mysql: 'MySQL',
-    oracle: 'Oracle Database',
-    postgresql: 'PostgreSQL',
-    'envoy-proxy': 'Envoy Proxy',
-    'gateway-api': 'Gateway API',
-    kubernetes: 'Kubernetes',
+    oidc: 'OIDC',
     openshift: 'OpenShift',
-    'rate-limit': 'Rate Limit',
+    postgresql: 'PostgreSQL',
+    sql: 'SQL',
+    tls: 'TLS',
   };
 
-  return names[dependency] ?? dependency;
+  return dependency
+    .split(/[-_\s]+/)
+    .filter(Boolean)
+    .map((word) => wordLabels[word.toLowerCase()] ?? formatLabelTitle(word))
+    .join(' ');
 }
 
 function formatLabelTitle(label: string): string {

@@ -1,29 +1,16 @@
-import envoyGatewayYaml from '../../data/envoy-gateway.yaml?raw';
-import argocdYaml from '../../data/argocd.yaml?raw';
-import calicoYaml from '../../data/calico.yaml?raw';
-import certManagerYaml from '../../data/cert-manager.yaml?raw';
-import ciliumYaml from '../../data/cilium.yaml?raw';
-import cloudnativepgYaml from '../../data/cloudnativepg.yaml?raw';
-import corednsYaml from '../../data/coredns.yaml?raw';
-import keycloakYaml from '../../data/keycloak.yaml?raw';
-import fluxYaml from '../../data/flux.yaml?raw';
-import helmYaml from '../../data/helm.yaml?raw';
 import type { CompatibilityDataset, ProjectSummary } from '../types/compatibility';
 import { parseCompatibilityYaml } from './validation';
 import { compareVersions } from './version';
 
-const dataSources = [
-  keycloakYaml,
-  envoyGatewayYaml,
-  cloudnativepgYaml,
-  argocdYaml,
-  fluxYaml,
-  certManagerYaml,
-  ciliumYaml,
-  helmYaml,
-  calicoYaml,
-  corednsYaml,
-];
+const yamlModules = import.meta.glob<string>('../../data/*.yaml', {
+  eager: true,
+  import: 'default',
+  query: '?raw',
+});
+
+const dataSources = Object.entries(yamlModules)
+  .sort(([left], [right]) => left.localeCompare(right))
+  .map(([, source]) => source);
 
 export function loadDataset(): CompatibilityDataset {
   return dataSources.map(parseCompatibilityYaml).reduce<CompatibilityDataset>(
