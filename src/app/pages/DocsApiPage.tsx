@@ -329,7 +329,7 @@ export function DocsApiPage() {
   }'`}</CodeBlock>
             <CodeBlock>{compoundCheckResponse}</CodeBlock>
             <p className="docs-note">
-              A GET variant is also accepted by passing a URL-encoded JSON object in the
+              A GET variant is also accepted by passing a URL-encoded JSON object in the{' '}
               <code>dependencies</code> query parameter. POST is recommended for compound checks
               because it is easier to read and avoids URL length limits.
             </p>

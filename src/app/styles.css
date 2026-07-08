@@ -791,6 +791,17 @@ th {
   padding-left: 12px;
 }
 
+.docs-note code {
+  background: #e8eef8;
+  border: 1px solid #c8d6ee;
+  border-radius: 4px;
+  display: inline-flex;
+  line-height: 1.25;
+  margin: 0 0.18em;
+  padding: 0.08em 0.35em;
+  vertical-align: 0.05em;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     background: #111827;
@@ -896,6 +907,11 @@ th {
   .docs-table code,
   .docs-note code {
     color: #f9fafb;
+  }
+
+  .docs-note code {
+    background: #172033;
+    border-color: #2f4f88;
   }
 
   .method-badge.get {
