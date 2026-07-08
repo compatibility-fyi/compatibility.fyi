@@ -136,17 +136,19 @@ export function LandingPage() {
 
       <section className="catalog-notes">
         <article>
-          <h2>API-first metadata</h2>
+          <h2>Structured Compatibility Data</h2>
           <p>
-            The data lives in YAML, is validated in CI, and is served through a small API for tools
-            like Renovate, Dependabot, Helm, Argo CD, and Backstage.
+            Compatibility knowledge should not live only in prose, release notes, and scattered
+            support tables. compatibility.fyi turns source-backed compatibility claims into
+            versioned YAML and JSON that can be reviewed, diffed, validated, and queried.
           </p>
         </article>
         <article>
-          <h2>Compatibility, not lifecycle</h2>
+          <h2>Built For Humans And Automation</h2>
           <p>
-            Lifecycle databases answer whether a version is maintained. compatibility.fyi answers
-            whether two pieces of software are known to work together.
+            The catalog is readable in the browser, but the real goal is automation. Renovate,
+            Dependabot, Helm, Argo CD, Backstage, and CI pipelines should be able to check whether a
+            dependency update is compatible before it reaches production.
           </p>
         </article>
       </section>
