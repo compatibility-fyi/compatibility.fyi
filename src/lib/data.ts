@@ -5,6 +5,7 @@ import ciliumYaml from '../../data/cilium.yaml?raw';
 import cloudnativepgYaml from '../../data/cloudnativepg.yaml?raw';
 import keycloakYaml from '../../data/keycloak.yaml?raw';
 import fluxYaml from '../../data/flux.yaml?raw';
+import helmYaml from '../../data/helm.yaml?raw';
 import type { CompatibilityDataset, ProjectSummary } from '../types/compatibility';
 import { parseCompatibilityYaml } from './validation';
 import { compareVersions } from './version';
@@ -17,6 +18,7 @@ const dataSources = [
   fluxYaml,
   certManagerYaml,
   ciliumYaml,
+  helmYaml,
 ];
 
 export function loadDataset(): CompatibilityDataset {

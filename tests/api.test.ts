@@ -16,6 +16,7 @@ describe('api', () => {
         expect.objectContaining({ id: 'cilium' }),
         expect.objectContaining({ id: 'cloudnativepg' }),
         expect.objectContaining({ id: 'flux' }),
+        expect.objectContaining({ id: 'helm' }),
         expect.objectContaining({ id: 'keycloak' }),
       ]),
     );
@@ -155,6 +156,24 @@ describe('api', () => {
     expect(response.status).toBe(200);
     expect(body.compatible).toBe('compatible');
     expect(body.matchedRange).toBe('>=1.32 <1.36');
+    expect(body.relationship).toBe('runtime');
+  });
+
+  it('checks Helm matrix data', async () => {
+    const response = await handleApiRequest(
+      new Request(
+        'https://compatibility.fyi/api/v1/check?project=helm&version=4.2&dependency=kubernetes&dependencyVersion=1.36',
+      ),
+    );
+    const body = (await response.json()) as {
+      compatible: string;
+      matchedRange: string | null;
+      relationship: string | null;
+    };
+
+    expect(response.status).toBe(200);
+    expect(body.compatible).toBe('compatible');
+    expect(body.matchedRange).toBe('>=1.33 <1.37');
     expect(body.relationship).toBe('runtime');
   });
 
