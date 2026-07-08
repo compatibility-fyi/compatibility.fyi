@@ -48,7 +48,13 @@ export function DocsApiPage() {
     {
       "id": "keycloak",
       "name": "Keycloak",
-      "description": "Official database compatibility metadata for Keycloak.",
+      "website": "https://www.keycloak.org/",
+      "logo": "https://raw.githubusercontent.com/keycloak/keycloak-misc/main/logo/logo.svg",
+      "dependencyKind": {
+        "singular": "database",
+        "plural": "databases",
+        "examples": ["PostgreSQL", "MySQL", "Oracle"]
+      },
       "versions": ["26", "25"]
     }
   ]

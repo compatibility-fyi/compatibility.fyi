@@ -1,69 +1,319 @@
+import { useMemo, useState } from 'react';
 import { loadDataset } from '../../lib/data';
 import type { DependencyCompatibilityEntry } from '../../types/compatibility';
 import { Layout } from '../components/Layout';
+import { formatWebsiteUrl } from '../lib/format';
 
 const project = loadDataset().projects.keycloak;
 
-export function ProjectPage() {
-  const rows = Object.entries(project.versions).flatMap(([version, versionData]) =>
+interface CompatibilityRow {
+  version: string;
+  dependency: string;
+  entry: DependencyCompatibilityEntry;
+}
+
+interface ConfidenceTooltip {
+  text: string;
+  top: number;
+  left: number;
+}
+
+const rows: CompatibilityRow[] = Object.entries(project.versions).flatMap(
+  ([version, versionData]) =>
     Object.entries(versionData.dependencies).map(([dependency, entry]) => ({
       version,
       dependency,
       entry,
     })),
-  );
+);
+
+const versions = [...new Set(rows.map((row) => row.version))].sort((left, right) =>
+  right.localeCompare(left, undefined, { numeric: true }),
+);
+const dependencyKind = project.dependencyKind ?? {
+  examples: [] as string[],
+  plural: 'dependencies',
+  singular: 'dependency',
+};
+const dependencyKindTitle = formatLabelTitle(dependencyKind.singular);
+const dependencySearchExamples = dependencyKind.examples?.join(', ');
+
+export function ProjectPage() {
+  const [query, setQuery] = useState('');
+  const [selectedVersion, setSelectedVersion] = useState('all');
+  const [tooltip, setTooltip] = useState<ConfidenceTooltip | null>(null);
+  const filteredRows = useMemo(() => {
+    const normalizedQuery = query.trim().toLowerCase();
+
+    return rows.filter((row) => {
+      const matchesVersion = selectedVersion === 'all' || row.version === selectedVersion;
+      const matchesQuery =
+        !normalizedQuery ||
+        [
+          row.dependency,
+          row.version,
+          row.entry.ranges.join(' '),
+          row.entry.notes.join(' '),
+          row.entry.sources.map((source) => source.title).join(' '),
+        ]
+          .join(' ')
+          .toLowerCase()
+          .includes(normalizedQuery);
+
+      return matchesVersion && matchesQuery;
+    });
+  }, [query, selectedVersion]);
+
+  const dependencyCount = new Set(rows.map((row) => row.dependency)).size;
 
   return (
     <Layout>
       <section className="page-heading">
-        <p className="eyebrow">Project</p>
-        <h1>Keycloak</h1>
-        <p>{project.description}</p>
+        <div className="project-heading">
+          <div>
+            <h1>{project.name}</h1>
+            {project.website ? (
+              <a
+                className="project-website"
+                href={project.website}
+                rel="noreferrer"
+                target="_blank"
+              >
+                {formatWebsiteUrl(project.website)}
+              </a>
+            ) : null}
+          </div>
+        </div>
       </section>
 
-      <section className="notice">
-        <strong>Source-backed data.</strong> Keycloak 26 entries use the current official supported
-        database ranges. Keycloak 25 entries encode the exact database versions listed as tested in
-        the tagged upstream documentation.
+      <section className="project-summary" aria-label="Keycloak compatibility summary">
+        <div>
+          <span className="summary-value">{versions.length}</span>
+          <span className="summary-label">Project versions</span>
+        </div>
+        <div>
+          <span className="summary-value">{dependencyCount}</span>
+          <span className="summary-label">{dependencyKindTitle} targets</span>
+        </div>
+        <div>
+          <span className="summary-value">{rows.length}</span>
+          <span className="summary-label">Compatibility entries</span>
+        </div>
+      </section>
+
+      <section className="filter-bar" aria-label="Compatibility filters">
+        <label className="search-field">
+          <span>Search dependencies</span>
+          <input
+            type="search"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder={
+              dependencySearchExamples
+                ? `Search ${dependencySearchExamples}, source titles...`
+                : 'Search dependencies, source titles...'
+            }
+          />
+        </label>
+        <label className="select-field">
+          <span>Project version</span>
+          <select
+            value={selectedVersion}
+            onChange={(event) => setSelectedVersion(event.target.value)}
+          >
+            <option value="all">All versions</option>
+            {versions.map((version) => (
+              <option key={version} value={version}>
+                Keycloak {version}
+              </option>
+            ))}
+          </select>
+        </label>
       </section>
 
       <section className="table-section">
-        <h2>Compatibility table</h2>
+        <div className="section-title-row">
+          <h2>{dependencyKindTitle} compatibility</h2>
+          <span>{filteredRows.length} entries</span>
+        </div>
         <div className="table-wrap">
           <table>
             <thead>
               <tr>
-                <th>Project version</th>
-                <th>Dependency</th>
-                <th>Status</th>
-                <th>Ranges</th>
-                <th>Confidence</th>
-                <th>Sources</th>
+                <th>Keycloak</th>
+                <th>{dependencyKindTitle}</th>
+                <th>Supported {dependencyKind.singular} versions</th>
+                <th>Evidence</th>
               </tr>
             </thead>
             <tbody>
-              {rows.map(({ version, dependency, entry }) => (
+              {filteredRows.map(({ version, dependency, entry }) => (
                 <tr key={`${version}-${dependency}`}>
                   <td>{version}</td>
-                  <td>{dependency}</td>
                   <td>
-                    <StatusBadge entry={entry} />
+                    <strong>{formatDependencyName(dependency)}</strong>
                   </td>
                   <td>
-                    {entry.ranges.length > 0 ? entry.ranges.join(', ') : 'No verified ranges'}
+                    <div className="range-list" aria-label={`Supported versions for ${dependency}`}>
+                      {entry.ranges.map((range) => (
+                        <span className="range-chip" title={range} key={range}>
+                          {formatRange(range)}
+                        </span>
+                      ))}
+                    </div>
+                    {entry.notes.length > 0 ? <p className="row-note">{entry.notes[0]}</p> : null}
                   </td>
-                  <td>{entry.confidence}</td>
-                  <td>{entry.sources.length}</td>
+                  <td>
+                    <Evidence
+                      entry={entry}
+                      onHideTooltip={() => setTooltip(null)}
+                      onShowTooltip={setTooltip}
+                    />
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+        {filteredRows.length === 0 ? (
+          <p className="empty-state">No compatibility entries match those filters.</p>
+        ) : null}
       </section>
+      {tooltip ? (
+        <div
+          className="confidence-tooltip"
+          role="tooltip"
+          style={{ top: tooltip.top, left: tooltip.left }}
+        >
+          {tooltip.text}
+        </div>
+      ) : null}
     </Layout>
   );
 }
 
-function StatusBadge({ entry }: { entry: DependencyCompatibilityEntry }) {
-  return <span className={`badge ${entry.status}`}>{entry.status}</span>;
+function Evidence({
+  entry,
+  onHideTooltip,
+  onShowTooltip,
+}: {
+  entry: DependencyCompatibilityEntry;
+  onHideTooltip: () => void;
+  onShowTooltip: (tooltip: ConfidenceTooltip) => void;
+}) {
+  const explanation = getConfidenceExplanation(entry.confidence);
+
+  function showTooltip(target: HTMLElement) {
+    const rect = target.getBoundingClientRect();
+    const width = 300;
+    const left = Math.min(Math.max(12, rect.left), window.innerWidth - width - 12);
+
+    onShowTooltip({
+      text: explanation,
+      top: rect.bottom + 8,
+      left,
+    });
+  }
+
+  return (
+    <div className="evidence">
+      <div>
+        <button
+          className="evidence-level"
+          type="button"
+          aria-label={`${entry.confidence} confidence. ${explanation}`}
+          onBlur={onHideTooltip}
+          onFocus={(event) => showTooltip(event.currentTarget)}
+          onMouseEnter={(event) => showTooltip(event.currentTarget)}
+          onMouseLeave={onHideTooltip}
+        >
+          {entry.confidence}
+        </button>
+        {entry.lastVerified ? (
+          <span>Verified {entry.lastVerified}</span>
+        ) : (
+          <span>Not verified</span>
+        )}
+      </div>
+      <ul>
+        {entry.sources.map((source) => (
+          <li key={source.url}>
+            <a href={source.url} rel="noreferrer" target="_blank">
+              {source.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function getConfidenceExplanation(confidence: DependencyCompatibilityEntry['confidence']): string {
+  if (confidence === 'high') {
+    return 'High confidence means this entry is backed by official documentation or tagged upstream source and includes a verification date.';
+  }
+
+  if (confidence === 'medium') {
+    return 'Medium confidence means this entry is backed by a credible source but still needs stronger verification.';
+  }
+
+  return 'Low confidence means this entry is incomplete, inferred, or not independently verified.';
+}
+
+function formatDependencyName(dependency: string): string {
+  const names: Record<string, string> = {
+    'amazon-aurora-postgresql': 'Amazon Aurora PostgreSQL',
+    'azure-sql-database': 'Azure SQL Database',
+    'azure-sql-managed-instance': 'Azure SQL Managed Instance',
+    'enterprisedb-advanced': 'EnterpriseDB Advanced',
+    mariadb: 'MariaDB',
+    mssql: 'Microsoft SQL Server',
+    mysql: 'MySQL',
+    oracle: 'Oracle Database',
+    postgresql: 'PostgreSQL',
+  };
+
+  return names[dependency] ?? dependency;
+}
+
+function formatLabelTitle(label: string): string {
+  if (label === label.toLowerCase()) {
+    return label.charAt(0).toUpperCase() + label.slice(1);
+  }
+
+  return label;
+}
+
+function formatRange(range: string): string {
+  if (range === 'latest') {
+    return 'Latest';
+  }
+
+  const match = range.match(/^>=(\d+)\.(\d+)\.(\d+) <(\d+)\.(\d+)\.(\d+)$/);
+
+  if (!match) {
+    return range;
+  }
+
+  const [, lowerMajor, lowerMinor, lowerPatch, upperMajor, upperMinor, upperPatch] =
+    match.map(Number);
+
+  if (lowerMinor === 0 && lowerPatch === 0 && upperMajor === lowerMajor + 1) {
+    return lowerMajor >= 1000 ? String(lowerMajor) : `${lowerMajor}.x`;
+  }
+
+  if (
+    lowerPatch === 0 &&
+    upperMajor === lowerMajor &&
+    upperMinor === lowerMinor + 1 &&
+    upperPatch === 0
+  ) {
+    return `${lowerMajor}.${lowerMinor}.x`;
+  }
+
+  if (upperMajor === lowerMajor + 1 && upperMinor === 0 && upperPatch === 0) {
+    return `${lowerMajor}.${lowerMinor}+`;
+  }
+
+  return range;
 }

@@ -23,21 +23,41 @@ export function checkCompatibility(
   const versionKey = findVersionKey(Object.keys(project?.versions ?? {}), request.version);
   const dependency = project?.versions[versionKey ?? '']?.dependencies[request.dependency];
   const entry = dependency ?? unknownEntry;
+  const dependencyExists = Boolean(dependency);
 
   const matchedRange =
     entry.status === 'unknown'
       ? null
       : (entry.ranges.find((range) => versionSatisfiesRange(request.dependencyVersion, range)) ??
         null);
+  const compatible = getCompatibilityResult(entry, dependencyExists, matchedRange);
+  const includeEvidence =
+    Boolean(matchedRange) || (dependencyExists && compatible === 'incompatible');
 
   return {
     ...request,
-    compatible: matchedRange ? entry.status : 'unknown',
+    compatible,
     matchedRange,
     confidence: entry.confidence,
-    notes: matchedRange ? entry.notes : [],
-    sources: matchedRange ? entry.sources : [],
+    notes: includeEvidence ? entry.notes : [],
+    sources: includeEvidence ? entry.sources : [],
   };
+}
+
+function getCompatibilityResult(
+  entry: DependencyCompatibilityEntry,
+  dependencyExists: boolean,
+  matchedRange: string | null,
+) {
+  if (matchedRange) {
+    return entry.status;
+  }
+
+  if (dependencyExists && entry.status === 'compatible' && entry.ranges.length > 0) {
+    return 'incompatible';
+  }
+
+  return 'unknown';
 }
 
 function findVersionKey(versions: string[], requestedVersion: string): string | null {

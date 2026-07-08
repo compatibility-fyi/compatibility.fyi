@@ -30,6 +30,15 @@ export function assertDataset(value: unknown): asserts value is CompatibilityDat
     if (projectRecord.description !== undefined) {
       assertString(projectRecord.description, `projects.${projectId}.description`);
     }
+    if (projectRecord.website !== undefined) {
+      assertUrl(projectRecord.website, `projects.${projectId}.website`);
+    }
+    if (projectRecord.logo !== undefined) {
+      assertUrl(projectRecord.logo, `projects.${projectId}.logo`);
+    }
+    if (projectRecord.dependencyKind !== undefined) {
+      assertDependencyKind(projectRecord.dependencyKind, `projects.${projectId}.dependencyKind`);
+    }
 
     const versions = asRecord(projectRecord.versions, `projects.${projectId}.versions`);
     for (const [version, versionData] of Object.entries(versions)) {
@@ -95,6 +104,16 @@ function assertSources(value: unknown, path: string): asserts value is Compatibi
   }
 }
 
+function assertDependencyKind(value: unknown, path: string): void {
+  const dependencyKind = asRecord(value, path);
+  assertString(dependencyKind.singular, `${path}.singular`);
+  assertString(dependencyKind.plural, `${path}.plural`);
+
+  if (dependencyKind.examples !== undefined) {
+    assertStringArray(dependencyKind.examples, `${path}.examples`);
+  }
+}
+
 function assertString(value: unknown, path: string): asserts value is string {
   if (typeof value !== 'string' || value.trim() === '') {
     throw new Error(`${path} must be a non-empty string`);
@@ -111,6 +130,15 @@ function assertDateString(value: unknown, path: string): asserts value is string
   assertString(value, path);
   if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
     throw new Error(`${path} must use YYYY-MM-DD format`);
+  }
+}
+
+function assertUrl(value: unknown, path: string): asserts value is string {
+  assertString(value, path);
+  try {
+    new URL(value);
+  } catch {
+    throw new Error(`${path} must be a valid URL`);
   }
 }
 

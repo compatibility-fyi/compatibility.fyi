@@ -41,6 +41,26 @@ describe('api', () => {
     expect(body.confidence).toBe('high');
   });
 
+  it('returns incompatible when a known dependency version is outside supported ranges', async () => {
+    const response = handleApiRequest(
+      new Request(
+        'https://compatibility.fyi/api/v1/check?project=keycloak&version=26&dependency=postgresql&dependencyVersion=13',
+      ),
+    );
+    const body = (await response.json()) as {
+      compatible: string;
+      matchedRange: string | null;
+      confidence: string;
+      sources: unknown[];
+    };
+
+    expect(response.status).toBe(200);
+    expect(body.compatible).toBe('incompatible');
+    expect(body.matchedRange).toBeNull();
+    expect(body.confidence).toBe('high');
+    expect(body.sources.length).toBeGreaterThan(0);
+  });
+
   it('reports missing check parameters', async () => {
     const response = handleApiRequest(
       new Request('https://compatibility.fyi/api/v1/check?project=keycloak'),

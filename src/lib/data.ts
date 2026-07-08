@@ -23,6 +23,9 @@ export function listProjects(dataset: CompatibilityDataset): ProjectSummary[] {
       id,
       name: project.name,
       description: project.description,
+      website: project.website,
+      logo: project.logo,
+      dependencyKind: project.dependencyKind,
       versions: Object.keys(project.versions).sort((left, right) => compareVersions(right, left)),
     }))
     .sort((left, right) => left.id.localeCompare(right.id));

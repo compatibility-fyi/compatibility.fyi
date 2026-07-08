@@ -63,6 +63,23 @@ describe('compatibility engine', () => {
     });
   });
 
+  it('returns incompatible when a known compatible dependency misses all supported ranges', () => {
+    expect(
+      checkCompatibility(dataset, {
+        project: 'sample',
+        version: '1',
+        dependency: 'database',
+        dependencyVersion: '18',
+      }),
+    ).toMatchObject({
+      compatible: 'incompatible',
+      matchedRange: null,
+      confidence: 'high',
+      notes: ['Verified fixture'],
+      sources: [{ title: 'Fixture', url: 'https://example.com' }],
+    });
+  });
+
   it('returns unknown for unknown projects', () => {
     expect(
       checkCompatibility(dataset, {
