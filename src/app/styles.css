@@ -39,7 +39,16 @@ a {
 }
 
 .brand {
+  align-items: center;
+  display: inline-flex;
+  gap: 10px;
   font-weight: 750;
+}
+
+.brand img {
+  border-radius: 8px;
+  height: 34px;
+  width: 34px;
 }
 
 nav {
@@ -128,6 +137,19 @@ h2 {
   border: 1px solid color-mix(in srgb, currentColor 12%, transparent);
   border-radius: 8px;
   width: 100%;
+}
+
+.hero-product {
+  width: 100%;
+}
+
+.hero-logo {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto 18px;
+  max-width: 220px;
+  width: 54%;
 }
 
 .query-panel {

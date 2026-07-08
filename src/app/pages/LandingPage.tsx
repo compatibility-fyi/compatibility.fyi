@@ -26,21 +26,28 @@ export function LandingPage() {
             </a>
           </div>
         </div>
-        <div className="query-panel" aria-label="Compatibility search mockup">
-          <label htmlFor="query">Compatibility query</label>
-          <div className="search-box">
-            <span aria-hidden="true">/</span>
-            <input
-              id="query"
-              readOnly
-              value="keycloak 26 postgresql 17"
-              aria-label="Example compatibility query"
-            />
-          </div>
-          <div className="api-result">
-            <span className="status-dot compatible" />
-            <span>compatible</span>
-            <code>confidence: high</code>
+        <div className="hero-product">
+          <img
+            className="hero-logo"
+            src="/compatibility-fyi-logo.png"
+            alt="compatibility.fyi logo"
+          />
+          <div className="query-panel" aria-label="Compatibility search mockup">
+            <label htmlFor="query">Compatibility query</label>
+            <div className="search-box">
+              <span aria-hidden="true">/</span>
+              <input
+                id="query"
+                readOnly
+                value="keycloak 26 postgresql 17"
+                aria-label="Example compatibility query"
+              />
+            </div>
+            <div className="api-result">
+              <span className="status-dot compatible" />
+              <span>compatible</span>
+              <code>confidence: high</code>
+            </div>
           </div>
         </div>
       </section>

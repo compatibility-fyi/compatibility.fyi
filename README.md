@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="public/compatibility-fyi-logo.png" alt="compatibility.fyi logo" width="128" />
+</p>
+
 # compatibility.fyi
 
 Machine-readable software compatibility metadata.
