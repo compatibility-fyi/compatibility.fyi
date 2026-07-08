@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { loadDataset } from '../../lib/data';
 import { checkCompoundCompatibility } from '../../lib/engine';
+import { compareVersions } from '../../lib/version';
 import type {
   CompatibilityCheckResponse,
   DependencyCompatibilityEntry,
@@ -38,18 +39,23 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
       return [];
     }
 
-    return Object.entries(project.versions).flatMap(([version, versionData]) =>
-      Object.entries(versionData.dependencies).map(([dependency, entry]) => ({
-        version,
-        dependency,
-        entry,
-      })),
-    );
+    return Object.entries(project.versions)
+      .flatMap(([version, versionData]) =>
+        Object.entries(versionData.dependencies).map(([dependency, entry]) => ({
+          version,
+          dependency,
+          entry,
+        })),
+      )
+      .sort((left, right) => {
+        const versionOrder = compareVersions(right.version, left.version);
+        return versionOrder || left.dependency.localeCompare(right.dependency);
+      });
   }, [project]);
   const versions = useMemo(
     () =>
       [...new Set(rows.map((row) => row.version))].sort((left, right) =>
-        right.localeCompare(left, undefined, { numeric: true }),
+        compareVersions(right, left),
       ),
     [rows],
   );
