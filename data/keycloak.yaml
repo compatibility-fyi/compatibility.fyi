@@ -3,18 +3,10 @@ projects:
     name: Keycloak
     category: Authentication
     website: https://www.keycloak.org/
-    dependencyKind:
-      singular: database
-      plural: databases
-      examples:
-        - PostgreSQL
-        - MySQL
-        - Oracle
     versions:
       '26':
         dependencies:
           postgresql:
-            status: compatible
             ranges:
               - '>=14.0.0 <19.0.0'
             confidence: high
@@ -29,7 +21,6 @@ projects:
                 accessedAt: '2026-07-08'
             lastVerified: '2026-07-08'
           amazon-aurora-postgresql:
-            status: compatible
             ranges:
               - '>=15.0.0 <18.0.0'
             confidence: high
@@ -44,7 +35,6 @@ projects:
                 accessedAt: '2026-07-08'
             lastVerified: '2026-07-08'
           enterprisedb-advanced:
-            status: compatible
             ranges:
               - '>=17.0.0 <19.0.0'
             confidence: high
@@ -59,7 +49,6 @@ projects:
                 accessedAt: '2026-07-08'
             lastVerified: '2026-07-08'
           mariadb:
-            status: compatible
             ranges:
               - '>=10.6.0 <10.7.0'
               - '>=10.11.0 <10.12.0'
@@ -77,7 +66,6 @@ projects:
                 accessedAt: '2026-07-08'
             lastVerified: '2026-07-08'
           mssql:
-            status: compatible
             ranges:
               - '>=2019.0.0 <2020.0.0'
               - '>=2022.0.0 <2023.0.0'
@@ -93,7 +81,6 @@ projects:
                 accessedAt: '2026-07-08'
             lastVerified: '2026-07-08'
           mysql:
-            status: compatible
             ranges:
               - '>=8.0.0 <8.1.0'
               - '>=8.4.0 <8.5.0'
@@ -109,7 +96,6 @@ projects:
                 accessedAt: '2026-07-08'
             lastVerified: '2026-07-08'
           oracle:
-            status: compatible
             ranges:
               - '>=19.3.0 <20.0.0'
               - '>=23.5.0 <24.0.0'
@@ -127,7 +113,6 @@ projects:
       '25':
         dependencies:
           postgresql:
-            status: compatible
             ranges:
               - '>=16.0.0 <17.0.0'
             confidence: high
@@ -145,7 +130,6 @@ projects:
                 accessedAt: '2026-07-08'
             lastVerified: '2026-07-08'
           amazon-aurora-postgresql:
-            status: compatible
             ranges:
               - '>=16.1.0 <16.2.0'
             confidence: high
@@ -160,7 +144,6 @@ projects:
                 accessedAt: '2026-07-08'
             lastVerified: '2026-07-08'
           mariadb:
-            status: compatible
             ranges:
               - '>=10.11.0 <10.12.0'
             confidence: high
@@ -175,7 +158,6 @@ projects:
                 accessedAt: '2026-07-08'
             lastVerified: '2026-07-08'
           mssql:
-            status: compatible
             ranges:
               - '>=2022.0.0 <2023.0.0'
             confidence: high
@@ -190,7 +172,6 @@ projects:
                 accessedAt: '2026-07-08'
             lastVerified: '2026-07-08'
           mysql:
-            status: compatible
             ranges:
               - '>=8.0.0 <8.1.0'
             confidence: high
@@ -205,7 +186,6 @@ projects:
                 accessedAt: '2026-07-08'
             lastVerified: '2026-07-08'
           oracle:
-            status: compatible
             ranges:
               - '>=19.3.0 <20.0.0'
             confidence: high

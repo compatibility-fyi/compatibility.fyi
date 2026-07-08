@@ -34,11 +34,6 @@ const projectsResponse = `{
       "name": "Example Project",
       "category": "Example Category",
       "website": "https://example.com/",
-      "dependencyKind": {
-        "singular": "dependency",
-        "plural": "dependencies",
-        "examples": ["Kubernetes", "PostgreSQL"]
-      },
       "versions": ["2.0", "1.0"]
     }
   ]

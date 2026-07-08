@@ -19,16 +19,10 @@ projects:
     category: Networking
     website: https://cilium.io/
     description: eBPF networking, security, and observability compatibility for Kubernetes versions.
-    dependencyKind:
-      singular: dependency
-      plural: dependencies
-      examples:
-        - Kubernetes
     versions:
       '1.19':
         dependencies:
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.32 <1.36'
             relationship: runtime
@@ -41,7 +35,6 @@ projects:
       '1.18':
         dependencies:
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.30 <1.34'
             relationship: runtime
@@ -54,7 +47,6 @@ projects:
       '1.17':
         dependencies:
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.29 <1.33'
             relationship: runtime

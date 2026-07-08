@@ -22,18 +22,11 @@ export interface ProjectVersion {
   dependencies: Record<string, DependencyCompatibilityEntry>;
 }
 
-export interface DependencyKind {
-  singular: string;
-  plural: string;
-  examples?: string[];
-}
-
 export interface ProjectCompatibility {
   name: string;
   category?: string;
   description?: string;
   website?: string;
-  dependencyKind?: DependencyKind;
   versions: Record<string, ProjectVersion>;
 }
 
@@ -47,7 +40,6 @@ export interface ProjectSummary {
   category?: string;
   description?: string;
   website?: string;
-  dependencyKind?: DependencyKind;
   versions: string[];
 }
 

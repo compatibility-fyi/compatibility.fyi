@@ -19,19 +19,10 @@ projects:
     category: Collaboration
     website: https://nextcloud.com/
     description: Nextcloud Server compatibility for PHP runtime and database versions.
-    dependencyKind:
-      singular: dependency
-      plural: dependencies
-      examples:
-        - PHP
-        - PostgreSQL
-        - MariaDB
-        - MySQL
     versions:
       '34':
         dependencies:
           php:
-            status: compatible
             ranges:
               - '>=8.2 <8.6'
             relationship: runtime
@@ -42,7 +33,6 @@ projects:
               - *nextcloud_34_requirements_source
             lastVerified: '2026-07-08'
           mysql:
-            status: compatible
             ranges:
               - '>=8.0 <8.1'
               - '>=8.4 <8.5'
@@ -54,7 +44,6 @@ projects:
               - *nextcloud_34_requirements_source
             lastVerified: '2026-07-08'
           mariadb:
-            status: compatible
             ranges:
               - '>=10.6 <10.7'
               - '>=10.11 <10.12'
@@ -68,7 +57,6 @@ projects:
               - *nextcloud_34_requirements_source
             lastVerified: '2026-07-08'
           postgresql:
-            status: compatible
             ranges:
               - '>=14 <19'
             relationship: database
@@ -81,7 +69,6 @@ projects:
       '33':
         dependencies:
           php:
-            status: compatible
             ranges:
               - '>=8.2 <8.6'
             relationship: runtime
@@ -92,7 +79,6 @@ projects:
               - *nextcloud_33_requirements_source
             lastVerified: '2026-07-08'
           mysql:
-            status: compatible
             ranges:
               - '>=8.0 <8.1'
               - '>=8.4 <8.5'
@@ -104,7 +90,6 @@ projects:
               - *nextcloud_33_requirements_source
             lastVerified: '2026-07-08'
           mariadb:
-            status: compatible
             ranges:
               - '>=10.6 <10.7'
               - '>=10.11 <10.12'
@@ -118,7 +103,6 @@ projects:
               - *nextcloud_33_requirements_source
             lastVerified: '2026-07-08'
           postgresql:
-            status: compatible
             ranges:
               - '>=14 <19'
             relationship: database
@@ -131,7 +115,6 @@ projects:
       '32':
         dependencies:
           php:
-            status: compatible
             ranges:
               - '>=8.1 <8.5'
             relationship: runtime
@@ -142,7 +125,6 @@ projects:
               - *nextcloud_32_requirements_source
             lastVerified: '2026-07-08'
           mysql:
-            status: compatible
             ranges:
               - '>=8.0 <8.1'
               - '>=8.4 <8.5'
@@ -154,7 +136,6 @@ projects:
               - *nextcloud_32_requirements_source
             lastVerified: '2026-07-08'
           mariadb:
-            status: compatible
             ranges:
               - '>=10.6 <10.7'
               - '>=10.11 <10.12'
@@ -167,7 +148,6 @@ projects:
               - *nextcloud_32_requirements_source
             lastVerified: '2026-07-08'
           postgresql:
-            status: compatible
             ranges:
               - '>=13 <18'
             relationship: database

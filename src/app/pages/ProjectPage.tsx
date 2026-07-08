@@ -54,12 +54,6 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
     [rows],
   );
   const activeCheckVersion = checkVersion || versions[0] || '';
-  const dependencyKind = project?.dependencyKind ?? {
-    examples: [] as string[],
-    plural: 'dependencies',
-    singular: 'dependency',
-  };
-  const dependencySearchExamples = dependencyKind.examples?.join(', ');
   const checkDependencies = project
     ? Object.entries(project.versions[activeCheckVersion]?.dependencies ?? {})
     : [];
@@ -196,11 +190,7 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
             type="search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder={
-              dependencySearchExamples
-                ? `Search ${dependencySearchExamples}, source titles...`
-                : 'Search dependencies, source titles...'
-            }
+            placeholder="Search dependencies, ranges, notes, sources..."
           />
         </label>
         <label className="select-field">

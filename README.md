@@ -61,7 +61,6 @@ projects:
       '26':
         dependencies:
           postgresql:
-            status: compatible
             ranges:
               - '>=14.0.0 <19.0.0'
             relationship: runtime
@@ -75,9 +74,10 @@ projects:
             lastVerified: '2026-07-08'
 ```
 
-Statuses are `compatible`, `incompatible`, or `unknown`. Confidence levels are `low`, `medium`, or
-`high`. Non-low confidence must include source evidence. `relationship` describes how the project
-uses the dependency, for example `runtime`, `compiled`, or `bundled`.
+Entries are considered compatible by default. Use `status: incompatible` or `status: unknown` only
+when the source specifically documents that state. Confidence levels are `low`, `medium`, or `high`.
+Non-low confidence must include source evidence. `relationship` describes how the project uses the
+dependency, for example `runtime`, `compiled`, or `bundled`.
 
 Validate data with:
 

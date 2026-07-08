@@ -9,17 +9,10 @@ projects:
     category: Security
     website: https://cert-manager.io/
     description: X.509 certificate controller compatibility for Kubernetes and OpenShift runtime versions.
-    dependencyKind:
-      singular: dependency
-      plural: dependencies
-      examples:
-        - Kubernetes
-        - OpenShift
     versions:
       '1.20':
         dependencies:
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.32 <1.36'
             relationship: runtime
@@ -30,7 +23,6 @@ projects:
               - *cert_manager_releases_source
             lastVerified: '2026-07-08'
           openshift:
-            status: compatible
             ranges:
               - '>=4.19 <4.22'
             relationship: runtime
@@ -43,7 +35,6 @@ projects:
       '1.19':
         dependencies:
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.31 <1.36'
             relationship: runtime
@@ -54,7 +45,6 @@ projects:
               - *cert_manager_releases_source
             lastVerified: '2026-07-08'
           openshift:
-            status: compatible
             ranges:
               - '>=4.18 <4.21'
             relationship: runtime

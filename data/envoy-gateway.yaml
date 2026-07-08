@@ -8,18 +8,10 @@ projects:
     name: Envoy Gateway
     category: Networking
     website: https://gateway.envoyproxy.io/
-    dependencyKind:
-      singular: dependency
-      plural: dependencies
-      examples:
-        - Gateway API
-        - Kubernetes
-        - Envoy Proxy
     versions:
       '1.8':
         dependencies:
           envoy-proxy:
-            status: compatible
             ranges:
               - 1.38.0
             relationship: bundled
@@ -30,7 +22,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           rate-limit:
-            status: compatible
             ranges:
               - fe26676d
             relationship: bundled
@@ -41,7 +32,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           gateway-api:
-            status: compatible
             ranges:
               - 1.5.1
             relationship: compiled
@@ -52,7 +42,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.32 <1.36'
             relationship: runtime
@@ -65,7 +54,6 @@ projects:
       '1.7':
         dependencies:
           envoy-proxy:
-            status: compatible
             ranges:
               - 1.37.0
             relationship: bundled
@@ -76,7 +64,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           rate-limit:
-            status: compatible
             ranges:
               - 3fb70258
             relationship: bundled
@@ -87,7 +74,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           gateway-api:
-            status: compatible
             ranges:
               - 1.4.1
             relationship: compiled
@@ -98,7 +84,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.32 <1.36'
             relationship: runtime
@@ -111,7 +96,6 @@ projects:
       '1.6':
         dependencies:
           envoy-proxy:
-            status: compatible
             ranges:
               - 1.36.4
             relationship: bundled
@@ -122,7 +106,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           rate-limit:
-            status: compatible
             ranges:
               - 3fb70258
             relationship: bundled
@@ -133,7 +116,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           gateway-api:
-            status: compatible
             ranges:
               - 1.4.0
             relationship: compiled
@@ -144,7 +126,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.30 <1.34'
             relationship: runtime
@@ -157,7 +138,6 @@ projects:
       '1.5':
         dependencies:
           envoy-proxy:
-            status: compatible
             ranges:
               - 1.35.0
             relationship: bundled
@@ -168,7 +148,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           rate-limit:
-            status: compatible
             ranges:
               - a90e0e5d
             relationship: bundled
@@ -179,7 +158,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           gateway-api:
-            status: compatible
             ranges:
               - 1.3.0
             relationship: compiled
@@ -190,7 +168,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.30 <1.34'
             relationship: runtime
@@ -203,7 +180,6 @@ projects:
       '1.4':
         dependencies:
           envoy-proxy:
-            status: compatible
             ranges:
               - 1.34.1
             relationship: bundled
@@ -214,7 +190,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           rate-limit:
-            status: compatible
             ranges:
               - 3e085e5b
             relationship: bundled
@@ -225,7 +200,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           gateway-api:
-            status: compatible
             ranges:
               - 1.3.0
             relationship: compiled
@@ -236,7 +210,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.30 <1.34'
             relationship: runtime
@@ -249,7 +222,6 @@ projects:
       '1.3':
         dependencies:
           envoy-proxy:
-            status: compatible
             ranges:
               - 1.33.0
             relationship: bundled
@@ -260,7 +232,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           rate-limit:
-            status: compatible
             ranges:
               - 60d8e81b
             relationship: bundled
@@ -271,7 +242,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           gateway-api:
-            status: compatible
             ranges:
               - 1.2.1
             relationship: compiled
@@ -282,7 +252,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.29 <1.33'
             relationship: runtime
@@ -295,7 +264,6 @@ projects:
       '1.2':
         dependencies:
           envoy-proxy:
-            status: compatible
             ranges:
               - 1.32.1
             relationship: bundled
@@ -306,7 +274,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           rate-limit:
-            status: compatible
             ranges:
               - 28b1629a
             relationship: bundled
@@ -317,7 +284,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           gateway-api:
-            status: compatible
             ranges:
               - 1.2.0
             relationship: compiled
@@ -328,7 +294,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.28 <1.32'
             relationship: runtime
@@ -341,7 +306,6 @@ projects:
       '1.1':
         dependencies:
           envoy-proxy:
-            status: compatible
             ranges:
               - 1.31.0
             relationship: bundled
@@ -352,7 +316,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           rate-limit:
-            status: compatible
             ranges:
               - 91484c59
             relationship: bundled
@@ -363,7 +326,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           gateway-api:
-            status: compatible
             ranges:
               - 1.1.0
             relationship: compiled
@@ -374,7 +336,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.27 <1.31'
             relationship: runtime
@@ -387,7 +348,6 @@ projects:
       '1.0':
         dependencies:
           envoy-proxy:
-            status: compatible
             ranges:
               - 1.29.2
             relationship: bundled
@@ -398,7 +358,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           rate-limit:
-            status: compatible
             ranges:
               - 19f2079f
             relationship: bundled
@@ -409,7 +368,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           gateway-api:
-            status: compatible
             ranges:
               - 1.0.0
             relationship: compiled
@@ -420,7 +378,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.26 <1.30'
             relationship: runtime
@@ -433,7 +390,6 @@ projects:
       '0.6':
         dependencies:
           envoy-proxy:
-            status: compatible
             ranges:
               - '>=1.28 <1.29'
             relationship: bundled
@@ -444,7 +400,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           rate-limit:
-            status: compatible
             ranges:
               - b9796237
             relationship: bundled
@@ -455,7 +410,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           gateway-api:
-            status: compatible
             ranges:
               - 1.0.0
             relationship: compiled
@@ -466,7 +420,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.26 <1.29'
             relationship: runtime
@@ -479,7 +432,6 @@ projects:
       '0.5':
         dependencies:
           envoy-proxy:
-            status: compatible
             ranges:
               - '>=1.27 <1.28'
             relationship: bundled
@@ -490,7 +442,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           rate-limit:
-            status: compatible
             ranges:
               - e059638d
             relationship: bundled
@@ -501,7 +452,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           gateway-api:
-            status: compatible
             ranges:
               - 0.7.1
             relationship: compiled
@@ -512,7 +462,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.25 <1.28'
             relationship: runtime
@@ -525,7 +474,6 @@ projects:
       '0.4':
         dependencies:
           envoy-proxy:
-            status: compatible
             ranges:
               - '>=1.26 <1.27'
             relationship: bundled
@@ -536,7 +484,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           rate-limit:
-            status: compatible
             ranges:
               - 542a6047
             relationship: bundled
@@ -547,7 +494,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           gateway-api:
-            status: compatible
             ranges:
               - 0.6.2
             relationship: compiled
@@ -558,7 +504,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.25 <1.28'
             relationship: runtime
@@ -571,7 +516,6 @@ projects:
       '0.3':
         dependencies:
           envoy-proxy:
-            status: compatible
             ranges:
               - '>=1.25 <1.26'
             relationship: bundled
@@ -582,7 +526,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           rate-limit:
-            status: compatible
             ranges:
               - f28024e3
             relationship: bundled
@@ -593,7 +536,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           gateway-api:
-            status: compatible
             ranges:
               - 0.6.1
             relationship: compiled
@@ -604,7 +546,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.24 <1.27'
             relationship: runtime
@@ -617,7 +558,6 @@ projects:
       '0.2':
         dependencies:
           envoy-proxy:
-            status: compatible
             ranges:
               - '>=1.23 <1.24'
             relationship: bundled
@@ -628,7 +568,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           rate-limit:
-            status: compatible
             ranges:
               - 0.5.1
             relationship: bundled
@@ -639,7 +578,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           gateway-api:
-            status: compatible
             ranges:
               - 0.5.1
             relationship: compiled
@@ -650,7 +588,6 @@ projects:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-07-08'
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.24 <1.25'
             relationship: runtime

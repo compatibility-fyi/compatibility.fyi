@@ -43,9 +43,6 @@ export function LandingPage() {
             project.name,
             project.category,
             project.description,
-            project.dependencyKind?.singular,
-            project.dependencyKind?.plural,
-            project.dependencyKind?.examples?.join(' '),
             project.versions.join(' '),
           ]
             .join(' ')

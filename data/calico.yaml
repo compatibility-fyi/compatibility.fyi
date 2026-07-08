@@ -24,16 +24,10 @@ projects:
     category: Networking
     website: https://docs.tigera.io/calico/
     description: Calico CNI and network policy compatibility for Kubernetes runtime versions.
-    dependencyKind:
-      singular: dependency
-      plural: dependencies
-      examples:
-        - Kubernetes
     versions:
       '3.32':
         dependencies:
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.34 <1.37'
             relationship: runtime
@@ -46,7 +40,6 @@ projects:
       '3.31':
         dependencies:
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.32 <1.36'
             relationship: runtime
@@ -59,7 +52,6 @@ projects:
       '3.30':
         dependencies:
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.31 <1.36'
             relationship: runtime
@@ -72,7 +64,6 @@ projects:
       '3.29':
         dependencies:
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.29 <1.33'
             relationship: runtime

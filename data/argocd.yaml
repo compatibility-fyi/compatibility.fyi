@@ -9,16 +9,10 @@ projects:
     category: GitOps
     website: https://argo-cd.readthedocs.io/
     description: Declarative GitOps continuous delivery compatibility for Kubernetes versions.
-    dependencyKind:
-      singular: dependency
-      plural: dependencies
-      examples:
-        - Kubernetes
     versions:
       '3.4':
         dependencies:
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.32 <1.36'
             relationship: runtime
@@ -31,7 +25,6 @@ projects:
       '3.3':
         dependencies:
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.32 <1.36'
             relationship: runtime
@@ -44,7 +37,6 @@ projects:
       '3.2':
         dependencies:
           kubernetes:
-            status: compatible
             ranges:
               - '>=1.31 <1.35'
             relationship: runtime

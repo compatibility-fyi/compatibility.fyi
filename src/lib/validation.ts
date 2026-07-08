@@ -48,10 +48,6 @@ export function assertDataset(value: unknown): asserts value is CompatibilityDat
     if (projectRecord.website !== undefined) {
       assertUrl(projectRecord.website, `projects.${projectId}.website`);
     }
-    if (projectRecord.dependencyKind !== undefined) {
-      assertDependencyKind(projectRecord.dependencyKind, `projects.${projectId}.dependencyKind`);
-    }
-
     const versions = asRecord(projectRecord.versions, `projects.${projectId}.versions`);
     for (const [version, versionData] of Object.entries(versions)) {
       assertStableVersionLabel(version, `projects.${projectId}.versions.${version}`);
@@ -75,6 +71,7 @@ function assertCompatibilityEntry(
   path: string,
 ): asserts value is DependencyCompatibilityEntry {
   const entry = asRecord(value, path);
+  entry.status ??= 'compatible';
 
   if (!compatibilityStatuses.has(entry.status as CompatibilityStatus)) {
     throw new Error(`${path}.status must be compatible, incompatible, or unknown`);
@@ -121,16 +118,6 @@ function assertSources(value: unknown, path: string): asserts value is Compatibi
     if (sourceRecord.accessedAt !== undefined) {
       assertDateString(sourceRecord.accessedAt, `${path}.${index}.accessedAt`);
     }
-  }
-}
-
-function assertDependencyKind(value: unknown, path: string): void {
-  const dependencyKind = asRecord(value, path);
-  assertString(dependencyKind.singular, `${path}.singular`);
-  assertString(dependencyKind.plural, `${path}.plural`);
-
-  if (dependencyKind.examples !== undefined) {
-    assertStringArray(dependencyKind.examples, `${path}.examples`);
   }
 }
 

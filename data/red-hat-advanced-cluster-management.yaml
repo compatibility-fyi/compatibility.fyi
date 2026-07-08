@@ -54,18 +54,10 @@ projects:
     category: Cluster management
     website: https://www.redhat.com/en/technologies/management/advanced-cluster-management
     description: Red Hat Advanced Cluster Management compatibility for bundled MCE and hosted control planes.
-    dependencyKind:
-      singular: dependency
-      plural: dependencies
-      examples:
-        - MCE
-        - OpenShift hosted cluster
-        - OpenShift management cluster
     versions:
       '2.17':
         dependencies:
           multicluster-engine:
-            status: compatible
             ranges:
               - '2.17'
             relationship: bundled
@@ -78,7 +70,6 @@ projects:
               - *mce_217_source
             lastVerified: '2026-07-08'
           openshift-management-cluster:
-            status: compatible
             ranges:
               - '>=4.20 <4.23'
             relationship: hub runtime
@@ -90,7 +81,6 @@ projects:
               - *mce_217_source
             lastVerified: '2026-07-08'
           openshift-hosted-cluster:
-            status: compatible
             ranges:
               - '>=4.20 <4.23'
             relationship: hosted control planes
@@ -102,7 +92,6 @@ projects:
               - *mce_217_source
             lastVerified: '2026-07-08'
           openshift-hosted-cluster-azure:
-            status: compatible
             ranges:
               - '4.22'
             relationship: hosted control planes
@@ -116,7 +105,6 @@ projects:
       '2.16':
         dependencies:
           multicluster-engine:
-            status: compatible
             ranges:
               - '2.11'
             relationship: bundled
@@ -128,7 +116,6 @@ projects:
               - *mce_211_source
             lastVerified: '2026-07-08'
           openshift-management-cluster:
-            status: compatible
             ranges:
               - '>=4.19 <4.22'
             relationship: hub runtime
@@ -140,7 +127,6 @@ projects:
               - *rhacm_216_source
             lastVerified: '2026-07-08'
           openshift-hosted-cluster:
-            status: compatible
             ranges:
               - '>=4.19 <4.22'
             relationship: hosted control planes
@@ -154,7 +140,6 @@ projects:
       '2.15':
         dependencies:
           multicluster-engine:
-            status: compatible
             ranges:
               - '2.10'
             relationship: bundled
@@ -166,7 +151,6 @@ projects:
               - *mce_210_source
             lastVerified: '2026-07-08'
           openshift-management-cluster:
-            status: compatible
             ranges:
               - '>=4.18 <4.22'
             relationship: hub runtime
@@ -178,7 +162,6 @@ projects:
               - *rhacm_215_source
             lastVerified: '2026-07-08'
           openshift-hosted-cluster:
-            status: compatible
             ranges:
               - '>=4.18 <4.21'
             relationship: hosted control planes
@@ -192,7 +175,6 @@ projects:
       '2.14':
         dependencies:
           multicluster-engine:
-            status: compatible
             ranges:
               - '2.9'
             relationship: bundled
@@ -204,7 +186,6 @@ projects:
               - *mce_29_source
             lastVerified: '2026-07-08'
           openshift-management-cluster:
-            status: compatible
             ranges:
               - '>=4.17 <4.20'
             relationship: hub runtime
@@ -216,7 +197,6 @@ projects:
               - *rhacm_214_source
             lastVerified: '2026-07-08'
           openshift-hosted-cluster:
-            status: compatible
             ranges:
               - '>=4.17 <4.20'
             relationship: hosted control planes
@@ -230,7 +210,6 @@ projects:
       '2.13':
         dependencies:
           multicluster-engine:
-            status: compatible
             ranges:
               - '2.8'
             relationship: bundled
@@ -242,7 +221,6 @@ projects:
               - *mce_28_source
             lastVerified: '2026-07-08'
           openshift-management-cluster:
-            status: compatible
             ranges:
               - '>=4.16 <4.20'
             relationship: hub runtime
@@ -254,7 +232,6 @@ projects:
               - *rhacm_213_source
             lastVerified: '2026-07-08'
           openshift-hosted-cluster:
-            status: compatible
             ranges:
               - '>=4.16 <4.19'
             relationship: hosted control planes
