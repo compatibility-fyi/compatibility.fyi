@@ -7,10 +7,13 @@ export interface NormalizedVersion {
 }
 
 const integerVersion = /^\d+$/;
+const exactVersion = /^v?\d+(?:\.\d+){0,2}$/;
+const embeddedVersion = /(?:^|[-_])v?(\d+(?:\.\d+){1,2})(?=$|[-_])/;
 
 export function normalizeVersion(input: string): NormalizedVersion {
   const raw = input.trim();
-  const coerced = semver.coerce(raw);
+  const versionText = raw.match(exactVersion)?.[0] ?? raw.match(embeddedVersion)?.[1] ?? null;
+  const coerced = versionText ? semver.coerce(versionText) : null;
 
   if (coerced) {
     return {

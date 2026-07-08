@@ -376,6 +376,73 @@ p {
   padding-bottom: 48px;
 }
 
+.compatibility-checker {
+  border-top: 1px solid #d8dee8;
+  margin-bottom: 34px;
+  padding-top: 24px;
+}
+
+.checker-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 16px;
+}
+
+.compound-result {
+  border: 1px solid #d8dee8;
+  border-radius: 6px;
+  display: grid;
+  margin-top: 16px;
+}
+
+.compound-result-row {
+  align-items: center;
+  border-bottom: 1px solid #d8dee8;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: minmax(180px, 1fr) auto minmax(160px, 0.8fr);
+  padding: 10px 12px;
+}
+
+.compound-result-row:last-child {
+  border-bottom: 0;
+}
+
+.compound-result-row small,
+.relationship-label {
+  color: #6b7280;
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 500;
+  margin-top: 3px;
+}
+
+.status-badge {
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 0.84rem;
+  font-weight: 700;
+  justify-content: center;
+  min-width: 92px;
+  padding: 4px 9px;
+}
+
+.status-badge.compatible {
+  background: #dff7ea;
+  color: #146c43;
+}
+
+.status-badge.incompatible {
+  background: #fde2e2;
+  color: #b42318;
+}
+
+.status-badge.unknown {
+  background: #f4e9c7;
+  color: #7a5700;
+}
+
 .section-title-row {
   align-items: baseline;
   display: flex;
@@ -535,6 +602,9 @@ th {
   .catalog-results-heading,
   .catalog-row,
   .catalog-notes,
+  .compatibility-checker,
+  .compound-result,
+  .compound-result-row,
   .project-summary,
   th,
   td,
@@ -557,6 +627,8 @@ th {
 
   .catalog-results-heading span,
   .catalog-row small,
+  .compound-result-row small,
+  .relationship-label,
   .summary-label,
   .section-title-row span,
   .empty-state,
@@ -588,6 +660,7 @@ th {
   .catalog-layout,
   .catalog-notes,
   .filter-bar,
+  .checker-grid,
   .project-summary {
     grid-template-columns: 1fr;
   }
@@ -602,6 +675,11 @@ th {
   .catalog-row {
     grid-template-columns: 1fr;
     gap: 6px;
+  }
+
+  .compound-result-row {
+    align-items: start;
+    grid-template-columns: 1fr;
   }
 
   .catalog-project {

@@ -1,9 +1,10 @@
+import envoyGatewayYaml from '../../data/envoy-gateway.yaml?raw';
 import keycloakYaml from '../../data/keycloak.yaml?raw';
 import type { CompatibilityDataset, ProjectSummary } from '../types/compatibility';
 import { parseCompatibilityYaml } from './validation';
 import { compareVersions } from './version';
 
-const dataSources = [keycloakYaml];
+const dataSources = [keycloakYaml, envoyGatewayYaml];
 
 export function loadDataset(): CompatibilityDataset {
   return dataSources.map(parseCompatibilityYaml).reduce<CompatibilityDataset>(

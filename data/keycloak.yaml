@@ -124,36 +124,6 @@ projects:
                 url: https://www.keycloak.org/server/db
                 accessedAt: '2026-07-08'
             lastVerified: '2026-07-08'
-          azure-sql-database:
-            status: compatible
-            ranges:
-              - latest
-            confidence: high
-            notes:
-              - Keycloak current 26.x supported configurations list Azure SQL Database latest.
-            sources:
-              - title: Keycloak Supported Configurations - Supported Databases
-                url: https://www.keycloak.org/server/supported-configurations
-                accessedAt: '2026-07-08'
-              - title: Keycloak database configuration guide
-                url: https://www.keycloak.org/server/db
-                accessedAt: '2026-07-08'
-            lastVerified: '2026-07-08'
-          azure-sql-managed-instance:
-            status: compatible
-            ranges:
-              - latest
-            confidence: high
-            notes:
-              - Keycloak current 26.x supported configurations list Azure SQL Managed Instance latest.
-            sources:
-              - title: Keycloak Supported Configurations - Supported Databases
-                url: https://www.keycloak.org/server/supported-configurations
-                accessedAt: '2026-07-08'
-              - title: Keycloak database configuration guide
-                url: https://www.keycloak.org/server/db
-                accessedAt: '2026-07-08'
-            lastVerified: '2026-07-08'
       '25':
         dependencies:
           postgresql:

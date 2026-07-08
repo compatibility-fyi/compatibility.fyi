@@ -1,0 +1,662 @@
+x-envoy-gateway-matrix-source: &envoy_gateway_matrix_source
+  title: Envoy Gateway Compatibility Matrix
+  url: https://gateway.envoyproxy.io/news/releases/matrix/
+  accessedAt: '2026-07-08'
+
+projects:
+  envoy-gateway:
+    name: Envoy Gateway
+    category: Networking
+    website: https://gateway.envoyproxy.io/
+    dependencyKind:
+      singular: dependency
+      plural: dependencies
+      examples:
+        - Gateway API
+        - Kubernetes
+        - Envoy Proxy
+    versions:
+      '1.8':
+        dependencies:
+          envoy-proxy:
+            status: compatible
+            ranges:
+              - 1.38.0
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.8 lists Envoy Proxy distroless-v1.38.0 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          rate-limit:
+            status: compatible
+            ranges:
+              - fe26676d
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.8 lists Rate Limit fe26676d in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          gateway-api:
+            status: compatible
+            ranges:
+              - 1.5.1
+            relationship: compiled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.8 lists Gateway API v1.5.1 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          kubernetes:
+            status: compatible
+            ranges:
+              - '>=1.32 <1.36'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Envoy Gateway v1.8 lists Kubernetes v1.32, v1.33, v1.34, and v1.35 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+      '1.7':
+        dependencies:
+          envoy-proxy:
+            status: compatible
+            ranges:
+              - 1.37.0
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.7 lists Envoy Proxy distroless-v1.37.0 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          rate-limit:
+            status: compatible
+            ranges:
+              - 3fb70258
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.7 lists Rate Limit 3fb70258 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          gateway-api:
+            status: compatible
+            ranges:
+              - 1.4.1
+            relationship: compiled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.7 lists Gateway API v1.4.1 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          kubernetes:
+            status: compatible
+            ranges:
+              - '>=1.32 <1.36'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Envoy Gateway v1.7 lists Kubernetes v1.32, v1.33, v1.34, and v1.35 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+      '1.6':
+        dependencies:
+          envoy-proxy:
+            status: compatible
+            ranges:
+              - 1.36.4
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.6 lists Envoy Proxy distroless-v1.36.4 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          rate-limit:
+            status: compatible
+            ranges:
+              - 3fb70258
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.6 lists Rate Limit 3fb70258 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          gateway-api:
+            status: compatible
+            ranges:
+              - 1.4.0
+            relationship: compiled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.6 lists Gateway API v1.4.0 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          kubernetes:
+            status: compatible
+            ranges:
+              - '>=1.30 <1.34'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Envoy Gateway v1.6 lists Kubernetes v1.30, v1.31, v1.32, and v1.33 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+      '1.5':
+        dependencies:
+          envoy-proxy:
+            status: compatible
+            ranges:
+              - 1.35.0
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.5 lists Envoy Proxy distroless-v1.35.0 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          rate-limit:
+            status: compatible
+            ranges:
+              - a90e0e5d
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.5 lists Rate Limit a90e0e5d in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          gateway-api:
+            status: compatible
+            ranges:
+              - 1.3.0
+            relationship: compiled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.5 lists Gateway API v1.3.0 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          kubernetes:
+            status: compatible
+            ranges:
+              - '>=1.30 <1.34'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Envoy Gateway v1.5 lists Kubernetes v1.30, v1.31, v1.32, and v1.33 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+      '1.4':
+        dependencies:
+          envoy-proxy:
+            status: compatible
+            ranges:
+              - 1.34.1
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.4 lists Envoy Proxy distroless-v1.34.1 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          rate-limit:
+            status: compatible
+            ranges:
+              - 3e085e5b
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.4 lists Rate Limit 3e085e5b in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          gateway-api:
+            status: compatible
+            ranges:
+              - 1.3.0
+            relationship: compiled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.4 lists Gateway API v1.3.0 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          kubernetes:
+            status: compatible
+            ranges:
+              - '>=1.30 <1.34'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Envoy Gateway v1.4 lists Kubernetes v1.30, v1.31, v1.32, and v1.33 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+      '1.3':
+        dependencies:
+          envoy-proxy:
+            status: compatible
+            ranges:
+              - 1.33.0
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.3 lists Envoy Proxy distroless-v1.33.0 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          rate-limit:
+            status: compatible
+            ranges:
+              - 60d8e81b
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.3 lists Rate Limit 60d8e81b in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          gateway-api:
+            status: compatible
+            ranges:
+              - 1.2.1
+            relationship: compiled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.3 lists Gateway API v1.2.1 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          kubernetes:
+            status: compatible
+            ranges:
+              - '>=1.29 <1.33'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Envoy Gateway v1.3 lists Kubernetes v1.29, v1.30, v1.31, and v1.32 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+      '1.2':
+        dependencies:
+          envoy-proxy:
+            status: compatible
+            ranges:
+              - 1.32.1
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.2 lists Envoy Proxy distroless-v1.32.1 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          rate-limit:
+            status: compatible
+            ranges:
+              - 28b1629a
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.2 lists Rate Limit 28b1629a in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          gateway-api:
+            status: compatible
+            ranges:
+              - 1.2.0
+            relationship: compiled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.2 lists Gateway API v1.2.0 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          kubernetes:
+            status: compatible
+            ranges:
+              - '>=1.28 <1.32'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Envoy Gateway v1.2 lists Kubernetes v1.28, v1.29, v1.30, and v1.31 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+      '1.1':
+        dependencies:
+          envoy-proxy:
+            status: compatible
+            ranges:
+              - 1.31.0
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.1 lists Envoy Proxy distroless-v1.31.0 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          rate-limit:
+            status: compatible
+            ranges:
+              - 91484c59
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.1 lists Rate Limit 91484c59 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          gateway-api:
+            status: compatible
+            ranges:
+              - 1.1.0
+            relationship: compiled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.1 lists Gateway API v1.1.0 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          kubernetes:
+            status: compatible
+            ranges:
+              - '>=1.27 <1.31'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Envoy Gateway v1.1 lists Kubernetes v1.27, v1.28, v1.29, and v1.30 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+      '1.0':
+        dependencies:
+          envoy-proxy:
+            status: compatible
+            ranges:
+              - 1.29.2
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.0 lists Envoy Proxy distroless-v1.29.2 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          rate-limit:
+            status: compatible
+            ranges:
+              - 19f2079f
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.0 lists Rate Limit 19f2079f in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          gateway-api:
+            status: compatible
+            ranges:
+              - 1.0.0
+            relationship: compiled
+            confidence: high
+            notes:
+              - Envoy Gateway v1.0 lists Gateway API v1.0.0 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          kubernetes:
+            status: compatible
+            ranges:
+              - '>=1.26 <1.30'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Envoy Gateway v1.0 lists Kubernetes v1.26, v1.27, v1.28, and v1.29 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+      '0.6':
+        dependencies:
+          envoy-proxy:
+            status: compatible
+            ranges:
+              - '>=1.28 <1.29'
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v0.6 lists the Envoy Proxy 1.28 release series in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          rate-limit:
+            status: compatible
+            ranges:
+              - b9796237
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v0.6 lists Rate Limit b9796237 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          gateway-api:
+            status: compatible
+            ranges:
+              - 1.0.0
+            relationship: compiled
+            confidence: high
+            notes:
+              - Envoy Gateway v0.6 lists Gateway API v1.0.0 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          kubernetes:
+            status: compatible
+            ranges:
+              - '>=1.26 <1.29'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Envoy Gateway v0.6 lists Kubernetes v1.26, v1.27, and v1.28 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+      '0.5':
+        dependencies:
+          envoy-proxy:
+            status: compatible
+            ranges:
+              - '>=1.27 <1.28'
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v0.5 lists the Envoy Proxy 1.27 release series in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          rate-limit:
+            status: compatible
+            ranges:
+              - e059638d
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v0.5 lists Rate Limit e059638d in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          gateway-api:
+            status: compatible
+            ranges:
+              - 0.7.1
+            relationship: compiled
+            confidence: high
+            notes:
+              - Envoy Gateway v0.5 lists Gateway API v0.7.1 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          kubernetes:
+            status: compatible
+            ranges:
+              - '>=1.25 <1.28'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Envoy Gateway v0.5 lists Kubernetes v1.25, v1.26, and v1.27 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+      '0.4':
+        dependencies:
+          envoy-proxy:
+            status: compatible
+            ranges:
+              - '>=1.26 <1.27'
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v0.4 lists the Envoy Proxy 1.26 release series in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          rate-limit:
+            status: compatible
+            ranges:
+              - 542a6047
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v0.4 lists Rate Limit 542a6047 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          gateway-api:
+            status: compatible
+            ranges:
+              - 0.6.2
+            relationship: compiled
+            confidence: high
+            notes:
+              - Envoy Gateway v0.4 lists Gateway API v0.6.2 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          kubernetes:
+            status: compatible
+            ranges:
+              - '>=1.25 <1.28'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Envoy Gateway v0.4 lists Kubernetes v1.25, v1.26, and v1.27 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+      '0.3':
+        dependencies:
+          envoy-proxy:
+            status: compatible
+            ranges:
+              - '>=1.25 <1.26'
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v0.3 lists the Envoy Proxy 1.25 release series in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          rate-limit:
+            status: compatible
+            ranges:
+              - f28024e3
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v0.3 lists Rate Limit f28024e3 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          gateway-api:
+            status: compatible
+            ranges:
+              - 0.6.1
+            relationship: compiled
+            confidence: high
+            notes:
+              - Envoy Gateway v0.3 lists Gateway API v0.6.1 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          kubernetes:
+            status: compatible
+            ranges:
+              - '>=1.24 <1.27'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Envoy Gateway v0.3 lists Kubernetes v1.24, v1.25, and v1.26 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+      '0.2':
+        dependencies:
+          envoy-proxy:
+            status: compatible
+            ranges:
+              - '>=1.23 <1.24'
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v0.2 lists the Envoy Proxy 1.23 release series in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          rate-limit:
+            status: compatible
+            ranges:
+              - 0.5.1
+            relationship: bundled
+            confidence: high
+            notes:
+              - Envoy Gateway v0.2 lists Rate Limit v0.5.1 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          gateway-api:
+            status: compatible
+            ranges:
+              - 0.5.1
+            relationship: compiled
+            confidence: high
+            notes:
+              - Envoy Gateway v0.2 lists Gateway API v0.5.1 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'
+          kubernetes:
+            status: compatible
+            ranges:
+              - '>=1.24 <1.25'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Envoy Gateway v0.2 lists Kubernetes v1.24 in the official compatibility matrix.
+            sources:
+              - *envoy_gateway_matrix_source
+            lastVerified: '2026-07-08'

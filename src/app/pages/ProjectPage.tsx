@@ -1,10 +1,14 @@
 import { useMemo, useState } from 'react';
 import { loadDataset } from '../../lib/data';
-import type { DependencyCompatibilityEntry } from '../../types/compatibility';
+import { checkCompoundCompatibility } from '../../lib/engine';
+import type {
+  CompatibilityCheckResponse,
+  DependencyCompatibilityEntry,
+} from '../../types/compatibility';
 import { Layout } from '../components/Layout';
 import { formatWebsiteUrl } from '../lib/format';
 
-const project = loadDataset().projects.keycloak;
+const dataset = loadDataset();
 
 interface CompatibilityRow {
   version: string;
@@ -18,30 +22,59 @@ interface ConfidenceTooltip {
   left: number;
 }
 
-const rows: CompatibilityRow[] = Object.entries(project.versions).flatMap(
-  ([version, versionData]) =>
-    Object.entries(versionData.dependencies).map(([dependency, entry]) => ({
-      version,
-      dependency,
-      entry,
-    })),
-);
+interface ProjectPageProps {
+  projectId: string;
+}
 
-const versions = [...new Set(rows.map((row) => row.version))].sort((left, right) =>
-  right.localeCompare(left, undefined, { numeric: true }),
-);
-const dependencyKind = project.dependencyKind ?? {
-  examples: [] as string[],
-  plural: 'dependencies',
-  singular: 'dependency',
-};
-const dependencyKindTitle = formatLabelTitle(dependencyKind.singular);
-const dependencySearchExamples = dependencyKind.examples?.join(', ');
-
-export function ProjectPage() {
+export function ProjectPage({ projectId }: ProjectPageProps) {
+  const project = dataset.projects[projectId];
   const [query, setQuery] = useState('');
   const [selectedVersion, setSelectedVersion] = useState('all');
+  const [checkVersion, setCheckVersion] = useState('');
+  const [checkValues, setCheckValues] = useState<Record<string, string>>({});
   const [tooltip, setTooltip] = useState<ConfidenceTooltip | null>(null);
+  const rows: CompatibilityRow[] = useMemo(() => {
+    if (!project) {
+      return [];
+    }
+
+    return Object.entries(project.versions).flatMap(([version, versionData]) =>
+      Object.entries(versionData.dependencies).map(([dependency, entry]) => ({
+        version,
+        dependency,
+        entry,
+      })),
+    );
+  }, [project]);
+  const versions = useMemo(
+    () =>
+      [...new Set(rows.map((row) => row.version))].sort((left, right) =>
+        right.localeCompare(left, undefined, { numeric: true }),
+      ),
+    [rows],
+  );
+  const activeCheckVersion = checkVersion || versions[0] || '';
+  const dependencyKind = project?.dependencyKind ?? {
+    examples: [] as string[],
+    plural: 'dependencies',
+    singular: 'dependency',
+  };
+  const dependencyKindTitle = formatLabelTitle(dependencyKind.singular);
+  const dependencySearchExamples = dependencyKind.examples?.join(', ');
+  const checkDependencies = project
+    ? Object.entries(project.versions[activeCheckVersion]?.dependencies ?? {})
+    : [];
+  const populatedCheckValues = Object.fromEntries(
+    Object.entries(checkValues).filter(([, value]) => value.trim() !== ''),
+  );
+  const compoundResult =
+    project && Object.keys(populatedCheckValues).length > 0
+      ? checkCompoundCompatibility(dataset, {
+          project: projectId,
+          version: activeCheckVersion,
+          dependencies: populatedCheckValues,
+        })
+      : null;
   const filteredRows = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
 
@@ -62,9 +95,20 @@ export function ProjectPage() {
 
       return matchesVersion && matchesQuery;
     });
-  }, [query, selectedVersion]);
+  }, [query, rows, selectedVersion]);
 
   const dependencyCount = new Set(rows.map((row) => row.dependency)).size;
+
+  if (!project) {
+    return (
+      <Layout>
+        <section className="page-heading">
+          <h1>Project not found</h1>
+          <p>No compatibility metadata exists for {projectId}.</p>
+        </section>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
@@ -86,7 +130,7 @@ export function ProjectPage() {
         </div>
       </section>
 
-      <section className="project-summary" aria-label="Keycloak compatibility summary">
+      <section className="project-summary" aria-label={`${project.name} compatibility summary`}>
         <div>
           <span className="summary-value">{versions.length}</span>
           <span className="summary-label">Project versions</span>
@@ -99,6 +143,51 @@ export function ProjectPage() {
           <span className="summary-value">{rows.length}</span>
           <span className="summary-label">Compatibility entries</span>
         </div>
+      </section>
+
+      <section className="compatibility-checker" aria-label="Compatibility checker">
+        <div className="section-title-row">
+          <h2>Check a combination</h2>
+          {compoundResult ? <StatusBadge status={compoundResult.compatible} /> : null}
+        </div>
+        <div className="checker-grid">
+          <label className="select-field">
+            <span>{project.name} version</span>
+            <select
+              value={activeCheckVersion}
+              onChange={(event) => {
+                setCheckVersion(event.target.value);
+                setCheckValues({});
+              }}
+            >
+              {versions.map((version) => (
+                <option key={version} value={version}>
+                  {version}
+                </option>
+              ))}
+            </select>
+          </label>
+          {checkDependencies.map(([dependency, entry]) => (
+            <label className="search-field" key={dependency}>
+              <span>
+                {formatDependencyName(dependency)}
+                {entry.relationship ? ` (${entry.relationship})` : ''}
+              </span>
+              <input
+                type="text"
+                value={checkValues[dependency] ?? ''}
+                onChange={(event) =>
+                  setCheckValues((current) => ({
+                    ...current,
+                    [dependency]: event.target.value,
+                  }))
+                }
+                placeholder={entry.ranges.map(formatRange).join(', ')}
+              />
+            </label>
+          ))}
+        </div>
+        {compoundResult ? <CompoundResult checks={compoundResult.checks} /> : null}
       </section>
 
       <section className="filter-bar" aria-label="Compatibility filters">
@@ -124,7 +213,7 @@ export function ProjectPage() {
             <option value="all">All versions</option>
             {versions.map((version) => (
               <option key={version} value={version}>
-                Keycloak {version}
+                {project.name} {version}
               </option>
             ))}
           </select>
@@ -140,7 +229,7 @@ export function ProjectPage() {
           <table>
             <thead>
               <tr>
-                <th>Keycloak</th>
+                <th>{project.name}</th>
                 <th>{dependencyKindTitle}</th>
                 <th>Supported {dependencyKind.singular} versions</th>
                 <th>Evidence</th>
@@ -152,6 +241,9 @@ export function ProjectPage() {
                   <td>{version}</td>
                   <td>
                     <strong>{formatDependencyName(dependency)}</strong>
+                    {entry.relationship ? (
+                      <small className="relationship-label">{entry.relationship}</small>
+                    ) : null}
                   </td>
                   <td>
                     <div className="range-list" aria-label={`Supported versions for ${dependency}`}>
@@ -190,6 +282,27 @@ export function ProjectPage() {
       ) : null}
     </Layout>
   );
+}
+
+function CompoundResult({ checks }: { checks: CompatibilityCheckResponse[] }) {
+  return (
+    <div className="compound-result">
+      {checks.map((check) => (
+        <div className="compound-result-row" key={check.dependency}>
+          <span>
+            <strong>{formatDependencyName(check.dependency)}</strong>
+            <small>{check.dependencyVersion}</small>
+          </span>
+          <StatusBadge status={check.compatible} />
+          <span>{check.matchedRange ? formatRange(check.matchedRange) : 'No matching range'}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function StatusBadge({ status }: { status: CompatibilityCheckResponse['compatible'] }) {
+  return <span className={`status-badge ${status}`}>{status}</span>;
 }
 
 function Evidence({
@@ -271,6 +384,10 @@ function formatDependencyName(dependency: string): string {
     mysql: 'MySQL',
     oracle: 'Oracle Database',
     postgresql: 'PostgreSQL',
+    'envoy-proxy': 'Envoy Proxy',
+    'gateway-api': 'Gateway API',
+    kubernetes: 'Kubernetes',
+    'rate-limit': 'Rate Limit',
   };
 
   return names[dependency] ?? dependency;
@@ -285,10 +402,6 @@ function formatLabelTitle(label: string): string {
 }
 
 function formatRange(range: string): string {
-  if (range === 'latest') {
-    return 'Latest';
-  }
-
   const match = range.match(/^>=(\d+)\.(\d+)\.(\d+) <(\d+)\.(\d+)\.(\d+)$/);
 
   if (!match) {

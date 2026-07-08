@@ -3,7 +3,9 @@ import { handleApiRequest } from '../src/worker/api';
 
 describe('api', () => {
   it('lists projects', async () => {
-    const response = handleApiRequest(new Request('https://compatibility.fyi/api/v1/projects'));
+    const response = await handleApiRequest(
+      new Request('https://compatibility.fyi/api/v1/projects'),
+    );
     const body = (await response.json()) as { projects: Array<{ id: string }> };
 
     expect(response.status).toBe(200);
@@ -13,7 +15,7 @@ describe('api', () => {
   });
 
   it('returns project data', async () => {
-    const response = handleApiRequest(
+    const response = await handleApiRequest(
       new Request('https://compatibility.fyi/api/v1/projects/keycloak'),
     );
     const body = (await response.json()) as { id: string; versions: Record<string, unknown> };
@@ -24,7 +26,7 @@ describe('api', () => {
   });
 
   it('checks compatibility from source-backed Keycloak data', async () => {
-    const response = handleApiRequest(
+    const response = await handleApiRequest(
       new Request(
         'https://compatibility.fyi/api/v1/check?project=keycloak&version=26&dependency=postgresql&dependencyVersion=17',
       ),
@@ -41,8 +43,71 @@ describe('api', () => {
     expect(body.confidence).toBe('high');
   });
 
+  it('checks Envoy Gateway matrix data', async () => {
+    const response = await handleApiRequest(
+      new Request(
+        'https://compatibility.fyi/api/v1/check?project=envoy-gateway&version=1.8&dependency=gateway-api&dependencyVersion=1.5.1',
+      ),
+    );
+    const body = (await response.json()) as {
+      compatible: string;
+      matchedRange: string | null;
+      relationship: string | null;
+    };
+
+    expect(response.status).toBe(200);
+    expect(body.compatible).toBe('compatible');
+    expect(body.matchedRange).toBe('1.5.1');
+    expect(body.relationship).toBe('compiled');
+  });
+
+  it('checks compound Envoy Gateway compatibility from GET JSON dependencies', async () => {
+    const dependencies = encodeURIComponent(
+      JSON.stringify({
+        'gateway-api': '1.5.1',
+        kubernetes: '1.34',
+        'envoy-proxy': 'distroless-v1.38.0',
+        'rate-limit': 'fe26676d',
+      }),
+    );
+    const response = await handleApiRequest(
+      new Request(
+        `https://compatibility.fyi/api/v1/check?project=envoy-gateway&version=1.8&dependencies=${dependencies}`,
+      ),
+    );
+    const body = (await response.json()) as {
+      compatible: string;
+      checks: Array<{ compatible: string }>;
+    };
+
+    expect(response.status).toBe(200);
+    expect(body.compatible).toBe('compatible');
+    expect(body.checks).toHaveLength(4);
+    expect(body.checks.every((check) => check.compatible === 'compatible')).toBe(true);
+  });
+
+  it('checks compound Envoy Gateway compatibility from POST JSON', async () => {
+    const response = await handleApiRequest(
+      new Request('https://compatibility.fyi/api/v1/check', {
+        method: 'POST',
+        body: JSON.stringify({
+          project: 'envoy-gateway',
+          version: '1.8',
+          dependencies: {
+            'gateway-api': '1.5.1',
+            kubernetes: '1.36',
+          },
+        }),
+      }),
+    );
+    const body = (await response.json()) as { compatible: string };
+
+    expect(response.status).toBe(200);
+    expect(body.compatible).toBe('incompatible');
+  });
+
   it('returns incompatible when a known dependency version is outside supported ranges', async () => {
-    const response = handleApiRequest(
+    const response = await handleApiRequest(
       new Request(
         'https://compatibility.fyi/api/v1/check?project=keycloak&version=26&dependency=postgresql&dependencyVersion=13',
       ),
@@ -62,7 +127,7 @@ describe('api', () => {
   });
 
   it('reports missing check parameters', async () => {
-    const response = handleApiRequest(
+    const response = await handleApiRequest(
       new Request('https://compatibility.fyi/api/v1/check?project=keycloak'),
     );
 

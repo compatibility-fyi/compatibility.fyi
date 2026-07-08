@@ -11,6 +11,7 @@ export interface CompatibilitySource {
 export interface DependencyCompatibilityEntry {
   status: CompatibilityStatus;
   ranges: string[];
+  relationship?: string;
   confidence: ConfidenceLevel;
   notes: string[];
   sources: CompatibilitySource[];
@@ -60,7 +61,21 @@ export interface CompatibilityCheckRequest {
 export interface CompatibilityCheckResponse extends CompatibilityCheckRequest {
   compatible: CompatibilityStatus;
   matchedRange: string | null;
+  relationship: string | null;
   confidence: ConfidenceLevel;
   notes: string[];
   sources: CompatibilitySource[];
+}
+
+export interface CompoundCompatibilityCheckRequest {
+  project: string;
+  version: string;
+  dependencies: Record<string, string>;
+}
+
+export interface CompoundCompatibilityCheckResponse {
+  project: string;
+  version: string;
+  compatible: CompatibilityStatus;
+  checks: CompatibilityCheckResponse[];
 }

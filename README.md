@@ -16,7 +16,8 @@ container images, Helm chart defaults, and vendor documentation. That makes simp
 - Is this Renovate update actually compatible?
 
 The MVP focuses on architecture, API shape, validation, and contribution workflow. It currently
-includes source-backed Keycloak database compatibility data.
+includes source-backed Keycloak database compatibility data and Envoy Gateway multi-axis
+compatibility data.
 
 ## Local development
 
@@ -52,6 +53,7 @@ file.
 projects:
   keycloak:
     name: Keycloak
+    category: Authentication
     versions:
       '26':
         dependencies:
@@ -59,6 +61,7 @@ projects:
             status: compatible
             ranges:
               - '>=14.0.0 <19.0.0'
+            relationship: runtime
             confidence: high
             notes:
               - Keycloak current 26.x supported configurations list PostgreSQL 18.x, 17.x, 16.x, 15.x, and 14.x.
@@ -70,7 +73,8 @@ projects:
 ```
 
 Statuses are `compatible`, `incompatible`, or `unknown`. Confidence levels are `low`, `medium`, or
-`high`. Non-low confidence must include source evidence.
+`high`. Non-low confidence must include source evidence. `relationship` describes how the project
+uses the dependency, for example `runtime`, `compiled`, or `bundled`.
 
 Validate data with:
 
@@ -104,6 +108,7 @@ curl "https://compatibility.fyi/api/v1/check?project=keycloak&version=26&depende
   "dependencyVersion": "17",
   "compatible": "compatible",
   "matchedRange": ">=14.0.0 <19.0.0",
+  "relationship": null,
   "confidence": "high",
   "notes": [
     "Keycloak current 26.x supported configurations list PostgreSQL 18.x, 17.x, 16.x, 15.x, and 14.x."
@@ -118,13 +123,33 @@ curl "https://compatibility.fyi/api/v1/check?project=keycloak&version=26&depende
 }
 ```
 
+### `POST /api/v1/check`
+
+Checks a compound project version combination across multiple dependencies.
+
+```sh
+curl -X POST https://compatibility.fyi/api/v1/check \
+  -H "content-type: application/json" \
+  -d '{
+    "project": "envoy-gateway",
+    "version": "1.8",
+    "dependencies": {
+      "gateway-api": "1.5.1",
+      "kubernetes": "1.34",
+      "envoy-proxy": "distroless-v1.38.0",
+      "rate-limit": "fe26676d"
+    }
+  }'
+```
+
+The response includes one check per dependency and an aggregate `compatible` value.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Roadmap
 
-- Envoy Gateway <-> Gateway API
 - Kubernetes version skew
 - Istio
 - Argo CD

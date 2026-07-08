@@ -2,6 +2,8 @@ import type {
   CompatibilityCheckRequest,
   CompatibilityCheckResponse,
   CompatibilityDataset,
+  CompoundCompatibilityCheckRequest,
+  CompoundCompatibilityCheckResponse,
   DependencyCompatibilityEntry,
 } from '../types/compatibility';
 import { normalizeVersion, versionSatisfiesRange } from './version';
@@ -38,10 +40,43 @@ export function checkCompatibility(
     ...request,
     compatible,
     matchedRange,
+    relationship: entry.relationship ?? null,
     confidence: entry.confidence,
     notes: includeEvidence ? entry.notes : [],
     sources: includeEvidence ? entry.sources : [],
   };
+}
+
+export function checkCompoundCompatibility(
+  dataset: CompatibilityDataset,
+  request: CompoundCompatibilityCheckRequest,
+): CompoundCompatibilityCheckResponse {
+  const checks = Object.entries(request.dependencies).map(([dependency, dependencyVersion]) =>
+    checkCompatibility(dataset, {
+      project: request.project,
+      version: request.version,
+      dependency,
+      dependencyVersion,
+    }),
+  );
+
+  return {
+    ...request,
+    compatible: summarizeChecks(checks),
+    checks,
+  };
+}
+
+function summarizeChecks(checks: CompatibilityCheckResponse[]) {
+  if (checks.some((check) => check.compatible === 'incompatible')) {
+    return 'incompatible';
+  }
+
+  if (checks.length === 0 || checks.some((check) => check.compatible === 'unknown')) {
+    return 'unknown';
+  }
+
+  return 'compatible';
 }
 
 function getCompatibilityResult(

@@ -13,6 +13,18 @@ const compatibilityStatuses = new Set<CompatibilityStatus>([
   'unknown',
 ]);
 const confidenceLevels = new Set<ConfidenceLevel>(['low', 'medium', 'high']);
+const movingVersionLabels = new Set([
+  'latest',
+  'dev',
+  'dev-latest',
+  'snapshot',
+  'nightly',
+  'main',
+  'master',
+  'head',
+  'edge',
+  'canary',
+]);
 
 export function parseCompatibilityYaml(source: string): CompatibilityDataset {
   const parsed = parse(source) as unknown;
@@ -42,6 +54,7 @@ export function assertDataset(value: unknown): asserts value is CompatibilityDat
 
     const versions = asRecord(projectRecord.versions, `projects.${projectId}.versions`);
     for (const [version, versionData] of Object.entries(versions)) {
+      assertStableVersionLabel(version, `projects.${projectId}.versions.${version}`);
       const dependencies = asRecord(
         asRecord(versionData, `projects.${projectId}.versions.${version}`).dependencies,
         `projects.${projectId}.versions.${version}.dependencies`,
@@ -68,6 +81,13 @@ function assertCompatibilityEntry(
   }
 
   assertStringArray(entry.ranges, `${path}.ranges`);
+  for (const [index, range] of entry.ranges.entries()) {
+    assertStableVersionLabel(range, `${path}.ranges.${index}`);
+  }
+
+  if (entry.relationship !== undefined) {
+    assertString(entry.relationship, `${path}.relationship`);
+  }
 
   if (!confidenceLevels.has(entry.confidence as ConfidenceLevel)) {
     throw new Error(`${path}.confidence must be low, medium, or high`);
@@ -123,6 +143,21 @@ function assertString(value: unknown, path: string): asserts value is string {
 function assertStringArray(value: unknown, path: string): asserts value is string[] {
   if (!Array.isArray(value) || !value.every((item) => typeof item === 'string')) {
     throw new Error(`${path} must be an array of strings`);
+  }
+}
+
+function assertStableVersionLabel(value: string, path: string): void {
+  const normalized = value.trim().toLowerCase();
+  if (movingVersionLabels.has(normalized)) {
+    throw new Error(`${path} must not use moving version label "${value}"`);
+  }
+
+  for (const label of movingVersionLabels) {
+    const escapedLabel = label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const pattern = new RegExp(`(^|[^a-z0-9])${escapedLabel}([^a-z0-9]|$)`, 'i');
+    if (pattern.test(value)) {
+      throw new Error(`${path} must not include moving version label "${label}"`);
+    }
   }
 }
 

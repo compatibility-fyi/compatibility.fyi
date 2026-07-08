@@ -4,6 +4,7 @@ import { ProjectPage } from './pages/ProjectPage';
 
 export function App() {
   const path = window.location.pathname;
+  const projectMatch = path.match(/^\/projects\/([^/]+)$/);
 
   if (path === '/docs/api') {
     return <DocsApiPage />;
@@ -13,8 +14,8 @@ export function App() {
     return <LandingPage />;
   }
 
-  if (path === '/projects/keycloak') {
-    return <ProjectPage />;
+  if (projectMatch) {
+    return <ProjectPage projectId={projectMatch[1]} />;
   }
 
   return <LandingPage />;

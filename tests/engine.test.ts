@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { checkCompatibility } from '../src/lib/engine';
+import { checkCompatibility, checkCompoundCompatibility } from '../src/lib/engine';
 import type { CompatibilityDataset } from '../src/types/compatibility';
 
 const dataset: CompatibilityDataset = {
@@ -100,5 +100,35 @@ describe('compatibility engine', () => {
         dependencyVersion: '17',
       }).compatible,
     ).toBe('unknown');
+  });
+
+  it('summarizes compound checks as compatible when every dependency matches', () => {
+    expect(
+      checkCompoundCompatibility(dataset, {
+        project: 'sample',
+        version: '1',
+        dependencies: {
+          database: '17',
+        },
+      }),
+    ).toMatchObject({
+      compatible: 'compatible',
+      checks: [expect.objectContaining({ dependency: 'database', compatible: 'compatible' })],
+    });
+  });
+
+  it('summarizes compound checks as incompatible when any dependency is incompatible', () => {
+    expect(
+      checkCompoundCompatibility(dataset, {
+        project: 'sample',
+        version: '1',
+        dependencies: {
+          database: '18',
+          runtime: '21',
+        },
+      }),
+    ).toMatchObject({
+      compatible: 'incompatible',
+    });
   });
 });

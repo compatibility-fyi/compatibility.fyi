@@ -8,6 +8,7 @@ const checkResponse = `{
   "dependencyVersion": "17",
   "compatible": "compatible",
   "matchedRange": ">=14.0.0 <19.0.0",
+  "relationship": null,
   "confidence": "high",
   "notes": [
     "Keycloak current 26.x supported configurations list PostgreSQL 18.x, 17.x, 16.x, 15.x, and 14.x."
@@ -56,6 +57,18 @@ export function DocsApiPage() {
         "examples": ["PostgreSQL", "MySQL", "Oracle"]
       },
       "versions": ["26", "25"]
+    },
+    {
+      "id": "envoy-gateway",
+      "name": "Envoy Gateway",
+      "category": "Networking",
+      "website": "https://gateway.envoyproxy.io/",
+      "dependencyKind": {
+        "singular": "dependency",
+        "plural": "dependencies",
+        "examples": ["Gateway API", "Kubernetes", "Envoy Proxy"]
+      },
+      "versions": ["1.8", "1.7", "1.6", "1.5", "1.4", "1.3", "1.2", "1.1", "1.0", "0.6", "0.5", "0.4", "0.3", "0.2"]
     }
   ]
 }`}</CodeBlock>
@@ -77,6 +90,43 @@ export function DocsApiPage() {
             {`curl "https://compatibility.fyi/api/v1/check?project=keycloak&version=26&dependency=postgresql&dependencyVersion=17"`}
           </CodeBlock>
           <CodeBlock>{checkResponse}</CodeBlock>
+        </article>
+
+        <article>
+          <h2>POST /api/v1/check</h2>
+          <p>Checks a compound project version combination across multiple dependencies.</p>
+          <CodeBlock>{`curl -X POST https://compatibility.fyi/api/v1/check \\
+  -H "content-type: application/json" \\
+  -d '{
+    "project": "envoy-gateway",
+    "version": "1.8",
+    "dependencies": {
+      "gateway-api": "1.5.1",
+      "kubernetes": "1.34",
+      "envoy-proxy": "distroless-v1.38.0",
+      "rate-limit": "fe26676d"
+    }
+  }'`}</CodeBlock>
+          <CodeBlock>{`{
+  "project": "envoy-gateway",
+  "version": "1.8",
+  "dependencies": {
+    "gateway-api": "1.5.1",
+    "kubernetes": "1.34",
+    "envoy-proxy": "distroless-v1.38.0",
+    "rate-limit": "fe26676d"
+  },
+  "compatible": "compatible",
+  "checks": [
+    {
+      "dependency": "gateway-api",
+      "dependencyVersion": "1.5.1",
+      "compatible": "compatible",
+      "matchedRange": "1.5.1",
+      "relationship": "compiled"
+    }
+  ]
+}`}</CodeBlock>
         </article>
       </section>
     </Layout>

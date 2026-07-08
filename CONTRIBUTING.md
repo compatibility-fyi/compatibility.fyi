@@ -7,8 +7,8 @@ claims easy to audit and safe for tools to consume.
 
 1. Add a YAML file under `data/`, for example `data/envoy-gateway.yaml`.
 2. Use the project id as the top-level key under `projects`.
-3. Add versions and dependencies with explicit status, ranges, confidence, notes, sources, and
-   `lastVerified`.
+3. Add versions and dependencies with explicit status, ranges, relationship, confidence, notes,
+   sources, and `lastVerified`.
 4. Run `npm run lint` before opening a pull request.
 
 ## Adding compatibility entries
@@ -25,6 +25,9 @@ ranges:
 
 Ecosystems that cannot be expressed with semver should still use clear strings. The engine is
 designed so additional matchers can be added later.
+
+Use `relationship` to explain how the project depends on the target. Common values include
+`runtime`, `compiled`, and `bundled`.
 
 ## Sources
 

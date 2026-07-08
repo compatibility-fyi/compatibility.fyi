@@ -15,6 +15,15 @@ describe('version utilities', () => {
     expect(compareVersions('1.8.0', '1.8')).toBe(0);
   });
 
+  it('keeps hash-like versions as exact strings', () => {
+    expect(versionSatisfiesRange('fe26676d', 'fe26676d')).toBe(true);
+    expect(versionSatisfiesRange('fe26676d', '3fb70258')).toBe(false);
+  });
+
+  it('coerces version-like image tags', () => {
+    expect(versionSatisfiesRange('distroless-v1.38.0', '1.38.0')).toBe(true);
+  });
+
   it('matches compatible ranges', () => {
     expect(versionSatisfiesRange('17', '>=15 <=17')).toBe(true);
   });
