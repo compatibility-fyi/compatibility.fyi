@@ -14,7 +14,7 @@ export function Layout({ children }: LayoutProps) {
         <nav aria-label="Primary">
           <a href="/projects/keycloak">Projects</a>
           <a href="/docs/api">API</a>
-          <a href="https://github.com/rxbn/compatibility.fyi">GitHub</a>
+          <a href="https://github.com/compatibility-fyi/compatibility.fyi">GitHub</a>
         </nav>
       </header>
       <main>{children}</main>

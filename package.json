@@ -7,10 +7,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rxbn/compatibility.fyi.git"
+    "url": "git+https://github.com/compatibility-fyi/compatibility.fyi.git"
   },
   "bugs": {
-    "url": "https://github.com/rxbn/compatibility.fyi/issues"
+    "url": "https://github.com/compatibility-fyi/compatibility.fyi/issues"
   },
   "homepage": "https://compatibility.fyi",
   "scripts": {
