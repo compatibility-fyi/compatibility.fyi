@@ -16,8 +16,9 @@ container images, Helm chart defaults, and vendor documentation. That makes simp
 - Is this Renovate update actually compatible?
 
 The MVP focuses on architecture, API shape, validation, and contribution workflow. It currently
-includes source-backed Keycloak database compatibility data and Envoy Gateway multi-axis
-compatibility data, plus CloudNativePG Kubernetes and PostgreSQL operand compatibility data.
+includes source-backed Keycloak database compatibility data, Envoy Gateway multi-axis
+compatibility data, CloudNativePG Kubernetes and PostgreSQL operand compatibility data, and Argo
+CD tested Kubernetes compatibility data.
 
 ## Local development
 

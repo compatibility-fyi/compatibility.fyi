@@ -1,11 +1,12 @@
 import envoyGatewayYaml from '../../data/envoy-gateway.yaml?raw';
+import argocdYaml from '../../data/argocd.yaml?raw';
 import cloudnativepgYaml from '../../data/cloudnativepg.yaml?raw';
 import keycloakYaml from '../../data/keycloak.yaml?raw';
 import type { CompatibilityDataset, ProjectSummary } from '../types/compatibility';
 import { parseCompatibilityYaml } from './validation';
 import { compareVersions } from './version';
 
-const dataSources = [keycloakYaml, envoyGatewayYaml, cloudnativepgYaml];
+const dataSources = [keycloakYaml, envoyGatewayYaml, cloudnativepgYaml, argocdYaml];
 
 export function loadDataset(): CompatibilityDataset {
   return dataSources.map(parseCompatibilityYaml).reduce<CompatibilityDataset>(
