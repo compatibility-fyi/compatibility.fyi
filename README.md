@@ -19,7 +19,8 @@ The MVP focuses on architecture, API shape, validation, and contribution workflo
 includes source-backed Keycloak database compatibility data, Envoy Gateway multi-axis
 compatibility data, CloudNativePG Kubernetes and PostgreSQL operand compatibility data, Argo CD
 tested Kubernetes compatibility data, Flux Kubernetes compatibility data, cert-manager runtime
-compatibility data, Cilium Kubernetes compatibility data, and Helm Kubernetes version-skew data.
+compatibility data, Cilium Kubernetes compatibility data, Helm Kubernetes version-skew data, and
+Calico tested Kubernetes compatibility data.
 
 ## Local development
 

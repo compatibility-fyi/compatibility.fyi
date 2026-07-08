@@ -1,0 +1,30 @@
+x-calico-requirements-source: &calico_requirements_source
+  title: Calico Kubernetes requirements
+  url: https://docs.tigera.io/calico/3.32/getting-started/kubernetes/requirements
+  accessedAt: '2026-07-08'
+
+projects:
+  calico:
+    name: Calico
+    category: Networking
+    website: https://docs.tigera.io/calico/
+    description: Calico CNI and network policy compatibility for Kubernetes runtime versions.
+    dependencyKind:
+      singular: dependency
+      plural: dependencies
+      examples:
+        - Kubernetes
+    versions:
+      '3.32':
+        dependencies:
+          kubernetes:
+            status: compatible
+            ranges:
+              - '>=1.34 <1.37'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Calico Open Source v3.32 system requirements list Kubernetes 1.34, 1.35, and 1.36 as actively tested.
+            sources:
+              - *calico_requirements_source
+            lastVerified: '2026-07-08'

@@ -12,6 +12,7 @@ describe('api', () => {
     expect(body.projects).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ id: 'argocd' }),
+        expect.objectContaining({ id: 'calico' }),
         expect.objectContaining({ id: 'cert-manager' }),
         expect.objectContaining({ id: 'cilium' }),
         expect.objectContaining({ id: 'cloudnativepg' }),
@@ -174,6 +175,24 @@ describe('api', () => {
     expect(response.status).toBe(200);
     expect(body.compatible).toBe('compatible');
     expect(body.matchedRange).toBe('>=1.33 <1.37');
+    expect(body.relationship).toBe('runtime');
+  });
+
+  it('checks Calico matrix data', async () => {
+    const response = await handleApiRequest(
+      new Request(
+        'https://compatibility.fyi/api/v1/check?project=calico&version=3.32&dependency=kubernetes&dependencyVersion=1.36',
+      ),
+    );
+    const body = (await response.json()) as {
+      compatible: string;
+      matchedRange: string | null;
+      relationship: string | null;
+    };
+
+    expect(response.status).toBe(200);
+    expect(body.compatible).toBe('compatible');
+    expect(body.matchedRange).toBe('>=1.34 <1.37');
     expect(body.relationship).toBe('runtime');
   });
 
