@@ -11,6 +11,14 @@ claims easy to audit and safe for tools to consume.
    `lastVerified`.
 4. Run `npm run lint` before opening a pull request.
 
+## Using a coding agent
+
+Project maintainers can use a coding agent to draft a compatibility file. See `AGENTS.md` for the
+repo-specific agent instructions and a copy-paste prompt.
+
+Maintainers should still review generated YAML before opening a pull request. In particular, check
+that every range is backed by the cited source and that no moving version labels were introduced.
+
 ## Adding compatibility entries
 
 Compatibility is implicit when an entry has supported ranges. Use `status: unknown` when there is
