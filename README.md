@@ -36,10 +36,14 @@ The catalog currently includes compatibility data for:
 - Envoy Gateway
 - External Secrets Operator
 - Flux
+- GitLab Runner
+- Grafana
 - Harbor
 - Helm
 - Istio
 - Keycloak
+- Kubernetes Version Skew
+- Loki
 - Longhorn
 - Nextcloud
 - Prometheus Operator
@@ -138,9 +142,8 @@ npm run deploy
 
 Near-term data additions:
 
-- Kubernetes version skew
 - Backstage
-- Grafana, Loki, Mimir, and Tempo
+- Grafana Mimir and Tempo
 - KEDA
 - Knative
 - vSphere CSI, if a complete reliable public compatibility matrix can be found
