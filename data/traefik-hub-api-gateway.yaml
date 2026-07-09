@@ -9,7 +9,7 @@ projects:
     categories:
       - API Gateway
       - Kubernetes
-    website: https://doc.traefik.io/traefik-hub/api-gateway/
+    website: https://doc.traefik.io/traefik-hub/
     description: Traefik Hub API Gateway compatibility with the official Traefik Helm chart.
     versions:
       '3.20.6':
