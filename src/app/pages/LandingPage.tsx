@@ -151,6 +151,23 @@ export function LandingPage() {
             dependency update is compatible before it reaches production.
           </p>
         </article>
+        <article>
+          <h2>Maintained By The Community</h2>
+          <p>
+            The catalog only works if project maintainers and users contribute compatibility
+            matrices backed by primary sources. Add a YAML file, cite the upstream evidence, and
+            open a pull request so the data can be reviewed and kept current.
+          </p>
+          <div className="catalog-links" aria-label="Contribution links">
+            <a href="https://github.com/compatibility-fyi/compatibility.fyi/blob/master/CONTRIBUTING.md">
+              Contributing guide
+            </a>
+            <a href="https://github.com/compatibility-fyi/compatibility.fyi/blob/master/AGENTS.md">
+              Agent prompt
+            </a>
+            <a href="https://github.com/compatibility-fyi/compatibility.fyi">GitHub repository</a>
+          </div>
+        </article>
       </section>
     </Layout>
   );

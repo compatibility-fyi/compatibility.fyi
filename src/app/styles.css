@@ -289,7 +289,7 @@ p {
   border-top: 1px solid #d8dee8;
   display: grid;
   gap: 28px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-top: 44px;
   padding-top: 28px;
 }
@@ -300,6 +300,18 @@ p {
 
 .catalog-notes p {
   margin-bottom: 0;
+}
+
+.catalog-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin-top: 16px;
+}
+
+.catalog-links a {
+  font-size: 0.92rem;
+  font-weight: 700;
 }
 
 .page-heading {
@@ -974,6 +986,12 @@ th {
   .method-badge.post {
     background: #14532d;
     color: #dcfce7;
+  }
+}
+
+@media (max-width: 980px) {
+  .catalog-notes {
+    grid-template-columns: 1fr;
   }
 }
 
