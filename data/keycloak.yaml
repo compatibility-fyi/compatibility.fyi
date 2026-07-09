@@ -1,7 +1,9 @@
 projects:
   keycloak:
     name: Keycloak
-    category: Authentication
+    categories:
+      - Authentication
+      - Identity
     website: https://www.keycloak.org/
     versions:
       '26':

@@ -21,7 +21,10 @@ x-gitlab-18-11-release-source: &gitlab_18_11_release_source
 projects:
   gitlab-runner:
     name: GitLab Runner
-    category: CI/CD
+    categories:
+      - CI/CD
+      - Automation
+      - GitLab
     website: https://docs.gitlab.com/runner/
     description: GitLab Runner compatibility with GitLab coordinator versions.
     versions:

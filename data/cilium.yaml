@@ -16,7 +16,11 @@ x-cilium-117-kubernetes-source: &cilium_117_kubernetes_source
 projects:
   cilium:
     name: Cilium
-    category: Networking
+    categories:
+      - Networking
+      - CNI
+      - Network policy
+      - Kubernetes
     website: https://cilium.io/
     description: eBPF networking, security, and observability compatibility for Kubernetes versions.
     versions:

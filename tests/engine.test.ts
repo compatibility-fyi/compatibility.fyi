@@ -6,6 +6,7 @@ const dataset: CompatibilityDataset = {
   projects: {
     sample: {
       name: 'Sample',
+      categories: ['Test'],
       versions: {
         '1': {
           dependencies: {

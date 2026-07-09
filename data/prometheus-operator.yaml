@@ -6,7 +6,10 @@ x-prometheus-operator-compatibility-source: &prometheus_operator_compatibility_s
 projects:
   prometheus-operator:
     name: Prometheus Operator
-    category: Observability
+    categories:
+      - Observability
+      - Monitoring
+      - Kubernetes Operator
     website: https://prometheus-operator.dev/
     description: Prometheus Operator compatibility for Kubernetes and managed monitoring components.
     versions:

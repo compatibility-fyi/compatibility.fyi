@@ -6,7 +6,10 @@ x-envoy-gateway-matrix-source: &envoy_gateway_matrix_source
 projects:
   envoy-gateway:
     name: Envoy Gateway
-    category: Networking
+    categories:
+      - Networking
+      - Gateway API
+      - Kubernetes
     website: https://gateway.envoyproxy.io/
     versions:
       '1.8':

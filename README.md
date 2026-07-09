@@ -61,7 +61,8 @@ Compatibility entries are source-backed ranges for a project version and depende
 projects:
   keycloak:
     name: Keycloak
-    category: Authentication
+    categories:
+      - Authentication
     website: https://www.keycloak.org/
     versions:
       '26':

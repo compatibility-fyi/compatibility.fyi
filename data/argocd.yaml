@@ -6,7 +6,10 @@ x-argocd-install-source: &argocd_install_source
 projects:
   argocd:
     name: Argo CD
-    category: GitOps
+    categories:
+      - GitOps
+      - Continuous delivery
+      - Kubernetes
     website: https://argo-cd.readthedocs.io/
     description: Declarative GitOps continuous delivery compatibility for Kubernetes versions.
     versions:

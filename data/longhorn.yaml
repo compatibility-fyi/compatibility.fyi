@@ -21,7 +21,10 @@ x-longhorn-19-source: &longhorn_19_source
 projects:
   longhorn:
     name: Longhorn
-    category: Storage
+    categories:
+      - Storage
+      - CSI
+      - Kubernetes
     website: https://longhorn.io/
     description: Distributed block storage compatibility for tested Kubernetes versions.
     versions:

@@ -24,7 +24,7 @@ export interface ProjectVersion {
 
 export interface ProjectCompatibility {
   name: string;
-  category?: string;
+  categories: string[];
   description?: string;
   website?: string;
   versions: Record<string, ProjectVersion>;
@@ -37,7 +37,7 @@ export interface CompatibilityDataset {
 export interface ProjectSummary {
   id: string;
   name: string;
-  category?: string;
+  categories: string[];
   description?: string;
   website?: string;
   versions: string[];

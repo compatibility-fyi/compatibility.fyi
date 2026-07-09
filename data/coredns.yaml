@@ -6,7 +6,10 @@ x-coredns-kubeadm-source: &coredns_kubeadm_source
 projects:
   coredns:
     name: CoreDNS
-    category: Networking
+    categories:
+      - Networking
+      - DNS
+      - Kubernetes
     website: https://coredns.io/
     description: DNS server version mapping for Kubernetes kubeadm-managed clusters.
     versions:

@@ -21,7 +21,11 @@ x-calico-329-requirements-source: &calico_329_requirements_source
 projects:
   calico:
     name: Calico
-    category: Networking
+    categories:
+      - Networking
+      - CNI
+      - Network policy
+      - Kubernetes
     website: https://docs.tigera.io/calico/
     description: Calico CNI and network policy compatibility for Kubernetes runtime versions.
     versions:

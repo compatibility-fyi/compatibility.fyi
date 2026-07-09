@@ -20,7 +20,7 @@ const projectIndexResponse = `{
     {
       "id": "cloudnativepg",
       "name": "CloudNativePG",
-      "category": "Database",
+      "categories": ["Databases"],
       "website": "https://cloudnative-pg.io/",
       "versions": ["1.30", "1.29", "1.28"]
     }
@@ -30,7 +30,7 @@ const projectIndexResponse = `{
 const projectResponse = `{
   "id": "red-hat-advanced-cluster-management",
   "name": "Red Hat Advanced Cluster Management for Kubernetes",
-  "category": "Cluster management",
+  "categories": ["Cluster management"],
   "versions": {
     "2.16": {
       "dependencies": {

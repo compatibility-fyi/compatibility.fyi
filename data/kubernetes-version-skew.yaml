@@ -6,7 +6,9 @@ x-kubernetes-version-skew-source: &kubernetes_version_skew_source
 projects:
   kubernetes-version-skew:
     name: Kubernetes Version Skew
-    category: Orchestration
+    categories:
+      - Orchestration
+      - Kubernetes
     website: https://kubernetes.io/
     description: Kubernetes component version skew policy for API servers, nodes, control plane components, and kubectl.
     versions:

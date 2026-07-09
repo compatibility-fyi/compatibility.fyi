@@ -16,7 +16,8 @@ x-nextcloud-32-requirements-source: &nextcloud_32_requirements_source
 projects:
   nextcloud:
     name: Nextcloud
-    category: Collaboration
+    categories:
+      - Collaboration
     website: https://nextcloud.com/
     description: Nextcloud Server compatibility for PHP runtime and database versions.
     versions:

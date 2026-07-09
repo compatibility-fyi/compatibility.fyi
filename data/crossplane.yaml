@@ -16,7 +16,10 @@ x-crossplane-v2-upgrade-source: &crossplane_v2_upgrade_source
 projects:
   crossplane:
     name: Crossplane
-    category: Control plane
+    categories:
+      - Control plane
+      - Kubernetes Operator
+      - Infrastructure
     website: https://www.crossplane.io/
     description: Crossplane installation and v2 upgrade compatibility requirements.
     versions:

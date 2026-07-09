@@ -16,7 +16,9 @@ x-grafana-11-install-source: &grafana_11_install_source
 projects:
   grafana:
     name: Grafana
-    category: Observability
+    categories:
+      - Observability
+      - Dashboards
     website: https://grafana.com/oss/grafana/
     description: Grafana server compatibility for supported configuration databases.
     versions:

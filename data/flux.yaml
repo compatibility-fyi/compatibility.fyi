@@ -16,7 +16,10 @@ x-flux-release-27-source: &flux_release_27_source
 projects:
   flux:
     name: Flux
-    category: GitOps
+    categories:
+      - GitOps
+      - Continuous delivery
+      - Kubernetes
     website: https://fluxcd.io/
     description: GitOps Toolkit compatibility for Kubernetes runtime versions.
     versions:

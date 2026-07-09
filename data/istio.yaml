@@ -6,7 +6,10 @@ x-istio-supported-releases-source: &istio_supported_releases_source
 projects:
   istio:
     name: Istio
-    category: Service mesh
+    categories:
+      - Service mesh
+      - Networking
+      - Kubernetes
     website: https://istio.io/
     description: Service mesh compatibility for Kubernetes runtime versions.
     versions:

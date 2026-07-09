@@ -6,7 +6,9 @@ x-loki-helm-index-source: &loki_helm_index_source
 projects:
   loki:
     name: Loki
-    category: Observability
+    categories:
+      - Observability
+      - Logging
     website: https://grafana.com/oss/loki/
     description: Loki compatibility metadata for official Grafana Helm chart releases.
     versions:

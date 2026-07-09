@@ -6,7 +6,9 @@ x-helm-version-skew-source: &helm_version_skew_source
 projects:
   helm:
     name: Helm
-    category: Packaging
+    categories:
+      - Packaging
+      - Kubernetes
     website: https://helm.sh/
     description: Kubernetes package manager compatibility for Kubernetes API server versions.
     versions:

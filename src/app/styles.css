@@ -292,14 +292,38 @@ p {
 .catalog-project {
   align-items: center;
   display: flex;
+  gap: 10px;
   min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.catalog-project strong {
+  flex: 0 0 auto;
 }
 
 .catalog-row small {
   color: #6b7280;
-  display: block;
   font-size: 0.84rem;
-  margin-top: 3px;
+}
+
+.catalog-category-badges {
+  align-items: center;
+  display: inline-flex;
+  gap: 5px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.catalog-category-badges small {
+  background: #eef3fb;
+  border: 1px solid #d8dee8;
+  border-radius: 999px;
+  line-height: 1.2;
+  overflow: hidden;
+  padding: 2px 7px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .catalog-notes {
@@ -919,6 +943,7 @@ th {
   .catalog-sidebar,
   .catalog-results-heading,
   .catalog-row,
+  .catalog-category-badges small,
   .catalog-notes,
   .compatibility-checker,
   .compound-result,
@@ -972,6 +997,7 @@ th {
   }
 
   .docs-callout,
+  .catalog-category-badges small,
   .endpoint-route {
     background: #0f1623;
   }

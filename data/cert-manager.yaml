@@ -6,7 +6,10 @@ x-cert-manager-releases-source: &cert_manager_releases_source
 projects:
   cert-manager:
     name: cert-manager
-    category: Security
+    categories:
+      - Security
+      - Certificates
+      - Kubernetes Operator
     website: https://cert-manager.io/
     description: X.509 certificate controller compatibility for Kubernetes and OpenShift runtime versions.
     versions:

@@ -40,7 +40,14 @@ export function assertDataset(value: unknown): asserts value is CompatibilityDat
     const projectRecord = asRecord(project, `projects.${projectId}`);
     assertString(projectRecord.name, `projects.${projectId}.name`);
     if (projectRecord.category !== undefined) {
-      assertString(projectRecord.category, `projects.${projectId}.category`);
+      throw new Error(`projects.${projectId}.category is not supported; use categories instead`);
+    }
+    assertStringArray(projectRecord.categories, `projects.${projectId}.categories`);
+    if (projectRecord.categories.length === 0) {
+      throw new Error(`projects.${projectId}.categories must include at least one category`);
+    }
+    for (const [index, category] of projectRecord.categories.entries()) {
+      assertString(category, `projects.${projectId}.categories.${index}`);
     }
     if (projectRecord.description !== undefined) {
       assertString(projectRecord.description, `projects.${projectId}.description`);

@@ -6,7 +6,9 @@ x-harbor-helm-matrix-source: &harbor_helm_matrix_source
 projects:
   harbor:
     name: Harbor
-    category: Registry
+    categories:
+      - Registry
+      - Kubernetes
     website: https://goharbor.io/
     description: Harbor compatibility for tested Kubernetes versions and Harbor Helm chart versions.
     versions:

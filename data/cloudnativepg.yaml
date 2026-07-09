@@ -31,7 +31,10 @@ x-cloudnativepg-release-126-source: &cloudnativepg_release_126_source
 projects:
   cloudnativepg:
     name: CloudNativePG
-    category: Databases
+    categories:
+      - Databases
+      - PostgreSQL
+      - Kubernetes Operator
     website: https://cloudnative-pg.io/
     description: PostgreSQL operator compatibility for Kubernetes and PostgreSQL operand versions.
     versions:

@@ -5,11 +5,11 @@ import { Layout } from '../components/Layout';
 
 const projects = listProjects(loadDataset()).map((project) => ({
   ...project,
-  category: project.category ?? 'Uncategorized',
+  categories: project.categories.length > 0 ? project.categories : ['Uncategorized'],
 }));
 
 interface CatalogProject extends ProjectSummary {
-  category: string;
+  categories: string[];
 }
 
 export function LandingPage() {
@@ -20,7 +20,9 @@ export function LandingPage() {
   const categories = useMemo(() => {
     const counts = new Map<string, number>();
     for (const project of projects) {
-      counts.set(project.category, (counts.get(project.category) ?? 0) + 1);
+      for (const category of project.categories) {
+        counts.set(category, (counts.get(category) ?? 0) + 1);
+      }
     }
 
     return [
@@ -36,13 +38,14 @@ export function LandingPage() {
 
     return projects
       .filter((project) => {
-        const matchesCategory = selectedCategory === 'All' || project.category === selectedCategory;
+        const matchesCategory =
+          selectedCategory === 'All' || project.categories.includes(selectedCategory);
         const matchesQuery =
           !normalizedQuery ||
           [
             project.id,
             project.name,
-            project.category,
+            project.categories.join(' '),
             project.description,
             project.versions.join(' '),
           ]
@@ -178,9 +181,11 @@ function ProjectRow({ project }: { project: CatalogProject }) {
     <a className="catalog-row" href={`/projects/${project.id}`} role="row">
       <span role="cell">
         <span className="catalog-project">
-          <span>
-            <strong>{project.name}</strong>
-            <small>{project.category}</small>
+          <strong>{project.name}</strong>
+          <span className="catalog-category-badges" aria-label="Categories">
+            {project.categories.map((category) => (
+              <small key={category}>{category}</small>
+            ))}
           </span>
         </span>
       </span>

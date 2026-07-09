@@ -16,7 +16,10 @@ x-gitlab-17-requirements-source: &gitlab_17_requirements_source
 projects:
   gitlab:
     name: GitLab
-    category: CI/CD
+    categories:
+      - CI/CD
+      - DevOps
+      - Source control
     website: https://about.gitlab.com/
     description: GitLab self-managed compatibility for PostgreSQL, Redis, Valkey, and the GitLab Helm chart.
     versions:

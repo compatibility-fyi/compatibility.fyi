@@ -6,7 +6,10 @@ x-rook-maintenance-source: &rook_maintenance_source
 projects:
   rook-ceph:
     name: Rook Ceph
-    category: Storage
+    categories:
+      - Storage
+      - Ceph
+      - Kubernetes Operator
     website: https://rook.io/
     description: Rook Ceph operator compatibility for Kubernetes and Ceph versions.
     versions:

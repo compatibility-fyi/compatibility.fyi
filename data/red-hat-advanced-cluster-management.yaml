@@ -51,7 +51,10 @@ x-mce-217-source: &mce_217_source
 projects:
   red-hat-advanced-cluster-management:
     name: Red Hat Advanced Cluster Management for Kubernetes
-    category: Cluster management
+    categories:
+      - Cluster management
+      - Kubernetes
+      - OpenShift
     website: https://www.redhat.com/en/technologies/management/advanced-cluster-management
     description: Red Hat Advanced Cluster Management compatibility for bundled MCE and hosted control planes.
     versions:

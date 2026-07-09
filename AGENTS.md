@@ -62,7 +62,7 @@ Project:
 - Name: <project name>
 - Website: <project website>
 - Suggested project id: <lowercase-dash-id>
-- Category: <category>
+- Categories: <categories>
 
 Goal:
 - Create or update only data/<lowercase-dash-id>.yaml unless a schema gap makes code changes
