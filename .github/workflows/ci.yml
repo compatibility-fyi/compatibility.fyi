@@ -2,7 +2,15 @@ name: CI
 
 on:
   push:
+    branches:
+      - master
   pull_request:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   ci:
@@ -19,6 +27,145 @@ jobs:
 
       - name: Install
         run: npm ci
+
+      - name: Check YAML links
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFile, readdir } from 'node:fs/promises';
+          import { join } from 'node:path';
+          import { parse } from 'yaml';
+
+          const timeoutMs = 15000;
+          const warnStatuses = new Set([401, 403, 429]);
+          const links = new Map();
+
+          for (const file of (await readdir('data')).filter((name) => name.endsWith('.yaml')).sort()) {
+            const dataset = parse(await readFile(join('data', file), 'utf8'));
+
+            for (const [projectId, project] of Object.entries(dataset.projects ?? {})) {
+              if (project.website) {
+                addLink(project.website, { file, path: `projects.${projectId}.website` });
+              }
+
+              for (const [version, versionData] of Object.entries(project.versions ?? {})) {
+                for (const [dependency, entry] of Object.entries(versionData.dependencies ?? {})) {
+                  for (const [sourceIndex, source] of (entry.sources ?? []).entries()) {
+                    if (source.url) {
+                      addLink(source.url, {
+                        file,
+                        path: `projects.${projectId}.versions.${version}.dependencies.${dependency}.sources.${sourceIndex}.url`,
+                      });
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          const results = await checkLinks([...links.entries()]);
+          const failures = results.filter((result) => result.status === 'fail');
+
+          for (const result of results) {
+            console.log(`${result.status} ${result.url} - ${result.message}`);
+            if (result.status !== 'ok') {
+              for (const reference of result.references) {
+                console.log(`  ${reference.file}: ${reference.path}`);
+              }
+            }
+          }
+
+          if (failures.length > 0) {
+            throw new Error(`${failures.length} broken YAML link${failures.length === 1 ? '' : 's'} found`);
+          }
+
+          console.log(`checked ${results.length} unique YAML links`);
+
+          function addLink(url, reference) {
+            const references = links.get(url) ?? [];
+            references.push(reference);
+            links.set(url, references);
+          }
+
+          async function checkLinks(entries) {
+            const results = [];
+            const concurrency = 8;
+            let nextIndex = 0;
+
+            async function worker() {
+              while (nextIndex < entries.length) {
+                const [url, references] = entries[nextIndex++];
+                results.push(await checkLink(url, references));
+              }
+            }
+
+            await Promise.all(Array.from({ length: concurrency }, () => worker()));
+            return results.sort((left, right) => left.url.localeCompare(right.url));
+          }
+
+          async function checkLink(url, references) {
+            try {
+              const head = await fetchWithTimeout(url, 'HEAD');
+              if (shouldRetryWithGet(head.status)) {
+                const get = await fetchWithTimeout(url, 'GET');
+                return classifyResponse(url, get.status, references);
+              }
+
+              return classifyResponse(url, head.status, references);
+            } catch (error) {
+              try {
+                const get = await fetchWithTimeout(url, 'GET');
+                return classifyResponse(url, get.status, references);
+              } catch (getError) {
+                return {
+                  url,
+                  status: 'fail',
+                  message: getError instanceof Error ? getError.message : String(error),
+                  references,
+                };
+              }
+            }
+          }
+
+          async function fetchWithTimeout(url, method) {
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), timeoutMs);
+
+            try {
+              return await fetch(url, {
+                method,
+                redirect: 'follow',
+                signal: controller.signal,
+                headers: {
+                  'user-agent': 'compatibility.fyi link checker (+https://compatibility.fyi)',
+                  accept: 'text/html,application/xhtml+xml,application/xml,text/plain,*/*',
+                },
+              });
+            } finally {
+              clearTimeout(timeout);
+            }
+          }
+
+          function shouldRetryWithGet(statusCode) {
+            return statusCode === 405 || statusCode === 406 || statusCode === 501 || statusCode >= 500;
+          }
+
+          function classifyResponse(url, statusCode, references) {
+            if (statusCode >= 200 && statusCode < 400) {
+              return { url, status: 'ok', message: `HTTP ${statusCode}`, references };
+            }
+
+            if (warnStatuses.has(statusCode)) {
+              return {
+                url,
+                status: 'warn',
+                message: `HTTP ${statusCode}; protected or rate-limited link was not treated as broken`,
+                references,
+              };
+            }
+
+            return { url, status: 'fail', message: `HTTP ${statusCode}`, references };
+          }
+          NODE
 
       - name: Typecheck
         run: npm run typecheck
