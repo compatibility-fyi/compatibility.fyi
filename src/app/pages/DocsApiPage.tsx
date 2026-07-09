@@ -246,13 +246,13 @@ export function DocsApiPage() {
                 <tbody>
                   {endpointRows.map(([method, path, purpose]) => (
                     <tr key={`${method}-${path}`}>
-                      <td>
+                      <td data-label="Method">
                         <span className={`method-badge ${method.toLowerCase()}`}>{method}</span>
                       </td>
-                      <td>
+                      <td data-label="Path">
                         <code>{path}</code>
                       </td>
-                      <td>{purpose}</td>
+                      <td data-label="Purpose">{purpose}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -413,12 +413,12 @@ function ParameterTable({ parameters }: { parameters: Parameter[] }) {
         <tbody>
           {parameters.map((parameter) => (
             <tr key={`${parameter.location}-${parameter.name}`}>
-              <td>
+              <td data-label="Name">
                 <code>{parameter.name}</code>
               </td>
-              <td>{parameter.location}</td>
-              <td>{parameter.required}</td>
-              <td>{parameter.description}</td>
+              <td data-label="In">{parameter.location}</td>
+              <td data-label="Required">{parameter.required}</td>
+              <td data-label="Description">{parameter.description}</td>
             </tr>
           ))}
         </tbody>
@@ -440,10 +440,10 @@ function ResponseFieldTable({ fields }: { fields: ResponseField[] }) {
         <tbody>
           {fields.map((field) => (
             <tr key={field.name}>
-              <td>
+              <td data-label="Field">
                 <code>{field.name}</code>
               </td>
-              <td>{field.description}</td>
+              <td data-label="Description">{field.description}</td>
             </tr>
           ))}
         </tbody>

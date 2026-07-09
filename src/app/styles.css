@@ -1095,20 +1095,20 @@ th {
     overflow-x: visible;
   }
 
-  table {
+  .table-section table {
     display: block;
     min-width: 0;
   }
 
-  thead {
+  .table-section thead {
     display: none;
   }
 
-  tbody {
+  .table-section tbody {
     display: grid;
   }
 
-  tr {
+  .table-section tr {
     border-bottom: 1px solid #d8dee8;
     display: grid;
     gap: 8px 14px;
@@ -1116,20 +1116,118 @@ th {
     padding: 14px 0;
   }
 
-  td {
+  .table-section td {
     border-bottom: 0;
     min-width: 0;
     padding: 0;
   }
 
-  td:first-child {
+  .table-section td:first-child {
     color: #6b7280;
     grid-row: 1 / span 3;
     padding-top: 2px;
   }
 
-  td:not(:first-child) {
+  .table-section td:not(:first-child) {
     grid-column: 2;
+  }
+
+  .docs-heading {
+    margin-bottom: 22px;
+    padding-bottom: 24px;
+  }
+
+  .docs-heading h1 {
+    font-size: 2.35rem;
+  }
+
+  .docs-heading p,
+  .docs-section p {
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .docs-content {
+    gap: 28px;
+  }
+
+  .docs-section {
+    padding-top: 22px;
+  }
+
+  .docs-section h2 {
+    font-size: 1.45rem;
+  }
+
+  .docs-section h3 {
+    font-size: 1rem;
+    margin-top: 20px;
+  }
+
+  .docs-callout {
+    padding: 16px;
+  }
+
+  .docs-table-wrap {
+    overflow-x: visible;
+  }
+
+  .docs-table {
+    display: block;
+    min-width: 0;
+  }
+
+  .docs-table thead {
+    display: none;
+  }
+
+  .docs-table tbody {
+    display: grid;
+  }
+
+  .docs-table tr {
+    border-bottom: 1px solid #d8dee8;
+    display: grid;
+    gap: 6px;
+    padding: 12px 0;
+  }
+
+  .docs-table td {
+    align-items: baseline;
+    border-bottom: 0;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 86px minmax(0, 1fr);
+    min-width: 0;
+    padding: 0;
+  }
+
+  .docs-table td::before {
+    color: #6b7280;
+    content: attr(data-label);
+    font-size: 0.78rem;
+    font-weight: 800;
+  }
+
+  .docs-table td:first-child {
+    width: auto;
+  }
+
+  .docs-table code,
+  .endpoint-route code {
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+
+  .code-block {
+    font-size: 0.78rem;
+    line-height: 1.45;
+    overflow-x: auto;
+    padding: 14px 12px;
+  }
+
+  .code-block-shell.copyable .code-block {
+    padding-right: 48px;
   }
 
   .catalog-project {
@@ -1146,8 +1244,13 @@ th {
 }
 
 @media (max-width: 820px) and (prefers-color-scheme: dark) {
-  tr {
+  .docs-table tr,
+  .table-section tr {
     border-color: #2f3b4f;
+  }
+
+  .docs-table td::before {
+    color: #9aa7ba;
   }
 }
 
