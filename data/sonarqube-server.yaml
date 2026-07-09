@@ -1,0 +1,151 @@
+x-sonarqube-lta-dependencies-source: &sonarqube_lta_dependencies_source
+  title: SonarQube Server 2026.1 LTA to LTA Release Notes - Dependencies
+  url: https://docs.sonarsource.com/sonarqube-server/2026.1/server-update-and-maintenance/lta-to-lta-release-notes
+  accessedAt: '2026-07-09'
+
+projects:
+  sonarqube-server:
+    name: SonarQube Server
+    categories:
+      - Code Quality
+      - DevOps
+      - Java
+    website: https://www.sonarsource.com/products/sonarqube/
+    description: SonarQube Server compatibility for Java runtimes, production databases, and Helm deployment platforms.
+    versions:
+      '2026.1':
+        dependencies:
+          java:
+            ranges:
+              - '21'
+              - '25'
+            relationship: server runtime
+            confidence: high
+            notes:
+              - SonarQube Server 2026.1 LTA supports Java 21 or Java 25 and requires a full JDK rather than only a JRE.
+            sources:
+              - *sonarqube_lta_dependencies_source
+            lastVerified: '2026-07-09'
+          postgresql:
+            ranges:
+              - '>=14 <19'
+            relationship: production database
+            confidence: high
+            notes:
+              - SonarQube Server 2026.1 LTA supports PostgreSQL 14 through 18.
+            sources:
+              - *sonarqube_lta_dependencies_source
+            lastVerified: '2026-07-09'
+          microsoft-sql-server:
+            ranges:
+              - '>=14 <17'
+            relationship: production database
+            confidence: high
+            notes:
+              - SonarQube Server 2026.1 LTA supports Microsoft SQL Server internal versions 14.0 through 16.0, corresponding to SQL Server 2017, 2019, and 2022.
+            sources:
+              - *sonarqube_lta_dependencies_source
+            lastVerified: '2026-07-09'
+          oracle:
+            ranges:
+              - '19c'
+              - '21c'
+              - '21ai'
+              - 'xe'
+            relationship: production database
+            confidence: high
+            notes:
+              - SonarQube Server 2026.1 LTA supports Oracle 19c, 21c, 21ai, and XE editions.
+            sources:
+              - *sonarqube_lta_dependencies_source
+            lastVerified: '2026-07-09'
+          kubernetes:
+            ranges:
+              - '>=1.32 <1.36'
+            relationship: Helm deployment platform
+            confidence: high
+            notes:
+              - The SonarQube Server 2026.1 LTA Helm deployment supports Kubernetes 1.32 through 1.35.
+              - This platform range applies to deployment through the official SonarQube Helm chart, not to ZIP or Docker installations outside Kubernetes.
+            sources:
+              - *sonarqube_lta_dependencies_source
+            lastVerified: '2026-07-09'
+          openshift:
+            ranges:
+              - '>=4.17 <4.21'
+            relationship: Helm deployment platform
+            confidence: high
+            notes:
+              - The SonarQube Server 2026.1 LTA Helm deployment supports OpenShift 4.17 through 4.20.
+              - This platform range applies to deployment through the official SonarQube Helm chart.
+            sources:
+              - *sonarqube_lta_dependencies_source
+            lastVerified: '2026-07-09'
+      '2025.4':
+        dependencies:
+          java:
+            ranges:
+              - '17'
+              - '21'
+            relationship: server runtime
+            confidence: high
+            notes:
+              - SonarQube Server 2025.4 LTA supports Java 17 or Java 21 as its server runtime.
+            sources:
+              - *sonarqube_lta_dependencies_source
+            lastVerified: '2026-07-09'
+          postgresql:
+            ranges:
+              - '>=13 <18'
+            relationship: production database
+            confidence: high
+            notes:
+              - SonarQube Server 2025.4 LTA supports PostgreSQL 13 through 17.
+            sources:
+              - *sonarqube_lta_dependencies_source
+            lastVerified: '2026-07-09'
+          microsoft-sql-server:
+            ranges:
+              - '>=13 <17'
+            relationship: production database
+            confidence: high
+            notes:
+              - SonarQube Server 2025.4 LTA supports Microsoft SQL Server internal versions 13.0 through 16.0, corresponding to SQL Server 2016 through 2022.
+            sources:
+              - *sonarqube_lta_dependencies_source
+            lastVerified: '2026-07-09'
+          oracle:
+            ranges:
+              - '19c'
+              - '21c'
+              - '21ai'
+              - 'xe'
+            relationship: production database
+            confidence: high
+            notes:
+              - SonarQube Server 2025.4 LTA supports Oracle 19c, 21c, 21ai, and XE editions.
+            sources:
+              - *sonarqube_lta_dependencies_source
+            lastVerified: '2026-07-09'
+          kubernetes:
+            ranges:
+              - '>=1.30 <1.34'
+            relationship: Helm deployment platform
+            confidence: high
+            notes:
+              - The SonarQube Server 2025.4 LTA Helm deployment supports Kubernetes 1.30 through 1.33.
+              - This platform range applies to deployment through the official SonarQube Helm chart, not to ZIP or Docker installations outside Kubernetes.
+            sources:
+              - *sonarqube_lta_dependencies_source
+            lastVerified: '2026-07-09'
+          openshift:
+            ranges:
+              - '>=4.11 <4.18'
+            relationship: Helm deployment platform
+            confidence: high
+            notes:
+              - The SonarQube Server 2025.4 LTA Helm deployment supports OpenShift 4.11 through 4.17.
+              - This platform range applies to deployment through the official SonarQube Helm chart.
+            sources:
+              - *sonarqube_lta_dependencies_source
+            lastVerified: '2026-07-09'
