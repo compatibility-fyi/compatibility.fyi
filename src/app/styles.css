@@ -1049,7 +1049,7 @@ th {
   .compound-result-row {
     align-items: start;
     gap: 10px;
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 
   .compound-result-value {
@@ -1058,13 +1058,19 @@ th {
     gap: 7px;
     justify-content: flex-start;
     justify-self: end;
+    min-width: 0;
     text-align: right;
   }
 
   .compound-result-range {
     color: #9aa7ba;
     font-size: 0.88rem;
-    max-width: 170px;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .compound-result-value .status-badge {
+    white-space: nowrap;
   }
 
   .catalog-project {
