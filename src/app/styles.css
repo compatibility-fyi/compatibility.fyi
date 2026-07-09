@@ -61,9 +61,21 @@ select {
 }
 
 .brand {
+  align-items: center;
   color: inherit;
+  display: inline-flex;
   font-size: 1.05rem;
   font-weight: 700;
+  gap: 9px;
+  min-width: 0;
+}
+
+.brand img {
+  border-radius: 4px;
+  display: block;
+  flex: 0 0 auto;
+  height: 26px;
+  width: 26px;
 }
 
 nav {

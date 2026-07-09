@@ -9,6 +9,7 @@ export function Layout({ children }: LayoutProps) {
     <>
       <header className="site-header">
         <a className="brand" href="/">
+          <img alt="" aria-hidden="true" src="/icon-192.png" />
           compatibility.fyi
         </a>
         <nav aria-label="Primary">
