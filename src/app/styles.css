@@ -290,16 +290,13 @@ p {
 }
 
 .catalog-project {
-  align-items: center;
-  display: flex;
-  gap: 10px;
+  display: grid;
+  gap: 6px;
   min-width: 0;
-  overflow: hidden;
-  white-space: nowrap;
 }
 
 .catalog-project strong {
-  flex: 0 0 auto;
+  min-width: 0;
 }
 
 .catalog-row small {
@@ -309,10 +306,10 @@ p {
 
 .catalog-category-badges {
   align-items: center;
-  display: inline-flex;
+  display: flex;
+  flex-wrap: wrap;
   gap: 5px;
   min-width: 0;
-  overflow: hidden;
 }
 
 .catalog-category-badges small {
