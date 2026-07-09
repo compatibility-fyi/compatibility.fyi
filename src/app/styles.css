@@ -343,7 +343,6 @@ p {
   display: grid;
   gap: 18px;
   grid-template-columns: repeat(3, 1fr);
-  margin-bottom: 24px;
   padding: 16px 0;
 }
 
@@ -406,12 +405,13 @@ p {
 
 .table-section {
   padding-bottom: 48px;
+  padding-top: 28px;
 }
 
 .compatibility-checker {
-  margin-bottom: 34px;
+  border-bottom: 1px solid #d8dee8;
   min-width: 0;
-  padding-top: 24px;
+  padding: 28px 0;
 }
 
 .checker-grid {
