@@ -1,7 +1,7 @@
 x-cert-manager-releases-source: &cert_manager_releases_source
   title: cert-manager Supported Releases
   url: https://cert-manager.io/docs/releases/
-  accessedAt: '2026-07-08'
+  accessedAt: '2026-07-09'
 
 projects:
   cert-manager:
@@ -13,6 +13,28 @@ projects:
     website: https://cert-manager.io/
     description: X.509 certificate controller compatibility for Kubernetes and OpenShift runtime versions.
     versions:
+      '1.21':
+        dependencies:
+          kubernetes:
+            ranges:
+              - '>=1.33 <1.37'
+            relationship: runtime
+            confidence: high
+            notes:
+              - cert-manager supported releases list 1.21 with Kubernetes 1.33 through 1.36.
+            sources:
+              - *cert_manager_releases_source
+            lastVerified: '2026-07-09'
+          openshift:
+            ranges:
+              - '>=4.20 <4.23'
+            relationship: runtime
+            confidence: high
+            notes:
+              - cert-manager supported releases list 1.21 with OpenShift 4.20 through 4.22.
+            sources:
+              - *cert_manager_releases_source
+            lastVerified: '2026-07-09'
       '1.20':
         dependencies:
           kubernetes:
@@ -24,7 +46,7 @@ projects:
               - cert-manager supported releases list 1.20 with Kubernetes 1.32 through 1.35.
             sources:
               - *cert_manager_releases_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-07-09'
           openshift:
             ranges:
               - '>=4.19 <4.22'
@@ -34,26 +56,4 @@ projects:
               - cert-manager supported releases list 1.20 with OpenShift 4.19 through 4.21.
             sources:
               - *cert_manager_releases_source
-            lastVerified: '2026-07-08'
-      '1.19':
-        dependencies:
-          kubernetes:
-            ranges:
-              - '>=1.31 <1.36'
-            relationship: runtime
-            confidence: high
-            notes:
-              - cert-manager supported releases list 1.19 with Kubernetes 1.31 through 1.35.
-            sources:
-              - *cert_manager_releases_source
-            lastVerified: '2026-07-08'
-          openshift:
-            ranges:
-              - '>=4.18 <4.21'
-            relationship: runtime
-            confidence: high
-            notes:
-              - cert-manager supported releases list 1.19 with OpenShift 4.18 through 4.20.
-            sources:
-              - *cert_manager_releases_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-07-09'
