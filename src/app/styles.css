@@ -369,7 +369,7 @@ p {
   display: grid;
   gap: 14px;
   grid-template-columns: minmax(0, 1fr) minmax(180px, 240px);
-  margin: 0 0 28px;
+  margin: 16px 0 24px;
 }
 
 .project-filter-bar {
@@ -409,7 +409,6 @@ p {
 }
 
 .compatibility-checker {
-  border-top: 1px solid #d8dee8;
   margin-bottom: 34px;
   min-width: 0;
   padding-top: 24px;

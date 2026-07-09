@@ -7,7 +7,6 @@ import type {
   DependencyCompatibilityEntry,
 } from '../../types/compatibility';
 import { Layout } from '../components/Layout';
-import { formatWebsiteUrl } from '../lib/format';
 
 const dataset = loadDataset();
 
@@ -122,7 +121,7 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
                 rel="noreferrer"
                 target="_blank"
               >
-                {formatWebsiteUrl(project.website)}
+                Website
               </a>
             ) : null}
           </div>
@@ -151,7 +150,7 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
         </div>
         <div className="checker-grid">
           <label className="select-field">
-            <span>Project version</span>
+            <span>Version to check</span>
             <select
               value={activeCheckVersion}
               onChange={(event) => {
@@ -189,36 +188,35 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
         {compoundResult ? <CompoundResult checks={compoundResult.checks} /> : null}
       </section>
 
-      <section className="filter-bar" aria-label="Compatibility filters">
-        <label className="search-field">
-          <span>Search dependencies</span>
-          <input
-            type="search"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search dependencies, ranges, notes, sources..."
-          />
-        </label>
-        <label className="select-field">
-          <span>Project version</span>
-          <select
-            value={selectedVersion}
-            onChange={(event) => setSelectedVersion(event.target.value)}
-          >
-            <option value="all">All versions</option>
-            {versions.map((version) => (
-              <option key={version} value={version}>
-                {version}
-              </option>
-            ))}
-          </select>
-        </label>
-      </section>
-
       <section className="table-section">
         <div className="section-title-row">
           <h2>Compatibility matrix</h2>
           <span>{filteredRows.length} entries</span>
+        </div>
+        <div className="filter-bar" aria-label="Compatibility filters">
+          <label className="search-field">
+            <span>Search dependencies</span>
+            <input
+              type="search"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search dependencies, ranges, notes, sources..."
+            />
+          </label>
+          <label className="select-field">
+            <span>Project version</span>
+            <select
+              value={selectedVersion}
+              onChange={(event) => setSelectedVersion(event.target.value)}
+            >
+              <option value="all">All versions</option>
+              {versions.map((version) => (
+                <option key={version} value={version}>
+                  {version}
+                </option>
+              ))}
+            </select>
+          </label>
         </div>
         <div className="table-wrap">
           <table>
