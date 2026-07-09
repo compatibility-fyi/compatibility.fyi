@@ -52,7 +52,7 @@ projects:
   red-hat-advanced-cluster-management:
     name: Red Hat Advanced Cluster Management for Kubernetes
     categories:
-      - Cluster management
+      - Cluster Management
       - Kubernetes
       - OpenShift
     website: https://www.redhat.com/en/technologies/management/advanced-cluster-management

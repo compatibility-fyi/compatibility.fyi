@@ -30,7 +30,7 @@ const projectIndexResponse = `{
 const projectResponse = `{
   "id": "red-hat-advanced-cluster-management",
   "name": "Red Hat Advanced Cluster Management for Kubernetes",
-  "categories": ["Cluster management"],
+  "categories": ["Cluster Management"],
   "versions": {
     "2.16": {
       "dependencies": {

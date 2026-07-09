@@ -7,7 +7,7 @@ projects:
   istio:
     name: Istio
     categories:
-      - Service mesh
+      - Service Mesh
       - Networking
       - Kubernetes
     website: https://istio.io/

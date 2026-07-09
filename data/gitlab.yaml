@@ -19,7 +19,7 @@ projects:
     categories:
       - CI/CD
       - DevOps
-      - Source control
+      - Source Control
     website: https://about.gitlab.com/
     description: GitLab self-managed compatibility for PostgreSQL, Redis, Valkey, and the GitLab Helm chart.
     versions:

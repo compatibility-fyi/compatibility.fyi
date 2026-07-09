@@ -17,7 +17,7 @@ projects:
   crossplane:
     name: Crossplane
     categories:
-      - Control plane
+      - Control Plane
       - Kubernetes Operator
       - Infrastructure
     website: https://www.crossplane.io/
