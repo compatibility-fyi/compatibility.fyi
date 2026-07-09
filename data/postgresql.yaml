@@ -1,0 +1,163 @@
+x-postgis-release-source: &postgis_release_source
+  title: PostGIS 3.6 Release Notes
+  url: https://postgis.net/docs/release_notes.html
+  accessedAt: '2026-07-09'
+
+x-postgis-support-source: &postgis_support_source
+  title: PostGIS 3.6 Installation Requirements
+  url: https://postgis.net/docs/manual-3.6/en/postgis_installation.html
+  accessedAt: '2026-07-09'
+
+x-pgvector-support-source: &pgvector_support_source
+  title: pgvector 0.8.5 Installation
+  url: https://github.com/pgvector/pgvector/blob/v0.8.5/README.md
+  accessedAt: '2026-07-09'
+
+x-timescaledb-support-source: &timescaledb_support_source
+  title: TimescaleDB 2.28.2 PostgreSQL Version Check
+  url: https://github.com/timescale/timescaledb/blob/2.28.2/CMakeLists.txt
+  accessedAt: '2026-07-09'
+
+x-pg-cron-support-source: &pg_cron_support_source
+  title: pg_cron 1.6.7 Installation
+  url: https://github.com/citusdata/pg_cron/blob/v1.6.7/README.md
+  accessedAt: '2026-07-09'
+
+projects:
+  postgresql:
+    name: PostgreSQL
+    categories:
+      - Databases
+      - Relational Database
+    website: https://www.postgresql.org/
+    description: PostgreSQL compatibility for popular independently versioned extensions.
+    versions:
+      '18':
+        dependencies:
+          postgis:
+            ranges:
+              - '3.6.4'
+            relationship: extension
+            confidence: high
+            notes:
+              - PostGIS 3.6.4 is in the PostGIS 3.6 release line, which supports PostgreSQL 12 through 18.
+            sources:
+              - *postgis_release_source
+              - *postgis_support_source
+            lastVerified: '2026-07-09'
+          pgvector:
+            ranges:
+              - '0.8.5'
+            relationship: extension
+            confidence: high
+            notes:
+              - pgvector 0.8.5 supports PostgreSQL 13 and newer and publishes PostgreSQL 18 container images.
+            sources:
+              - *pgvector_support_source
+            lastVerified: '2026-07-09'
+          timescaledb:
+            ranges:
+              - '2.28.2'
+            relationship: extension
+            confidence: high
+            notes:
+              - TimescaleDB 2.28.2 explicitly permits builds against PostgreSQL 15 through 18.
+            sources:
+              - *timescaledb_support_source
+            lastVerified: '2026-07-09'
+          pg-cron:
+            ranges:
+              - '1.6.7'
+            relationship: extension
+            confidence: high
+            notes:
+              - pg_cron 1.6.7 supports PostgreSQL 10 and newer.
+            sources:
+              - *pg_cron_support_source
+            lastVerified: '2026-07-09'
+      '17':
+        dependencies:
+          postgis:
+            ranges:
+              - '3.6.4'
+            relationship: extension
+            confidence: high
+            notes:
+              - PostGIS 3.6.4 is in the PostGIS 3.6 release line, which supports PostgreSQL 12 through 18.
+            sources:
+              - *postgis_release_source
+              - *postgis_support_source
+            lastVerified: '2026-07-09'
+          pgvector:
+            ranges:
+              - '0.8.5'
+            relationship: extension
+            confidence: high
+            notes:
+              - pgvector 0.8.5 supports PostgreSQL 13 and newer and publishes PostgreSQL 17 container images.
+            sources:
+              - *pgvector_support_source
+            lastVerified: '2026-07-09'
+          timescaledb:
+            ranges:
+              - '2.28.2'
+            relationship: extension
+            confidence: high
+            notes:
+              - TimescaleDB 2.28.2 explicitly permits builds against PostgreSQL 15 through 18.
+            sources:
+              - *timescaledb_support_source
+            lastVerified: '2026-07-09'
+          pg-cron:
+            ranges:
+              - '1.6.7'
+            relationship: extension
+            confidence: high
+            notes:
+              - pg_cron 1.6.7 supports PostgreSQL 10 and newer.
+            sources:
+              - *pg_cron_support_source
+            lastVerified: '2026-07-09'
+      '16':
+        dependencies:
+          postgis:
+            ranges:
+              - '3.6.4'
+            relationship: extension
+            confidence: high
+            notes:
+              - PostGIS 3.6.4 is in the PostGIS 3.6 release line, which supports PostgreSQL 12 through 18.
+            sources:
+              - *postgis_release_source
+              - *postgis_support_source
+            lastVerified: '2026-07-09'
+          pgvector:
+            ranges:
+              - '0.8.5'
+            relationship: extension
+            confidence: high
+            notes:
+              - pgvector 0.8.5 supports PostgreSQL 13 and newer and publishes PostgreSQL 16 container images.
+            sources:
+              - *pgvector_support_source
+            lastVerified: '2026-07-09'
+          timescaledb:
+            ranges:
+              - '2.28.2'
+            relationship: extension
+            confidence: high
+            notes:
+              - TimescaleDB 2.28.2 explicitly permits builds against PostgreSQL 15 through 18.
+            sources:
+              - *timescaledb_support_source
+            lastVerified: '2026-07-09'
+          pg-cron:
+            ranges:
+              - '1.6.7'
+            relationship: extension
+            confidence: high
+            notes:
+              - pg_cron 1.6.7 supports PostgreSQL 10 and newer.
+            sources:
+              - *pg_cron_support_source
+            lastVerified: '2026-07-09'
