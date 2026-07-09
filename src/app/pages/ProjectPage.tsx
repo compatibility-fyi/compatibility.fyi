@@ -382,6 +382,7 @@ function formatDependencyName(dependency: string): string {
     eks: 'EKS',
     gcp: 'GCP',
     gke: 'GKE',
+    gitlab: 'GitLab',
     ip: 'IP',
     jdbc: 'JDBC',
     kubernetes: 'Kubernetes',
