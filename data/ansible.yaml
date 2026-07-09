@@ -1,0 +1,75 @@
+x-ansible-community-package-source: &ansible_community_package_source
+  title: Ansible Community Package Release Matrix
+  url: https://docs.ansible.com/projects/ansible/latest/reference_appendices/release_and_maintenance.html#ansible-community-changelogs
+  accessedAt: '2026-07-09'
+
+projects:
+  ansible:
+    name: Ansible
+    categories:
+      - Automation
+      - Configuration Management
+      - Python
+    website: https://docs.ansible.com/projects/ansible/
+    description: Ansible community package compatibility for its ansible-core dependency.
+    versions:
+      '13':
+        dependencies:
+          ansible-core:
+            ranges:
+              - '>=2.20 <2.21'
+            relationship: core dependency
+            confidence: high
+            notes:
+              - Ansible community package release matrix lists Ansible 13.x with ansible-core 2.20.
+            sources:
+              - *ansible_community_package_source
+            lastVerified: '2026-07-09'
+      '12':
+        dependencies:
+          ansible-core:
+            ranges:
+              - '>=2.19 <2.20'
+            relationship: core dependency
+            confidence: high
+            notes:
+              - Ansible community package release matrix lists Ansible 12.x with ansible-core 2.19.
+            sources:
+              - *ansible_community_package_source
+            lastVerified: '2026-07-09'
+      '11':
+        dependencies:
+          ansible-core:
+            ranges:
+              - '>=2.18 <2.19'
+            relationship: core dependency
+            confidence: high
+            notes:
+              - Ansible community package release matrix lists Ansible 11.x with ansible-core 2.18.
+            sources:
+              - *ansible_community_package_source
+            lastVerified: '2026-07-09'
+      '10':
+        dependencies:
+          ansible-core:
+            ranges:
+              - '>=2.17 <2.18'
+            relationship: core dependency
+            confidence: high
+            notes:
+              - Ansible community package release matrix lists Ansible 10.x with ansible-core 2.17.
+            sources:
+              - *ansible_community_package_source
+            lastVerified: '2026-07-09'
+      '9':
+        dependencies:
+          ansible-core:
+            ranges:
+              - '>=2.16 <2.17'
+            relationship: core dependency
+            confidence: high
+            notes:
+              - Ansible community package release matrix lists Ansible 9.x with ansible-core 2.16.
+            sources:
+              - *ansible_community_package_source
+            lastVerified: '2026-07-09'
