@@ -401,6 +401,8 @@ function formatDependencyName(dependency: string): string {
     openshift: 'OpenShift',
     php: 'PHP',
     postgresql: 'PostgreSQL',
+    powershell: 'PowerShell',
+    python: 'Python',
     rhacm: 'RHACM',
     sql: 'SQL',
     tls: 'TLS',
