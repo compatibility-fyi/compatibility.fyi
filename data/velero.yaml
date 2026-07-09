@@ -1,0 +1,48 @@
+x-velero-compatibility-source: &velero_compatibility_source
+  title: Velero 1.18 Compatibility Matrix
+  url: https://github.com/vmware-tanzu/velero/blob/v1.18.0/README.md
+  accessedAt: '2026-07-09'
+
+x-velero-support-source: &velero_support_source
+  title: Velero Support Process
+  url: https://velero.io/docs/v1.17/support-process/
+  accessedAt: '2026-07-09'
+
+projects:
+  velero:
+    name: Velero
+    categories:
+      - Backup
+      - Disaster Recovery
+      - Kubernetes Operator
+    website: https://velero.io/
+    description: Kubernetes backup and restore compatibility for tested Kubernetes runtime versions.
+    versions:
+      '1.18':
+        dependencies:
+          kubernetes:
+            ranges:
+              - '>=1.33 <1.36'
+            relationship: runtime
+            confidence: high
+            notes:
+              - The Velero 1.18 compatibility matrix records successful tests against Kubernetes 1.33.7, 1.34.1, and 1.35.0.
+              - Velero provides best-effort community support for the current and previous minor release lines.
+            sources:
+              - *velero_compatibility_source
+              - *velero_support_source
+            lastVerified: '2026-07-09'
+      '1.17':
+        dependencies:
+          kubernetes:
+            ranges:
+              - '>=1.31 <1.35'
+            relationship: runtime
+            confidence: high
+            notes:
+              - The Velero 1.18 compatibility matrix records successful Velero 1.17 tests against Kubernetes 1.31.7, 1.32.3, 1.33.1, and 1.34.0.
+              - Velero provides best-effort community support for the current and previous minor release lines.
+            sources:
+              - *velero_compatibility_source
+              - *velero_support_source
+            lastVerified: '2026-07-09'
