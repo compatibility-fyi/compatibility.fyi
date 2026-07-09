@@ -1,0 +1,38 @@
+x-traefik-hub-chart-source: &traefik_hub_chart_source
+  title: Traefik Helm Chart 41.0.2 Version Support
+  url: https://github.com/traefik/traefik-helm-chart/releases/tag/v41.0.2
+  accessedAt: '2026-07-09'
+
+projects:
+  traefik-hub-api-gateway:
+    name: Traefik Hub API Gateway
+    categories:
+      - API Gateway
+      - Kubernetes
+    website: https://doc.traefik.io/traefik-hub/api-gateway/
+    description: Traefik Hub API Gateway compatibility with the official Traefik Helm chart.
+    versions:
+      '3.20.6':
+        dependencies:
+          traefik-helm-chart:
+            ranges:
+              - '41.0.2'
+            relationship: deployment chart
+            confidence: high
+            notes:
+              - Traefik Helm chart 41.0.2 supports Traefik Hub versions 3.19.3 through 3.20.6.
+            sources:
+              - *traefik_hub_chart_source
+            lastVerified: '2026-07-09'
+      '3.19.3':
+        dependencies:
+          traefik-helm-chart:
+            ranges:
+              - '41.0.2'
+            relationship: deployment chart
+            confidence: high
+            notes:
+              - Traefik Helm chart 41.0.2 supports Traefik Hub versions 3.19.3 through 3.20.6.
+            sources:
+              - *traefik_hub_chart_source
+            lastVerified: '2026-07-09'
