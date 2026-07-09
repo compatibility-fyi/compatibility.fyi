@@ -1,0 +1,470 @@
+x-jira-113-supported-platforms-source: &jira_113_supported_platforms_source
+  title: Jira Data Center 11.3 Supported Platforms
+  url: https://confluence.atlassian.com/adminjiraserver/supported-platforms-938846830.html
+  accessedAt: '2026-07-09'
+
+x-jira-112-supported-platforms-source: &jira_112_supported_platforms_source
+  title: Jira Data Center 11.2 Supported Platforms
+  url: https://confluence.atlassian.com/adminjiraserver112/supported-platforms-1688896332.html
+  accessedAt: '2026-07-09'
+
+x-jira-111-supported-platforms-source: &jira_111_supported_platforms_source
+  title: Jira Data Center 11.1 Supported Platforms
+  url: https://confluence.atlassian.com/adminjiraserver111/supported-platforms-1652461197.html
+  accessedAt: '2026-07-09'
+
+x-jira-110-supported-platforms-source: &jira_110_supported_platforms_source
+  title: Jira Data Center 11.0 Supported Platforms
+  url: https://confluence.atlassian.com/adminjiraserver110/supported-platforms-1627459680.html
+  accessedAt: '2026-07-09'
+
+x-jira-107-supported-platforms-source: &jira_107_supported_platforms_source
+  title: Jira Data Center 10.7 Supported Platforms
+  url: https://confluence.atlassian.com/adminjiraserver107/supported-platforms-1595114190.html
+  accessedAt: '2026-07-09'
+
+x-jira-103-supported-platforms-source: &jira_103_supported_platforms_source
+  title: Jira Data Center 10.3 Supported Platforms
+  url: https://confluence.atlassian.com/adminjiraserver103/supported-platforms-1489806894.html
+  accessedAt: '2026-07-09'
+
+projects:
+  jira-data-center:
+    name: Jira Data Center
+    categories:
+      - Atlassian
+      - Issue Tracking
+      - Project Management
+      - Java
+    website: https://www.atlassian.com/software/jira
+    description: Jira Data Center compatibility for Java runtimes and supported database platforms.
+    versions:
+      '11.3':
+        dependencies:
+          java:
+            ranges:
+              - '>=21 <22'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Jira Data Center 11.3 supported platforms list Java 21 runtime level for Oracle JRE/JDK and Eclipse Temurin.
+            sources:
+              - *jira_113_supported_platforms_source
+            lastVerified: '2026-07-09'
+          postgresql:
+            ranges:
+              - '>=16 <18'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 11.3 supported platforms list PostgreSQL 16 and 17.
+            sources:
+              - *jira_113_supported_platforms_source
+            lastVerified: '2026-07-09'
+          amazon-aurora-postgresql:
+            ranges:
+              - '>=16 <18'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 11.3 supported platforms list Amazon Aurora PostgreSQL 16 and 17.
+              - Atlassian notes that Amazon Aurora support is Data Center only and only for a PostgreSQL-compatible clustered database with one writer.
+            sources:
+              - *jira_113_supported_platforms_source
+            lastVerified: '2026-07-09'
+          mysql:
+            ranges:
+              - '>=8.4 <8.5'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 11.3 supported platforms list MySQL 8.4.
+              - Atlassian notes that Jira will not work on MariaDB or PerconaDB.
+            sources:
+              - *jira_113_supported_platforms_source
+            lastVerified: '2026-07-09'
+          oracle:
+            ranges:
+              - '>=19 <20'
+              - '19c'
+              - '>=23 <24'
+              - '23ai'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 11.3 supported platforms list Oracle 23ai as supported and Oracle 19c as deprecated.
+              - Atlassian notes that Jira will not work on Oracle Database Express Editions or Oracle Advanced Compression Option.
+            sources:
+              - *jira_113_supported_platforms_source
+            lastVerified: '2026-07-09'
+          microsoft-sql-server:
+            ranges:
+              - '>=2019 <2020'
+              - '>=2022 <2023'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 11.3 supported platforms list SQL Server 2022 as supported and SQL Server 2019 as deprecated.
+              - Azure SQL is also listed as supported but is not modeled here because it does not have a product version in the Atlassian matrix.
+            sources:
+              - *jira_113_supported_platforms_source
+            lastVerified: '2026-07-09'
+      '11.2':
+        dependencies:
+          java:
+            ranges:
+              - '>=21 <22'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Jira Data Center 11.2 supported platforms list Java 21 runtime level for Oracle JRE/JDK and Eclipse Temurin.
+            sources:
+              - *jira_112_supported_platforms_source
+            lastVerified: '2026-07-09'
+          postgresql:
+            ranges:
+              - '>=16 <18'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 11.2 supported platforms list PostgreSQL 16 and 17.
+            sources:
+              - *jira_112_supported_platforms_source
+            lastVerified: '2026-07-09'
+          amazon-aurora-postgresql:
+            ranges:
+              - '>=16 <18'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 11.2 supported platforms list Amazon Aurora PostgreSQL 16 and 17.
+              - Atlassian notes that Amazon Aurora support is Data Center only and only for a PostgreSQL-compatible clustered database with one writer.
+            sources:
+              - *jira_112_supported_platforms_source
+            lastVerified: '2026-07-09'
+          mysql:
+            ranges:
+              - '>=8.4 <8.5'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 11.2 supported platforms list MySQL 8.4.
+              - Atlassian notes that Jira will not work on MariaDB or PerconaDB.
+            sources:
+              - *jira_112_supported_platforms_source
+            lastVerified: '2026-07-09'
+          oracle:
+            ranges:
+              - '>=19 <20'
+              - '19c'
+              - '>=23 <24'
+              - '23ai'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 11.2 supported platforms list Oracle 23ai as supported and Oracle 19c as deprecated.
+              - Atlassian notes that Jira will not work on Oracle Database Express Editions or Oracle Advanced Compression Option.
+            sources:
+              - *jira_112_supported_platforms_source
+            lastVerified: '2026-07-09'
+          microsoft-sql-server:
+            ranges:
+              - '>=2019 <2020'
+              - '>=2022 <2023'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 11.2 supported platforms list SQL Server 2022 as supported and SQL Server 2019 as deprecated.
+              - Azure SQL is also listed as supported but is not modeled here because it does not have a product version in the Atlassian matrix.
+            sources:
+              - *jira_112_supported_platforms_source
+            lastVerified: '2026-07-09'
+      '11.1':
+        dependencies:
+          java:
+            ranges:
+              - '>=21 <22'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Jira Data Center 11.1 supported platforms list Java 21 runtime level for Oracle JRE/JDK and Eclipse Temurin.
+            sources:
+              - *jira_111_supported_platforms_source
+            lastVerified: '2026-07-09'
+          postgresql:
+            ranges:
+              - '>=16 <18'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 11.1 supported platforms list PostgreSQL 16 and 17.
+            sources:
+              - *jira_111_supported_platforms_source
+            lastVerified: '2026-07-09'
+          amazon-aurora-postgresql:
+            ranges:
+              - '>=16 <18'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 11.1 supported platforms list Amazon Aurora PostgreSQL 16 and 17.
+              - Atlassian notes that Amazon Aurora support is Data Center only and only for a PostgreSQL-compatible clustered database with one writer.
+            sources:
+              - *jira_111_supported_platforms_source
+            lastVerified: '2026-07-09'
+          mysql:
+            ranges:
+              - '>=8.4 <8.5'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 11.1 supported platforms list MySQL 8.4.
+              - Atlassian notes that Jira will not work on MariaDB or PerconaDB.
+            sources:
+              - *jira_111_supported_platforms_source
+            lastVerified: '2026-07-09'
+          oracle:
+            ranges:
+              - '>=19 <20'
+              - '19c'
+              - '>=23 <24'
+              - '23ai'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 11.1 supported platforms list Oracle 23ai as supported and Oracle 19c as deprecated.
+              - Atlassian notes that Jira will not work on Oracle Database Express Editions or Oracle Advanced Compression Option.
+            sources:
+              - *jira_111_supported_platforms_source
+            lastVerified: '2026-07-09'
+          microsoft-sql-server:
+            ranges:
+              - '>=2019 <2020'
+              - '>=2022 <2023'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 11.1 supported platforms list SQL Server 2019 and 2022.
+              - Azure SQL is also listed as supported but is not modeled here because it does not have a product version in the Atlassian matrix.
+            sources:
+              - *jira_111_supported_platforms_source
+            lastVerified: '2026-07-09'
+      '11.0':
+        dependencies:
+          java:
+            ranges:
+              - '>=21 <22'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Jira Data Center 11.0 supported platforms list Java 21 runtime level for Oracle JRE/JDK and Eclipse Temurin.
+            sources:
+              - *jira_110_supported_platforms_source
+            lastVerified: '2026-07-09'
+          postgresql:
+            ranges:
+              - '>=16 <18'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 11.0 supported platforms list PostgreSQL 16 and 17.
+            sources:
+              - *jira_110_supported_platforms_source
+            lastVerified: '2026-07-09'
+          amazon-aurora-postgresql:
+            ranges:
+              - '>=16 <18'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 11.0 supported platforms list Amazon Aurora PostgreSQL 16 and 17.
+              - Atlassian notes that Amazon Aurora support is Data Center only and only for a PostgreSQL-compatible clustered database with one writer.
+            sources:
+              - *jira_110_supported_platforms_source
+            lastVerified: '2026-07-09'
+          mysql:
+            ranges:
+              - '>=8.4 <8.5'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 11.0 supported platforms list MySQL 8.4.
+              - Atlassian notes that Jira will not work on MariaDB or PerconaDB.
+            sources:
+              - *jira_110_supported_platforms_source
+            lastVerified: '2026-07-09'
+          oracle:
+            ranges:
+              - '>=19 <20'
+              - '19c'
+              - '>=23 <24'
+              - '23ai'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 11.0 supported platforms list Oracle 23ai as supported and Oracle 19c as deprecated.
+              - Atlassian notes that Jira will not work on Oracle Database Express Editions or Oracle Advanced Compression Option.
+            sources:
+              - *jira_110_supported_platforms_source
+            lastVerified: '2026-07-09'
+          microsoft-sql-server:
+            ranges:
+              - '>=2019 <2020'
+              - '>=2022 <2023'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 11.0 supported platforms list SQL Server 2019 and 2022.
+              - Azure SQL is also listed as supported but is not modeled here because it does not have a product version in the Atlassian matrix.
+            sources:
+              - *jira_110_supported_platforms_source
+            lastVerified: '2026-07-09'
+      '10.7':
+        dependencies:
+          java:
+            ranges:
+              - '>=17 <18'
+              - '>=21 <22'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Jira Data Center 10.7 supported platforms list Java 21 runtime level as supported and JDK 17 as deprecated for Oracle JRE/JDK and Eclipse Temurin.
+            sources:
+              - *jira_107_supported_platforms_source
+            lastVerified: '2026-07-09'
+          postgresql:
+            ranges:
+              - '>=12 <17'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 10.7 supported platforms list PostgreSQL 16 as supported and PostgreSQL 12 through 15 as deprecated.
+            sources:
+              - *jira_107_supported_platforms_source
+            lastVerified: '2026-07-09'
+          amazon-aurora-postgresql:
+            ranges:
+              - '>=12 <17'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 10.7 supported platforms list Amazon Aurora PostgreSQL 16 as supported and PostgreSQL 12 through 15 as deprecated.
+              - Atlassian notes that Amazon Aurora support is Data Center only and only for a PostgreSQL-compatible clustered database with one writer.
+            sources:
+              - *jira_107_supported_platforms_source
+            lastVerified: '2026-07-09'
+          mysql:
+            ranges:
+              - '>=8 <8.1'
+              - '>=8.4 <8.5'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 10.7 supported platforms list MySQL 8.4 as supported and MySQL 8.0 as deprecated.
+              - Atlassian notes that Jira will not work on MariaDB or PerconaDB.
+            sources:
+              - *jira_107_supported_platforms_source
+            lastVerified: '2026-07-09'
+          oracle:
+            ranges:
+              - '>=18 <20'
+              - '18c'
+              - '19c'
+              - '>=23 <24'
+              - '23ai'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 10.7 supported platforms list Oracle 23ai as supported and Oracle 18c and 19c as deprecated.
+              - Atlassian notes that Jira will not work on Oracle Database Express Editions or Oracle Advanced Compression Option.
+            sources:
+              - *jira_107_supported_platforms_source
+            lastVerified: '2026-07-09'
+          microsoft-sql-server:
+            ranges:
+              - '>=2017 <2018'
+              - '>=2019 <2020'
+              - '>=2022 <2023'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 10.7 supported platforms list SQL Server 2019 and 2022 as supported and SQL Server 2017 as deprecated.
+              - Azure SQL is also listed as supported but is not modeled here because it does not have a product version in the Atlassian matrix.
+            sources:
+              - *jira_107_supported_platforms_source
+            lastVerified: '2026-07-09'
+      '10.3':
+        dependencies:
+          java:
+            ranges:
+              - '>=17 <18'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Jira Data Center 10.3 supported platforms list JDK 17 for Oracle JRE/JDK and Eclipse Temurin.
+              - Jira 10.3.7 and later 10.3.x versions also support Java 21 runtime level; this patch-gated support is not modeled at the broad 10.3 row.
+            sources:
+              - *jira_103_supported_platforms_source
+            lastVerified: '2026-07-09'
+          postgresql:
+            ranges:
+              - '>=12 <16'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 10.3 supported platforms list PostgreSQL 15 as supported and PostgreSQL 12 through 14 as deprecated.
+              - Jira 10.3.7 and later 10.3.x versions also support PostgreSQL 16; this patch-gated support is not modeled at the broad 10.3 row.
+            sources:
+              - *jira_103_supported_platforms_source
+            lastVerified: '2026-07-09'
+          amazon-aurora-postgresql:
+            ranges:
+              - '>=12 <16'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 10.3 supported platforms list Amazon Aurora PostgreSQL 15 as supported and PostgreSQL 12 through 14 as deprecated.
+              - Jira 10.3.7 and later 10.3.x versions also support Amazon Aurora PostgreSQL 16; this patch-gated support is not modeled at the broad 10.3 row.
+              - Atlassian notes that Amazon Aurora support is Data Center only and only for a PostgreSQL-compatible clustered database with one writer.
+            sources:
+              - *jira_103_supported_platforms_source
+            lastVerified: '2026-07-09'
+          mysql:
+            ranges:
+              - '>=8 <8.1'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 10.3 supported platforms list MySQL 8.0.
+              - Jira 10.3.7 and later 10.3.x versions also support MySQL 8.4; this patch-gated support is not modeled at the broad 10.3 row.
+              - Atlassian notes that Jira will not work on MariaDB or PerconaDB.
+            sources:
+              - *jira_103_supported_platforms_source
+            lastVerified: '2026-07-09'
+          oracle:
+            ranges:
+              - '>=18 <20'
+              - '18c'
+              - '19c'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 10.3 supported platforms list Oracle 19c as supported and Oracle 18c as deprecated.
+              - Jira 10.3.7 and later 10.3.x versions also support Oracle 23ai; this patch-gated support is not modeled at the broad 10.3 row.
+              - Atlassian notes that Jira will not work on Oracle Database Express Editions or Oracle Advanced Compression Option.
+            sources:
+              - *jira_103_supported_platforms_source
+            lastVerified: '2026-07-09'
+          microsoft-sql-server:
+            ranges:
+              - '>=2017 <2018'
+              - '>=2019 <2020'
+              - '>=2022 <2023'
+            relationship: database
+            confidence: high
+            notes:
+              - Jira Data Center 10.3 supported platforms list SQL Server 2017, 2019, and 2022.
+              - Azure SQL is also listed as supported but is not modeled here because it does not have a product version in the Atlassian matrix.
+            sources:
+              - *jira_103_supported_platforms_source
+            lastVerified: '2026-07-09'
