@@ -356,6 +356,18 @@ p {
   padding: 42px 0 28px;
 }
 
+.back-link {
+  color: #4b5563;
+  display: inline-flex;
+  font-size: 0.92rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.back-link:hover {
+  color: #174ea6;
+}
+
 .page-heading p {
   max-width: none;
 }
@@ -969,8 +981,13 @@ th {
 
   a,
   .catalog-row strong,
-  .project-website {
+  .project-website,
+  .back-link:hover {
     color: #8ab4f8;
+  }
+
+  .back-link {
+    color: #9aa7ba;
   }
 
   .catalog-results-heading span,

@@ -101,6 +101,9 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
     return (
       <Layout>
         <section className="page-heading">
+          <a className="back-link" href="/">
+            &larr; Back to projects
+          </a>
           <h1>Project not found</h1>
           <p>No compatibility metadata exists for {projectId}.</p>
         </section>
@@ -111,6 +114,9 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
   return (
     <Layout>
       <section className="page-heading">
+        <a className="back-link" href="/">
+          &larr; Back to projects
+        </a>
         <div className="project-heading">
           <div>
             <h1>{project.name}</h1>
