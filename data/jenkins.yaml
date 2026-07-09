@@ -1,0 +1,61 @@
+x-jenkins-java-support-source: &jenkins_java_support_source
+  title: Jenkins Java Support Policy
+  url: https://www.jenkins.io/doc/book/platform-information/support-policy-java/
+  accessedAt: '2026-07-09'
+
+projects:
+  jenkins:
+    name: Jenkins
+    categories:
+      - CI/CD
+      - Automation
+      - Java
+    website: https://www.jenkins.io/
+    description: Jenkins LTS release-line compatibility for the Java runtime used by controllers, agents, and CLI clients.
+    versions:
+      '2.555':
+        dependencies:
+          java:
+            ranges:
+              - '21'
+              - '25'
+            relationship: controller, agent, and CLI runtime
+            confidence: high
+            notes:
+              - Jenkins LTS 2.555.1 and newer in the 2.555 release line require Java 21 or Java 25.
+              - The same Java requirement applies to Jenkins controllers, all agent types, CLI clients, and other Jenkins system components.
+              - JDK versions used by jobs and build tools are independent and are not modeled by this entry.
+            sources:
+              - *jenkins_java_support_source
+            lastVerified: '2026-07-09'
+      '2.541':
+        dependencies:
+          java:
+            ranges:
+              - '17'
+              - '21'
+              - '25'
+            relationship: controller, agent, and CLI runtime
+            confidence: high
+            notes:
+              - Jenkins LTS 2.541.1 and newer in the 2.541 release line support Java 17, Java 21, or Java 25.
+              - The same Java requirement applies to Jenkins controllers, all agent types, CLI clients, and other Jenkins system components.
+              - JDK versions used by jobs and build tools are independent and are not modeled by this entry.
+            sources:
+              - *jenkins_java_support_source
+            lastVerified: '2026-07-09'
+      '2.479':
+        dependencies:
+          java:
+            ranges:
+              - '17'
+              - '21'
+            relationship: controller, agent, and CLI runtime
+            confidence: high
+            notes:
+              - Jenkins LTS 2.479.1 and newer in the 2.479 release line support Java 17 or Java 21.
+              - The same Java requirement applies to Jenkins controllers, all agent types, CLI clients, and other Jenkins system components.
+              - JDK versions used by jobs and build tools are independent and are not modeled by this entry.
+            sources:
+              - *jenkins_java_support_source
+            lastVerified: '2026-07-09'
