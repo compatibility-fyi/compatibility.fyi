@@ -1,0 +1,116 @@
+x-strimzi-1-1-kafka-source: &strimzi_1_1_kafka_source
+  title: Strimzi 1.1.0 Kafka Versions
+  url: https://github.com/strimzi/strimzi-kafka-operator/blob/1.1.0/kafka-versions.yaml
+  accessedAt: '2026-07-09'
+
+x-strimzi-1-1-platform-source: &strimzi_1_1_platform_source
+  title: Strimzi 1.1.0 Documentation Attributes
+  url: https://github.com/strimzi/strimzi-kafka-operator/blob/1.1.0/documentation/shared/attributes.adoc
+  accessedAt: '2026-07-09'
+
+x-strimzi-1-0-kafka-source: &strimzi_1_0_kafka_source
+  title: Strimzi 1.0.1 Kafka Versions
+  url: https://github.com/strimzi/strimzi-kafka-operator/blob/1.0.1/kafka-versions.yaml
+  accessedAt: '2026-07-09'
+
+x-strimzi-1-0-platform-source: &strimzi_1_0_platform_source
+  title: Strimzi 1.0.1 Documentation Attributes
+  url: https://github.com/strimzi/strimzi-kafka-operator/blob/1.0.1/documentation/shared/attributes.adoc
+  accessedAt: '2026-07-09'
+
+x-strimzi-0-51-kafka-source: &strimzi_0_51_kafka_source
+  title: Strimzi 0.51.0 Kafka Versions
+  url: https://github.com/strimzi/strimzi-kafka-operator/blob/0.51.0/kafka-versions.yaml
+  accessedAt: '2026-07-09'
+
+x-strimzi-0-51-platform-source: &strimzi_0_51_platform_source
+  title: Strimzi 0.51.0 Documentation Attributes
+  url: https://github.com/strimzi/strimzi-kafka-operator/blob/0.51.0/documentation/shared/attributes.adoc
+  accessedAt: '2026-07-09'
+
+projects:
+  strimzi-kafka-operator:
+    name: Strimzi Kafka Operator
+    categories:
+      - Messaging
+      - Kafka
+      - Kubernetes Operator
+    website: https://strimzi.io/
+    description: Kubernetes operator compatibility for Apache Kafka and Kubernetes versions.
+    versions:
+      '1.1.0':
+        dependencies:
+          apache-kafka:
+            ranges:
+              - '4.2.0'
+              - '4.2.1'
+              - '4.3.0'
+            relationship: managed Kafka cluster
+            confidence: high
+            notes:
+              - Strimzi 1.1.0 marks Apache Kafka 4.2.0, 4.2.1, and 4.3.0 as supported.
+              - Apache Kafka 4.3.0 is the default version for this Strimzi release.
+            sources:
+              - *strimzi_1_1_kafka_source
+            lastVerified: '2026-07-09'
+          kubernetes:
+            ranges:
+              - '>=1.30'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Strimzi 1.1.0 documentation requires Kubernetes 1.30 or later.
+            sources:
+              - *strimzi_1_1_platform_source
+            lastVerified: '2026-07-09'
+      '1.0.1':
+        dependencies:
+          apache-kafka:
+            ranges:
+              - '4.1.0'
+              - '4.1.1'
+              - '4.1.2'
+              - '4.2.0'
+            relationship: managed Kafka cluster
+            confidence: high
+            notes:
+              - Strimzi 1.0.1 marks Apache Kafka 4.1.0, 4.1.1, 4.1.2, and 4.2.0 as supported.
+              - Apache Kafka 4.2.0 is the default version for this Strimzi release.
+            sources:
+              - *strimzi_1_0_kafka_source
+            lastVerified: '2026-07-09'
+          kubernetes:
+            ranges:
+              - '>=1.30'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Strimzi 1.0.1 documentation requires Kubernetes 1.30 or later.
+            sources:
+              - *strimzi_1_0_platform_source
+            lastVerified: '2026-07-09'
+      '0.51.0':
+        dependencies:
+          apache-kafka:
+            ranges:
+              - '4.1.0'
+              - '4.1.1'
+              - '4.2.0'
+            relationship: managed Kafka cluster
+            confidence: high
+            notes:
+              - Strimzi 0.51.0 marks Apache Kafka 4.1.0, 4.1.1, and 4.2.0 as supported.
+              - Apache Kafka 4.2.0 is the default version for this Strimzi release.
+            sources:
+              - *strimzi_0_51_kafka_source
+            lastVerified: '2026-07-09'
+          kubernetes:
+            ranges:
+              - '>=1.30'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Strimzi 0.51.0 documentation requires Kubernetes 1.30 or later.
+            sources:
+              - *strimzi_0_51_platform_source
+            lastVerified: '2026-07-09'
