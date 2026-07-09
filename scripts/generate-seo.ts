@@ -86,6 +86,8 @@ async function loadDataset(): Promise<CompatibilityDataset> {
 
 function renderDocument(metadata: SeoMetadata, staticHtml: string, jsonLd: unknown): string {
   const head = renderHead(metadata, jsonLd);
+  const snapshot = `<div id="seo-snapshot" aria-hidden="true">${staticHtml}</div>`;
+
   return template
     .replace(/<title>.*?<\/title>/s, `<title>${escapeHtml(metadata.title)}</title>`)
     .replace(/<meta\s+name="description"\s+content="[^"]*"\s*\/?>/s, '')
@@ -96,7 +98,7 @@ function renderDocument(metadata: SeoMetadata, staticHtml: string, jsonLd: unkno
       '',
     )
     .replace('</head>', `${head}\n  </head>`)
-    .replace('<div id="root"></div>', `<div id="root">${staticHtml}</div>`);
+    .replace('<div id="root"></div>', `<div id="root"></div>${snapshot}`);
 }
 
 function renderHead(metadata: SeoMetadata, jsonLd: unknown): string {
@@ -105,6 +107,7 @@ function renderHead(metadata: SeoMetadata, jsonLd: unknown): string {
   const escapedDescription = escapeHtml(metadata.description);
 
   return [
+    '    <style id="seo-snapshot-style">#seo-snapshot{display:none!important}</style>',
     `    <meta name="description" content="${escapedDescription}" />`,
     '    <meta name="robots" content="index,follow" />',
     `    <link rel="canonical" href="${canonical}" />`,
