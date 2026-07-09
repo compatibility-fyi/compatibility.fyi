@@ -8,7 +8,7 @@ projects:
     name: Argo CD
     categories:
       - GitOps
-      - Continuous delivery
+      - Continuous Delivery
       - Kubernetes
     website: https://argo-cd.readthedocs.io/
     description: Declarative GitOps continuous delivery compatibility for Kubernetes versions.

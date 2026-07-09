@@ -19,7 +19,7 @@ projects:
     categories:
       - Networking
       - CNI
-      - Network policy
+      - Network Policy
       - Kubernetes
     website: https://cilium.io/
     description: eBPF networking, security, and observability compatibility for Kubernetes versions.

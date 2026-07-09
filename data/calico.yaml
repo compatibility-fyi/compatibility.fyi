@@ -24,7 +24,7 @@ projects:
     categories:
       - Networking
       - CNI
-      - Network policy
+      - Network Policy
       - Kubernetes
     website: https://docs.tigera.io/calico/
     description: Calico CNI and network policy compatibility for Kubernetes runtime versions.
