@@ -13,7 +13,7 @@ export function Layout({ children }: LayoutProps) {
           compatibility.fyi
         </a>
         <nav aria-label="Primary">
-          <a href="/docs/api">API</a>
+          <a href="/docs/api/">API</a>
           <a href="https://github.com/compatibility-fyi/compatibility.fyi">GitHub</a>
         </nav>
       </header>

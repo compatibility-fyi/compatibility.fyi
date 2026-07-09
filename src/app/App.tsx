@@ -8,16 +8,17 @@ import { usePageSeo } from './seo';
 const dataset = loadDataset();
 
 export function App({ path = window.location.pathname }: { path?: string }) {
-  const projectMatch = path.match(/^\/projects\/([^/]+)$/);
+  const normalizedPath = normalizePath(path);
+  const projectMatch = normalizedPath.match(/^\/projects\/([^/]+)$/);
   const seo = getSeoMetadata(path, dataset);
 
   usePageSeo(seo);
 
-  if (path === '/docs/api') {
+  if (normalizedPath === '/docs/api') {
     return <DocsApiPage />;
   }
 
-  if (path === '/projects') {
+  if (normalizedPath === '/projects') {
     return <LandingPage />;
   }
 
@@ -26,4 +27,8 @@ export function App({ path = window.location.pathname }: { path?: string }) {
   }
 
   return <LandingPage />;
+}
+
+function normalizePath(path: string): string {
+  return path.length > 1 ? path.replace(/\/+$/, '') : path;
 }

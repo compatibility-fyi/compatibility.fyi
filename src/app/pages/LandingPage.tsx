@@ -178,7 +178,7 @@ export function LandingPage() {
 
 function ProjectRow({ project }: { project: CatalogProject }) {
   return (
-    <a className="catalog-row" href={`/projects/${project.id}`} role="row">
+    <a className="catalog-row" href={`/projects/${project.id}/`} role="row">
       <span role="cell">
         <span className="catalog-project">
           <strong>{project.name}</strong>

@@ -40,13 +40,13 @@ const routes = [
     jsonLd: renderWebsiteJsonLd(),
   },
   {
-    path: '/docs/api',
+    path: '/docs/api/',
     metadata: getSeoMetadata('/docs/api', dataset),
     html: renderApiDocs(),
     jsonLd: renderApiJsonLd(),
   },
   ...projects.map(([projectId, project]) => ({
-    path: `/projects/${projectId}`,
+    path: `/projects/${projectId}/`,
     metadata: getProjectSeoMetadata(projectId, project),
     html: renderProject(projectId, project),
     jsonLd: renderProjectJsonLd(projectId, project),
@@ -132,12 +132,12 @@ async function writeRoute(path: string, html: string) {
 async function writeSitemap() {
   const sitemapPaths = [
     '/',
-    '/docs/api',
-    ...projects.map(([projectId]) => `/projects/${projectId}`),
+    '/docs/api/',
+    ...projects.map(([projectId]) => `/projects/${projectId}/`),
   ];
   const urls = sitemapPaths
     .map((path) => {
-      const priority = path === '/' ? '1.0' : path === '/docs/api' ? '0.7' : '0.8';
+      const priority = path === '/' ? '1.0' : path === '/docs/api/' ? '0.7' : '0.8';
       return [
         '  <url>',
         `    <loc>${absoluteUrl(path)}</loc>`,
@@ -180,7 +180,7 @@ function renderHome(): string {
       const categories = project.categories
         .map((category) => `<small>${escapeHtml(category)}</small>`)
         .join('');
-      return `<a class="catalog-row" href="/projects/${escapeAttribute(projectId)}"><span><span class="catalog-project"><strong>${escapeHtml(project.name)}</strong><span class="catalog-category-badges">${categories}</span></span></span><span>${versions} versions</span></a>`;
+      return `<a class="catalog-row" href="/projects/${escapeAttribute(projectId)}/"><span><span class="catalog-project"><strong>${escapeHtml(project.name)}</strong><span class="catalog-category-badges">${categories}</span></span></span><span>${versions} versions</span></a>`;
     })
     .join('');
 
@@ -280,7 +280,7 @@ function renderEvidence(entry: DependencyCompatibilityEntry): string {
 }
 
 function renderShell(main: string): string {
-  return `<header class="site-header"><a class="brand" href="/"><img alt="" aria-hidden="true" src="/icon-192.png" />${siteName}</a><nav aria-label="Primary"><a href="/docs/api">API</a><a href="https://github.com/compatibility-fyi/compatibility.fyi">GitHub</a></nav></header><main>${main}</main>`;
+  return `<header class="site-header"><a class="brand" href="/"><img alt="" aria-hidden="true" src="/icon-192.png" />${siteName}</a><nav aria-label="Primary"><a href="/docs/api/">API</a><a href="https://github.com/compatibility-fyi/compatibility.fyi">GitHub</a></nav></header><main>${main}</main>`;
 }
 
 function renderWebsiteJsonLd() {
@@ -298,9 +298,9 @@ function renderApiJsonLd() {
     '@context': 'https://schema.org',
     '@type': 'WebAPI',
     name: `${siteName} HTTP API v1`,
-    url: absoluteUrl('/docs/api'),
+    url: absoluteUrl('/docs/api/'),
     description: getSeoMetadata('/docs/api', dataset).description,
-    documentation: absoluteUrl('/docs/api'),
+    documentation: absoluteUrl('/docs/api/'),
   };
 }
 
@@ -315,7 +315,7 @@ function renderProjectJsonLd(projectId: string, project: ProjectCompatibility) {
     '@context': 'https://schema.org',
     '@type': 'Dataset',
     name: `${project.name} compatibility matrix`,
-    url: absoluteUrl(`/projects/${projectId}`),
+    url: absoluteUrl(`/projects/${projectId}/`),
     description: getProjectSeoMetadata(projectId, project).description,
     keywords: [...project.categories, ...dependencies].join(', '),
     isAccessibleForFree: true,

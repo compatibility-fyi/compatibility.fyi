@@ -20,7 +20,7 @@ export function getSeoMetadata(path: string, dataset: CompatibilityDataset): Seo
       title: `HTTP API v1 | ${siteName}`,
       description:
         'Use the compatibility.fyi HTTP API to list projects, inspect compatibility matrices, and check software version compatibility as JSON.',
-      canonicalPath: '/docs/api',
+      canonicalPath: '/docs/api/',
     };
   }
 
@@ -62,7 +62,7 @@ export function getProjectSeoMetadata(
   return {
     title: `${project.name} Compatibility Matrix | ${siteName}`,
     description,
-    canonicalPath: `/projects/${projectId}`,
+    canonicalPath: `/projects/${projectId}/`,
   };
 }
 

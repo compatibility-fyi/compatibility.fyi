@@ -40,18 +40,18 @@ describe('seo metadata', () => {
     expect(getSeoMetadata('/projects/sample/', dataset)).toMatchObject({
       title: 'Sample Project Compatibility Matrix | compatibility.fyi',
       description: 'Sample project compatibility metadata.',
-      canonicalPath: '/projects/sample',
+      canonicalPath: '/projects/sample/',
     });
   });
 
   it('returns API documentation metadata', () => {
     expect(getSeoMetadata('/docs/api', dataset)).toMatchObject({
       title: 'HTTP API v1 | compatibility.fyi',
-      canonicalPath: '/docs/api',
+      canonicalPath: '/docs/api/',
     });
   });
 
   it('builds absolute compatibility.fyi URLs', () => {
-    expect(absoluteUrl('/projects/sample')).toBe('https://compatibility.fyi/projects/sample');
+    expect(absoluteUrl('/projects/sample/')).toBe('https://compatibility.fyi/projects/sample/');
   });
 });
