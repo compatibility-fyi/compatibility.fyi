@@ -208,7 +208,7 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
             <option value="all">All versions</option>
             {versions.map((version) => (
               <option key={version} value={version}>
-                {project.name} {version}
+                {version}
               </option>
             ))}
           </select>

@@ -22,34 +22,6 @@ CI jobs, source trees, and vendor docs. That makes practical questions hard to a
 compatibility.fyi turns those claims into versioned metadata that people can inspect and tools can
 query.
 
-## Current Coverage
-
-The catalog currently includes compatibility data for:
-
-- Argo CD
-- Calico
-- cert-manager
-- Cilium
-- CloudNativePG
-- CoreDNS
-- Crossplane
-- Envoy Gateway
-- External Secrets Operator
-- Flux
-- GitLab Runner
-- Grafana
-- Harbor
-- Helm
-- Istio
-- Keycloak
-- Kubernetes Version Skew
-- Loki
-- Longhorn
-- Nextcloud
-- Prometheus Operator
-- Red Hat Advanced Cluster Management for Kubernetes
-- Rook Ceph
-
 ## Project Shape
 
 - Compatibility data is stored as YAML files in `data/`.
@@ -129,32 +101,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the contribution workflow.
 
 Project maintainers can also use [AGENTS.md](AGENTS.md) as a copy-paste prompt for coding agents
 that draft new YAML compatibility files.
-
-## Deployment
-
-The project deploys to Cloudflare Workers with Static Assets:
-
-```sh
-npm run deploy
-```
-
-## Roadmap
-
-Near-term data additions:
-
-- Backstage
-- Grafana Mimir and Tempo
-- KEDA
-- Knative
-- vSphere CSI, if a complete reliable public compatibility matrix can be found
-
-Compatibility domains to expand:
-
-- PostgreSQL client compatibility
-- Java runtime compatibility
-- GitHub Action compatibility
-- Terraform providers
-- Tool integrations for Renovate, Dependabot, Helm, Argo CD, and Backstage
 
 ## License
 

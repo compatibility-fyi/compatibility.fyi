@@ -903,6 +903,7 @@ th {
   .docs-definition-grid div,
   .endpoint-route,
   .quickstart-step,
+  tr,
   th,
   td {
     border-color: #2f3b4f;
@@ -1073,6 +1074,47 @@ th {
     white-space: nowrap;
   }
 
+  .table-wrap {
+    overflow-x: visible;
+  }
+
+  table {
+    display: block;
+    min-width: 0;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tbody {
+    display: grid;
+  }
+
+  tr {
+    border-bottom: 1px solid #d8dee8;
+    display: grid;
+    gap: 8px 14px;
+    grid-template-columns: minmax(44px, 64px) minmax(0, 1fr);
+    padding: 14px 0;
+  }
+
+  td {
+    border-bottom: 0;
+    min-width: 0;
+    padding: 0;
+  }
+
+  td:first-child {
+    color: #6b7280;
+    grid-row: 1 / span 3;
+    padding-top: 2px;
+  }
+
+  td:not(:first-child) {
+    grid-column: 2;
+  }
+
   .catalog-project {
     align-items: flex-start;
   }
@@ -1083,6 +1125,12 @@ th {
 
   .endpoint-route {
     justify-self: start;
+  }
+}
+
+@media (max-width: 820px) and (prefers-color-scheme: dark) {
+  tr {
+    border-color: #2f3b4f;
   }
 }
 
