@@ -1,3 +1,4 @@
+import { exports } from 'cloudflare:workers';
 import { describe, expect, it } from 'vitest';
 import { listProjects, loadDataset } from '../src/lib/data';
 import type {
@@ -18,6 +19,24 @@ interface CheckFixture {
 }
 
 describe('api', () => {
+  it('returns a bodyless CORS preflight response from the Worker runtime', async () => {
+    const response = await exports.default.fetch(
+      new Request('https://compatibility.fyi/api/v1/check', {
+        method: 'OPTIONS',
+        headers: {
+          Origin: 'https://example.com',
+          'Access-Control-Request-Method': 'POST',
+          'Access-Control-Request-Headers': 'content-type',
+        },
+      }),
+    );
+
+    expect(response.status).toBe(204);
+    expect(await response.text()).toBe('');
+    expect(response.headers.get('Access-Control-Allow-Origin')).toBe('*');
+    expect(response.headers.get('Access-Control-Allow-Methods')).toContain('POST');
+  });
+
   it('lists every YAML-backed project', async () => {
     const response = await handleApiRequest(
       new Request('https://compatibility.fyi/api/v1/projects'),

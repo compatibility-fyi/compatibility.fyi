@@ -8,18 +8,24 @@ export interface NormalizedVersion {
 
 const integerVersion = /^\d+$/;
 const exactVersion = /^v?\d+(?:\.\d+){0,2}$/;
-const embeddedVersion = /(?:^|[-_])v?(\d+(?:\.\d+){1,2})(?=$|[-_])/;
+const embeddedVersion =
+  /(?:^|[-_])v?(\d+(?:\.\d+){1,2}(?:-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?)(?=$|[-_])/;
 
 export function normalizeVersion(input: string): NormalizedVersion {
   const raw = input.trim();
-  const versionText = raw.match(exactVersion)?.[0] ?? raw.match(embeddedVersion)?.[1] ?? null;
-  const coerced = versionText ? semver.coerce(versionText) : null;
+  const embeddedVersionText = raw.match(embeddedVersion)?.[1] ?? null;
+  const versionText = raw.match(exactVersion)?.[0] ?? embeddedVersionText;
+  const validVersion =
+    semver.valid(raw, { loose: true }) ??
+    (embeddedVersionText ? semver.valid(embeddedVersionText, { loose: true }) : null);
+  const coerced = validVersion ? null : versionText ? semver.coerce(versionText) : null;
+  const semanticVersion = validVersion ?? coerced?.version ?? null;
 
-  if (coerced) {
+  if (semanticVersion) {
     return {
       raw,
-      normalized: integerVersion.test(raw) ? String(coerced.major) : coerced.version,
-      semver: coerced.version,
+      normalized: integerVersion.test(raw) && coerced ? String(coerced.major) : semanticVersion,
+      semver: semanticVersion,
     };
   }
 
@@ -48,25 +54,8 @@ export function versionSatisfiesRange(version: string, range: string): boolean {
     return normalized.normalized === range.trim().toLowerCase();
   }
 
-  return semver.satisfies(normalized.semver, normalizeRange(range), {
-    includePrerelease: true,
+  return semver.satisfies(normalized.semver, range.trim(), {
+    includePrerelease: false,
     loose: true,
   });
-}
-
-function normalizeRange(range: string): string {
-  return range
-    .split(/\s+/)
-    .filter(Boolean)
-    .map((part) => {
-      const match = part.match(/^(<=|>=|<|>|=)?(.+)$/);
-      if (!match) {
-        return part;
-      }
-
-      const [, operator = '', value] = match;
-      const normalized = normalizeVersion(value);
-      return normalized.semver ? `${operator}${normalized.semver}` : part;
-    })
-    .join(' ');
 }

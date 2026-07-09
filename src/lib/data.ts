@@ -1,4 +1,5 @@
 import type { CompatibilityDataset, ProjectSummary } from '../types/compatibility';
+import { mergeCompatibilityDatasets } from './dataset';
 import { parseCompatibilityYaml } from './validation';
 import { compareVersions } from './version';
 
@@ -10,18 +11,19 @@ const yamlModules = import.meta.glob<string>('../../data/*.yaml', {
 
 const dataSources = Object.entries(yamlModules)
   .sort(([left], [right]) => left.localeCompare(right))
-  .map(([, source]) => source);
+  .map(([name, source]) => ({ name, source }));
+
+let cachedDataset: CompatibilityDataset | undefined;
 
 export function loadDataset(): CompatibilityDataset {
-  return dataSources.map(parseCompatibilityYaml).reduce<CompatibilityDataset>(
-    (dataset, source) => ({
-      projects: {
-        ...dataset.projects,
-        ...source.projects,
-      },
-    }),
-    { projects: {} },
+  cachedDataset ??= mergeCompatibilityDatasets(
+    dataSources.map(({ name, source }) => ({
+      name,
+      dataset: parseCompatibilityYaml(source),
+    })),
   );
+
+  return cachedDataset;
 }
 
 export function listProjects(dataset: CompatibilityDataset): ProjectSummary[] {

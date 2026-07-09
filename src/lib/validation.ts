@@ -1,3 +1,4 @@
+import semver from 'semver';
 import { parse } from 'yaml';
 import type {
   CompatibilityDataset,
@@ -24,7 +25,10 @@ const movingVersionLabels = new Set([
   'head',
   'edge',
   'canary',
+  'stable',
+  'current',
 ]);
+const identifierPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 export function parseCompatibilityYaml(source: string): CompatibilityDataset {
   const parsed = parse(source) as unknown;
@@ -37,6 +41,7 @@ export function assertDataset(value: unknown): asserts value is CompatibilityDat
   const projects = asRecord(root.projects, 'projects');
 
   for (const [projectId, project] of Object.entries(projects)) {
+    assertIdentifier(projectId, `projects.${projectId}`);
     const projectRecord = asRecord(project, `projects.${projectId}`);
     assertString(projectRecord.name, `projects.${projectId}.name`);
     if (projectRecord.category !== undefined) {
@@ -53,17 +58,30 @@ export function assertDataset(value: unknown): asserts value is CompatibilityDat
       assertString(projectRecord.description, `projects.${projectId}.description`);
     }
     if (projectRecord.website !== undefined) {
-      assertUrl(projectRecord.website, `projects.${projectId}.website`);
+      assertHttpUrl(projectRecord.website, `projects.${projectId}.website`);
     }
     const versions = asRecord(projectRecord.versions, `projects.${projectId}.versions`);
+    const versionLabels = Object.keys(versions);
+    if (versionLabels.length === 0) {
+      throw new Error(`projects.${projectId}.versions must include at least one version`);
+    }
     for (const [version, versionData] of Object.entries(versions)) {
       assertStableVersionLabel(version, `projects.${projectId}.versions.${version}`);
       const dependencies = asRecord(
         asRecord(versionData, `projects.${projectId}.versions.${version}`).dependencies,
         `projects.${projectId}.versions.${version}.dependencies`,
       );
+      if (Object.keys(dependencies).length === 0) {
+        throw new Error(
+          `projects.${projectId}.versions.${version}.dependencies must include at least one dependency`,
+        );
+      }
 
       for (const [dependency, entry] of Object.entries(dependencies)) {
+        assertIdentifier(
+          dependency,
+          `projects.${projectId}.versions.${version}.dependencies.${dependency}`,
+        );
         assertCompatibilityEntry(
           entry,
           `projects.${projectId}.versions.${version}.dependencies.${dependency}`,
@@ -78,6 +96,9 @@ function assertCompatibilityEntry(
   path: string,
 ): asserts value is DependencyCompatibilityEntry {
   const entry = asRecord(value, path);
+  if (entry.status === 'compatible') {
+    throw new Error(`${path}.status must be omitted when compatibility ranges are provided`);
+  }
   entry.status ??= 'compatible';
 
   if (!compatibilityStatuses.has(entry.status as CompatibilityStatus)) {
@@ -86,7 +107,11 @@ function assertCompatibilityEntry(
 
   assertStringArray(entry.ranges, `${path}.ranges`);
   for (const [index, range] of entry.ranges.entries()) {
+    assertString(range, `${path}.ranges.${index}`);
     assertStableVersionLabel(range, `${path}.ranges.${index}`);
+    if (/[<>=~^*|]/.test(range) && semver.validRange(range, { loose: true }) === null) {
+      throw new Error(`${path}.ranges.${index} must be a valid semver range`);
+    }
   }
 
   if (entry.relationship !== undefined) {
@@ -98,6 +123,9 @@ function assertCompatibilityEntry(
   }
 
   assertStringArray(entry.notes, `${path}.notes`);
+  for (const [index, note] of entry.notes.entries()) {
+    assertString(note, `${path}.notes.${index}`);
+  }
   assertSources(entry.sources, `${path}.sources`);
 
   if (entry.lastVerified !== null) {
@@ -108,8 +136,23 @@ function assertCompatibilityEntry(
     throw new Error(`${path}.ranges must be empty when status is unknown`);
   }
 
+  if (entry.status !== 'unknown' && entry.ranges.length === 0) {
+    throw new Error(`${path}.ranges must include at least one range`);
+  }
+
   if (entry.confidence !== 'low' && entry.sources.length === 0) {
     throw new Error(`${path}.sources must include evidence when confidence is not low`);
+  }
+
+  if (
+    entry.confidence !== 'low' &&
+    !entry.sources.some((source) => source.accessedAt !== undefined)
+  ) {
+    throw new Error(`${path}.sources must include an accessedAt date when confidence is not low`);
+  }
+
+  if (entry.confidence === 'high' && entry.lastVerified === null) {
+    throw new Error(`${path}.lastVerified must include a date when confidence is high`);
   }
 }
 
@@ -121,7 +164,7 @@ function assertSources(value: unknown, path: string): asserts value is Compatibi
   for (const [index, source] of value.entries()) {
     const sourceRecord = asRecord(source, `${path}.${index}`);
     assertString(sourceRecord.title, `${path}.${index}.title`);
-    assertString(sourceRecord.url, `${path}.${index}.url`);
+    assertHttpUrl(sourceRecord.url, `${path}.${index}.url`);
     if (sourceRecord.accessedAt !== undefined) {
       assertDateString(sourceRecord.accessedAt, `${path}.${index}.accessedAt`);
     }
@@ -160,14 +203,33 @@ function assertDateString(value: unknown, path: string): asserts value is string
   if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
     throw new Error(`${path} must use YYYY-MM-DD format`);
   }
+
+  const [year, month, day] = value.split('-').map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  if (
+    date.getUTCFullYear() !== year ||
+    date.getUTCMonth() !== month - 1 ||
+    date.getUTCDate() !== day
+  ) {
+    throw new Error(`${path} must be a valid calendar date`);
+  }
 }
 
-function assertUrl(value: unknown, path: string): asserts value is string {
+function assertHttpUrl(value: unknown, path: string): asserts value is string {
   assertString(value, path);
   try {
-    new URL(value);
+    const url = new URL(value);
+    if (url.protocol !== 'http:' && url.protocol !== 'https:') {
+      throw new Error('unsupported protocol');
+    }
   } catch {
-    throw new Error(`${path} must be a valid URL`);
+    throw new Error(`${path} must be a valid HTTP or HTTPS URL`);
+  }
+}
+
+function assertIdentifier(value: string, path: string): void {
+  if (!identifierPattern.test(value)) {
+    throw new Error(`${path} must use a lowercase-dash identifier`);
   }
 }
 

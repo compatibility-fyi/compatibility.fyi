@@ -26,6 +26,14 @@ const dataset: CompatibilityDataset = {
               sources: [{ title: 'Fixture', url: 'https://example.com/runtime' }],
               lastVerified: '2026-07-08',
             },
+            unverified: {
+              status: 'unknown',
+              ranges: [],
+              confidence: 'medium',
+              notes: ['Upstream explicitly marks this combination as unverified'],
+              sources: [{ title: 'Fixture', url: 'https://example.com/unverified' }],
+              lastVerified: '2026-07-08',
+            },
           },
         },
       },
@@ -101,6 +109,32 @@ describe('compatibility engine', () => {
         dependencyVersion: '17',
       }).compatible,
     ).toBe('unknown');
+  });
+
+  it('matches patch releases to project minor-version rows', () => {
+    expect(
+      checkCompatibility(dataset, {
+        project: 'sample',
+        version: '1.4.2',
+        dependency: 'database',
+        dependencyVersion: '17',
+      }).compatible,
+    ).toBe('compatible');
+  });
+
+  it('returns evidence for intentionally unknown entries', () => {
+    expect(
+      checkCompatibility(dataset, {
+        project: 'sample',
+        version: '1',
+        dependency: 'unverified',
+        dependencyVersion: '1',
+      }),
+    ).toMatchObject({
+      compatible: 'unknown',
+      notes: ['Upstream explicitly marks this combination as unverified'],
+      sources: [{ title: 'Fixture', url: 'https://example.com/unverified' }],
+    });
   });
 
   it('summarizes compound checks as compatible when every dependency matches', () => {

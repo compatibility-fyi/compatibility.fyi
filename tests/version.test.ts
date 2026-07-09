@@ -24,6 +24,21 @@ describe('version utilities', () => {
     expect(versionSatisfiesRange('distroless-v1.38.0', '1.38.0')).toBe(true);
   });
 
+  it('preserves prerelease qualifiers', () => {
+    expect(normalizeVersion('1.2.3-beta.1').semver).toBe('1.2.3-beta.1');
+    expect(normalizeVersion('distroless-v1.38.0-beta.1').semver).toBe('1.38.0-beta.1');
+  });
+
+  it('does not match prereleases against stable ranges', () => {
+    expect(versionSatisfiesRange('1.2.3-beta.1', '1.2.3')).toBe(false);
+    expect(versionSatisfiesRange('1.2.3-beta.1', '>=1 <2')).toBe(false);
+  });
+
+  it('matches partial versions as semver release lines', () => {
+    expect(versionSatisfiesRange('2.11.5', '2.11')).toBe(true);
+    expect(versionSatisfiesRange('17.4.1', '17')).toBe(true);
+  });
+
   it('matches compatible ranges', () => {
     expect(versionSatisfiesRange('17', '>=15 <=17')).toBe(true);
   });

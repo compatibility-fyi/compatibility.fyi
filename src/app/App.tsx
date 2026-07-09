@@ -2,7 +2,7 @@ import { DocsApiPage } from './pages/DocsApiPage';
 import { LandingPage } from './pages/LandingPage';
 import { ProjectPage } from './pages/ProjectPage';
 import { loadDataset } from '../lib/data';
-import { getSeoMetadata } from '../lib/seo';
+import { getSeoMetadata, normalizePath } from '../lib/seo';
 import { usePageSeo } from './seo';
 
 const dataset = loadDataset();
@@ -27,8 +27,4 @@ export function App({ path = window.location.pathname }: { path?: string }) {
   }
 
   return <LandingPage />;
-}
-
-function normalizePath(path: string): string {
-  return path.length > 1 ? path.replace(/\/+$/, '') : path;
 }

@@ -34,7 +34,8 @@ export function checkCompatibility(
         null);
   const compatible = getCompatibilityResult(entry, dependencyExists, matchedRange);
   const includeEvidence =
-    Boolean(matchedRange) || (dependencyExists && compatible === 'incompatible');
+    dependencyExists &&
+    (entry.status === 'unknown' || Boolean(matchedRange) || compatible === 'incompatible');
 
   return {
     ...request,
@@ -98,15 +99,27 @@ function getCompatibilityResult(
 function findVersionKey(versions: string[], requestedVersion: string): string | null {
   const normalizedRequest = normalizeVersion(requestedVersion);
 
+  const exactMatch = versions.find((version) => {
+    const normalizedVersion = normalizeVersion(version);
+
+    if (normalizedRequest.semver && normalizedVersion.semver) {
+      return normalizedRequest.semver === normalizedVersion.semver;
+    }
+
+    return normalizedVersion.normalized === normalizedRequest.normalized;
+  });
+
+  if (exactMatch) {
+    return exactMatch;
+  }
+
   return (
-    versions.find((version) => {
-      const normalizedVersion = normalizeVersion(version);
-
-      if (normalizedRequest.semver && normalizedVersion.semver) {
-        return normalizedRequest.semver === normalizedVersion.semver;
-      }
-
-      return normalizedVersion.normalized === normalizedRequest.normalized;
-    }) ?? null
+    [...versions]
+      .sort((left, right) => versionSpecificity(right) - versionSpecificity(left))
+      .find((version) => versionSatisfiesRange(requestedVersion, version)) ?? null
   );
+}
+
+function versionSpecificity(version: string): number {
+  return version.match(/^v?\d+(?:\.\d+){0,2}$/)?.[0].split('.').length ?? 0;
 }

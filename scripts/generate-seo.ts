@@ -6,9 +6,12 @@ import type {
   DependencyCompatibilityEntry,
   ProjectCompatibility,
 } from '../src/types/compatibility';
+import { mergeCompatibilityDatasets } from '../src/lib/dataset';
+import { formatDependencyName } from '../src/lib/format';
 import { parseCompatibilityYaml } from '../src/lib/validation';
 import {
   absoluteUrl,
+  countProjectDependencies,
   getProjectSeoMetadata,
   getSeoMetadata,
   siteName,
@@ -68,20 +71,13 @@ async function loadDataset(): Promise<CompatibilityDataset> {
     .sort((left, right) => left.localeCompare(right));
 
   const sources = await Promise.all(
-    files.map(async (file) =>
-      parseCompatibilityYaml(await readFile(join(dataDirectory, file), 'utf8')),
-    ),
+    files.map(async (file) => ({
+      name: file,
+      dataset: parseCompatibilityYaml(await readFile(join(dataDirectory, file), 'utf8')),
+    })),
   );
 
-  return sources.reduce<CompatibilityDataset>(
-    (current, source) => ({
-      projects: {
-        ...current.projects,
-        ...source.projects,
-      },
-    }),
-    { projects: {} },
-  );
+  return mergeCompatibilityDatasets(sources);
 }
 
 function renderDocument(metadata: SeoMetadata, staticHtml: string, jsonLd: unknown): string {
@@ -240,7 +236,7 @@ function renderProject(projectId: string, project: ProjectCompatibility): string
   const rows = compatibilityEntries
     .map(
       ({ version, dependency, entry }) =>
-        `<tr><td>${escapeHtml(version)}</td><td><strong>${formatDependencyName(dependency)}</strong>${entry.relationship ? `<small class="relationship-label">${escapeHtml(entry.relationship)}</small>` : ''}</td><td>${entry.ranges.map((range) => `<span class="range-chip">${escapeHtml(range)}</span>`).join(' ')}</td><td>${renderEvidence(entry)}</td></tr>`,
+        `<tr><td>${escapeHtml(version)}</td><td><strong>${escapeHtml(formatDependencyName(dependency))}</strong>${entry.relationship ? `<small class="relationship-label">${escapeHtml(entry.relationship)}</small>` : ''}</td><td>${entry.ranges.map((range) => `<span class="range-chip">${escapeHtml(range)}</span>`).join(' ')}</td><td>${renderEvidence(entry)}</td></tr>`,
     )
     .join('');
 
@@ -257,7 +253,7 @@ function renderProject(projectId: string, project: ProjectCompatibility): string
     </section>
     <section class="project-summary" aria-label="${escapeAttribute(project.name)} compatibility summary">
       <div><span class="summary-value">${versions.length}</span><span class="summary-label">Project versions</span></div>
-      <div><span class="summary-value">${countDependencies(project)}</span><span class="summary-label">Dependencies</span></div>
+      <div><span class="summary-value">${countProjectDependencies(project)}</span><span class="summary-label">Dependencies</span></div>
       <div><span class="summary-value">${compatibilityEntries.length}</span><span class="summary-label">Compatibility entries</span></div>
     </section>
     <section class="table-section">
@@ -336,40 +332,6 @@ function renderProjectJsonLd(projectId: string, project: ProjectCompatibility) {
       url: siteUrl,
     },
   };
-}
-
-function countDependencies(project: ProjectCompatibility): number {
-  return new Set(
-    Object.values(project.versions).flatMap((version) => Object.keys(version.dependencies)),
-  ).size;
-}
-
-function formatDependencyName(dependency: string): string {
-  const wordLabels: Record<string, string> = {
-    api: 'API',
-    aurora: 'Aurora',
-    coredns: 'CoreDNS',
-    cni: 'CNI',
-    gitlab: 'GitLab',
-    kubernetes: 'Kubernetes',
-    mariadb: 'MariaDB',
-    mce: 'MCE',
-    mssql: 'Microsoft SQL Server',
-    mysql: 'MySQL',
-    openshift: 'OpenShift',
-    php: 'PHP',
-    postgresql: 'PostgreSQL',
-    powershell: 'PowerShell',
-    python: 'Python',
-    rhacm: 'RHACM',
-    sql: 'SQL',
-  };
-
-  return dependency
-    .split(/[-_\s]+/)
-    .filter(Boolean)
-    .map((word) => wordLabels[word.toLowerCase()] ?? word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
 }
 
 function escapeHtml(value: string): string {

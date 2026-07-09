@@ -6,12 +6,23 @@ import type {
 } from '../types/compatibility';
 
 const dataset = loadDataset();
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
+};
 
 export async function handleApiRequest(request: Request): Promise<Response> {
   const url = new URL(request.url);
 
   if (request.method === 'OPTIONS') {
-    return json({}, 204);
+    return new Response(null, {
+      status: 204,
+      headers: {
+        ...corsHeaders,
+        'Access-Control-Max-Age': '86400',
+      },
+    });
   }
 
   if (request.method !== 'GET' && request.method !== 'POST') {
@@ -185,9 +196,7 @@ function json(body: unknown, status = 200): Response {
     status,
     headers: {
       'Cache-Control': 'public, max-age=60',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
+      ...corsHeaders,
     },
   });
 }

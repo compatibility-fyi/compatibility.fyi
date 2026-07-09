@@ -17,10 +17,10 @@
     "dev": "vite",
     "build": "tsc -b && vite build && tsx scripts/generate-seo.ts",
     "preview": "vite preview",
-    "typecheck": "tsc -b --pretty false",
+    "typecheck": "wrangler types worker-configuration.d.ts --include-runtime=false --check && tsc -b --pretty false",
     "test": "vitest run",
-    "validate:data": "tsx scripts/validate-data.ts data/*.yaml",
-    "lint": "npm run validate:data && eslint . && prettier --check .",
+    "validate:data": "tsx scripts/validate-data.ts",
+    "lint": "npm run validate:data -- data/*.yaml && eslint . && prettier --check .",
     "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.43.2",
+    "@cloudflare/vitest-pool-workers": "^0.18.4",
     "@cloudflare/workers-types": "^5.20260708.1",
     "@eslint/js": "^10.0.1",
     "@types/node": "^26.1.1",

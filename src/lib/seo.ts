@@ -2,8 +2,6 @@ import type { CompatibilityDataset, ProjectCompatibility } from '../types/compat
 
 export const siteUrl = 'https://compatibility.fyi';
 export const siteName = 'compatibility.fyi';
-export const defaultSeoDescription =
-  'Open software compatibility metadata for projects, versions, dependencies, and automation.';
 
 export interface SeoMetadata {
   title: string;
@@ -52,9 +50,7 @@ export function getProjectSeoMetadata(
   project: ProjectCompatibility,
 ): SeoMetadata {
   const versions = Object.keys(project.versions).length;
-  const dependencies = new Set(
-    Object.values(project.versions).flatMap((version) => Object.keys(version.dependencies)),
-  ).size;
+  const dependencies = countProjectDependencies(project);
   const description =
     project.description ??
     `${project.name} compatibility metadata for ${versions} project versions and ${dependencies} dependencies.`;
@@ -70,7 +66,13 @@ export function absoluteUrl(path: string): string {
   return new URL(path, siteUrl).toString();
 }
 
-function normalizePath(path: string): string {
+export function countProjectDependencies(project: ProjectCompatibility): number {
+  return new Set(
+    Object.values(project.versions).flatMap((version) => Object.keys(version.dependencies)),
+  ).size;
+}
+
+export function normalizePath(path: string): string {
   const withoutTrailingSlash = path.length > 1 ? path.replace(/\/+$/, '') : path;
   return withoutTrailingSlash || '/';
 }
