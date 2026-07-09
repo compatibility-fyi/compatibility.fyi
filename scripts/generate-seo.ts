@@ -249,7 +249,10 @@ function renderProject(projectId: string, project: ProjectCompatibility): string
       <a class="back-link" href="/">&larr; Back to projects</a>
       <div class="project-heading">
         <h1>${escapeHtml(project.name)}</h1>
-        ${project.website ? `<a class="project-website" href="${escapeAttribute(project.website)}">Website</a>` : ''}
+        <div class="project-actions">
+          ${project.website ? `<a class="project-action-link" href="${escapeAttribute(project.website)}" rel="noreferrer" target="_blank">Website</a>` : ''}
+          <a class="project-action-link" href="${escapeAttribute(getProjectSourceUrl(projectId))}" rel="noreferrer" target="_blank">View source</a>
+        </div>
       </div>
     </section>
     <section class="project-summary" aria-label="${escapeAttribute(project.name)} compatibility summary">
@@ -284,6 +287,10 @@ function renderEvidence(entry: DependencyCompatibilityEntry): string {
 
 function renderShell(main: string): string {
   return `<header class="site-header"><a class="brand" href="/"><img alt="" aria-hidden="true" src="/icon-192.png" />${siteName}</a><nav aria-label="Primary"><a href="/docs/api/">API</a><a href="https://github.com/compatibility-fyi/compatibility.fyi/blob/master/CONTRIBUTING.md">Contribute</a><a href="https://github.com/compatibility-fyi/compatibility.fyi">GitHub</a></nav></header><main>${main}</main>`;
+}
+
+function getProjectSourceUrl(projectId: string): string {
+  return `https://github.com/compatibility-fyi/compatibility.fyi/blob/master/data/${projectId}.yaml`;
 }
 
 function renderWebsiteJsonLd() {

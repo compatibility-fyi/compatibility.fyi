@@ -389,11 +389,18 @@ p {
   font-size: clamp(2.2rem, 6vw, 4rem);
 }
 
-.project-website {
+.project-actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.project-action-link {
   display: inline-flex;
   font-size: 0.96rem;
   font-weight: 700;
-  margin-top: 10px;
   max-width: 100%;
   overflow-wrap: anywhere;
   word-break: break-word;
@@ -981,7 +988,7 @@ th {
 
   a,
   .catalog-row strong,
-  .project-website,
+  .project-action-link,
   .back-link:hover {
     color: #8ab4f8;
   }

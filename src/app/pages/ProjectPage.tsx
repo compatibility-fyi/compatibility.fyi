@@ -9,6 +9,7 @@ import type {
 import { Layout } from '../components/Layout';
 
 const dataset = loadDataset();
+const githubRepositoryUrl = 'https://github.com/compatibility-fyi/compatibility.fyi';
 
 interface CompatibilityRow {
   version: string;
@@ -96,6 +97,7 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
   }, [query, rows, selectedVersion]);
 
   const dependencyCount = new Set(rows.map((row) => row.dependency)).size;
+  const sourceUrl = `${githubRepositoryUrl}/blob/master/data/${projectId}.yaml`;
 
   if (!project) {
     return (
@@ -120,16 +122,21 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
         <div className="project-heading">
           <div>
             <h1>{project.name}</h1>
-            {project.website ? (
-              <a
-                className="project-website"
-                href={project.website}
-                rel="noreferrer"
-                target="_blank"
-              >
-                Website
+            <div className="project-actions">
+              {project.website ? (
+                <a
+                  className="project-action-link"
+                  href={project.website}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  Website
+                </a>
+              ) : null}
+              <a className="project-action-link" href={sourceUrl} rel="noreferrer" target="_blank">
+                View source
               </a>
-            ) : null}
+            </div>
           </div>
         </div>
       </section>
