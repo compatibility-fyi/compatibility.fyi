@@ -1,0 +1,96 @@
+x-rundeck-system-requirements-source: &rundeck_system_requirements_source
+  title: Rundeck Instance System Requirements
+  url: https://docs.rundeck.com/docs/administration/install/system-requirements.html
+  accessedAt: '2026-07-09'
+
+x-rundeck-mysql-source: &rundeck_mysql_source
+  title: Rundeck MySQL Database Backend
+  url: https://docs.rundeck.com/docs/administration/configuration/database/mysql.html
+  accessedAt: '2026-07-09'
+
+x-rundeck-postgres-source: &rundeck_postgres_source
+  title: Rundeck PostgreSQL Database Backend
+  url: https://docs.rundeck.com/docs/administration/configuration/database/postgres.html
+  accessedAt: '2026-07-09'
+
+projects:
+  rundeck:
+    name: Rundeck
+    categories:
+      - Automation
+      - Runbook Automation
+      - Operations
+      - Java
+    website: https://www.rundeck.com/open-source
+    description: Rundeck Open Source compatibility for Java runtimes and supported production database backends.
+    versions:
+      '6.0':
+        dependencies:
+          java:
+            ranges:
+              - '>=17 <=25'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Rundeck system requirements state that as of Rundeck 6.0.0, Java 17 is the minimum supported production runtime with support through Java 25.
+              - Rundeck docs recommend Azul Zulu OpenJDK as the Java distribution used for builds and testing.
+            sources:
+              - *rundeck_system_requirements_source
+            lastVerified: '2026-07-09'
+          mariadb:
+            ranges:
+              - '>=10.11.6'
+            relationship: database
+            confidence: high
+            notes:
+              - Rundeck system requirements list MariaDB 10.11.6 or newer as a supported production database backend.
+            sources:
+              - *rundeck_system_requirements_source
+            lastVerified: '2026-07-09'
+          mysql:
+            ranges:
+              - '>=8.0.35 <8.1'
+              - '>=8.4'
+            relationship: database
+            confidence: high
+            notes:
+              - Rundeck system requirements list MySQL 8.0.35 or newer and MySQL 8.4 or newer as supported production database backends.
+              - Rundeck MySQL backend documentation states that MySQL 8.4 is supported as of Rundeck 6.0.0.
+              - Rundeck MySQL backend documentation recommends MySQL 8.0.35 or newer for the MySQL 8.0 line.
+            sources:
+              - *rundeck_system_requirements_source
+              - *rundeck_mysql_source
+            lastVerified: '2026-07-09'
+          postgresql:
+            ranges:
+              - '>=15.5'
+            relationship: database
+            confidence: high
+            notes:
+              - Rundeck system requirements list PostgreSQL 15.5 or newer as a supported production database backend.
+              - Rundeck PostgreSQL backend documentation notes that EnterpriseDB is not supported even though it is based on PostgreSQL.
+            sources:
+              - *rundeck_system_requirements_source
+              - *rundeck_postgres_source
+            lastVerified: '2026-07-09'
+          microsoft-sql-server:
+            ranges:
+              - '>=2022 <2023'
+            relationship: database
+            confidence: high
+            notes:
+              - Rundeck system requirements list Microsoft SQL Server 2022 as a supported production database backend.
+            sources:
+              - *rundeck_system_requirements_source
+            lastVerified: '2026-07-09'
+          oracle:
+            ranges:
+              - '>=19'
+              - '19c'
+            relationship: database
+            confidence: high
+            notes:
+              - Rundeck system requirements list Oracle 19c or newer as a supported production database backend.
+            sources:
+              - *rundeck_system_requirements_source
+            lastVerified: '2026-07-09'
