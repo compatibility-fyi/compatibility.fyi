@@ -14,6 +14,9 @@ export function Layout({ children }: LayoutProps) {
         </a>
         <nav aria-label="Primary">
           <a href="/docs/api/">API</a>
+          <a href="https://github.com/compatibility-fyi/compatibility.fyi/blob/master/CONTRIBUTING.md">
+            Contribute
+          </a>
           <a href="https://github.com/compatibility-fyi/compatibility.fyi">GitHub</a>
         </nav>
       </header>
