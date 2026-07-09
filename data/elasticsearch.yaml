@@ -1,0 +1,168 @@
+x-elastic-stack-compatibility-source: &elastic_stack_compatibility_source
+  title: Elastic Stack Version Compatibility
+  url: https://www.elastic.co/docs/deploy-manage/deploy/self-managed/installing-elasticsearch
+  accessedAt: '2026-07-09'
+
+x-elasticsearch-9-4-3-source: &elasticsearch_9_4_3_source
+  title: Elasticsearch 9.4.3 Release
+  url: https://github.com/elastic/elasticsearch/releases/tag/v9.4.3
+  accessedAt: '2026-07-09'
+
+x-elasticsearch-9-3-7-source: &elasticsearch_9_3_7_source
+  title: Elasticsearch 9.3.7 Release
+  url: https://github.com/elastic/elasticsearch/releases/tag/v9.3.7
+  accessedAt: '2026-07-09'
+
+x-elasticsearch-8-19-18-source: &elasticsearch_8_19_18_source
+  title: Elasticsearch 8.19.18 Release
+  url: https://github.com/elastic/elasticsearch/releases/tag/v8.19.18
+  accessedAt: '2026-07-09'
+
+projects:
+  elasticsearch:
+    name: Elasticsearch
+    categories:
+      - Search
+      - Analytics
+      - Databases
+    website: https://www.elastic.co/elasticsearch
+    description: Elasticsearch compatibility with other self-managed Elastic Stack components.
+    versions:
+      '9.4.3':
+        dependencies:
+          kibana:
+            ranges:
+              - '9.4.3'
+            relationship: Elastic Stack component
+            confidence: high
+            notes:
+              - Elastic requires the same version across the entire self-managed Elastic Stack.
+            sources:
+              - *elastic_stack_compatibility_source
+              - *elasticsearch_9_4_3_source
+            lastVerified: '2026-07-09'
+          logstash:
+            ranges:
+              - '9.4.3'
+            relationship: Elastic Stack component
+            confidence: high
+            notes:
+              - Elastic requires the same version across the entire self-managed Elastic Stack.
+            sources:
+              - *elastic_stack_compatibility_source
+              - *elasticsearch_9_4_3_source
+            lastVerified: '2026-07-09'
+          beats:
+            ranges:
+              - '9.4.3'
+            relationship: Elastic Stack component
+            confidence: high
+            notes:
+              - Elastic requires the same version across the entire self-managed Elastic Stack.
+            sources:
+              - *elastic_stack_compatibility_source
+              - *elasticsearch_9_4_3_source
+            lastVerified: '2026-07-09'
+          elastic-agent:
+            ranges:
+              - '9.4.3'
+            relationship: Elastic Stack component
+            confidence: high
+            notes:
+              - Elastic requires the same version across the entire self-managed Elastic Stack.
+            sources:
+              - *elastic_stack_compatibility_source
+              - *elasticsearch_9_4_3_source
+            lastVerified: '2026-07-09'
+      '9.3.7':
+        dependencies:
+          kibana:
+            ranges:
+              - '9.3.7'
+            relationship: Elastic Stack component
+            confidence: high
+            notes:
+              - Elastic requires the same version across the entire self-managed Elastic Stack.
+            sources:
+              - *elastic_stack_compatibility_source
+              - *elasticsearch_9_3_7_source
+            lastVerified: '2026-07-09'
+          logstash:
+            ranges:
+              - '9.3.7'
+            relationship: Elastic Stack component
+            confidence: high
+            notes:
+              - Elastic requires the same version across the entire self-managed Elastic Stack.
+            sources:
+              - *elastic_stack_compatibility_source
+              - *elasticsearch_9_3_7_source
+            lastVerified: '2026-07-09'
+          beats:
+            ranges:
+              - '9.3.7'
+            relationship: Elastic Stack component
+            confidence: high
+            notes:
+              - Elastic requires the same version across the entire self-managed Elastic Stack.
+            sources:
+              - *elastic_stack_compatibility_source
+              - *elasticsearch_9_3_7_source
+            lastVerified: '2026-07-09'
+          elastic-agent:
+            ranges:
+              - '9.3.7'
+            relationship: Elastic Stack component
+            confidence: high
+            notes:
+              - Elastic requires the same version across the entire self-managed Elastic Stack.
+            sources:
+              - *elastic_stack_compatibility_source
+              - *elasticsearch_9_3_7_source
+            lastVerified: '2026-07-09'
+      '8.19.18':
+        dependencies:
+          kibana:
+            ranges:
+              - '8.19.18'
+            relationship: Elastic Stack component
+            confidence: high
+            notes:
+              - Elastic requires the same version across the entire self-managed Elastic Stack.
+            sources:
+              - *elastic_stack_compatibility_source
+              - *elasticsearch_8_19_18_source
+            lastVerified: '2026-07-09'
+          logstash:
+            ranges:
+              - '8.19.18'
+            relationship: Elastic Stack component
+            confidence: high
+            notes:
+              - Elastic requires the same version across the entire self-managed Elastic Stack.
+            sources:
+              - *elastic_stack_compatibility_source
+              - *elasticsearch_8_19_18_source
+            lastVerified: '2026-07-09'
+          beats:
+            ranges:
+              - '8.19.18'
+            relationship: Elastic Stack component
+            confidence: high
+            notes:
+              - Elastic requires the same version across the entire self-managed Elastic Stack.
+            sources:
+              - *elastic_stack_compatibility_source
+              - *elasticsearch_8_19_18_source
+            lastVerified: '2026-07-09'
+          elastic-agent:
+            ranges:
+              - '8.19.18'
+            relationship: Elastic Stack component
+            confidence: high
+            notes:
+              - Elastic requires the same version across the entire self-managed Elastic Stack.
+            sources:
+              - *elastic_stack_compatibility_source
+              - *elasticsearch_8_19_18_source
+            lastVerified: '2026-07-09'
