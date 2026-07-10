@@ -12,14 +12,17 @@ const embeddedVersion =
   /(?:^|[-_])v?(\d+(?:\.\d+){1,2}(?:-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?)(?=$|[-_])/;
 const partialVersionWithSuffix =
   /^v?(\d+)\.(\d+)((?:-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?)$/;
+const underscorePrereleaseSeparator =
+  /(v?\d+(?:\.\d+){1,2})_(?=(?:alpha|beta|preview|pre|rc|cr|snapshot|dev|ea|milestone|[abm])(?:[._-]?\d+)?(?:[._+-]|$))/i;
 
 export function normalizeVersion(input: string): NormalizedVersion {
   const raw = input.trim();
-  const embeddedVersionText = raw.match(embeddedVersion)?.[1] ?? null;
-  const versionText = raw.match(exactVersion)?.[0] ?? embeddedVersionText;
+  const parsableVersion = raw.replace(underscorePrereleaseSeparator, '$1-');
+  const embeddedVersionText = parsableVersion.match(embeddedVersion)?.[1] ?? null;
+  const versionText = parsableVersion.match(exactVersion)?.[0] ?? embeddedVersionText;
   const expandedVersionText = versionText ? expandPartialVersion(versionText) : null;
   const validVersion =
-    semver.valid(raw, { loose: true }) ??
+    semver.valid(parsableVersion, { loose: true }) ??
     (embeddedVersionText ? semver.valid(embeddedVersionText, { loose: true }) : null) ??
     (expandedVersionText ? semver.valid(expandedVersionText, { loose: true }) : null);
   const coerced = validVersion ? null : versionText ? semver.coerce(versionText) : null;

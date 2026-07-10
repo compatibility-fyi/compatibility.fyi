@@ -27,14 +27,30 @@ describe('version utilities', () => {
   it('preserves prerelease qualifiers', () => {
     expect(normalizeVersion('1.2.3-beta.1').semver).toBe('1.2.3-beta.1');
     expect(normalizeVersion('18.2-rc2').semver).toBe('18.2.0-rc2');
+    expect(normalizeVersion('18.2_beta2').semver).toBe('18.2.0-beta2');
     expect(normalizeVersion('distroless-v1.38.0-beta.1').semver).toBe('1.38.0-beta.1');
     expect(normalizeVersion('distroless-v1.38-beta.1').semver).toBe('1.38.0-beta.1');
+    expect(normalizeVersion('distroless_v1.38_beta.1').semver).toBe('1.38.0-beta.1');
   });
 
-  it('does not match prereleases against stable ranges', () => {
-    expect(versionSatisfiesRange('1.2.3-beta.1', '1.2.3')).toBe(false);
-    expect(versionSatisfiesRange('1.2.3-beta.1', '>=1 <2')).toBe(false);
-    expect(versionSatisfiesRange('18.2-rc2', '>=14 <19')).toBe(false);
+  it.each([
+    '1.2.3-beta.1',
+    '18.2-rc2',
+    '18.2_alpha1',
+    '18.2_beta2',
+    '18.2_beta2+build.1',
+    '18.2_preview1',
+    '18.2_SNAPSHOT',
+    '18.2_a1',
+    '18.2_b1',
+    '18.2_ea',
+    '18.2_M1',
+  ])('does not match prerelease %s against stable ranges', (version) => {
+    expect(versionSatisfiesRange(version, '>=1 <19')).toBe(false);
+  });
+
+  it('still extracts stable versions from tags with non-prerelease suffixes', () => {
+    expect(versionSatisfiesRange('distroless_v1.38.0_debug', '>=1 <2')).toBe(true);
   });
 
   it('matches partial versions as semver release lines', () => {

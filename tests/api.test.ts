@@ -170,26 +170,29 @@ describe('api', () => {
     expect(body.sources).toEqual(fixture.entry.sources);
   });
 
-  it('does not treat partial prerelease versions as stable releases', async () => {
-    const response = await handleApiRequest(
-      new Request(
-        `https://compatibility.fyi/api/v1/check?${new URLSearchParams({
-          project: 'keycloak',
-          version: '26',
-          dependency: 'postgresql',
-          dependencyVersion: '18.2-rc2',
-        })}`,
-      ),
-    );
-    const body = (await response.json()) as {
-      compatible: string;
-      matchedRange: string | null;
-    };
+  it.each(['18.2-rc2', '18.2_beta2', '18.2_SNAPSHOT'])(
+    'does not treat prerelease %s as a stable release',
+    async (dependencyVersion) => {
+      const response = await handleApiRequest(
+        new Request(
+          `https://compatibility.fyi/api/v1/check?${new URLSearchParams({
+            project: 'keycloak',
+            version: '26',
+            dependency: 'postgresql',
+            dependencyVersion,
+          })}`,
+        ),
+      );
+      const body = (await response.json()) as {
+        compatible: string;
+        matchedRange: string | null;
+      };
 
-    expect(response.status).toBe(200);
-    expect(body.compatible).toBe('incompatible');
-    expect(body.matchedRange).toBeNull();
-  });
+      expect(response.status).toBe(200);
+      expect(body.compatible).toBe('incompatible');
+      expect(body.matchedRange).toBeNull();
+    },
+  );
 
   it('returns unknown for unknown dependencies', async () => {
     const project = projectSummaries[0];
