@@ -9,7 +9,11 @@ claims easy to audit and safe for tools to consume.
 2. Use the project id as the top-level key under `projects`.
 3. Add versions and dependencies with ranges, relationship, confidence, notes, sources, and
    `lastVerified`.
-4. Run `npm run lint` before opening a pull request.
+4. Open a pull request with the YAML change. CI validates the data and runs all required checks.
+
+Contributors do not need to install Node.js or run npm commands. If you already have the development
+environment available, you may optionally run `npm run lint` before opening the pull request for
+faster feedback.
 
 ## Using a coding agent
 
