@@ -62,7 +62,15 @@ describe('seo metadata', () => {
   it('returns not-found metadata for unknown dependency pages', () => {
     expect(getSeoMetadata('/projects/sample/database/', dataset)).toMatchObject({
       title: 'Compatibility page not found | compatibility.fyi',
-      canonicalPath: '/projects/sample/database',
+      robots: 'noindex,follow',
+    });
+    expect(getSeoMetadata('/projects/sample/database/', dataset).canonicalPath).toBeUndefined();
+  });
+
+  it('does not treat arbitrary paths as the homepage', () => {
+    expect(getSeoMetadata('/does-not-exist', dataset)).toEqual({
+      title: 'Page not found | compatibility.fyi',
+      description: 'The requested compatibility.fyi page does not exist.',
       robots: 'noindex,follow',
     });
   });

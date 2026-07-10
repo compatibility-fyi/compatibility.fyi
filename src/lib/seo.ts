@@ -14,7 +14,7 @@ export const robotsContent =
 export interface SeoMetadata {
   title: string;
   description: string;
-  canonicalPath: string;
+  canonicalPath?: string;
   robots?: string;
 }
 
@@ -44,7 +44,6 @@ export function getSeoMetadata(path: string, dataset: CompatibilityDataset): Seo
     return {
       title: `Compatibility page not found | ${siteName}`,
       description: `No compatibility metadata exists for ${projectId} and ${dependencyId}.`,
-      canonicalPath: normalizedPath,
       robots: 'noindex,follow',
     };
   }
@@ -60,16 +59,23 @@ export function getSeoMetadata(path: string, dataset: CompatibilityDataset): Seo
     return {
       title: `Project not found | ${siteName}`,
       description: `No compatibility metadata exists for ${projectId}.`,
-      canonicalPath: normalizedPath,
       robots: 'noindex,follow',
     };
   }
 
+  if (normalizedPath === '/' || normalizedPath === '/projects') {
+    return {
+      title: `${siteName} | Open Software Compatibility Metadata`,
+      description:
+        'Find source-backed compatibility matrices for software projects, runtimes, databases, Kubernetes versions, operators, and automation tools.',
+      canonicalPath: '/',
+    };
+  }
+
   return {
-    title: `${siteName} | Open Software Compatibility Metadata`,
-    description:
-      'Find source-backed compatibility matrices for software projects, runtimes, databases, Kubernetes versions, operators, and automation tools.',
-    canonicalPath: '/',
+    title: `Page not found | ${siteName}`,
+    description: 'The requested compatibility.fyi page does not exist.',
+    robots: 'noindex,follow',
   };
 }
 

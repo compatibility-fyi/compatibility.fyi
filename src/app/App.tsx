@@ -1,6 +1,7 @@
 import { DocsApiPage } from './pages/DocsApiPage';
 import { DependencyPage } from './pages/DependencyPage';
 import { LandingPage } from './pages/LandingPage';
+import { NotFoundPage } from './pages/NotFoundPage';
 import { ProjectPage } from './pages/ProjectPage';
 import { loadDataset } from '../lib/data';
 import { getSeoMetadata, normalizePath } from '../lib/seo';
@@ -20,7 +21,7 @@ export function App({ path = window.location.pathname }: { path?: string }) {
     return <DocsApiPage />;
   }
 
-  if (normalizedPath === '/projects') {
+  if (normalizedPath === '/' || normalizedPath === '/projects') {
     return <LandingPage />;
   }
 
@@ -37,5 +38,5 @@ export function App({ path = window.location.pathname }: { path?: string }) {
     return <ProjectPage projectId={decodeURIComponent(projectMatch[1])} />;
   }
 
-  return <LandingPage />;
+  return <NotFoundPage />;
 }

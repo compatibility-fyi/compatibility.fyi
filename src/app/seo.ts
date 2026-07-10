@@ -13,18 +13,28 @@ export function usePageSeo(metadata: SeoMetadata) {
     setMetaTag('property', 'og:type', 'website');
     setMetaTag('property', 'og:title', metadata.title);
     setMetaTag('property', 'og:description', metadata.description);
-    setMetaTag('property', 'og:url', absoluteUrl(metadata.canonicalPath));
     setMetaTag('property', 'og:image', absoluteUrl('/icon-512.png'));
     setMetaTag('name', 'twitter:card', 'summary');
     setMetaTag('name', 'twitter:title', metadata.title);
     setMetaTag('name', 'twitter:description', metadata.description);
     setMetaTag('name', 'twitter:image', absoluteUrl('/icon-512.png'));
-    setCanonical(metadata.canonicalPath);
+    if (metadata.canonicalPath) {
+      setMetaTag('property', 'og:url', absoluteUrl(metadata.canonicalPath));
+      setCanonical(metadata.canonicalPath);
+    } else {
+      removeMetaTag('property', 'og:url');
+      setCanonical();
+    }
   }, [metadata]);
 }
 
-function setCanonical(path: string) {
+function setCanonical(path?: string) {
   let link = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+
+  if (!path) {
+    link?.remove();
+    return;
+  }
 
   if (!link) {
     link = document.createElement('link');
@@ -45,4 +55,8 @@ function setMetaTag(attribute: 'name' | 'property', key: string, content: string
   }
 
   tag.content = content;
+}
+
+function removeMetaTag(attribute: 'name' | 'property', key: string) {
+  document.querySelector<HTMLMetaElement>(`meta[${attribute}="${key}"]`)?.remove();
 }

@@ -1,14 +1,12 @@
-import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 
+import { loadCompatibilityDataset } from './compatibility-data-plugin';
 import type {
-  CompatibilityDataset,
   DependencyCompatibilityEntry,
   ProjectCompatibility,
 } from '../src/types/compatibility';
-import { mergeCompatibilityDatasets } from '../src/lib/dataset';
 import { formatDependencyName } from '../src/lib/format';
-import { parseCompatibilityYaml } from '../src/lib/validation';
 import {
   absoluteUrl,
   countProjectDependencies,
@@ -27,9 +25,8 @@ import {
 import { compareVersions } from '../src/lib/version';
 
 const distClient = resolve('dist/client');
-const dataDirectory = resolve('data');
 
-const dataset = await loadDataset();
+const dataset = await loadCompatibilityDataset();
 const template = await readFile(join(distClient, 'index.html'), 'utf8');
 const projects = Object.entries(dataset.projects).sort(([, left], [, right]) =>
   left.name.localeCompare(right.name, undefined, { sensitivity: 'base' }),
@@ -92,23 +89,10 @@ for (const route of routes) {
 
 await writeSitemap();
 await writeRobots();
+await writeLlms();
+await writeNotFound();
 
 console.log(`generated SEO assets for ${routes.length} routes`);
-
-async function loadDataset(): Promise<CompatibilityDataset> {
-  const files = (await readdir(dataDirectory))
-    .filter((file) => file.endsWith('.yaml'))
-    .sort((left, right) => left.localeCompare(right));
-
-  const sources = await Promise.all(
-    files.map(async (file) => ({
-      name: file,
-      dataset: parseCompatibilityYaml(await readFile(join(dataDirectory, file), 'utf8')),
-    })),
-  );
-
-  return mergeCompatibilityDatasets(sources);
-}
 
 function validateGeneratedRoutes(generatedRoutes: GeneratedRoute[]) {
   const paths = new Set<string>();
@@ -128,7 +112,7 @@ function validateGeneratedRoutes(generatedRoutes: GeneratedRoute[]) {
   }
 }
 
-function renderDocument(metadata: SeoMetadata, staticHtml: string, jsonLd: unknown): string {
+function renderDocument(metadata: SeoMetadata, staticHtml: string, jsonLd?: unknown): string {
   const head = renderHead(metadata, jsonLd);
 
   return template
@@ -144,26 +128,30 @@ function renderDocument(metadata: SeoMetadata, staticHtml: string, jsonLd: unkno
     .replace('<div id="root"></div>', `<div id="root">${staticHtml}</div>`);
 }
 
-function renderHead(metadata: SeoMetadata, jsonLd: unknown): string {
-  const canonical = absoluteUrl(metadata.canonicalPath);
+function renderHead(metadata: SeoMetadata, jsonLd?: unknown): string {
   const escapedTitle = escapeHtml(metadata.title);
   const escapedDescription = escapeHtml(metadata.description);
+  const canonical = metadata.canonicalPath ? absoluteUrl(metadata.canonicalPath) : undefined;
 
   return [
     `    <meta name="description" content="${escapedDescription}" />`,
     `    <meta name="robots" content="${metadata.robots ?? robotsContent}" />`,
-    `    <link rel="canonical" href="${canonical}" />`,
+    ...(canonical ? [`    <link rel="canonical" href="${canonical}" />`] : []),
     `    <meta property="og:site_name" content="${siteName}" />`,
     '    <meta property="og:type" content="website" />',
     `    <meta property="og:title" content="${escapedTitle}" />`,
     `    <meta property="og:description" content="${escapedDescription}" />`,
-    `    <meta property="og:url" content="${canonical}" />`,
+    ...(canonical ? [`    <meta property="og:url" content="${canonical}" />`] : []),
     `    <meta property="og:image" content="${absoluteUrl('/icon-512.png')}" />`,
     '    <meta name="twitter:card" content="summary" />',
     `    <meta name="twitter:title" content="${escapedTitle}" />`,
     `    <meta name="twitter:description" content="${escapedDescription}" />`,
     `    <meta name="twitter:image" content="${absoluteUrl('/icon-512.png')}" />`,
-    `    <script type="application/ld+json">${escapeScriptJson(JSON.stringify(jsonLd))}</script>`,
+    ...(jsonLd === undefined
+      ? []
+      : [
+          `    <script type="application/ld+json">${escapeScriptJson(JSON.stringify(jsonLd))}</script>`,
+        ]),
   ].join('\n');
 }
 
@@ -200,6 +188,55 @@ async function writeRobots() {
   );
 }
 
+async function writeLlms() {
+  const projectLinks = projects
+    .map(([projectId, project]) => {
+      const description = project.description ? `: ${singleLine(project.description)}` : '';
+      return `- [${project.name}](${absoluteUrl(`/projects/${projectId}/`)})${description}`;
+    })
+    .join('\n');
+  const dependencyLinks = projects
+    .flatMap(([projectId, project]) =>
+      getProjectDependencyIds(project).map(
+        (dependencyId) =>
+          `- [${project.name} ${formatDependencyName(dependencyId)} compatibility](${absoluteUrl(`/projects/${projectId}/${dependencyId}/`)})`,
+      ),
+    )
+    .join('\n');
+
+  await writeFile(
+    join(distClient, 'llms.txt'),
+    [
+      `# ${siteName}`,
+      '',
+      '> Source-backed software version compatibility metadata for humans and automation.',
+      '',
+      'compatibility.fyi answers whether a project version is documented to work with a dependency version. Every compatibility claim includes upstream evidence, confidence, notes, and a verification date.',
+      '',
+      '## Core resources',
+      '',
+      `- [Compatibility catalog](${absoluteUrl('/')})`,
+      `- [HTTP API documentation](${absoluteUrl('/docs/api/')})`,
+      `- [XML sitemap](${absoluteUrl('/sitemap.xml')})`,
+      '- [GitHub repository](https://github.com/compatibility-fyi/compatibility.fyi)',
+      '',
+      '## Projects',
+      '',
+      projectLinks,
+      '',
+      '## Compatibility guides',
+      '',
+      dependencyLinks,
+      '',
+    ].join('\n'),
+  );
+}
+
+async function writeNotFound() {
+  const metadata = getSeoMetadata('/404', dataset);
+  await writeFile(join(distClient, '404.html'), renderDocument(metadata, renderNotFound()));
+}
+
 function renderHome(): string {
   const categoryCounts = new Map<string, number>();
   for (const [, project] of projects) {
@@ -208,10 +245,15 @@ function renderHome(): string {
     }
   }
 
-  const categories = [...categoryCounts.entries()]
-    .sort(([left], [right]) => left.localeCompare(right))
-    .map(([category, count]) => `<li>${escapeHtml(category)} (${count})</li>`)
-    .join('');
+  const categoryButtons = [
+    `<button class="active" type="button"><span>All</span><span>${projects.length}</span></button>`,
+    ...[...categoryCounts.entries()]
+      .sort(([left], [right]) => left.localeCompare(right))
+      .map(
+        ([category, count]) =>
+          `<button type="button"><span>${escapeHtml(category)}</span><span>${count}</span></button>`,
+      ),
+  ].join('');
 
   const projectRows = projects
     .map(([projectId, project]) => {
@@ -219,7 +261,7 @@ function renderHome(): string {
       const categories = project.categories
         .map((category) => `<small>${escapeHtml(category)}</small>`)
         .join('');
-      return `<a class="catalog-row" href="/projects/${escapeAttribute(projectId)}/"><span><span class="catalog-project"><strong>${escapeHtml(project.name)}</strong><span class="catalog-category-badges">${categories}</span></span></span><span>${versions} versions</span></a>`;
+      return `<a class="catalog-row" href="/projects/${escapeAttribute(projectId)}/" role="row"><span role="cell"><span class="catalog-project"><strong>${escapeHtml(project.name)}</strong><span class="catalog-category-badges" aria-label="Categories">${categories}</span></span></span><span role="cell">${versions} ${versions === 1 ? 'version' : 'versions'}</span></a>`;
     })
     .join('');
 
@@ -229,14 +271,51 @@ function renderHome(): string {
       <p>Compatibility information is scattered across support matrices, release notes, source trees, and upgrade guides. compatibility.fyi collects that evidence in one open catalog so humans and automation can answer whether two software versions are known to work together.</p>
     </section>
     <section class="catalog-layout">
+      <div class="catalog-search" aria-label="Project search">
+        <label class="sr-only" for="project-search">Search projects</label>
+        <input id="project-search" type="search" placeholder="Search projects..." />
+      </div>
       <aside class="catalog-sidebar" aria-label="Categories">
         <h2>Categories</h2>
-        <ul>${categories}</ul>
+        <nav>${categoryButtons}</nav>
       </aside>
       <div class="catalog-results">
         <div class="catalog-results-heading"><h2>All projects</h2><span>${projects.length} projects</span></div>
-        <div class="catalog-table" role="table" aria-label="Compatibility projects">${projectRows}</div>
+        <div class="catalog-table" role="table" aria-label="Compatibility projects">
+          <div class="catalog-row catalog-row-header" role="row"><span role="columnheader">Project</span><span role="columnheader">Known versions</span></div>
+          ${projectRows}
+        </div>
       </div>
+    </section>
+    <section class="catalog-notes">
+      <article>
+        <h2>Structured Compatibility Data</h2>
+        <p>Compatibility evidence is often buried in release notes, support tables, issue trackers, and source trees. compatibility.fyi turns source-backed compatibility claims into versioned YAML and JSON that can be reviewed, diffed, validated, and queried.</p>
+      </article>
+      <article>
+        <h2>Built For Humans And Automation</h2>
+        <p>The catalog is readable in the browser, but the real goal is automation. Renovate, Dependabot, Helm, Argo CD, Backstage, and CI pipelines should be able to check whether a dependency update is compatible before it reaches production.</p>
+      </article>
+      <article>
+        <h2>Maintained By The Community</h2>
+        <p>The catalog only works if project maintainers and users contribute compatibility matrices backed by primary sources. Add a YAML file, cite the upstream evidence, and open a pull request so the data can be reviewed and kept current.</p>
+        <div class="catalog-links" aria-label="Contribution links">
+          <a href="https://github.com/compatibility-fyi/compatibility.fyi/blob/master/CONTRIBUTING.md">Contributing guide</a>
+          <a href="https://github.com/compatibility-fyi/compatibility.fyi/blob/master/AGENTS.md">Agent prompt</a>
+          <a href="https://github.com/compatibility-fyi/compatibility.fyi">GitHub repository</a>
+        </div>
+      </article>
+    </section>`,
+  );
+}
+
+function renderNotFound(): string {
+  return renderShell(
+    `<section class="page-heading">
+      <a class="back-link" href="/">&larr; Back to projects</a>
+      <p class="eyebrow">404</p>
+      <h1>Page not found</h1>
+      <p>The requested compatibility page does not exist.</p>
     </section>`,
   );
 }
@@ -557,6 +636,10 @@ function getDependencySources(project: ProjectCompatibility, dependencyId: strin
         .map((source) => [source.url, source]),
     ).values(),
   ];
+}
+
+function singleLine(value: string): string {
+  return value.replace(/\s+/g, ' ').trim();
 }
 
 function escapeHtml(value: string): string {
