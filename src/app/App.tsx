@@ -1,4 +1,5 @@
 import { DocsApiPage } from './pages/DocsApiPage';
+import { DependencyPage } from './pages/DependencyPage';
 import { LandingPage } from './pages/LandingPage';
 import { ProjectPage } from './pages/ProjectPage';
 import { loadDataset } from '../lib/data';
@@ -9,6 +10,7 @@ const dataset = loadDataset();
 
 export function App({ path = window.location.pathname }: { path?: string }) {
   const normalizedPath = normalizePath(path);
+  const dependencyMatch = normalizedPath.match(/^\/projects\/([^/]+)\/([^/]+)$/);
   const projectMatch = normalizedPath.match(/^\/projects\/([^/]+)$/);
   const seo = getSeoMetadata(path, dataset);
 
@@ -22,8 +24,17 @@ export function App({ path = window.location.pathname }: { path?: string }) {
     return <LandingPage />;
   }
 
+  if (dependencyMatch) {
+    return (
+      <DependencyPage
+        dependencyId={decodeURIComponent(dependencyMatch[2])}
+        projectId={decodeURIComponent(dependencyMatch[1])}
+      />
+    );
+  }
+
   if (projectMatch) {
-    return <ProjectPage projectId={projectMatch[1]} />;
+    return <ProjectPage projectId={decodeURIComponent(projectMatch[1])} />;
   }
 
   return <LandingPage />;

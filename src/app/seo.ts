@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { absoluteUrl, siteName, type SeoMetadata } from '../lib/seo';
+import { absoluteUrl, robotsContent, siteName, type SeoMetadata } from '../lib/seo';
 
 export function usePageSeo(metadata: SeoMetadata) {
   useEffect(() => {
@@ -8,7 +8,7 @@ export function usePageSeo(metadata: SeoMetadata) {
     document.documentElement.lang = 'en';
 
     setMetaTag('name', 'description', metadata.description);
-    setMetaTag('name', 'robots', 'index,follow');
+    setMetaTag('name', 'robots', metadata.robots ?? robotsContent);
     setMetaTag('property', 'og:site_name', siteName);
     setMetaTag('property', 'og:type', 'website');
     setMetaTag('property', 'og:title', metadata.title);

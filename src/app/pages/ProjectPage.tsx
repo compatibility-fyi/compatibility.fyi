@@ -98,6 +98,16 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
   }, [query, rows, selectedVersion]);
 
   const dependencyCount = new Set(rows.map((row) => row.dependency)).size;
+  const dependencyGuides = [...new Set(rows.map((row) => row.dependency))]
+    .map((dependency) => ({
+      dependency,
+      versions: new Set(
+        rows.filter((row) => row.dependency === dependency).map((row) => row.version),
+      ).size,
+    }))
+    .sort((left, right) =>
+      formatDependencyName(left.dependency).localeCompare(formatDependencyName(right.dependency)),
+    );
   const sourceUrl = `${githubRepositoryUrl}/blob/master/data/${projectId}.yaml`;
 
   if (!project) {
@@ -154,6 +164,28 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
         <div>
           <span className="summary-value">{rows.length}</span>
           <span className="summary-label">Compatibility entries</span>
+        </div>
+      </section>
+
+      <section className="dependency-index" aria-labelledby="dependency-guides-title">
+        <div className="section-title-row">
+          <div>
+            <p className="eyebrow">Compatibility guides</p>
+            <h2 id="dependency-guides-title">Browse by dependency</h2>
+          </div>
+          <span>{dependencyGuides.length} guides</span>
+        </div>
+        <div className="dependency-index-grid">
+          {dependencyGuides.map(({ dependency, versions: guideVersions }) => (
+            <a href={`/projects/${projectId}/${dependency}/`} key={dependency}>
+              <strong>
+                {project.name} {formatDependencyName(dependency)} compatibility
+              </strong>
+              <span>
+                {guideVersions} {guideVersions === 1 ? 'project version' : 'project versions'}
+              </span>
+            </a>
+          ))}
         </div>
       </section>
 
@@ -247,7 +279,11 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
                 <tr key={`${version}-${dependency}`}>
                   <td>{version}</td>
                   <td>
-                    <strong>{formatDependencyName(dependency)}</strong>
+                    <strong>
+                      <a className="dependency-link" href={`/projects/${projectId}/${dependency}/`}>
+                        {formatDependencyName(dependency)}
+                      </a>
+                    </strong>
                     {entry.relationship ? (
                       <small className="relationship-label">{entry.relationship}</small>
                     ) : null}

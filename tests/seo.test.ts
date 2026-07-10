@@ -39,7 +39,7 @@ describe('seo metadata', () => {
   it('normalizes project canonical paths without trailing slashes', () => {
     expect(getSeoMetadata('/projects/sample/', dataset)).toMatchObject({
       title: 'Sample Project Compatibility Matrix | compatibility.fyi',
-      description: 'Sample project compatibility metadata.',
+      description: expect.stringContaining('Sample project compatibility metadata.'),
       canonicalPath: '/projects/sample/',
     });
   });
@@ -48,6 +48,22 @@ describe('seo metadata', () => {
     expect(getSeoMetadata('/docs/api', dataset)).toMatchObject({
       title: 'HTTP API v1 | compatibility.fyi',
       canonicalPath: '/docs/api/',
+    });
+  });
+
+  it('returns search-intent metadata for project dependency pages', () => {
+    expect(getSeoMetadata('/projects/sample/runtime/', dataset)).toMatchObject({
+      title: 'Sample Project Runtime Version Compatibility | compatibility.fyi',
+      description: expect.stringContaining('Sample Project Runtime version compatibility'),
+      canonicalPath: '/projects/sample/runtime/',
+    });
+  });
+
+  it('returns not-found metadata for unknown dependency pages', () => {
+    expect(getSeoMetadata('/projects/sample/database/', dataset)).toMatchObject({
+      title: 'Compatibility page not found | compatibility.fyi',
+      canonicalPath: '/projects/sample/database',
+      robots: 'noindex,follow',
     });
   });
 

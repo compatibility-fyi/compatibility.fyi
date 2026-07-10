@@ -3,7 +3,10 @@ import { createRoot } from 'react-dom/client';
 import { App } from './App';
 import './styles.css';
 
-createRoot(document.getElementById('root') as HTMLElement).render(
+const root = document.getElementById('root') as HTMLElement;
+root.replaceChildren();
+
+createRoot(root).render(
   <StrictMode>
     <App />
   </StrictMode>,

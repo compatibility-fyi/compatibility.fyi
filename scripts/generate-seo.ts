@@ -12,8 +12,14 @@ import { parseCompatibilityYaml } from '../src/lib/validation';
 import {
   absoluteUrl,
   countProjectDependencies,
+  getDependencyEntries,
+  getDependencyLastVerified,
+  getDependencySeoMetadata,
+  getProjectDependencyIds,
+  getProjectLastVerified,
   getProjectSeoMetadata,
   getSeoMetadata,
+  robotsContent,
   siteName,
   siteUrl,
   type SeoMetadata,
@@ -29,7 +35,33 @@ const projects = Object.entries(dataset.projects).sort(([, left], [, right]) =>
   left.name.localeCompare(right.name, undefined, { sensitivity: 'base' }),
 );
 
-const routes = [
+interface GeneratedRoute {
+  path: string;
+  metadata: SeoMetadata;
+  html: string;
+  jsonLd: unknown;
+  lastModified?: string | null;
+}
+
+const projectRoutes: GeneratedRoute[] = projects.map(([projectId, project]) => ({
+  path: `/projects/${projectId}/`,
+  metadata: getProjectSeoMetadata(projectId, project),
+  html: renderProject(projectId, project),
+  jsonLd: renderProjectJsonLd(projectId, project),
+  lastModified: getProjectLastVerified(project),
+}));
+
+const dependencyRoutes: GeneratedRoute[] = projects.flatMap(([projectId, project]) =>
+  getProjectDependencyIds(project).map((dependencyId) => ({
+    path: `/projects/${projectId}/${dependencyId}/`,
+    metadata: getDependencySeoMetadata(projectId, project, dependencyId),
+    html: renderDependency(projectId, project, dependencyId),
+    jsonLd: renderDependencyJsonLd(projectId, project, dependencyId),
+    lastModified: getDependencyLastVerified(project, dependencyId),
+  })),
+);
+
+const routes: GeneratedRoute[] = [
   {
     path: '/',
     metadata: getSeoMetadata('/', dataset),
@@ -48,13 +80,11 @@ const routes = [
     html: renderApiDocs(),
     jsonLd: renderApiJsonLd(),
   },
-  ...projects.map(([projectId, project]) => ({
-    path: `/projects/${projectId}/`,
-    metadata: getProjectSeoMetadata(projectId, project),
-    html: renderProject(projectId, project),
-    jsonLd: renderProjectJsonLd(projectId, project),
-  })),
+  ...projectRoutes,
+  ...dependencyRoutes,
 ];
+
+validateGeneratedRoutes(routes);
 
 for (const route of routes) {
   await writeRoute(route.path, renderDocument(route.metadata, route.html, route.jsonLd));
@@ -80,9 +110,26 @@ async function loadDataset(): Promise<CompatibilityDataset> {
   return mergeCompatibilityDatasets(sources);
 }
 
+function validateGeneratedRoutes(generatedRoutes: GeneratedRoute[]) {
+  const paths = new Set<string>();
+
+  for (const route of generatedRoutes) {
+    if (paths.has(route.path)) {
+      throw new Error(`Duplicate generated SEO route: ${route.path}`);
+    }
+    paths.add(route.path);
+
+    if (
+      route.path.match(/^\/projects\/[^/]+\/[^/]+\/$/) &&
+      route.metadata.description.length < 50
+    ) {
+      throw new Error(`Dependency SEO description is too short for ${route.path}`);
+    }
+  }
+}
+
 function renderDocument(metadata: SeoMetadata, staticHtml: string, jsonLd: unknown): string {
   const head = renderHead(metadata, jsonLd);
-  const snapshot = `<div id="seo-snapshot" aria-hidden="true">${staticHtml}</div>`;
 
   return template
     .replace(/<title>.*?<\/title>/s, `<title>${escapeHtml(metadata.title)}</title>`)
@@ -94,7 +141,7 @@ function renderDocument(metadata: SeoMetadata, staticHtml: string, jsonLd: unkno
       '',
     )
     .replace('</head>', `${head}\n  </head>`)
-    .replace('<div id="root"></div>', `<div id="root"></div>${snapshot}`);
+    .replace('<div id="root"></div>', `<div id="root">${staticHtml}</div>`);
 }
 
 function renderHead(metadata: SeoMetadata, jsonLd: unknown): string {
@@ -103,9 +150,8 @@ function renderHead(metadata: SeoMetadata, jsonLd: unknown): string {
   const escapedDescription = escapeHtml(metadata.description);
 
   return [
-    '    <style id="seo-snapshot-style">#seo-snapshot{display:none!important}</style>',
     `    <meta name="description" content="${escapedDescription}" />`,
-    '    <meta name="robots" content="index,follow" />',
+    `    <meta name="robots" content="${metadata.robots ?? robotsContent}" />`,
     `    <link rel="canonical" href="${canonical}" />`,
     `    <meta property="og:site_name" content="${siteName}" />`,
     '    <meta property="og:type" content="website" />',
@@ -129,19 +175,13 @@ async function writeRoute(path: string, html: string) {
 }
 
 async function writeSitemap() {
-  const sitemapPaths = [
-    '/',
-    '/docs/api/',
-    ...projects.map(([projectId]) => `/projects/${projectId}/`),
-  ];
-  const urls = sitemapPaths
-    .map((path) => {
-      const priority = path === '/' ? '1.0' : path === '/docs/api/' ? '0.7' : '0.8';
+  const urls = routes
+    .filter((route) => route.path !== '/projects')
+    .map((route) => {
       return [
         '  <url>',
-        `    <loc>${absoluteUrl(path)}</loc>`,
-        '    <changefreq>weekly</changefreq>',
-        `    <priority>${priority}</priority>`,
+        `    <loc>${absoluteUrl(route.path)}</loc>`,
+        ...(route.lastModified ? [`    <lastmod>${route.lastModified}</lastmod>`] : []),
         '  </url>',
       ].join('\n');
     })
@@ -236,8 +276,14 @@ function renderProject(projectId: string, project: ProjectCompatibility): string
   const rows = compatibilityEntries
     .map(
       ({ version, dependency, entry }) =>
-        `<tr><td>${escapeHtml(version)}</td><td><strong>${escapeHtml(formatDependencyName(dependency))}</strong>${entry.relationship ? `<small class="relationship-label">${escapeHtml(entry.relationship)}</small>` : ''}</td><td>${entry.ranges.map((range) => `<span class="range-chip">${escapeHtml(range)}</span>`).join(' ')}</td><td>${renderEvidence(entry)}</td></tr>`,
+        `<tr><td>${escapeHtml(version)}</td><td><strong><a class="dependency-link" href="/projects/${escapeAttribute(projectId)}/${escapeAttribute(dependency)}/">${escapeHtml(formatDependencyName(dependency))}</a></strong>${entry.relationship ? `<small class="relationship-label">${escapeHtml(entry.relationship)}</small>` : ''}</td><td>${entry.ranges.map((range) => `<span class="range-chip">${escapeHtml(range)}</span>`).join(' ')}</td><td>${renderEvidence(entry)}</td></tr>`,
     )
+    .join('');
+  const dependencyGuides = getProjectDependencyIds(project)
+    .map((dependencyId) => {
+      const versionCount = getDependencyEntries(project, dependencyId).length;
+      return `<a href="/projects/${escapeAttribute(projectId)}/${escapeAttribute(dependencyId)}/"><strong>${escapeHtml(project.name)} ${escapeHtml(formatDependencyName(dependencyId))} compatibility</strong><span>${versionCount} ${versionCount === 1 ? 'project version' : 'project versions'}</span></a>`;
+    })
     .join('');
 
   return renderShell(
@@ -256,6 +302,10 @@ function renderProject(projectId: string, project: ProjectCompatibility): string
       <div><span class="summary-value">${countProjectDependencies(project)}</span><span class="summary-label">Dependencies</span></div>
       <div><span class="summary-value">${compatibilityEntries.length}</span><span class="summary-label">Compatibility entries</span></div>
     </section>
+    <section class="dependency-index" aria-labelledby="dependency-guides-title">
+      <div class="section-title-row"><div><p class="eyebrow">Compatibility guides</p><h2 id="dependency-guides-title">Browse by dependency</h2></div><span>${countProjectDependencies(project)} guides</span></div>
+      <div class="dependency-index-grid">${dependencyGuides}</div>
+    </section>
     <section class="table-section">
       <div class="section-title-row"><h2>Compatibility matrix</h2></div>
       <div class="table-wrap">
@@ -264,6 +314,60 @@ function renderProject(projectId: string, project: ProjectCompatibility): string
           <tbody>${rows}</tbody>
         </table>
       </div>
+    </section>`,
+  );
+}
+
+function renderDependency(
+  projectId: string,
+  project: ProjectCompatibility,
+  dependencyId: string,
+): string {
+  const dependencyName = formatDependencyName(dependencyId);
+  const metadata = getDependencySeoMetadata(projectId, project, dependencyId);
+  const entries = getDependencyEntries(project, dependencyId);
+  const sources = getDependencySources(project, dependencyId);
+  const lastVerified = getDependencyLastVerified(project, dependencyId);
+  const answers = entries
+    .map(
+      ([version, entry]) => `<article>
+        <div class="dependency-version-heading"><span>${escapeHtml(project.name)} version</span><h3>${escapeHtml(version)}</h3></div>
+        <div>
+          <p class="dependency-range-label">Documented ${escapeHtml(dependencyName)} versions</p>
+          <div class="range-list">${entry.ranges.map((range) => `<span class="range-chip">${escapeHtml(range)}</span>`).join(' ')}</div>
+          ${entry.notes.map((note) => `<p class="dependency-answer-note">${escapeHtml(note)}</p>`).join('')}
+          <p class="dependency-verification">${escapeHtml(entry.confidence)} confidence${entry.lastVerified ? ` · verified ${escapeHtml(entry.lastVerified)}` : ''}${entry.relationship ? ` · ${escapeHtml(entry.relationship)}` : ''}</p>
+        </div>
+      </article>`,
+    )
+    .join('');
+  const sourceList = sources
+    .map(
+      (source) =>
+        `<li><a href="${escapeAttribute(source.url)}">${escapeHtml(source.title)}</a>${source.accessedAt ? `<span>Accessed ${escapeHtml(source.accessedAt)}</span>` : ''}</li>`,
+    )
+    .join('');
+
+  return renderShell(
+    `<section class="page-heading dependency-heading">
+      <a class="back-link" href="/projects/${escapeAttribute(projectId)}/">&larr; Back to ${escapeHtml(project.name)}</a>
+      <p class="eyebrow">Source-backed version compatibility</p>
+      <h1>${escapeHtml(project.name)} ${escapeHtml(dependencyName)} Version Compatibility</h1>
+      <p>${escapeHtml(metadata.description)}</p>
+      <div class="project-actions"><a class="project-action-link" href="/projects/${escapeAttribute(projectId)}/">Full ${escapeHtml(project.name)} matrix</a><a class="project-action-link" href="/api/v1/projects/${escapeAttribute(projectId)}">JSON data</a></div>
+    </section>
+    <section class="dependency-summary" aria-label="Compatibility summary">
+      <div><span class="summary-value">${entries.length}</span><span class="summary-label">Project versions</span></div>
+      <div><span class="summary-value">${entries.reduce((total, [, entry]) => total + entry.ranges.length, 0)}</span><span class="summary-label">Documented ranges</span></div>
+      <div><span class="summary-date">${escapeHtml(lastVerified ?? 'Not verified')}</span><span class="summary-label">Last verified</span></div>
+    </section>
+    <section class="dependency-answer" aria-labelledby="compatibility-answer-title">
+      <div class="section-title-row"><div><p class="eyebrow">Quick answer</p><h2 id="compatibility-answer-title">${escapeHtml(dependencyName)} compatibility by ${escapeHtml(project.name)} version</h2></div></div>
+      <div class="dependency-answer-list">${answers}</div>
+    </section>
+    <section class="dependency-sources" aria-labelledby="dependency-sources-title">
+      <div><p class="eyebrow">Primary evidence</p><h2 id="dependency-sources-title">Sources</h2><p>Every range above is backed by upstream documentation, tagged source, release notes, or another project-owned primary source.</p></div>
+      <ol>${sourceList}</ol>
     </section>`,
   );
 }
@@ -292,10 +396,21 @@ function getProjectSourceUrl(projectId: string): string {
 function renderWebsiteJsonLd() {
   return {
     '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: siteName,
-    url: siteUrl,
-    description: getSeoMetadata('/', dataset).description,
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        name: siteName,
+        alternateName: 'Compatibility FYI',
+        url: siteUrl,
+        description: getSeoMetadata('/', dataset).description,
+      },
+      {
+        '@type': 'Organization',
+        name: siteName,
+        url: siteUrl,
+        logo: absoluteUrl('/icon-512.png'),
+      },
+    ],
   };
 }
 
@@ -311,27 +426,137 @@ function renderApiJsonLd() {
 }
 
 function renderProjectJsonLd(projectId: string, project: ProjectCompatibility) {
-  const dependencies = [
-    ...new Set(
-      Object.values(project.versions).flatMap((version) => Object.keys(version.dependencies)),
-    ),
-  ];
+  const dependencies = getProjectDependencyIds(project);
+  const sourceUrls = getProjectSourceUrls(project);
 
   return {
     '@context': 'https://schema.org',
-    '@type': 'Dataset',
-    name: `${project.name} compatibility matrix`,
-    url: absoluteUrl(`/projects/${projectId}/`),
-    description: getProjectSeoMetadata(projectId, project).description,
-    keywords: [...project.categories, ...dependencies].join(', '),
-    isAccessibleForFree: true,
-    license: 'https://opensource.org/license/mit',
-    creator: {
-      '@type': 'Organization',
-      name: siteName,
-      url: siteUrl,
-    },
+    '@graph': [
+      {
+        '@type': 'Dataset',
+        name: `${project.name} compatibility matrix`,
+        url: absoluteUrl(`/projects/${projectId}/`),
+        identifier: absoluteUrl(`/projects/${projectId}/`),
+        description: getProjectSeoMetadata(projectId, project).description,
+        keywords: [...project.categories, ...dependencies.map(formatDependencyName)].join(', '),
+        version: Object.keys(project.versions),
+        dateModified: getProjectLastVerified(project) ?? undefined,
+        isBasedOn: sourceUrls,
+        distribution: renderDatasetDistribution(projectId),
+        isAccessibleForFree: true,
+        license: 'https://opensource.org/license/mit',
+        creator: renderCreator(),
+      },
+      renderBreadcrumbs([
+        ['Projects', '/projects/'],
+        [project.name, `/projects/${projectId}/`],
+      ]),
+    ],
   };
+}
+
+function renderDependencyJsonLd(
+  projectId: string,
+  project: ProjectCompatibility,
+  dependencyId: string,
+) {
+  const dependencyName = formatDependencyName(dependencyId);
+  const entries = getDependencyEntries(project, dependencyId);
+  const canonicalPath = `/projects/${projectId}/${dependencyId}/`;
+  const alternateName =
+    dependencyId === 'postgresql'
+      ? [`${project.name} Postgres compatibility`, `${project.name} PostgreSQL compatibility`]
+      : undefined;
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Dataset',
+        name: `${project.name} ${dependencyName} version compatibility`,
+        alternateName,
+        url: absoluteUrl(canonicalPath),
+        identifier: absoluteUrl(canonicalPath),
+        description: getDependencySeoMetadata(projectId, project, dependencyId).description,
+        keywords: [
+          project.name,
+          dependencyName,
+          `${project.name} ${dependencyName} compatibility`,
+          `${dependencyName} version compatibility`,
+          ...(dependencyId === 'postgresql' ? ['Postgres compatibility'] : []),
+        ].join(', '),
+        version: entries.map(([version]) => version),
+        dateModified: getDependencyLastVerified(project, dependencyId) ?? undefined,
+        isBasedOn: getDependencySources(project, dependencyId).map((source) => source.url),
+        distribution: renderDatasetDistribution(projectId),
+        isAccessibleForFree: true,
+        license: 'https://opensource.org/license/mit',
+        creator: renderCreator(),
+      },
+      renderBreadcrumbs([
+        ['Projects', '/projects/'],
+        [project.name, `/projects/${projectId}/`],
+        [dependencyName, canonicalPath],
+      ]),
+    ],
+  };
+}
+
+function renderCreator() {
+  return {
+    '@type': 'Organization',
+    name: siteName,
+    url: siteUrl,
+  };
+}
+
+function renderDatasetDistribution(projectId: string) {
+  return [
+    {
+      '@type': 'DataDownload',
+      encodingFormat: 'application/json',
+      contentUrl: absoluteUrl(`/api/v1/projects/${projectId}`),
+    },
+    {
+      '@type': 'DataDownload',
+      encodingFormat: 'application/yaml',
+      contentUrl: getProjectSourceUrl(projectId),
+    },
+  ];
+}
+
+function renderBreadcrumbs(items: [string, string][]) {
+  return {
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map(([name, path], index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name,
+      item: absoluteUrl(path),
+    })),
+  };
+}
+
+function getProjectSourceUrls(project: ProjectCompatibility): string[] {
+  return [
+    ...new Set(
+      Object.values(project.versions).flatMap((version) =>
+        Object.values(version.dependencies).flatMap((entry) =>
+          entry.sources.map((source) => source.url),
+        ),
+      ),
+    ),
+  ];
+}
+
+function getDependencySources(project: ProjectCompatibility, dependencyId: string) {
+  return [
+    ...new Map(
+      getDependencyEntries(project, dependencyId)
+        .flatMap(([, entry]) => entry.sources)
+        .map((source) => [source.url, source]),
+    ).values(),
+  ];
 }
 
 function escapeHtml(value: string): string {
