@@ -1,75 +1,32 @@
-import { useMemo, useRef, useState } from 'react';
-import { listProjects, loadDataset } from '../../lib/data';
-import type { ProjectSummary } from '../../types/compatibility';
-import { Layout } from '../components/Layout';
+import React from 'react';
 
-const projects = listProjects(loadDataset()).map((project) => ({
-  ...project,
-  categories: project.categories.length > 0 ? project.categories : ['Uncategorized'],
-}));
+import { listProjects } from '../../lib/catalog';
+import type { CompatibilityDataset, ProjectSummary } from '../../types/compatibility';
+import { Layout } from '../components/Layout';
 
 interface CatalogProject extends ProjectSummary {
   categories: string[];
 }
 
-export function LandingPage() {
-  const [query, setQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const resultsRef = useRef<HTMLDivElement>(null);
+export function LandingPage({ dataset }: { dataset: CompatibilityDataset }) {
+  const projects: CatalogProject[] = listProjects(dataset).map((project) => ({
+    ...project,
+    categories: project.categories.length > 0 ? project.categories : ['Uncategorized'],
+  }));
+  const counts = new Map<string, number>();
 
-  const categories = useMemo(() => {
-    const counts = new Map<string, number>();
-    for (const project of projects) {
-      for (const category of project.categories) {
-        counts.set(category, (counts.get(category) ?? 0) + 1);
-      }
+  for (const project of projects) {
+    for (const category of project.categories) {
+      counts.set(category, (counts.get(category) ?? 0) + 1);
     }
-
-    return [
-      { count: projects.length, name: 'All' },
-      ...[...counts.entries()]
-        .map(([name, count]) => ({ count, name }))
-        .sort((left, right) => left.name.localeCompare(right.name)),
-    ];
-  }, []);
-
-  const visibleProjects = useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase();
-
-    return projects
-      .filter((project) => {
-        const matchesCategory =
-          selectedCategory === 'All' || project.categories.includes(selectedCategory);
-        const matchesQuery =
-          !normalizedQuery ||
-          [
-            project.id,
-            project.name,
-            project.categories.join(' '),
-            project.description,
-            project.versions.join(' '),
-          ]
-            .join(' ')
-            .toLowerCase()
-            .includes(normalizedQuery);
-
-        return matchesCategory && matchesQuery;
-      })
-      .sort(compareCatalogProjects);
-  }, [query, selectedCategory]);
-
-  function selectCategory(category: string) {
-    setSelectedCategory(category);
-
-    window.requestAnimationFrame(() => {
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      resultsRef.current?.scrollIntoView({
-        behavior: prefersReducedMotion ? 'auto' : 'smooth',
-        block: 'start',
-      });
-    });
   }
+
+  const categories = [
+    { count: projects.length, name: 'All' },
+    ...[...counts.entries()]
+      .map(([name, count]) => ({ count, name }))
+      .sort((left, right) => left.name.localeCompare(right.name)),
+  ];
 
   return (
     <Layout>
@@ -82,16 +39,15 @@ export function LandingPage() {
         </p>
       </section>
 
-      <section className="catalog-layout">
+      <section className="catalog-layout" data-catalog>
         <div className="catalog-search" aria-label="Project search">
           <label className="sr-only" htmlFor="project-search">
             Search projects
           </label>
           <input
+            data-catalog-search
             id="project-search"
             type="search"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
             placeholder="Search projects..."
           />
         </div>
@@ -101,10 +57,10 @@ export function LandingPage() {
           <nav>
             {categories.map((category) => (
               <button
-                className={category.name === selectedCategory ? 'active' : undefined}
+                className={category.name === 'All' ? 'active' : undefined}
+                data-catalog-category={category.name}
                 key={category.name}
                 type="button"
-                onClick={() => selectCategory(category.name)}
               >
                 <span>{category.name}</span>
                 <span>{category.count}</span>
@@ -113,27 +69,29 @@ export function LandingPage() {
           </nav>
         </aside>
 
-        <div ref={resultsRef} className="catalog-results">
+        <div className="catalog-results" data-catalog-results>
           <div className="catalog-results-heading">
-            <h2>{selectedCategory === 'All' ? 'All projects' : selectedCategory}</h2>
-            <span>
-              {visibleProjects.length} {visibleProjects.length === 1 ? 'project' : 'projects'}
-            </span>
+            <h2 data-catalog-heading>All projects</h2>
+            <span data-catalog-count>{projects.length} projects</span>
           </div>
 
-          {visibleProjects.length > 0 ? (
-            <div className="catalog-table" role="table" aria-label="Compatibility projects">
-              <div className="catalog-row catalog-row-header" role="row">
-                <span role="columnheader">Project</span>
-                <span role="columnheader">Known versions</span>
-              </div>
-              {visibleProjects.map((project) => (
-                <ProjectRow key={project.id} project={project} />
-              ))}
+          <div
+            className="catalog-table"
+            data-catalog-table
+            role="table"
+            aria-label="Compatibility projects"
+          >
+            <div className="catalog-row catalog-row-header" role="row">
+              <span role="columnheader">Project</span>
+              <span role="columnheader">Known versions</span>
             </div>
-          ) : (
-            <p className="empty-state">No projects match that search.</p>
-          )}
+            {projects.map((project) => (
+              <ProjectRow key={project.id} project={project} />
+            ))}
+          </div>
+          <p className="empty-state" data-catalog-empty hidden>
+            No projects match that search.
+          </p>
         </div>
       </section>
 
@@ -177,8 +135,25 @@ export function LandingPage() {
 }
 
 function ProjectRow({ project }: { project: CatalogProject }) {
+  const searchText = [
+    project.id,
+    project.name,
+    project.categories.join(' '),
+    project.description,
+    project.versions.join(' '),
+  ]
+    .join(' ')
+    .toLowerCase();
+
   return (
-    <a className="catalog-row" href={`/projects/${project.id}/`} role="row">
+    <a
+      className="catalog-row"
+      data-catalog-project
+      data-categories={project.categories.join('|')}
+      data-search={searchText}
+      href={`/projects/${project.id}/`}
+      role="row"
+    >
       <span role="cell">
         <span className="catalog-project">
           <strong>{project.name}</strong>
@@ -189,14 +164,9 @@ function ProjectRow({ project }: { project: CatalogProject }) {
           </span>
         </span>
       </span>
-      <span role="cell">{project.versions.length} versions</span>
+      <span role="cell">
+        {project.versions.length} {project.versions.length === 1 ? 'version' : 'versions'}
+      </span>
     </a>
-  );
-}
-
-function compareCatalogProjects(left: CatalogProject, right: CatalogProject): number {
-  return (
-    left.name.localeCompare(right.name, undefined, { sensitivity: 'base' }) ||
-    left.id.localeCompare(right.id)
   );
 }

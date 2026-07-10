@@ -1,5 +1,6 @@
 import { checkCompatibility, checkCompoundCompatibility } from '../lib/engine';
-import { listProjects, loadDataset } from '../lib/data';
+import { listProjects } from '../lib/catalog';
+import { loadDataset } from '../lib/data';
 import type {
   CompatibilityCheckRequest,
   CompoundCompatibilityCheckRequest,

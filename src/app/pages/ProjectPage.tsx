@@ -1,15 +1,10 @@
-import { useMemo, useState } from 'react';
-import { loadDataset } from '../../lib/data';
-import { checkCompoundCompatibility } from '../../lib/engine';
-import { formatDependencyName } from '../../lib/format';
+import React from 'react';
+
+import { formatDependencyName, formatRange } from '../../lib/format';
 import { compareVersions } from '../../lib/version';
-import type {
-  CompatibilityCheckResponse,
-  DependencyCompatibilityEntry,
-} from '../../types/compatibility';
+import type { CompatibilityDataset, DependencyCompatibilityEntry } from '../../types/compatibility';
 import { Layout } from '../components/Layout';
 
-const dataset = loadDataset();
 const githubRepositoryUrl = 'https://github.com/compatibility-fyi/compatibility.fyi';
 
 interface CompatibilityRow {
@@ -18,97 +13,13 @@ interface CompatibilityRow {
   entry: DependencyCompatibilityEntry;
 }
 
-interface ConfidenceTooltip {
-  text: string;
-  top: number;
-  left: number;
-}
-
 interface ProjectPageProps {
+  dataset: CompatibilityDataset;
   projectId: string;
 }
 
-export function ProjectPage({ projectId }: ProjectPageProps) {
+export function ProjectPage({ dataset, projectId }: ProjectPageProps) {
   const project = dataset.projects[projectId];
-  const [query, setQuery] = useState('');
-  const [selectedVersion, setSelectedVersion] = useState('all');
-  const [checkVersion, setCheckVersion] = useState('');
-  const [checkValues, setCheckValues] = useState<Record<string, string>>({});
-  const [tooltip, setTooltip] = useState<ConfidenceTooltip | null>(null);
-  const rows: CompatibilityRow[] = useMemo(() => {
-    if (!project) {
-      return [];
-    }
-
-    return Object.entries(project.versions)
-      .flatMap(([version, versionData]) =>
-        Object.entries(versionData.dependencies).map(([dependency, entry]) => ({
-          version,
-          dependency,
-          entry,
-        })),
-      )
-      .sort((left, right) => {
-        const versionOrder = compareVersions(right.version, left.version);
-        return versionOrder || left.dependency.localeCompare(right.dependency);
-      });
-  }, [project]);
-  const versions = useMemo(
-    () =>
-      [...new Set(rows.map((row) => row.version))].sort((left, right) =>
-        compareVersions(right, left),
-      ),
-    [rows],
-  );
-  const activeCheckVersion = checkVersion || versions[0] || '';
-  const checkDependencies = project
-    ? Object.entries(project.versions[activeCheckVersion]?.dependencies ?? {})
-    : [];
-  const populatedCheckValues = Object.fromEntries(
-    Object.entries(checkValues).filter(([, value]) => value.trim() !== ''),
-  );
-  const compoundResult =
-    project && Object.keys(populatedCheckValues).length > 0
-      ? checkCompoundCompatibility(dataset, {
-          project: projectId,
-          version: activeCheckVersion,
-          dependencies: populatedCheckValues,
-        })
-      : null;
-  const filteredRows = useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase();
-
-    return rows.filter((row) => {
-      const matchesVersion = selectedVersion === 'all' || row.version === selectedVersion;
-      const matchesQuery =
-        !normalizedQuery ||
-        [
-          row.dependency,
-          row.version,
-          row.entry.ranges.join(' '),
-          row.entry.notes.join(' '),
-          row.entry.sources.map((source) => source.title).join(' '),
-        ]
-          .join(' ')
-          .toLowerCase()
-          .includes(normalizedQuery);
-
-      return matchesVersion && matchesQuery;
-    });
-  }, [query, rows, selectedVersion]);
-
-  const dependencyCount = new Set(rows.map((row) => row.dependency)).size;
-  const dependencyGuides = [...new Set(rows.map((row) => row.dependency))]
-    .map((dependency) => ({
-      dependency,
-      versions: new Set(
-        rows.filter((row) => row.dependency === dependency).map((row) => row.version),
-      ).size,
-    }))
-    .sort((left, right) =>
-      formatDependencyName(left.dependency).localeCompare(formatDependencyName(right.dependency)),
-    );
-  const sourceUrl = `${githubRepositoryUrl}/blob/master/data/${projectId}.yaml`;
 
   if (!project) {
     return (
@@ -123,6 +34,38 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
       </Layout>
     );
   }
+
+  const rows: CompatibilityRow[] = Object.entries(project.versions)
+    .flatMap(([version, versionData]) =>
+      Object.entries(versionData.dependencies).map(([dependency, entry]) => ({
+        version,
+        dependency,
+        entry,
+      })),
+    )
+    .sort((left, right) => {
+      const versionOrder = compareVersions(right.version, left.version);
+      return versionOrder || left.dependency.localeCompare(right.dependency);
+    });
+  const versions = [...new Set(rows.map((row) => row.version))].sort((left, right) =>
+    compareVersions(right, left),
+  );
+  const activeCheckVersion = versions[0] ?? '';
+  const checkDependencies = Object.entries(
+    project.versions[activeCheckVersion]?.dependencies ?? {},
+  );
+  const dependencyCount = new Set(rows.map((row) => row.dependency)).size;
+  const dependencyGuides = [...new Set(rows.map((row) => row.dependency))]
+    .map((dependency) => ({
+      dependency,
+      versions: new Set(
+        rows.filter((row) => row.dependency === dependency).map((row) => row.version),
+      ).size,
+    }))
+    .sort((left, right) =>
+      formatDependencyName(left.dependency).localeCompare(formatDependencyName(right.dependency)),
+    );
+  const sourceUrl = `${githubRepositoryUrl}/blob/master/data/${projectId}.yaml`;
 
   return (
     <Layout>
@@ -189,21 +132,20 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
         </div>
       </section>
 
-      <section className="compatibility-checker" aria-label="Compatibility checker">
+      <section
+        className="compatibility-checker"
+        aria-label="Compatibility checker"
+        data-project-checker
+        data-project-id={projectId}
+      >
         <div className="section-title-row">
           <h2>Check a combination</h2>
-          {compoundResult ? <StatusBadge status={compoundResult.compatible} /> : null}
+          <span className="status-badge" data-check-status hidden />
         </div>
-        <div className="checker-grid">
+        <div className="checker-grid" data-check-fields>
           <label className="select-field">
             <span>Version to check</span>
-            <select
-              value={activeCheckVersion}
-              onChange={(event) => {
-                setCheckVersion(event.target.value);
-                setCheckValues({});
-              }}
-            >
+            <select data-check-version defaultValue={activeCheckVersion}>
               {versions.map((version) => (
                 <option key={version} value={version}>
                   {version}
@@ -212,49 +154,29 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
             </select>
           </label>
           {checkDependencies.map(([dependency, entry]) => (
-            <label className="search-field" key={dependency}>
-              <span>
-                {formatDependencyName(dependency)}
-                {entry.relationship ? ` (${entry.relationship})` : ''}
-              </span>
-              <input
-                type="text"
-                value={checkValues[dependency] ?? ''}
-                onChange={(event) =>
-                  setCheckValues((current) => ({
-                    ...current,
-                    [dependency]: event.target.value,
-                  }))
-                }
-                placeholder={entry.ranges.map(formatRange).join(', ')}
-              />
-            </label>
+            <CheckerDependencyField dependency={dependency} entry={entry} key={dependency} />
           ))}
         </div>
-        {compoundResult ? <CompoundResult checks={compoundResult.checks} /> : null}
+        <div className="compound-result" data-check-result hidden />
       </section>
 
-      <section className="table-section">
+      <section className="table-section" data-project-matrix>
         <div className="section-title-row">
           <h2>Compatibility matrix</h2>
-          <span>{filteredRows.length} entries</span>
+          <span data-matrix-count>{rows.length} entries</span>
         </div>
         <div className="filter-bar" aria-label="Compatibility filters">
           <label className="search-field">
             <span>Search dependencies</span>
             <input
+              data-matrix-search
               type="search"
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
               placeholder="Search dependencies, ranges, notes, sources..."
             />
           </label>
           <label className="select-field">
             <span>Project version</span>
-            <select
-              value={selectedVersion}
-              onChange={(event) => setSelectedVersion(event.target.value)}
-            >
+            <select data-matrix-version defaultValue="all">
               <option value="all">All versions</option>
               {versions.map((version) => (
                 <option key={version} value={version}>
@@ -275,8 +197,13 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
               </tr>
             </thead>
             <tbody>
-              {filteredRows.map(({ version, dependency, entry }) => (
-                <tr key={`${version}-${dependency}`}>
+              {rows.map(({ version, dependency, entry }) => (
+                <tr
+                  data-matrix-row
+                  data-search={matrixSearchText(version, dependency, entry)}
+                  data-version={version}
+                  key={`${version}-${dependency}`}
+                >
                   <td>{version}</td>
                   <td>
                     <strong>
@@ -299,101 +226,59 @@ export function ProjectPage({ projectId }: ProjectPageProps) {
                     {entry.notes.length > 0 ? <p className="row-note">{entry.notes[0]}</p> : null}
                   </td>
                   <td>
-                    <Evidence
-                      entry={entry}
-                      onHideTooltip={() => setTooltip(null)}
-                      onShowTooltip={setTooltip}
-                    />
+                    <Evidence entry={entry} />
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        {filteredRows.length === 0 ? (
-          <p className="empty-state">No compatibility entries match those filters.</p>
-        ) : null}
+        <p className="empty-state" data-matrix-empty hidden>
+          No compatibility entries match those filters.
+        </p>
       </section>
-      {tooltip ? (
-        <div
-          className="confidence-tooltip"
-          role="tooltip"
-          style={{ top: tooltip.top, left: tooltip.left }}
-        >
-          {tooltip.text}
-        </div>
-      ) : null}
+      <div className="confidence-tooltip" data-confidence-tooltip hidden role="tooltip" />
     </Layout>
   );
 }
 
-function CompoundResult({ checks }: { checks: CompatibilityCheckResponse[] }) {
+function CheckerDependencyField({
+  dependency,
+  entry,
+}: {
+  dependency: string;
+  entry: DependencyCompatibilityEntry;
+}) {
   return (
-    <div className="compound-result">
-      {checks.map((check) => (
-        <div className="compound-result-row" key={check.dependency}>
-          <span>
-            <strong>{formatDependencyName(check.dependency)}</strong>
-            <small>{check.dependencyVersion}</small>
-          </span>
-          <span className="compound-result-value">
-            <span className="compound-result-range">
-              {check.matchedRange ? formatRange(check.matchedRange) : 'No matching range'}
-            </span>
-            <StatusBadge status={check.compatible} />
-          </span>
-        </div>
-      ))}
-    </div>
+    <label className="search-field" data-check-field={dependency}>
+      <span>
+        {formatDependencyName(dependency)}
+        {entry.relationship ? ` (${entry.relationship})` : ''}
+      </span>
+      <input
+        data-check-dependency={dependency}
+        type="text"
+        placeholder={entry.ranges.map(formatRange).join(', ')}
+      />
+    </label>
   );
 }
 
-function StatusBadge({ status }: { status: CompatibilityCheckResponse['compatible'] }) {
-  return <span className={`status-badge ${status}`}>{status}</span>;
-}
-
-function Evidence({
-  entry,
-  onHideTooltip,
-  onShowTooltip,
-}: {
-  entry: DependencyCompatibilityEntry;
-  onHideTooltip: () => void;
-  onShowTooltip: (tooltip: ConfidenceTooltip) => void;
-}) {
+function Evidence({ entry }: { entry: DependencyCompatibilityEntry }) {
   const explanation = getConfidenceExplanation(entry.confidence);
-
-  function showTooltip(target: HTMLElement) {
-    const rect = target.getBoundingClientRect();
-    const width = 300;
-    const left = Math.min(Math.max(12, rect.left), window.innerWidth - width - 12);
-
-    onShowTooltip({
-      text: explanation,
-      top: rect.bottom + 8,
-      left,
-    });
-  }
 
   return (
     <div className="evidence">
       <div>
         <button
           className="evidence-level"
+          data-confidence-explanation={explanation}
           type="button"
           aria-label={`${entry.confidence} confidence. ${explanation}`}
-          onBlur={onHideTooltip}
-          onFocus={(event) => showTooltip(event.currentTarget)}
-          onMouseEnter={(event) => showTooltip(event.currentTarget)}
-          onMouseLeave={onHideTooltip}
         >
           {entry.confidence}
         </button>
-        {entry.lastVerified ? (
-          <span>Verified {entry.lastVerified}</span>
-        ) : (
-          <span>Not verified</span>
-        )}
+        <span>{entry.lastVerified ? `Verified ${entry.lastVerified}` : 'Not verified'}</span>
       </div>
       <ul>
         {entry.sources.map((source) => (
@@ -420,32 +305,18 @@ function getConfidenceExplanation(confidence: DependencyCompatibilityEntry['conf
   return 'Low confidence means this entry is incomplete, inferred, or not independently verified.';
 }
 
-function formatRange(range: string): string {
-  const match = range.match(/^>=(\d+)\.(\d+)\.(\d+) <(\d+)\.(\d+)\.(\d+)$/);
-
-  if (!match) {
-    return range;
-  }
-
-  const [, lowerMajor, lowerMinor, lowerPatch, upperMajor, upperMinor, upperPatch] =
-    match.map(Number);
-
-  if (lowerMinor === 0 && lowerPatch === 0 && upperMajor === lowerMajor + 1) {
-    return lowerMajor >= 1000 ? String(lowerMajor) : `${lowerMajor}.x`;
-  }
-
-  if (
-    lowerPatch === 0 &&
-    upperMajor === lowerMajor &&
-    upperMinor === lowerMinor + 1 &&
-    upperPatch === 0
-  ) {
-    return `${lowerMajor}.${lowerMinor}.x`;
-  }
-
-  if (lowerPatch === 0 && upperMajor === lowerMajor + 1 && upperMinor === 0 && upperPatch === 0) {
-    return `${lowerMajor}.${lowerMinor}+`;
-  }
-
-  return range;
+function matrixSearchText(
+  version: string,
+  dependency: string,
+  entry: DependencyCompatibilityEntry,
+): string {
+  return [
+    dependency,
+    version,
+    entry.ranges.join(' '),
+    entry.notes.join(' '),
+    entry.sources.map((source) => source.title).join(' '),
+  ]
+    .join(' ')
+    .toLowerCase();
 }

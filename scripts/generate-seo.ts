@@ -1,15 +1,19 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, stat, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 
+import { createElement, type ComponentType } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+
 import { loadCompatibilityDataset } from './compatibility-data-plugin';
-import type {
-  DependencyCompatibilityEntry,
-  ProjectCompatibility,
-} from '../src/types/compatibility';
+import { DocsApiPage } from '../src/app/pages/DocsApiPage';
+import { DependencyPage } from '../src/app/pages/DependencyPage';
+import { LandingPage } from '../src/app/pages/LandingPage';
+import { NotFoundPage } from '../src/app/pages/NotFoundPage';
+import { ProjectPage } from '../src/app/pages/ProjectPage';
+import type { ProjectCompatibility } from '../src/types/compatibility';
 import { formatDependencyName } from '../src/lib/format';
 import {
   absoluteUrl,
-  countProjectDependencies,
   getDependencyEntries,
   getDependencyLastVerified,
   getDependencySeoMetadata,
@@ -22,12 +26,20 @@ import {
   siteUrl,
   type SeoMetadata,
 } from '../src/lib/seo';
-import { compareVersions } from '../src/lib/version';
 
 const distClient = resolve('dist/client');
 
 const dataset = await loadCompatibilityDataset();
 const template = await readFile(join(distClient, 'index.html'), 'utf8');
+const manifest = JSON.parse(
+  await readFile(join(distClient, '.vite/manifest.json'), 'utf8'),
+) as Record<string, { file: string }>;
+const pageScripts: Record<PageScript, string> = {
+  catalog: getManifestFile('src/client/catalog.ts'),
+  docs: getManifestFile('src/client/docs.ts'),
+  project: getManifestFile('src/client/project.ts'),
+};
+await validateClientBundles();
 const projects = Object.entries(dataset.projects).sort(([, left], [, right]) =>
   left.name.localeCompare(right.name, undefined, { sensitivity: 'base' }),
 );
@@ -38,21 +50,25 @@ interface GeneratedRoute {
   html: string;
   jsonLd: unknown;
   lastModified?: string | null;
+  script?: PageScript;
 }
+
+type PageScript = 'catalog' | 'docs' | 'project';
 
 const projectRoutes: GeneratedRoute[] = projects.map(([projectId, project]) => ({
   path: `/projects/${projectId}/`,
   metadata: getProjectSeoMetadata(projectId, project),
-  html: renderProject(projectId, project),
+  html: renderProjectPage(projectId, project),
   jsonLd: renderProjectJsonLd(projectId, project),
   lastModified: getProjectLastVerified(project),
+  script: 'project',
 }));
 
 const dependencyRoutes: GeneratedRoute[] = projects.flatMap(([projectId, project]) =>
   getProjectDependencyIds(project).map((dependencyId) => ({
     path: `/projects/${projectId}/${dependencyId}/`,
     metadata: getDependencySeoMetadata(projectId, project, dependencyId),
-    html: renderDependency(projectId, project, dependencyId),
+    html: renderComponent(DependencyPage, { dataset, projectId, dependencyId }),
     jsonLd: renderDependencyJsonLd(projectId, project, dependencyId),
     lastModified: getDependencyLastVerified(project, dependencyId),
   })),
@@ -62,20 +78,23 @@ const routes: GeneratedRoute[] = [
   {
     path: '/',
     metadata: getSeoMetadata('/', dataset),
-    html: renderHome(),
+    html: renderComponent(LandingPage, { dataset }),
     jsonLd: renderWebsiteJsonLd(),
+    script: 'catalog',
   },
   {
     path: '/projects',
     metadata: getSeoMetadata('/', dataset),
-    html: renderHome(),
+    html: renderComponent(LandingPage, { dataset }),
     jsonLd: renderWebsiteJsonLd(),
+    script: 'catalog',
   },
   {
     path: '/docs/api/',
     metadata: getSeoMetadata('/docs/api', dataset),
-    html: renderApiDocs(),
+    html: renderComponent(DocsApiPage, {}),
     jsonLd: renderApiJsonLd(),
+    script: 'docs',
   },
   ...projectRoutes,
   ...dependencyRoutes,
@@ -84,7 +103,9 @@ const routes: GeneratedRoute[] = [
 validateGeneratedRoutes(routes);
 
 for (const route of routes) {
-  await writeRoute(route.path, renderDocument(route.metadata, route.html, route.jsonLd));
+  const document = renderDocument(route.metadata, route.html, route.jsonLd, route.script);
+  validateDocumentScript(route.path, document, route.script);
+  await writeRoute(route.path, document);
 }
 
 await writeSitemap();
@@ -93,6 +114,57 @@ await writeLlms();
 await writeNotFound();
 
 console.log(`generated SEO assets for ${routes.length} routes`);
+
+function renderComponent<Props extends object>(
+  Component: ComponentType<Props>,
+  props: Props,
+): string {
+  return renderToStaticMarkup(createElement(Component, props));
+}
+
+function renderProjectPage(projectId: string, project: ProjectCompatibility): string {
+  const projectDataset = { projects: { [projectId]: project } };
+  const page = renderComponent(ProjectPage, { dataset: projectDataset, projectId });
+  const data = escapeScriptJson(JSON.stringify(projectDataset));
+  return `${page}<script id="project-compatibility-data" type="application/json">${data}</script>`;
+}
+
+function getManifestFile(source: string): string {
+  const file = manifest[source]?.file;
+  if (!file) {
+    throw new Error(`Missing client build manifest entry for ${source}`);
+  }
+  return file;
+}
+
+async function validateClientBundles() {
+  const budgets: Record<PageScript, number> = {
+    catalog: 5_000,
+    docs: 5_000,
+    project: 50_000,
+  };
+
+  for (const [script, file] of Object.entries(pageScripts) as [PageScript, string][]) {
+    const size = (await stat(join(distClient, file))).size;
+    if (size > budgets[script]) {
+      throw new Error(`${script} client bundle is ${size} bytes; budget is ${budgets[script]}`);
+    }
+  }
+}
+
+function validateDocumentScript(path: string, document: string, pageScript?: PageScript) {
+  const scripts = [...document.matchAll(/<script type="module" src="([^"]+)"><\/script>/g)].map(
+    (match) => match[1],
+  );
+  const expected = pageScript ? [`/${pageScripts[pageScript]}`] : [];
+
+  if (
+    scripts.length !== expected.length ||
+    scripts.some((script, index) => script !== expected[index])
+  ) {
+    throw new Error(`Unexpected client scripts for ${path}: ${scripts.join(', ') || 'none'}`);
+  }
+}
 
 function validateGeneratedRoutes(generatedRoutes: GeneratedRoute[]) {
   const paths = new Set<string>();
@@ -112,8 +184,16 @@ function validateGeneratedRoutes(generatedRoutes: GeneratedRoute[]) {
   }
 }
 
-function renderDocument(metadata: SeoMetadata, staticHtml: string, jsonLd?: unknown): string {
+function renderDocument(
+  metadata: SeoMetadata,
+  staticHtml: string,
+  jsonLd?: unknown,
+  pageScript?: PageScript,
+): string {
   const head = renderHead(metadata, jsonLd);
+  const script = pageScript
+    ? `    <script type="module" src="/${pageScripts[pageScript]}"></script>\n`
+    : '';
 
   return template
     .replace(/<title>.*?<\/title>/s, `<title>${escapeHtml(metadata.title)}</title>`)
@@ -125,7 +205,8 @@ function renderDocument(metadata: SeoMetadata, staticHtml: string, jsonLd?: unkn
       '',
     )
     .replace('</head>', `${head}\n  </head>`)
-    .replace('<div id="root"></div>', `<div id="root">${staticHtml}</div>`);
+    .replace('<div id="root"></div>', `<div id="root">${staticHtml}</div>`)
+    .replace('</body>', `${script}  </body>`);
 }
 
 function renderHead(metadata: SeoMetadata, jsonLd?: unknown): string {
@@ -234,238 +315,10 @@ async function writeLlms() {
 
 async function writeNotFound() {
   const metadata = getSeoMetadata('/404', dataset);
-  await writeFile(join(distClient, '404.html'), renderDocument(metadata, renderNotFound()));
-}
-
-function renderHome(): string {
-  const categoryCounts = new Map<string, number>();
-  for (const [, project] of projects) {
-    for (const category of project.categories) {
-      categoryCounts.set(category, (categoryCounts.get(category) ?? 0) + 1);
-    }
-  }
-
-  const categoryButtons = [
-    `<button class="active" type="button"><span>All</span><span>${projects.length}</span></button>`,
-    ...[...categoryCounts.entries()]
-      .sort(([left], [right]) => left.localeCompare(right))
-      .map(
-        ([category, count]) =>
-          `<button type="button"><span>${escapeHtml(category)}</span><span>${count}</span></button>`,
-      ),
-  ].join('');
-
-  const projectRows = projects
-    .map(([projectId, project]) => {
-      const versions = Object.keys(project.versions).length;
-      const categories = project.categories
-        .map((category) => `<small>${escapeHtml(category)}</small>`)
-        .join('');
-      return `<a class="catalog-row" href="/projects/${escapeAttribute(projectId)}/" role="row"><span role="cell"><span class="catalog-project"><strong>${escapeHtml(project.name)}</strong><span class="catalog-category-badges" aria-label="Categories">${categories}</span></span></span><span role="cell">${versions} ${versions === 1 ? 'version' : 'versions'}</span></a>`;
-    })
-    .join('');
-
-  return renderShell(
-    `<section class="catalog-intro" aria-labelledby="catalog-title">
-      <h1 id="catalog-title">${siteName}</h1>
-      <p>Compatibility information is scattered across support matrices, release notes, source trees, and upgrade guides. compatibility.fyi collects that evidence in one open catalog so humans and automation can answer whether two software versions are known to work together.</p>
-    </section>
-    <section class="catalog-layout">
-      <div class="catalog-search" aria-label="Project search">
-        <label class="sr-only" for="project-search">Search projects</label>
-        <input id="project-search" type="search" placeholder="Search projects..." />
-      </div>
-      <aside class="catalog-sidebar" aria-label="Categories">
-        <h2>Categories</h2>
-        <nav>${categoryButtons}</nav>
-      </aside>
-      <div class="catalog-results">
-        <div class="catalog-results-heading"><h2>All projects</h2><span>${projects.length} projects</span></div>
-        <div class="catalog-table" role="table" aria-label="Compatibility projects">
-          <div class="catalog-row catalog-row-header" role="row"><span role="columnheader">Project</span><span role="columnheader">Known versions</span></div>
-          ${projectRows}
-        </div>
-      </div>
-    </section>
-    <section class="catalog-notes">
-      <article>
-        <h2>Structured Compatibility Data</h2>
-        <p>Compatibility evidence is often buried in release notes, support tables, issue trackers, and source trees. compatibility.fyi turns source-backed compatibility claims into versioned YAML and JSON that can be reviewed, diffed, validated, and queried.</p>
-      </article>
-      <article>
-        <h2>Built For Humans And Automation</h2>
-        <p>The catalog is readable in the browser, but the real goal is automation. Renovate, Dependabot, Helm, Argo CD, Backstage, and CI pipelines should be able to check whether a dependency update is compatible before it reaches production.</p>
-      </article>
-      <article>
-        <h2>Maintained By The Community</h2>
-        <p>The catalog only works if project maintainers and users contribute compatibility matrices backed by primary sources. Add a YAML file, cite the upstream evidence, and open a pull request so the data can be reviewed and kept current.</p>
-        <div class="catalog-links" aria-label="Contribution links">
-          <a href="https://github.com/compatibility-fyi/compatibility.fyi/blob/master/CONTRIBUTING.md">Contributing guide</a>
-          <a href="https://github.com/compatibility-fyi/compatibility.fyi/blob/master/AGENTS.md">Agent prompt</a>
-          <a href="https://github.com/compatibility-fyi/compatibility.fyi">GitHub repository</a>
-        </div>
-      </article>
-    </section>`,
+  await writeFile(
+    join(distClient, '404.html'),
+    renderDocument(metadata, renderComponent(NotFoundPage, {})),
   );
-}
-
-function renderNotFound(): string {
-  return renderShell(
-    `<section class="page-heading">
-      <a class="back-link" href="/">&larr; Back to projects</a>
-      <p class="eyebrow">404</p>
-      <h1>Page not found</h1>
-      <p>The requested compatibility page does not exist.</p>
-    </section>`,
-  );
-}
-
-function renderApiDocs(): string {
-  return renderShell(
-    `<section class="page-heading docs-heading">
-      <p class="eyebrow">API</p>
-      <h1>HTTP API v1</h1>
-      <p>Query compatibility metadata as JSON. Start with the project index, inspect a project for its version and dependency keys, then run single or compound compatibility checks.</p>
-    </section>
-    <section class="docs-content">
-      <section class="docs-section">
-        <h2>Endpoints</h2>
-        <ul>
-          <li><code>GET /api/v1/projects</code> lists project ids and high-level metadata.</li>
-          <li><code>GET /api/v1/projects/{project}</code> returns compatibility data for one project.</li>
-          <li><code>GET /api/v1/check</code> checks one dependency version.</li>
-          <li><code>POST /api/v1/check</code> checks a full dependency combination.</li>
-        </ul>
-      </section>
-    </section>`,
-  );
-}
-
-function renderProject(projectId: string, project: ProjectCompatibility): string {
-  const versions = Object.keys(project.versions).sort((left, right) =>
-    compareVersions(right, left),
-  );
-  const compatibilityEntries = versions.flatMap((version) =>
-    Object.entries(project.versions[version].dependencies).map(([dependency, entry]) => ({
-      version,
-      dependency,
-      entry,
-    })),
-  );
-  const rows = compatibilityEntries
-    .map(
-      ({ version, dependency, entry }) =>
-        `<tr><td>${escapeHtml(version)}</td><td><strong><a class="dependency-link" href="/projects/${escapeAttribute(projectId)}/${escapeAttribute(dependency)}/">${escapeHtml(formatDependencyName(dependency))}</a></strong>${entry.relationship ? `<small class="relationship-label">${escapeHtml(entry.relationship)}</small>` : ''}</td><td>${entry.ranges.map((range) => `<span class="range-chip">${escapeHtml(range)}</span>`).join(' ')}</td><td>${renderEvidence(entry)}</td></tr>`,
-    )
-    .join('');
-  const dependencyGuides = getProjectDependencyIds(project)
-    .map((dependencyId) => {
-      const versionCount = getDependencyEntries(project, dependencyId).length;
-      return `<a href="/projects/${escapeAttribute(projectId)}/${escapeAttribute(dependencyId)}/"><strong>${escapeHtml(project.name)} ${escapeHtml(formatDependencyName(dependencyId))} compatibility</strong><span>${versionCount} ${versionCount === 1 ? 'project version' : 'project versions'}</span></a>`;
-    })
-    .join('');
-
-  return renderShell(
-    `<section class="page-heading">
-      <a class="back-link" href="/">&larr; Back to projects</a>
-      <div class="project-heading">
-        <h1>${escapeHtml(project.name)}</h1>
-        <div class="project-actions">
-          ${project.website ? `<a class="project-action-link" href="${escapeAttribute(project.website)}" rel="noreferrer" target="_blank">Website</a>` : ''}
-          <a class="project-action-link" href="${escapeAttribute(getProjectSourceUrl(projectId))}" rel="noreferrer" target="_blank">View source</a>
-        </div>
-      </div>
-    </section>
-    <section class="project-summary" aria-label="${escapeAttribute(project.name)} compatibility summary">
-      <div><span class="summary-value">${versions.length}</span><span class="summary-label">Project versions</span></div>
-      <div><span class="summary-value">${countProjectDependencies(project)}</span><span class="summary-label">Dependencies</span></div>
-      <div><span class="summary-value">${compatibilityEntries.length}</span><span class="summary-label">Compatibility entries</span></div>
-    </section>
-    <section class="dependency-index" aria-labelledby="dependency-guides-title">
-      <div class="section-title-row"><div><p class="eyebrow">Compatibility guides</p><h2 id="dependency-guides-title">Browse by dependency</h2></div><span>${countProjectDependencies(project)} guides</span></div>
-      <div class="dependency-index-grid">${dependencyGuides}</div>
-    </section>
-    <section class="table-section">
-      <div class="section-title-row"><h2>Compatibility matrix</h2></div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>${escapeHtml(project.name)}</th><th>Dependency</th><th>Supported versions</th><th>Evidence</th></tr></thead>
-          <tbody>${rows}</tbody>
-        </table>
-      </div>
-    </section>`,
-  );
-}
-
-function renderDependency(
-  projectId: string,
-  project: ProjectCompatibility,
-  dependencyId: string,
-): string {
-  const dependencyName = formatDependencyName(dependencyId);
-  const metadata = getDependencySeoMetadata(projectId, project, dependencyId);
-  const entries = getDependencyEntries(project, dependencyId);
-  const sources = getDependencySources(project, dependencyId);
-  const lastVerified = getDependencyLastVerified(project, dependencyId);
-  const answers = entries
-    .map(
-      ([version, entry]) => `<article>
-        <div class="dependency-version-heading"><span>${escapeHtml(project.name)} version</span><h3>${escapeHtml(version)}</h3></div>
-        <div>
-          <p class="dependency-range-label">Documented ${escapeHtml(dependencyName)} versions</p>
-          <div class="range-list">${entry.ranges.map((range) => `<span class="range-chip">${escapeHtml(range)}</span>`).join(' ')}</div>
-          ${entry.notes.map((note) => `<p class="dependency-answer-note">${escapeHtml(note)}</p>`).join('')}
-          <p class="dependency-verification">${escapeHtml(entry.confidence)} confidence${entry.lastVerified ? ` · verified ${escapeHtml(entry.lastVerified)}` : ''}${entry.relationship ? ` · ${escapeHtml(entry.relationship)}` : ''}</p>
-        </div>
-      </article>`,
-    )
-    .join('');
-  const sourceList = sources
-    .map(
-      (source) =>
-        `<li><a href="${escapeAttribute(source.url)}">${escapeHtml(source.title)}</a>${source.accessedAt ? `<span>Accessed ${escapeHtml(source.accessedAt)}</span>` : ''}</li>`,
-    )
-    .join('');
-
-  return renderShell(
-    `<section class="page-heading dependency-heading">
-      <a class="back-link" href="/projects/${escapeAttribute(projectId)}/">&larr; Back to ${escapeHtml(project.name)}</a>
-      <p class="eyebrow">Source-backed version compatibility</p>
-      <h1>${escapeHtml(project.name)} ${escapeHtml(dependencyName)} Version Compatibility</h1>
-      <p>${escapeHtml(metadata.description)}</p>
-      <div class="project-actions"><a class="project-action-link" href="/projects/${escapeAttribute(projectId)}/">Full ${escapeHtml(project.name)} matrix</a><a class="project-action-link" href="/api/v1/projects/${escapeAttribute(projectId)}">JSON data</a></div>
-    </section>
-    <section class="dependency-summary" aria-label="Compatibility summary">
-      <div><span class="summary-value">${entries.length}</span><span class="summary-label">Project versions</span></div>
-      <div><span class="summary-value">${entries.reduce((total, [, entry]) => total + entry.ranges.length, 0)}</span><span class="summary-label">Documented ranges</span></div>
-      <div><span class="summary-date">${escapeHtml(lastVerified ?? 'Not verified')}</span><span class="summary-label">Last verified</span></div>
-    </section>
-    <section class="dependency-answer" aria-labelledby="compatibility-answer-title">
-      <div class="section-title-row"><div><p class="eyebrow">Quick answer</p><h2 id="compatibility-answer-title">${escapeHtml(dependencyName)} compatibility by ${escapeHtml(project.name)} version</h2></div></div>
-      <div class="dependency-answer-list">${answers}</div>
-    </section>
-    <section class="dependency-sources" aria-labelledby="dependency-sources-title">
-      <div><p class="eyebrow">Primary evidence</p><h2 id="dependency-sources-title">Sources</h2><p>Every range above is backed by upstream documentation, tagged source, release notes, or another project-owned primary source.</p></div>
-      <ol>${sourceList}</ol>
-    </section>`,
-  );
-}
-
-function renderEvidence(entry: DependencyCompatibilityEntry): string {
-  const verification = entry.lastVerified ? `, verified ${escapeHtml(entry.lastVerified)}` : '';
-  const sources = entry.sources
-    .slice(0, 3)
-    .map(
-      (source) =>
-        `<li><a href="${escapeAttribute(source.url)}">${escapeHtml(source.title)}</a></li>`,
-    )
-    .join('');
-
-  return `${entry.confidence} confidence${verification}${sources ? `<ul>${sources}</ul>` : ''}`;
-}
-
-function renderShell(main: string): string {
-  return `<header class="site-header"><a class="brand" href="/"><img alt="" aria-hidden="true" src="/icon-192.png" />${siteName}</a><nav aria-label="Primary"><a href="/docs/api/">API</a><a href="https://github.com/compatibility-fyi/compatibility.fyi/blob/master/CONTRIBUTING.md">Contribute</a><a href="https://github.com/compatibility-fyi/compatibility.fyi">GitHub</a></nav></header><main>${main}</main>`;
 }
 
 function getProjectSourceUrl(projectId: string): string {
@@ -648,10 +501,6 @@ function escapeHtml(value: string): string {
     .replaceAll('<', '&lt;')
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;');
-}
-
-function escapeAttribute(value: string): string {
-  return escapeHtml(value).replaceAll("'", '&#39;');
 }
 
 function escapeScriptJson(value: string): string {

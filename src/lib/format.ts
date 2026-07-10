@@ -37,6 +37,36 @@ export function formatDependencyName(dependency: string): string {
     .join(' ');
 }
 
+export function formatRange(range: string): string {
+  const match = range.match(/^>=(\d+)\.(\d+)\.(\d+) <(\d+)\.(\d+)\.(\d+)$/);
+
+  if (!match) {
+    return range;
+  }
+
+  const [, lowerMajor, lowerMinor, lowerPatch, upperMajor, upperMinor, upperPatch] =
+    match.map(Number);
+
+  if (lowerMinor === 0 && lowerPatch === 0 && upperMajor === lowerMajor + 1) {
+    return lowerMajor >= 1000 ? String(lowerMajor) : `${lowerMajor}.x`;
+  }
+
+  if (
+    lowerPatch === 0 &&
+    upperMajor === lowerMajor &&
+    upperMinor === lowerMinor + 1 &&
+    upperPatch === 0
+  ) {
+    return `${lowerMajor}.${lowerMinor}.x`;
+  }
+
+  if (lowerPatch === 0 && upperMajor === lowerMajor + 1 && upperMinor === 0 && upperPatch === 0) {
+    return `${lowerMajor}.${lowerMinor}+`;
+  }
+
+  return range;
+}
+
 function formatLabelTitle(label: string): string {
   if (label === label.toLowerCase()) {
     return label.charAt(0).toUpperCase() + label.slice(1);

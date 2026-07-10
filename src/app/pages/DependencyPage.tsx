@@ -1,21 +1,21 @@
-import { loadDataset } from '../../lib/data';
+import React from 'react';
+
 import { formatDependencyName } from '../../lib/format';
 import {
   getDependencyEntries,
   getDependencyLastVerified,
   getDependencySeoMetadata,
 } from '../../lib/seo';
-import type { CompatibilitySource } from '../../types/compatibility';
+import type { CompatibilityDataset, CompatibilitySource } from '../../types/compatibility';
 import { Layout } from '../components/Layout';
 
-const dataset = loadDataset();
-
 interface DependencyPageProps {
+  dataset: CompatibilityDataset;
   projectId: string;
   dependencyId: string;
 }
 
-export function DependencyPage({ projectId, dependencyId }: DependencyPageProps) {
+export function DependencyPage({ dataset, projectId, dependencyId }: DependencyPageProps) {
   const project = dataset.projects[projectId];
   const entries = project ? getDependencyEntries(project, dependencyId) : [];
 

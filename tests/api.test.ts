@@ -1,6 +1,7 @@
 import { exports } from 'cloudflare:workers';
 import { describe, expect, it } from 'vitest';
-import { listProjects, loadDataset } from '../src/lib/data';
+import { listProjects } from '../src/lib/catalog';
+import { loadDataset } from '../src/lib/data';
 import type {
   CompatibilityDataset,
   DependencyCompatibilityEntry,

@@ -18,5 +18,5 @@
     "jsx": "react-jsx",
     "types": ["vite/client"]
   },
-  "include": ["src/app", "src/lib", "src/types", "src/vite-env.d.ts"]
+  "include": ["src/app", "src/client", "src/lib", "src/types", "src/vite-env.d.ts"]
 }
