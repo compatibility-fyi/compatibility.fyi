@@ -10,14 +10,18 @@ const integerVersion = /^\d+$/;
 const exactVersion = /^v?\d+(?:\.\d+){0,2}$/;
 const embeddedVersion =
   /(?:^|[-_])v?(\d+(?:\.\d+){1,2}(?:-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?)(?=$|[-_])/;
+const partialVersionWithSuffix =
+  /^v?(\d+)\.(\d+)((?:-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?)$/;
 
 export function normalizeVersion(input: string): NormalizedVersion {
   const raw = input.trim();
   const embeddedVersionText = raw.match(embeddedVersion)?.[1] ?? null;
   const versionText = raw.match(exactVersion)?.[0] ?? embeddedVersionText;
+  const expandedVersionText = versionText ? expandPartialVersion(versionText) : null;
   const validVersion =
     semver.valid(raw, { loose: true }) ??
-    (embeddedVersionText ? semver.valid(embeddedVersionText, { loose: true }) : null);
+    (embeddedVersionText ? semver.valid(embeddedVersionText, { loose: true }) : null) ??
+    (expandedVersionText ? semver.valid(expandedVersionText, { loose: true }) : null);
   const coerced = validVersion ? null : versionText ? semver.coerce(versionText) : null;
   const semanticVersion = validVersion ?? coerced?.version ?? null;
 
@@ -34,6 +38,15 @@ export function normalizeVersion(input: string): NormalizedVersion {
     normalized: raw.toLowerCase(),
     semver: null,
   };
+}
+
+function expandPartialVersion(value: string): string | null {
+  const match = value.match(partialVersionWithSuffix);
+  if (!match || match[3] === '') {
+    return null;
+  }
+
+  return `${match[1]}.${match[2]}.0${match[3]}`;
 }
 
 export function compareVersions(left: string, right: string): number {
