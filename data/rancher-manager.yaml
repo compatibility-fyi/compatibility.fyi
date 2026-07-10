@@ -1,0 +1,91 @@
+x-rancher-2143-support-source: &rancher_2143_support_source
+  title: Rancher Manager 2.14.3 Support Matrix
+  url: https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/
+  accessedAt: '2026-07-10'
+
+x-rancher-2137-release-source: &rancher_2137_release_source
+  title: Rancher Manager 2.13.7 Release Notes
+  url: https://documentation.suse.com/cloudnative/rancher-manager/v2.13/en/release-notes/v2.13.7.html
+  accessedAt: '2026-07-10'
+
+x-rancher-21211-release-source: &rancher_21211_release_source
+  title: Rancher Manager 2.12.11 Release Notes
+  url: https://documentation.suse.com/cloudnative/rancher-manager/v2.12/en/release-notes/v2.12.11.html
+  accessedAt: '2026-07-10'
+
+projects:
+  rancher-manager:
+    name: Rancher Manager
+    categories:
+      - Cluster Management
+      - Kubernetes
+      - Infrastructure
+    website: https://www.rancher.com/products/rancher
+    description: Rancher Manager compatibility for provisioned RKE2 and K3s Kubernetes versions.
+    versions:
+      '2.14':
+        dependencies:
+          rke2:
+            ranges:
+              - '>=1.33 <1.36'
+            relationship: provisioned cluster runtime
+            confidence: high
+            notes:
+              - Rancher Manager 2.14.3 certifies RKE2 Kubernetes 1.33 through 1.35 for Rancher-provisioned and imported downstream clusters.
+            sources:
+              - *rancher_2143_support_source
+            lastVerified: '2026-07-10'
+          k3s:
+            ranges:
+              - '>=1.33 <1.36'
+            relationship: provisioned cluster runtime
+            confidence: high
+            notes:
+              - Rancher Manager 2.14.3 certifies K3s Kubernetes 1.33 through 1.35 for Rancher-provisioned and imported downstream clusters.
+            sources:
+              - *rancher_2143_support_source
+            lastVerified: '2026-07-10'
+      '2.13':
+        dependencies:
+          rke2:
+            ranges:
+              - '>=1.32 <1.35'
+            relationship: provisioned cluster runtime
+            confidence: high
+            notes:
+              - Rancher Manager 2.13.7 release notes list RKE2/K3s Kubernetes 1.32.13, 1.33.13, and 1.34.9.
+            sources:
+              - *rancher_2137_release_source
+            lastVerified: '2026-07-10'
+          k3s:
+            ranges:
+              - '>=1.32 <1.35'
+            relationship: provisioned cluster runtime
+            confidence: high
+            notes:
+              - Rancher Manager 2.13.7 release notes list RKE2/K3s Kubernetes 1.32.13, 1.33.13, and 1.34.9.
+            sources:
+              - *rancher_2137_release_source
+            lastVerified: '2026-07-10'
+      '2.12':
+        dependencies:
+          rke2:
+            ranges:
+              - '>=1.31 <1.34'
+            relationship: provisioned cluster runtime
+            confidence: high
+            notes:
+              - Rancher Manager 2.12.11 release notes list RKE2/K3s Kubernetes 1.31.14, 1.32.13, and 1.33.13.
+            sources:
+              - *rancher_21211_release_source
+            lastVerified: '2026-07-10'
+          k3s:
+            ranges:
+              - '>=1.31 <1.34'
+            relationship: provisioned cluster runtime
+            confidence: high
+            notes:
+              - Rancher Manager 2.12.11 release notes list RKE2/K3s Kubernetes 1.31.14, 1.32.13, and 1.33.13.
+            sources:
+              - *rancher_21211_release_source
+            lastVerified: '2026-07-10'
