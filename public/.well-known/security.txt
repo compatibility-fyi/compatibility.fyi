@@ -1,0 +1,5 @@
+Contact: https://github.com/compatibility-fyi/compatibility.fyi/security/advisories/new
+Expires: 2027-07-09T23:59:59Z
+Canonical: https://compatibility.fyi/.well-known/security.txt
+Policy: https://github.com/compatibility-fyi/compatibility.fyi/security/policy
+Preferred-Languages: en

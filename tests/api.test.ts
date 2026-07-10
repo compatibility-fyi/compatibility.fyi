@@ -36,6 +36,8 @@ describe('api', () => {
     expect(await response.text()).toBe('');
     expect(response.headers.get('Access-Control-Allow-Origin')).toBe('*');
     expect(response.headers.get('Access-Control-Allow-Methods')).toContain('POST');
+    expect(response.headers.get('Strict-Transport-Security')).toContain('max-age=31536000');
+    expect(response.headers.get('X-Content-Type-Options')).toBe('nosniff');
   });
 
   it('lists every YAML-backed project', async () => {
@@ -45,6 +47,8 @@ describe('api', () => {
     const body = (await response.json()) as { projects: Array<{ id: string }> };
 
     expect(response.status).toBe(200);
+    expect(response.headers.get('Cache-Control')).toBe('public, max-age=60');
+    expect(response.headers.get('Content-Security-Policy')).toContain("default-src 'none'");
     expect(body.projects.map((project) => project.id)).toEqual(
       projectSummaries.map((project) => project.id),
     );
@@ -120,6 +124,7 @@ describe('api', () => {
     const response = await handleApiRequest(
       new Request('https://compatibility.fyi/api/v1/check', {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           project: fixture.project,
           version: fixture.version,
@@ -136,6 +141,7 @@ describe('api', () => {
 
     expect(response.status).toBe(200);
     expect(body.compatible).toBe('compatible');
+    expect(response.headers.get('Cache-Control')).toBe('no-store');
   });
 
   it('returns incompatible when a known dependency version is outside supported ranges', async () => {
@@ -188,6 +194,116 @@ describe('api', () => {
     );
 
     expect(response.status).toBe(400);
+    expect(response.headers.get('Cache-Control')).toBe('no-store');
+  });
+
+  it('rejects blank POST fields instead of returning misleading compatibility', async () => {
+    const response = await handleApiRequest(
+      new Request('https://compatibility.fyi/api/v1/check', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          project: 'keycloak',
+          version: '26',
+          dependency: 'postgresql',
+          dependencyVersion: '',
+        }),
+      }),
+    );
+    const body = (await response.json()) as { error: string; missing: string[] };
+
+    expect(response.status).toBe(400);
+    expect(body.error).toBe('Missing required body fields');
+    expect(body.missing).toEqual(['dependencyVersion']);
+  });
+
+  it('rejects empty dependency combinations from GET and POST', async () => {
+    const getResponse = await handleApiRequest(
+      new Request(
+        `https://compatibility.fyi/api/v1/check?${new URLSearchParams({
+          project: 'keycloak',
+          version: '26',
+          dependencies: '{}',
+        })}`,
+      ),
+    );
+    const postResponse = await handleApiRequest(
+      new Request('https://compatibility.fyi/api/v1/check', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ project: 'keycloak', version: '26', dependencies: {} }),
+      }),
+    );
+
+    expect(getResponse.status).toBe(400);
+    expect(postResponse.status).toBe(400);
+    await expect(getResponse.json()).resolves.toMatchObject({
+      error: 'dependencies must include at least one dependency',
+    });
+    await expect(postResponse.json()).resolves.toMatchObject({
+      error: 'dependencies must include at least one dependency',
+    });
+  });
+
+  it('rejects invalid dependency names and blank dependency versions', async () => {
+    for (const dependencies of [{ PostgreSQL: '17' }, { postgresql: ' ' }]) {
+      const response = await handleApiRequest(
+        new Request('https://compatibility.fyi/api/v1/check', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ project: 'keycloak', version: '26', dependencies }),
+        }),
+      );
+
+      expect(response.status).toBe(400);
+    }
+  });
+
+  it('bounds compound checks and POST body size', async () => {
+    const tooManyDependencies = Object.fromEntries(
+      Array.from({ length: 33 }, (_, index) => [`dependency-${index}`, '1']),
+    );
+    const tooManyResponse = await handleApiRequest(
+      new Request('https://compatibility.fyi/api/v1/check', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          project: 'keycloak',
+          version: '26',
+          dependencies: tooManyDependencies,
+        }),
+      }),
+    );
+    const oversizedResponse = await handleApiRequest(
+      new Request('https://compatibility.fyi/api/v1/check', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          project: 'keycloak',
+          version: '26',
+          dependency: 'postgresql',
+          dependencyVersion: '1'.repeat(17_000),
+        }),
+      }),
+    );
+
+    expect(tooManyResponse.status).toBe(400);
+    expect(oversizedResponse.status).toBe(413);
+  });
+
+  it('requires JSON content for POST checks', async () => {
+    const response = await handleApiRequest(
+      new Request('https://compatibility.fyi/api/v1/check', {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: '{}',
+      }),
+    );
+
+    expect(response.status).toBe(415);
+    await expect(response.json()).resolves.toMatchObject({
+      error: 'Content-Type must be application/json',
+    });
   });
 });
 

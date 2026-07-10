@@ -41,6 +41,15 @@ describe('compatibility data validation', () => {
     );
   });
 
+  it.each(['https://user:password@example.com/source', 'https://example.com:8443/source'])(
+    'rejects unsafe source URL %s',
+    (sourceUrl) => {
+      expect(() => parseCompatibilityYaml(validYaml({ sourceUrl }))).toThrow(
+        'without credentials or nonstandard ports',
+      );
+    },
+  );
+
   it('requires accessedAt evidence for medium and high confidence', () => {
     expect(() =>
       parseCompatibilityYaml(validYaml({ confidence: 'medium', accessedAt: null })),

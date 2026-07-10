@@ -364,6 +364,30 @@ export function DocsApiPage() {
               upstream source and includes a verification date. Compatibility data can still become
               stale, so clients should expose sources and verification dates where possible.
             </p>
+
+            <h3>Input limits and errors</h3>
+            <p>
+              Required values must be non-empty strings of at most 128 characters. Compound checks
+              accept between 1 and 32 dependency entries. POST bodies must use{' '}
+              <code>application/json</code> and are limited to 16 KiB.
+            </p>
+            <ul>
+              <li>
+                <code>400</code> — missing, malformed, empty, or out-of-range input.
+              </li>
+              <li>
+                <code>404</code> — unknown API route or project document.
+              </li>
+              <li>
+                <code>405</code> — unsupported HTTP method.
+              </li>
+              <li>
+                <code>413</code> — POST body exceeds 16 KiB.
+              </li>
+              <li>
+                <code>415</code> — POST body is not declared as JSON.
+              </li>
+            </ul>
           </section>
         </div>
       </div>

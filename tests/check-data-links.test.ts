@@ -1,8 +1,9 @@
 import { describe, expect, it, vi } from 'vitest';
-import { checkLink, type Fetch } from '../scripts/check-data-links';
+import { checkLink, type Fetch, type ResolveHostname } from '../scripts/check-data-links';
 
 const references = [{ file: 'project.yaml', path: 'projects.project.website' }];
-const options = { maxAttempts: 3, retryDelayMs: 0, timeoutMs: 100 };
+const resolveHostname: ResolveHostname = async () => [{ address: '93.184.216.34', family: 4 }];
+const options = { maxAttempts: 3, retryDelayMs: 0, resolveHostname, timeoutMs: 100 };
 
 describe('data link checker', () => {
   it('retries transient fetch failures', async () => {
@@ -53,5 +54,66 @@ describe('data link checker', () => {
       status: 'warn',
     });
     expect(fetchImpl).toHaveBeenCalledOnce();
+  });
+
+  it('rejects literal and resolved private addresses without fetching them', async () => {
+    const fetchImpl = vi.fn<Fetch>();
+
+    await expect(
+      checkLink('http://127.0.0.1/', references, fetchImpl, options),
+    ).resolves.toMatchObject({
+      status: 'fail',
+      message: expect.stringContaining('Blocked non-public address'),
+    });
+    await expect(
+      checkLink('https://internal.example.com/', references, fetchImpl, {
+        ...options,
+        resolveHostname: async () => [{ address: '10.0.0.5', family: 4 }],
+      }),
+    ).resolves.toMatchObject({
+      status: 'fail',
+      message: expect.stringContaining('Blocked non-public address'),
+    });
+    expect(fetchImpl).not.toHaveBeenCalled();
+  });
+
+  it('does not confuse public IPv4 addresses with IPv4-mapped IPv6 addresses', async () => {
+    const fetchImpl = vi.fn<Fetch>().mockResolvedValue(new Response(null, { status: 200 }));
+
+    await expect(
+      checkLink('https://example.com/', references, fetchImpl, {
+        ...options,
+        resolveHostname: async () => [{ address: '104.18.43.134', family: 4 }],
+      }),
+    ).resolves.toMatchObject({ status: 'ok' });
+    expect(fetchImpl).toHaveBeenCalledOnce();
+  });
+
+  it('validates redirect targets before following them', async () => {
+    const fetchImpl = vi
+      .fn<Fetch>()
+      .mockResolvedValue(
+        new Response(null, { status: 302, headers: { Location: 'http://169.254.169.254/' } }),
+      );
+
+    await expect(
+      checkLink('https://example.com', references, fetchImpl, options),
+    ).resolves.toMatchObject({
+      status: 'fail',
+      message: expect.stringContaining('Blocked non-public address'),
+    });
+    expect(fetchImpl).toHaveBeenCalledOnce();
+  });
+
+  it('rejects credentials and nonstandard ports', async () => {
+    const fetchImpl = vi.fn<Fetch>();
+
+    await expect(
+      checkLink('https://user:password@example.com/', references, fetchImpl, options),
+    ).resolves.toMatchObject({ status: 'fail' });
+    await expect(
+      checkLink('https://example.com:8443/', references, fetchImpl, options),
+    ).resolves.toMatchObject({ status: 'fail' });
+    expect(fetchImpl).not.toHaveBeenCalled();
   });
 });

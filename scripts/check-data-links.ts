@@ -1,4 +1,6 @@
+import { lookup } from 'node:dns/promises';
 import { readFile, readdir } from 'node:fs/promises';
+import { BlockList, isIP } from 'node:net';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { parse } from 'yaml';
@@ -45,15 +47,38 @@ interface LinkCheckOptions {
   maxAttempts?: number;
   retryDelayMs?: number;
   concurrency?: number;
+  maxRedirects?: number;
+  resolveHostname?: ResolveHostname;
 }
+
+interface ResolvedAddress {
+  address: string;
+  family: number;
+}
+
+export type ResolveHostname = (hostname: string) => Promise<ResolvedAddress[]>;
 
 const defaults = {
   timeoutMs: 15_000,
   maxAttempts: 3,
   retryDelayMs: 1_000,
   concurrency: 8,
+  maxRedirects: 5,
 };
 const warnStatuses = new Set([401, 403, 429]);
+const redirectStatuses = new Set([301, 302, 303, 307, 308]);
+const blockedHostnames = new Set(['localhost', 'localhost.localdomain']);
+const blockedHostnameSuffixes = [
+  '.home.arpa',
+  '.internal',
+  '.invalid',
+  '.local',
+  '.localhost',
+  '.test',
+];
+const blockedAddresses = createBlockedAddressLists();
+
+class UnsafeLinkError extends Error {}
 
 export async function main(): Promise<void> {
   const links = await collectLinks('data');
@@ -144,7 +169,7 @@ export async function checkLink(
 
   for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
     try {
-      const response = await fetchLink(url, fetchImpl, timeoutMs);
+      const response = await fetchLink(url, fetchImpl, timeoutMs, options);
       const result = classifyResponse(url, response.status, references);
 
       if (
@@ -161,6 +186,14 @@ export async function checkLink(
       lastError = new Error(`HTTP ${response.status}`);
     } catch (error) {
       lastError = error;
+      if (error instanceof UnsafeLinkError) {
+        return {
+          url,
+          status: 'fail',
+          message: formatError(error),
+          references,
+        };
+      }
     }
 
     if (attempt < maxAttempts) {
@@ -176,17 +209,25 @@ export async function checkLink(
   };
 }
 
-async function fetchLink(url: string, fetchImpl: Fetch, timeoutMs: number): Promise<Response> {
+async function fetchLink(
+  url: string,
+  fetchImpl: Fetch,
+  timeoutMs: number,
+  options: LinkCheckOptions,
+): Promise<Response> {
   try {
-    const head = await fetchWithTimeout(url, 'HEAD', fetchImpl, timeoutMs);
+    const head = await fetchWithTimeout(url, 'HEAD', fetchImpl, timeoutMs, options);
     if (!shouldRetryWithGet(head.status)) {
       return head;
     }
-  } catch {
+  } catch (error) {
+    if (error instanceof UnsafeLinkError) {
+      throw error;
+    }
     // Some sites do not support HEAD or intermittently reset it. GET is authoritative.
   }
 
-  return fetchWithTimeout(url, 'GET', fetchImpl, timeoutMs);
+  return fetchWithTimeout(url, 'GET', fetchImpl, timeoutMs, options);
 }
 
 async function fetchWithTimeout(
@@ -194,23 +235,127 @@ async function fetchWithTimeout(
   method: 'HEAD' | 'GET',
   fetchImpl: Fetch,
   timeoutMs: number,
+  options: LinkCheckOptions = {},
 ): Promise<Response> {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  const resolveHostname = options.resolveHostname ?? resolvePublicHostname;
+  const maxRedirects = options.maxRedirects ?? defaults.maxRedirects;
+  let currentUrl = new URL(url);
 
-  try {
-    return await fetchImpl(url, {
-      method,
-      redirect: 'follow',
-      signal: controller.signal,
-      headers: {
-        'user-agent': 'compatibility.fyi link checker (+https://compatibility.fyi)',
-        accept: 'text/html,application/xhtml+xml,application/xml,text/plain,*/*',
-      },
-    });
-  } finally {
-    clearTimeout(timeout);
+  for (let redirectCount = 0; redirectCount <= maxRedirects; redirectCount += 1) {
+    await assertSafeLinkTarget(currentUrl, resolveHostname);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), timeoutMs);
+    let response: Response;
+
+    try {
+      response = await fetchImpl(currentUrl, {
+        method,
+        redirect: 'manual',
+        signal: controller.signal,
+        headers: {
+          'user-agent': 'compatibility.fyi link checker (+https://compatibility.fyi)',
+          accept: 'text/html,application/xhtml+xml,application/xml,text/plain,*/*',
+        },
+      });
+    } finally {
+      clearTimeout(timeout);
+    }
+
+    if (!redirectStatuses.has(response.status)) {
+      return response;
+    }
+
+    const location = response.headers.get('Location');
+    if (!location) {
+      return response;
+    }
+    if (redirectCount === maxRedirects) {
+      throw new UnsafeLinkError(`Too many redirects; maximum is ${maxRedirects}`);
+    }
+
+    await response.body?.cancel();
+    currentUrl = new URL(location, currentUrl);
   }
+
+  throw new UnsafeLinkError(`Too many redirects; maximum is ${maxRedirects}`);
+}
+
+async function assertSafeLinkTarget(url: URL, resolveHostname: ResolveHostname): Promise<void> {
+  if (url.protocol !== 'http:' && url.protocol !== 'https:') {
+    throw new UnsafeLinkError('Only HTTP and HTTPS links are allowed');
+  }
+  if (url.username || url.password) {
+    throw new UnsafeLinkError('Links must not include credentials');
+  }
+  if (url.port) {
+    throw new UnsafeLinkError('Links must use the standard HTTP or HTTPS port');
+  }
+
+  const hostname = url.hostname
+    .replace(/^\[|\]$/g, '')
+    .replace(/\.$/, '')
+    .toLowerCase();
+  if (
+    blockedHostnames.has(hostname) ||
+    blockedHostnameSuffixes.some((suffix) => hostname.endsWith(suffix))
+  ) {
+    throw new UnsafeLinkError(`Blocked non-public hostname: ${hostname}`);
+  }
+
+  const addressFamily = isIP(hostname);
+  const addresses = addressFamily
+    ? [{ address: hostname, family: addressFamily }]
+    : await resolveHostname(hostname);
+  if (addresses.length === 0) {
+    throw new Error(`Hostname did not resolve: ${hostname}`);
+  }
+
+  for (const address of addresses) {
+    const family = address.family === 6 ? 'ipv6' : 'ipv4';
+    if (blockedAddresses[family].check(address.address, family)) {
+      throw new UnsafeLinkError(`Blocked non-public address for ${hostname}: ${address.address}`);
+    }
+  }
+}
+
+async function resolvePublicHostname(hostname: string): Promise<ResolvedAddress[]> {
+  return lookup(hostname, { all: true, verbatim: true });
+}
+
+function createBlockedAddressLists(): Record<'ipv4' | 'ipv6', BlockList> {
+  const ipv4 = new BlockList();
+  const ipv6 = new BlockList();
+  for (const [network, prefix] of [
+    ['0.0.0.0', 8],
+    ['10.0.0.0', 8],
+    ['100.64.0.0', 10],
+    ['127.0.0.0', 8],
+    ['169.254.0.0', 16],
+    ['172.16.0.0', 12],
+    ['192.0.0.0', 24],
+    ['192.0.2.0', 24],
+    ['192.168.0.0', 16],
+    ['198.18.0.0', 15],
+    ['198.51.100.0', 24],
+    ['203.0.113.0', 24],
+    ['224.0.0.0', 4],
+    ['240.0.0.0', 4],
+  ] as const) {
+    ipv4.addSubnet(network, prefix, 'ipv4');
+  }
+  for (const [network, prefix] of [
+    ['::', 128],
+    ['::1', 128],
+    ['::ffff:0:0', 96],
+    ['100::', 64],
+    ['2001:db8::', 32],
+    ['fc00::', 7],
+    ['fe80::', 10],
+    ['ff00::', 8],
+  ] as const) {
+    ipv6.addSubnet(network, prefix, 'ipv6');
+  }
+  return { ipv4, ipv6 };
 }
 
 function shouldRetryWithGet(statusCode: number): boolean {

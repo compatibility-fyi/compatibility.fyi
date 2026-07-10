@@ -222,8 +222,16 @@ function assertHttpUrl(value: unknown, path: string): asserts value is string {
     if (url.protocol !== 'http:' && url.protocol !== 'https:') {
       throw new Error('unsupported protocol');
     }
+    if (url.username || url.password) {
+      throw new Error('credentials are not allowed');
+    }
+    if (url.port) {
+      throw new Error('nonstandard ports are not allowed');
+    }
   } catch {
-    throw new Error(`${path} must be a valid HTTP or HTTPS URL`);
+    throw new Error(
+      `${path} must be a valid HTTP or HTTPS URL without credentials or nonstandard ports`,
+    );
   }
 }
 
