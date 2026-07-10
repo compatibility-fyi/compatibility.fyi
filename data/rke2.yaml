@@ -1,0 +1,888 @@
+x-rke2-136-source: &rke2_136_source
+  title: RKE2 1.36 Support Matrix
+  url: https://www.suse.com/suse-rke2/support-matrix/all-supported-versions/rke2-v1-36/
+  accessedAt: '2026-07-10'
+
+x-rke2-135-source: &rke2_135_source
+  title: RKE2 1.35 Support Matrix
+  url: https://www.suse.com/suse-rke2/support-matrix/all-supported-versions/rke2-v1-35/
+  accessedAt: '2026-07-10'
+
+x-rke2-134-source: &rke2_134_source
+  title: RKE2 1.34 Support Matrix
+  url: https://www.suse.com/suse-rke2/support-matrix/all-supported-versions/rke2-v1-34/
+  accessedAt: '2026-07-10'
+
+projects:
+  rke2:
+    name: RKE2
+    categories:
+      - Kubernetes
+      - Kubernetes Distribution
+      - Container Runtime
+    website: https://docs.rke2.io/
+    description: RKE2 compatibility for Kubernetes, operating systems, architectures, bundled components, network plugins, cloud integrations, and Windows workers.
+    versions:
+      '1.36.2+rke2r1':
+        dependencies:
+          kubernetes:
+            ranges:
+              - '1.36.2'
+            relationship: bundled Kubernetes version
+            confidence: high
+            notes:
+              - RKE2 1.36.2+rke2r1 packages Kubernetes 1.36.2.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+          architecture:
+            ranges:
+              - x86_64
+              - arm64
+            relationship: supported architecture
+            confidence: high
+            notes:
+              - The support matrix certifies x86_64 and arm64 architectures.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+          sles:
+            ranges:
+              - '16.0'
+              - 15 SP7
+              - 15 SP6
+            relationship: certified operating system
+            confidence: high
+            notes:
+              - The support matrix certifies SLES 16.0, 15 SP7, and 15 SP6.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+          sle-micro:
+            ranges:
+              - '6.2'
+              - '6.1'
+              - '6.0'
+            relationship: certified operating system
+            confidence: high
+            notes:
+              - The support matrix certifies SLE Micro 6.2, 6.1, and 6.0.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+          rhel:
+            ranges:
+              - '10.1'
+              - '10.0'
+              - '9.7'
+            relationship: certified operating system
+            confidence: high
+            notes:
+              - The matrix certifies these RHEL versions and treats Oracle Linux and Rocky Linux as validated through RHEL testing.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+          oracle-linux:
+            ranges:
+              - '10.1'
+              - '10.0'
+              - '9.7'
+            relationship: operating system validated through RHEL testing
+            confidence: high
+            notes:
+              - The matrix treats Oracle Linux as validated through the listed RHEL testing.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+          rocky-linux:
+            ranges:
+              - '10.1'
+              - '10.0'
+              - '9.7'
+            relationship: operating system validated through RHEL testing
+            confidence: high
+            notes:
+              - The matrix treats Rocky Linux as validated through the listed RHEL testing.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+          ubuntu:
+            ranges:
+              - '24.04'
+              - '22.04'
+            relationship: certified operating system
+            confidence: high
+            notes:
+              - The support matrix certifies Ubuntu 24.04 and 22.04.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+          etcd:
+            ranges:
+              - '3.6.12-k3s1'
+            relationship: bundled component
+            confidence: high
+            notes:
+              - RKE2 1.36.2+rke2r1 bundles etcd 3.6.12-k3s1.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+          containerd:
+            ranges:
+              - '2.3.2-k3s2'
+            relationship: bundled component
+            confidence: high
+            notes:
+              - RKE2 1.36.2+rke2r1 bundles containerd 2.3.2-k3s2.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+          runc:
+            ranges:
+              - '1.4.2'
+            relationship: bundled component
+            confidence: high
+            notes:
+              - RKE2 1.36.2+rke2r1 bundles runc 1.4.2.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+          metrics-server:
+            ranges:
+              - '0.8.1'
+            relationship: bundled component
+            confidence: high
+            notes:
+              - RKE2 1.36.2+rke2r1 bundles metrics-server 0.8.1.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+          coredns:
+            ranges:
+              - '1.14.3'
+            relationship: bundled component
+            confidence: high
+            notes:
+              - RKE2 1.36.2+rke2r1 bundles CoreDNS 1.14.3.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+          ingress-nginx:
+            ranges:
+              - '1.15.1-prime2'
+            relationship: bundled ingress controller
+            confidence: high
+            notes:
+              - RKE2 1.36.2+rke2r1 bundles Ingress-NGINX 1.15.1-prime2.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+          helm-controller:
+            ranges:
+              - '0.17.1'
+            relationship: bundled component
+            confidence: high
+            notes:
+              - RKE2 1.36.2+rke2r1 bundles Helm Controller 0.17.1.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+          traefik:
+            ranges:
+              - '3.7.4'
+            relationship: bundled component
+            confidence: high
+            notes:
+              - The RKE2 1.36 support matrix lists Traefik 3.7.4 in the certified component set.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+          cni:
+            ranges:
+              - canal
+              - calico
+              - cilium
+              - multus
+              - flannel
+            relationship: certified network plugin
+            confidence: high
+            notes:
+              - The support matrix certifies Canal, Calico, Cilium, Multus, and Flannel configurations.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+          flannel:
+            ranges:
+              - '0.28.5'
+            relationship: certified CNI component
+            confidence: high
+            notes:
+              - The support matrix certifies Flannel 0.28.5, including its use in Canal.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+          calico:
+            ranges:
+              - '3.32.0'
+            relationship: certified CNI component
+            confidence: high
+            notes:
+              - The support matrix certifies Calico 3.32.0, including its use in Canal.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+          cilium:
+            ranges:
+              - '1.19.4'
+            relationship: certified CNI component
+            confidence: high
+            notes:
+              - The support matrix certifies Cilium 1.19.4.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+          multus:
+            ranges:
+              - '4.2.4'
+            relationship: certified CNI component
+            confidence: high
+            notes:
+              - The support matrix certifies Multus 4.2.4.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+          vsphere-cpi:
+            ranges:
+              - '1.14.000'
+            relationship: supported out-of-tree cloud provider integration
+            confidence: high
+            notes:
+              - The support matrix lists vSphere CPI chart 1.14.000 and cautions against upgrading with in-tree cloud providers.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+          vsphere-csi:
+            ranges:
+              - '3.7.0-rancher100'
+            relationship: supported out-of-tree storage integration
+            confidence: high
+            notes:
+              - The support matrix lists vSphere CSI chart 3.7.0-rancher100.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+          container-runtime:
+            ranges:
+              - nvidia-container-runtime
+            relationship: additionally supported runtime integration
+            confidence: high
+            notes:
+              - The support matrix lists NVIDIA Container Runtime; Docker CRI is explicitly limited to K3s.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+          windows-server:
+            ranges:
+              - '2022'
+            relationship: supported Windows worker operating system
+            confidence: high
+            notes:
+              - Windows Server 2022 workers are supported in Linux control-plane clusters and require Calico or Flannel CNI.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-07-10'
+      '1.35.6+rke2r1':
+        dependencies:
+          kubernetes:
+            ranges:
+              - '1.35.6'
+            relationship: bundled Kubernetes version
+            confidence: high
+            notes:
+              - RKE2 1.35.6+rke2r1 packages Kubernetes 1.35.6.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          architecture:
+            ranges:
+              - x86_64
+              - arm64
+            relationship: supported architecture
+            confidence: high
+            notes:
+              - The support matrix certifies x86_64 and arm64 architectures.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          sles:
+            ranges:
+              - '16.0'
+              - 15 SP7
+              - 15 SP6
+            relationship: certified operating system
+            confidence: high
+            notes:
+              - The support matrix certifies SLES 16.0, 15 SP7, and 15 SP6.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          sle-micro:
+            ranges:
+              - '6.2'
+              - '6.1'
+              - '6.0'
+            relationship: certified operating system
+            confidence: high
+            notes:
+              - The support matrix certifies SLE Micro 6.2, 6.1, and 6.0.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          opensuse-leap:
+            ranges:
+              - '15.7'
+              - '15.6'
+              - '15.5'
+            relationship: operating system validated through SLES testing
+            confidence: high
+            notes:
+              - The matrix lists openSUSE Leap 15.7, 15.6, and 15.5 as validated through SUSE Linux Enterprise testing.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          rhel:
+            ranges:
+              - '10.1'
+              - '10.0'
+              - '9.7'
+              - '9.6'
+              - '9.4'
+              - '8.10'
+              - '8.9'
+              - '8.8'
+            relationship: certified operating system
+            confidence: high
+            notes:
+              - The matrix certifies these RHEL versions and treats Oracle Linux and Rocky Linux as validated through RHEL testing.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          oracle-linux:
+            ranges:
+              - '10.1'
+              - '10.0'
+              - '9.7'
+              - '9.6'
+              - '9.4'
+              - '8.10'
+              - '8.9'
+              - '8.8'
+            relationship: operating system validated through RHEL testing
+            confidence: high
+            notes:
+              - The matrix treats Oracle Linux as validated through the listed RHEL testing.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          rocky-linux:
+            ranges:
+              - '10.1'
+              - '10.0'
+              - '9.7'
+              - '9.6'
+              - '9.4'
+              - '8.10'
+              - '8.9'
+              - '8.8'
+            relationship: operating system validated through RHEL testing
+            confidence: high
+            notes:
+              - The matrix treats Rocky Linux as validated through the listed RHEL testing.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          ubuntu:
+            ranges:
+              - '24.04'
+              - '22.04'
+              - '20.04'
+            relationship: certified operating system
+            confidence: high
+            notes:
+              - The support matrix certifies Ubuntu 24.04, 22.04, and 20.04.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          etcd:
+            ranges:
+              - '3.6.12-k3s1'
+            relationship: bundled component
+            confidence: high
+            notes:
+              - RKE2 1.35.6+rke2r1 bundles etcd 3.6.12-k3s1.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          containerd:
+            ranges:
+              - '2.2.5-k3s2'
+            relationship: bundled component
+            confidence: high
+            notes:
+              - RKE2 1.35.6+rke2r1 bundles containerd 2.2.5-k3s2.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          runc:
+            ranges:
+              - '1.4.2'
+            relationship: bundled component
+            confidence: high
+            notes:
+              - RKE2 1.35.6+rke2r1 bundles runc 1.4.2.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          metrics-server:
+            ranges:
+              - '0.8.1'
+            relationship: bundled component
+            confidence: high
+            notes:
+              - RKE2 1.35.6+rke2r1 bundles metrics-server 0.8.1.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          coredns:
+            ranges:
+              - '1.14.3'
+            relationship: bundled component
+            confidence: high
+            notes:
+              - RKE2 1.35.6+rke2r1 bundles CoreDNS 1.14.3.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          ingress-nginx:
+            ranges:
+              - '1.14.5-hardened2'
+            relationship: bundled ingress controller
+            confidence: high
+            notes:
+              - RKE2 1.35.6+rke2r1 bundles Ingress-NGINX 1.14.5-hardened2.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          helm-controller:
+            ranges:
+              - '0.17.1'
+            relationship: bundled component
+            confidence: high
+            notes:
+              - RKE2 1.35.6+rke2r1 bundles Helm Controller 0.17.1.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          traefik:
+            ranges:
+              - '3.7.4'
+            relationship: bundled component
+            confidence: high
+            notes:
+              - The RKE2 1.35 support matrix lists Traefik 3.7.4 in the certified component set.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          cni:
+            ranges:
+              - canal
+              - calico
+              - cilium
+              - multus
+              - flannel
+            relationship: certified network plugin
+            confidence: high
+            notes:
+              - The support matrix certifies Canal, Calico, Cilium, Multus, and Flannel configurations.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          flannel:
+            ranges:
+              - '0.28.5'
+            relationship: certified CNI component
+            confidence: high
+            notes:
+              - The support matrix certifies Flannel 0.28.5, including its use in Canal.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          calico:
+            ranges:
+              - '3.32.0'
+            relationship: certified CNI component
+            confidence: high
+            notes:
+              - The support matrix certifies Calico 3.32.0, including its use in Canal.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          cilium:
+            ranges:
+              - '1.19.4'
+            relationship: certified CNI component
+            confidence: high
+            notes:
+              - The support matrix certifies Cilium 1.19.4.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          multus:
+            ranges:
+              - '4.2.4'
+            relationship: certified CNI component
+            confidence: high
+            notes:
+              - The support matrix certifies Multus 4.2.4.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          vsphere-cpi:
+            ranges:
+              - '1.13.000'
+            relationship: supported out-of-tree cloud provider integration
+            confidence: high
+            notes:
+              - The support matrix lists vSphere CPI chart 1.13.000 and cautions against upgrading with in-tree cloud providers.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          vsphere-csi:
+            ranges:
+              - '3.6.0-rancher100'
+            relationship: supported out-of-tree storage integration
+            confidence: high
+            notes:
+              - The support matrix lists vSphere CSI chart 3.6.0-rancher100.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          container-runtime:
+            ranges:
+              - nvidia-container-runtime
+            relationship: additionally supported runtime integration
+            confidence: high
+            notes:
+              - The support matrix lists NVIDIA Container Runtime; Docker CRI is explicitly limited to K3s.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+          windows-server:
+            ranges:
+              - '2019'
+              - '2022'
+            relationship: supported Windows worker operating system
+            confidence: high
+            notes:
+              - Windows Server 2019 LTSC and 2022 workers are supported in Linux control-plane clusters and require Calico or Flannel CNI.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-07-10'
+      '1.34.9+rke2r1':
+        dependencies:
+          kubernetes:
+            ranges:
+              - '1.34.9'
+            relationship: bundled Kubernetes version
+            confidence: high
+            notes:
+              - RKE2 1.34.9+rke2r1 packages Kubernetes 1.34.9.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          architecture:
+            ranges:
+              - x86_64
+              - arm64
+            relationship: supported architecture
+            confidence: high
+            notes:
+              - The support matrix certifies x86_64 and arm64 architectures.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          sles:
+            ranges:
+              - '16.0'
+              - 15 SP7
+              - 15 SP6
+              - 15 SP5
+            relationship: certified operating system
+            confidence: high
+            notes:
+              - The support matrix certifies SLES 16.0, 15 SP7, 15 SP6, and 15 SP5.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          sle-micro:
+            ranges:
+              - '6.1'
+              - '6.0'
+              - '5.5'
+            relationship: certified operating system
+            confidence: high
+            notes:
+              - The support matrix certifies SLE Micro 6.1, 6.0, and 5.5.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          opensuse-leap:
+            ranges:
+              - '15.7'
+              - '15.6'
+              - '15.5'
+            relationship: operating system validated through SLES testing
+            confidence: high
+            notes:
+              - The matrix lists openSUSE Leap 15.7, 15.6, and 15.5 as validated through SUSE Linux Enterprise testing.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          rhel:
+            ranges:
+              - '10.1'
+              - '10.0'
+              - '9.7'
+              - '9.6'
+              - '9.4'
+              - '8.10'
+              - '8.9'
+              - '8.8'
+            relationship: certified operating system
+            confidence: high
+            notes:
+              - The matrix certifies these RHEL versions and treats Oracle Linux and Rocky Linux as validated through RHEL testing.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          oracle-linux:
+            ranges:
+              - '10.1'
+              - '10.0'
+              - '9.7'
+              - '9.6'
+              - '9.4'
+              - '8.10'
+              - '8.9'
+              - '8.8'
+            relationship: operating system validated through RHEL testing
+            confidence: high
+            notes:
+              - The matrix treats Oracle Linux as validated through the listed RHEL testing.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          rocky-linux:
+            ranges:
+              - '10.1'
+              - '10.0'
+              - '9.7'
+              - '9.6'
+              - '9.4'
+              - '8.10'
+              - '8.9'
+              - '8.8'
+            relationship: operating system validated through RHEL testing
+            confidence: high
+            notes:
+              - The matrix treats Rocky Linux as validated through the listed RHEL testing.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          ubuntu:
+            ranges:
+              - '24.04'
+              - '22.04'
+              - '20.04'
+            relationship: certified operating system
+            confidence: high
+            notes:
+              - The support matrix certifies Ubuntu 24.04, 22.04, and 20.04.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          etcd:
+            ranges:
+              - '3.6.12-k3s1'
+            relationship: bundled component
+            confidence: high
+            notes:
+              - RKE2 1.34.9+rke2r1 bundles etcd 3.6.12-k3s1.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          containerd:
+            ranges:
+              - '2.2.5-k3s2'
+            relationship: bundled component
+            confidence: high
+            notes:
+              - RKE2 1.34.9+rke2r1 bundles containerd 2.2.5-k3s2.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          runc:
+            ranges:
+              - '1.4.2'
+            relationship: bundled component
+            confidence: high
+            notes:
+              - RKE2 1.34.9+rke2r1 bundles runc 1.4.2.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          metrics-server:
+            ranges:
+              - '0.8.1'
+            relationship: bundled component
+            confidence: high
+            notes:
+              - RKE2 1.34.9+rke2r1 bundles metrics-server 0.8.1.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          coredns:
+            ranges:
+              - '1.14.4'
+            relationship: bundled component
+            confidence: high
+            notes:
+              - RKE2 1.34.9+rke2r1 bundles CoreDNS 1.14.4.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          ingress-nginx:
+            ranges:
+              - '1.14.5-hardened2'
+            relationship: bundled ingress controller
+            confidence: high
+            notes:
+              - RKE2 1.34.9+rke2r1 bundles Ingress-NGINX 1.14.5-hardened2.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          helm-controller:
+            ranges:
+              - '0.17.1'
+            relationship: bundled component
+            confidence: high
+            notes:
+              - RKE2 1.34.9+rke2r1 bundles Helm Controller 0.17.1.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          traefik:
+            ranges:
+              - '3.7.4'
+            relationship: bundled component
+            confidence: high
+            notes:
+              - The RKE2 1.34 support matrix lists Traefik 3.7.4 in the certified component set.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          cni:
+            ranges:
+              - canal
+              - calico
+              - cilium
+              - multus
+              - flannel
+            relationship: certified network plugin
+            confidence: high
+            notes:
+              - The support matrix certifies Canal, Calico, Cilium, Multus, and Flannel configurations.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          flannel:
+            ranges:
+              - '0.28.5'
+            relationship: certified CNI component
+            confidence: high
+            notes:
+              - The support matrix certifies Flannel 0.28.5, including its use in Canal.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          calico:
+            ranges:
+              - '3.32.0'
+            relationship: certified CNI component
+            confidence: high
+            notes:
+              - The support matrix certifies Calico 3.32.0, including its use in Canal.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          cilium:
+            ranges:
+              - '1.19.4'
+            relationship: certified CNI component
+            confidence: high
+            notes:
+              - The support matrix certifies Cilium 1.19.4.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          multus:
+            ranges:
+              - '4.2.4'
+            relationship: certified CNI component
+            confidence: high
+            notes:
+              - The support matrix certifies Multus 4.2.4.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          vsphere-cpi:
+            ranges:
+              - '1.12.100'
+            relationship: supported out-of-tree cloud provider integration
+            confidence: high
+            notes:
+              - The support matrix lists vSphere CPI chart 1.12.100 and cautions against upgrading with in-tree cloud providers.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          vsphere-csi:
+            ranges:
+              - '3.5.0-rancher200'
+            relationship: supported out-of-tree storage integration
+            confidence: high
+            notes:
+              - The support matrix lists vSphere CSI chart 3.5.0-rancher200.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          container-runtime:
+            ranges:
+              - nvidia-container-runtime
+            relationship: additionally supported runtime integration
+            confidence: high
+            notes:
+              - The support matrix lists NVIDIA Container Runtime; Docker CRI is explicitly limited to K3s.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
+          windows-server:
+            ranges:
+              - '2019'
+              - '2022'
+            relationship: supported Windows worker operating system
+            confidence: high
+            notes:
+              - Windows Server 2019 LTSC and 2022 workers are supported in Linux control-plane clusters and require Calico or Flannel CNI.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-07-10'
