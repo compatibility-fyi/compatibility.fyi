@@ -1,18 +1,28 @@
-name: CI
+name: Link check
 
 on:
   push:
     branches:
       - master
+    paths:
+      - 'data/*.yaml'
+      - 'scripts/check-data-links.ts'
+      - '.github/workflows/links.yml'
   pull_request:
+    paths:
+      - 'data/*.yaml'
+      - 'scripts/check-data-links.ts'
+      - '.github/workflows/links.yml'
+  schedule:
+    - cron: '17 3 * * *'
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  ci:
-    name: ci
+  links:
+    name: links
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -27,14 +37,5 @@ jobs:
       - name: Install
         run: npm ci
 
-      - name: Typecheck
-        run: npm run typecheck
-
-      - name: Lint
-        run: npm run lint
-
-      - name: Test
-        run: npm run test
-
-      - name: Build
-        run: npm run build
+      - name: Check YAML links
+        run: npm run check:links

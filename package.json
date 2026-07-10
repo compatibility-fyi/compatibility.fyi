@@ -19,6 +19,7 @@
     "preview": "vite preview",
     "typecheck": "wrangler types worker-configuration.d.ts --include-runtime=false --check && tsc -b --pretty false",
     "test": "vitest run",
+    "check:links": "tsx scripts/check-data-links.ts",
     "validate:data": "tsx scripts/validate-data.ts",
     "lint": "npm run validate:data -- data/*.yaml && eslint . && prettier --check .",
     "deploy": "npm run build && wrangler deploy"
