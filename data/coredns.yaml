@@ -3,6 +3,36 @@ x-coredns-kubeadm-source: &coredns_kubeadm_source
   url: https://github.com/coredns/deployment/blob/d966288950ebcef3551b6de5fca02bd337d36621/kubernetes/CoreDNS-k8s_version.md
   accessedAt: '2026-07-08'
 
+x-kubernetes-136-coredns-source: &kubernetes_136_coredns_source
+  title: Kubernetes 1.36.2 kubeadm CoreDNS version
+  url: https://github.com/kubernetes/kubernetes/blob/v1.36.2/cmd/kubeadm/app/constants/constants.go
+  accessedAt: '2026-07-13'
+
+x-kubernetes-1360-coredns-source: &kubernetes_1360_coredns_source
+  title: Kubernetes 1.36.0 kubeadm CoreDNS version
+  url: https://github.com/kubernetes/kubernetes/blob/v1.36.0/cmd/kubeadm/app/constants/constants.go
+  accessedAt: '2026-07-13'
+
+x-kubernetes-135-coredns-source: &kubernetes_135_coredns_source
+  title: Kubernetes 1.35.6 kubeadm CoreDNS version
+  url: https://github.com/kubernetes/kubernetes/blob/v1.35.6/cmd/kubeadm/app/constants/constants.go
+  accessedAt: '2026-07-13'
+
+x-kubernetes-1350-coredns-source: &kubernetes_1350_coredns_source
+  title: Kubernetes 1.35.0 kubeadm CoreDNS version
+  url: https://github.com/kubernetes/kubernetes/blob/v1.35.0/cmd/kubeadm/app/constants/constants.go
+  accessedAt: '2026-07-13'
+
+x-kubernetes-134-coredns-source: &kubernetes_134_coredns_source
+  title: Kubernetes 1.34.9 kubeadm CoreDNS version
+  url: https://github.com/kubernetes/kubernetes/blob/v1.34.9/cmd/kubeadm/app/constants/constants.go
+  accessedAt: '2026-07-13'
+
+x-kubernetes-1340-coredns-source: &kubernetes_1340_coredns_source
+  title: Kubernetes 1.34.0 kubeadm CoreDNS version
+  url: https://github.com/kubernetes/kubernetes/blob/v1.34.0/cmd/kubeadm/app/constants/constants.go
+  accessedAt: '2026-07-13'
+
 projects:
   coredns:
     name: CoreDNS
@@ -13,6 +43,45 @@ projects:
     website: https://coredns.io/
     description: DNS server version mapping for Kubernetes kubeadm-managed clusters.
     versions:
+      '1.14.2':
+        dependencies:
+          kubernetes:
+            ranges:
+              - '>=1.36 <1.37'
+            relationship: kubeadm-default
+            confidence: high
+            notes:
+              - Kubernetes 1.36.0 and 1.36.2 kubeadm constants both set CoreDNS v1.14.2 as the installed CoreDNS version. This is a kubeadm default mapping, not a general recommendation for all clusters.
+            sources:
+              - *kubernetes_1360_coredns_source
+              - *kubernetes_136_coredns_source
+            lastVerified: '2026-07-13'
+      '1.13.1':
+        dependencies:
+          kubernetes:
+            ranges:
+              - '>=1.35 <1.36'
+            relationship: kubeadm-default
+            confidence: high
+            notes:
+              - Kubernetes 1.35.0 and 1.35.6 kubeadm constants both set CoreDNS v1.13.1 as the installed CoreDNS version. This is a kubeadm default mapping, not a general recommendation for all clusters.
+            sources:
+              - *kubernetes_1350_coredns_source
+              - *kubernetes_135_coredns_source
+            lastVerified: '2026-07-13'
+      '1.12.1':
+        dependencies:
+          kubernetes:
+            ranges:
+              - '>=1.34 <1.35'
+            relationship: kubeadm-default
+            confidence: high
+            notes:
+              - Kubernetes 1.34.0 and 1.34.9 kubeadm constants both set CoreDNS v1.12.1 as the installed CoreDNS version. This is a kubeadm default mapping, not a general recommendation for all clusters.
+            sources:
+              - *kubernetes_1340_coredns_source
+              - *kubernetes_134_coredns_source
+            lastVerified: '2026-07-13'
       '1.12.0':
         dependencies:
           kubernetes:

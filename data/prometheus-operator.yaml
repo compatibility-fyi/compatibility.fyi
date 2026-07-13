@@ -1,7 +1,12 @@
 x-prometheus-operator-compatibility-source: &prometheus_operator_compatibility_source
   title: Prometheus Operator Compatibility
   url: https://prometheus-operator.dev/docs/getting-started/compatibility/
-  accessedAt: '2026-07-08'
+  accessedAt: '2026-07-13'
+
+x-prometheus-operator-092-source: &prometheus_operator_092_source
+  title: Prometheus Operator 0.92.1 release
+  url: https://github.com/prometheus-operator/prometheus-operator/releases/tag/v0.92.1
+  accessedAt: '2026-07-13'
 
 projects:
   prometheus-operator:
@@ -13,6 +18,49 @@ projects:
     website: https://prometheus-operator.dev/
     description: Prometheus Operator compatibility for Kubernetes and managed monitoring components.
     versions:
+      '0.92':
+        dependencies:
+          kubernetes:
+            ranges:
+              - '>=1.25.0'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Prometheus Operator 0.92 is newer than the 0.84.0 compatibility breakpoint and therefore requires Kubernetes 1.25.0 or newer because of CEL usage in CRDs.
+            sources:
+              - *prometheus_operator_compatibility_source
+              - *prometheus_operator_092_source
+            lastVerified: '2026-07-13'
+          prometheus:
+            ranges:
+              - '>=2.0.0'
+            relationship: managed workload
+            confidence: high
+            notes:
+              - Prometheus Operator supports Prometheus 2.0.0 and newer.
+            sources:
+              - *prometheus_operator_compatibility_source
+            lastVerified: '2026-07-13'
+          alertmanager:
+            ranges:
+              - '>=0.15.0'
+            relationship: managed workload
+            confidence: high
+            notes:
+              - Prometheus Operator supports Alertmanager 0.15 and newer.
+            sources:
+              - *prometheus_operator_compatibility_source
+            lastVerified: '2026-07-13'
+          thanos:
+            ranges:
+              - '>=0.10.0'
+            relationship: managed workload
+            confidence: high
+            notes:
+              - Prometheus Operator supports Thanos 0.10 and newer.
+            sources:
+              - *prometheus_operator_compatibility_source
+            lastVerified: '2026-07-13'
       '0.84':
         dependencies:
           kubernetes:

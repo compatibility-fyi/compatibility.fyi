@@ -3,6 +3,11 @@ x-jenkins-java-support-source: &jenkins_java_support_source
   url: https://www.jenkins.io/doc/book/platform-information/support-policy-java/
   accessedAt: '2026-07-09'
 
+x-jenkins-2568-source: &jenkins_2568_source
+  title: Jenkins 2.568.1 changelog
+  url: https://www.jenkins.io/changelog/2.568.1/
+  accessedAt: '2026-07-13'
+
 projects:
   jenkins:
     name: Jenkins
@@ -13,6 +18,22 @@ projects:
     website: https://www.jenkins.io/
     description: Jenkins LTS release-line compatibility for the Java runtime used by controllers, agents, and CLI clients.
     versions:
+      '2.568':
+        dependencies:
+          java:
+            ranges:
+              - '21'
+              - '25'
+            relationship: controller, agent, and CLI runtime
+            confidence: high
+            notes:
+              - Jenkins LTS 2.568.1 lists Java 21 and Java 25 as its tested JDK configurations.
+              - The same Java requirement applies to Jenkins controllers, all agent types, CLI clients, and other Jenkins system components.
+              - JDK versions used by jobs and build tools are independent and are not modeled by this entry.
+            sources:
+              - *jenkins_2568_source
+              - *jenkins_java_support_source
+            lastVerified: '2026-07-13'
       '2.555':
         dependencies:
           java:

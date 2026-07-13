@@ -1,17 +1,17 @@
 x-mariadb-releases-source: &mariadb_releases_source
   title: MariaDB Community Server Releases
   url: https://mariadb.com/docs/release-notes/community-server/all-releases
-  accessedAt: '2026-07-09'
+  accessedAt: '2026-07-13'
 
 x-mariadb-connector-j-source: &mariadb_connector_j_source
   title: MariaDB Connector/J Compatibility
   url: https://mariadb.com/docs/connectors/mariadb-connector-j/about-mariadb-connector-j
-  accessedAt: '2026-07-09'
+  accessedAt: '2026-07-13'
 
 x-mariadb-backup-source: &mariadb_backup_source
   title: MariaDB Backup Version Compatibility
   url: https://mariadb.com/docs/server/server-usage/backup-and-restore/mariadb-enterprise-backup
-  accessedAt: '2026-07-09'
+  accessedAt: '2026-07-13'
 
 projects:
   mariadb:
@@ -22,22 +22,22 @@ projects:
     website: https://mariadb.org/
     description: MariaDB Community Server compatibility with official client and backup tooling.
     versions:
-      '11.8.6':
+      '12.3.2':
         dependencies:
           mariadb-connector-j:
             ranges:
-              - '3.5.7'
+              - '3.5.9'
             relationship: Java client driver
             confidence: high
             notes:
-              - MariaDB Connector/J 3.5.7 is a stable release compatible with all MariaDB Server versions.
+              - MariaDB Connector/J 3.5.9 is a stable release compatible with all MariaDB Server versions.
             sources:
               - *mariadb_releases_source
               - *mariadb_connector_j_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-07-13'
           mariadb-backup:
             ranges:
-              - '11.8.6'
+              - '12.3.2'
             relationship: physical backup tool
             confidence: high
             notes:
@@ -45,23 +45,23 @@ projects:
             sources:
               - *mariadb_releases_source
               - *mariadb_backup_source
-            lastVerified: '2026-07-09'
-      '11.4.10':
+            lastVerified: '2026-07-13'
+      '11.8.8':
         dependencies:
           mariadb-connector-j:
             ranges:
-              - '3.5.7'
+              - '3.5.9'
             relationship: Java client driver
             confidence: high
             notes:
-              - MariaDB Connector/J 3.5.7 is a stable release compatible with all MariaDB Server versions.
+              - MariaDB Connector/J 3.5.9 is a stable release compatible with all MariaDB Server versions.
             sources:
               - *mariadb_releases_source
               - *mariadb_connector_j_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-07-13'
           mariadb-backup:
             ranges:
-              - '11.4.10'
+              - '11.8.8'
             relationship: physical backup tool
             confidence: high
             notes:
@@ -69,23 +69,23 @@ projects:
             sources:
               - *mariadb_releases_source
               - *mariadb_backup_source
-            lastVerified: '2026-07-09'
-      '10.11.16':
+            lastVerified: '2026-07-13'
+      '11.4.12':
         dependencies:
           mariadb-connector-j:
             ranges:
-              - '3.5.7'
+              - '3.5.9'
             relationship: Java client driver
             confidence: high
             notes:
-              - MariaDB Connector/J 3.5.7 is a stable release compatible with all MariaDB Server versions.
+              - MariaDB Connector/J 3.5.9 is a stable release compatible with all MariaDB Server versions.
             sources:
               - *mariadb_releases_source
               - *mariadb_connector_j_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-07-13'
           mariadb-backup:
             ranges:
-              - '10.11.16'
+              - '11.4.12'
             relationship: physical backup tool
             confidence: high
             notes:
@@ -93,4 +93,28 @@ projects:
             sources:
               - *mariadb_releases_source
               - *mariadb_backup_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-07-13'
+      '10.11.18':
+        dependencies:
+          mariadb-connector-j:
+            ranges:
+              - '3.5.9'
+            relationship: Java client driver
+            confidence: high
+            notes:
+              - MariaDB Connector/J 3.5.9 is a stable release compatible with all MariaDB Server versions.
+            sources:
+              - *mariadb_releases_source
+              - *mariadb_connector_j_source
+            lastVerified: '2026-07-13'
+          mariadb-backup:
+            ranges:
+              - '10.11.18'
+            relationship: physical backup tool
+            confidence: high
+            notes:
+              - MariaDB recommends using the same MariaDB Backup version as the server because mismatched versions can produce errors or unusable backups.
+            sources:
+              - *mariadb_releases_source
+              - *mariadb_backup_source
+            lastVerified: '2026-07-13'
