@@ -1,3 +1,8 @@
+x-neuvector-56-source: &neuvector_56_source
+  title: SUSE Security 5.6 System Requirements
+  url: https://documentation.suse.com/cloudnative/security/5.6/en/requirements.html
+  accessedAt: '2026-07-18'
+
 x-neuvector-55-source: &neuvector_55_source
   title: SUSE Security 5.5 System Requirements
   url: https://documentation.suse.com/cloudnative/security/5.5/en/requirements.html
@@ -23,6 +28,139 @@ projects:
     website: https://neuvector.com/
     description: NeuVector compatibility for tested orchestrator versions, container runtimes, architectures, Linux distributions, CNI plugins, and deployment platforms.
     versions:
+      '5.6':
+        dependencies:
+          kubernetes:
+            ranges:
+              - '>=1.19 <1.33'
+            relationship: tested orchestrator
+            confidence: high
+            notes:
+              - The SUSE Security 5.6 requirements state that Kubernetes 1.19 through 1.32 are tested with every release.
+            sources:
+              - *neuvector_56_source
+            lastVerified: '2026-07-18'
+          openshift:
+            ranges:
+              - '>=4.6 <4.17'
+            relationship: tested orchestrator
+            confidence: high
+            notes:
+              - The SUSE Security 5.6 requirements state that Red Hat OpenShift 4.6 through 4.16 are tested with every release.
+            sources:
+              - *neuvector_56_source
+            lastVerified: '2026-07-18'
+          docker:
+            ranges:
+              - '>=1.9'
+            relationship: container runtime
+            confidence: high
+            notes:
+              - The requirements support Docker runtime 1.9.0 and later; Docker on macOS and Windows is explicitly unsupported.
+            sources:
+              - *neuvector_56_source
+            lastVerified: '2026-07-18'
+          docker-api:
+            ranges:
+              - '>=1.21'
+            relationship: container runtime API
+            confidence: high
+            notes:
+              - The requirements support Docker API 1.21 and later for Community Edition and Enterprise Edition.
+            sources:
+              - *neuvector_56_source
+            lastVerified: '2026-07-18'
+          architecture:
+            ranges:
+              - amd64
+              - arm
+            relationship: host architecture
+            confidence: high
+            notes:
+              - The requirements list AMD64 and Arm architectures as supported.
+            sources:
+              - *neuvector_56_source
+            lastVerified: '2026-07-18'
+          container-runtime:
+            ranges:
+              - docker
+              - containerd
+              - cri-o
+            relationship: runtime implementation
+            confidence: high
+            notes:
+              - Docker, containerd, and CRI-O are supported; containerd and CRI-O require the documented volume-path changes.
+            sources:
+              - *neuvector_56_source
+            lastVerified: '2026-07-18'
+          cni:
+            ranges:
+              - openshift-ovs
+              - calico
+              - flannel
+              - cilium
+              - antrea
+              - gke
+              - aks
+              - iks
+              - eks
+              - multus
+            relationship: tested network plugin
+            confidence: high
+            notes:
+              - The requirements list these CNI implementations and public-cloud CNIs as tested and supported; Multus support was added in NeuVector 5.4.0.
+            sources:
+              - *neuvector_56_source
+            lastVerified: '2026-07-18'
+          linux-distribution:
+            ranges:
+              - suse-linux
+              - ubuntu
+              - centos
+              - rhel
+              - debian
+              - coreos
+              - aws-bottlerocket
+              - photon
+            relationship: supported host operating system family
+            confidence: high
+            notes:
+              - The requirements officially support these Linux distribution families; no distribution version ranges are published.
+            sources:
+              - *neuvector_56_source
+            lastVerified: '2026-07-18'
+          kubernetes-platform:
+            ranges:
+              - rancher
+              - gke
+              - eks
+              - aks
+              - iks
+              - vmware-tanzu
+              - suse-caas
+              - oke
+              - mirantis-kubernetes-engine
+              - nutanix-kubernetes-engine
+              - docker-swarm
+              - docker-ucp
+              - docker-cloud
+            relationship: tested or verified container management platform
+            confidence: high
+            notes:
+              - The requirements distinguish platforms tested with every release from additional Kubernetes and Docker-compliant platforms verified to work; GKE Autopilot is explicitly unsupported.
+            sources:
+              - *neuvector_56_source
+            lastVerified: '2026-07-18'
+          ip-stack:
+            ranges:
+              - ipv4
+            relationship: supported network protocol stack
+            confidence: high
+            notes:
+              - The requirements explicitly state that IPv6 is unsupported.
+            sources:
+              - *neuvector_56_source
+            lastVerified: '2026-07-18'
       '5.5':
         dependencies:
           kubernetes:

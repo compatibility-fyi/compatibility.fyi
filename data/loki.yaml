@@ -3,6 +3,11 @@ x-loki-helm-index-source: &loki_helm_index_source
   url: https://grafana.github.io/helm-charts/index.yaml
   accessedAt: '2026-07-08'
 
+x-loki-373-chart-source: &loki_373_chart_source
+  title: Grafana Community Loki Helm 18.5.1 chart metadata
+  url: https://github.com/grafana-community/helm-charts/blob/loki-18.5.1/charts/loki/Chart.yaml
+  accessedAt: '2026-07-18'
+
 projects:
   loki:
     name: Loki
@@ -12,6 +17,19 @@ projects:
     website: https://grafana.com/oss/loki/
     description: Loki compatibility metadata for official Grafana Helm chart releases.
     versions:
+      '3.7.3':
+        dependencies:
+          loki-helm:
+            ranges:
+              - '18.5.1'
+            relationship: deployment chart
+            confidence: high
+            notes:
+              - The official Grafana Community Loki Helm chart 18.5.1 declares Loki 3.7.3 as its appVersion.
+              - The Loki chart moved from the Grafana Helm repository to the Grafana Community Helm repository in March 2026 and uses a new chart version sequence.
+            sources:
+              - *loki_373_chart_source
+            lastVerified: '2026-07-18'
       '3.6.7':
         dependencies:
           loki-helm:

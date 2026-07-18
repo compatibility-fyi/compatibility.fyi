@@ -1,12 +1,7 @@
-x-longhorn-112-source: &longhorn_112_source
-  title: Longhorn 1.12.0 Best Practices - Kubernetes Version
-  url: https://longhorn.io/docs/1.12.0/best-practices/
-  accessedAt: '2026-07-08'
-
 x-longhorn-111-source: &longhorn_111_source
   title: Longhorn 1.11.3 Best Practices - Kubernetes Version
   url: https://longhorn.io/docs/1.11.3/best-practices/
-  accessedAt: '2026-07-08'
+  accessedAt: '2026-07-18'
 
 x-longhorn-110-source: &longhorn_110_source
   title: Longhorn 1.10.2 Best Practices - Kubernetes Version
@@ -28,18 +23,6 @@ projects:
     website: https://longhorn.io/
     description: Distributed block storage compatibility for tested Kubernetes versions.
     versions:
-      '1.12':
-        dependencies:
-          kubernetes:
-            ranges:
-              - '>=1.33 <1.37'
-            relationship: tested runtime
-            confidence: high
-            notes:
-              - Longhorn 1.12.0 best practices list Kubernetes 1.33, 1.34, 1.35, and 1.36 as tested versions.
-            sources:
-              - *longhorn_112_source
-            lastVerified: '2026-07-08'
       '1.11':
         dependencies:
           kubernetes:
@@ -51,7 +34,7 @@ projects:
               - Longhorn 1.11.3 best practices list Kubernetes 1.32, 1.33, 1.34, and 1.35 as tested versions.
             sources:
               - *longhorn_111_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-07-18'
       '1.10':
         dependencies:
           kubernetes:

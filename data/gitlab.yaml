@@ -1,7 +1,7 @@
 x-gitlab-19-requirements-source: &gitlab_19_requirements_source
-  title: GitLab 19.1 tagged requirements
-  url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.1.0-ee/doc/install/requirements.md
-  accessedAt: '2026-07-09'
+  title: GitLab 19.2 tagged requirements
+  url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.2.0-ee/doc/install/requirements.md
+  accessedAt: '2026-07-18'
 
 x-gitlab-18-requirements-source: &gitlab_18_requirements_source
   title: GitLab 18.11 tagged requirements
@@ -34,17 +34,17 @@ projects:
               - GitLab 19.x requirements list PostgreSQL 17.x as both the minimum and maximum supported PostgreSQL version.
             sources:
               - *gitlab_19_requirements_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-07-18'
           redis:
             ranges:
-              - '>=7.2 <8'
+              - '>=7 <8'
             relationship: cache and background jobs
             confidence: high
             notes:
-              - GitLab 19.x requirements state that Redis 7.2 is required.
+              - GitLab 19.x requirements recommend Redis 7.2 and require Redis 7.0 or newer.
             sources:
               - *gitlab_19_requirements_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-07-18'
           valkey:
             ranges:
               - '>=7.2 <8'
@@ -54,7 +54,7 @@ projects:
               - GitLab 19.x requirements state that Valkey 7.2 is supported as an alternative to Redis 7.2.
             sources:
               - *gitlab_19_requirements_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-07-18'
           gitlab-helm:
             ranges:
               - '>=10 <11'
@@ -64,7 +64,7 @@ projects:
               - GitLab 19.x requirements map GitLab 19.x to GitLab Helm chart 10.x.
             sources:
               - *gitlab_19_requirements_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-07-18'
       '18':
         dependencies:
           postgresql:

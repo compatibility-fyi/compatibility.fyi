@@ -14,9 +14,9 @@ x-pgvector-support-source: &pgvector_support_source
   accessedAt: '2026-07-09'
 
 x-timescaledb-support-source: &timescaledb_support_source
-  title: TimescaleDB 2.28.2 PostgreSQL Version Check
-  url: https://github.com/timescale/timescaledb/blob/2.28.2/CMakeLists.txt
-  accessedAt: '2026-07-09'
+  title: TimescaleDB 2.28.3 PostgreSQL Version Check
+  url: https://github.com/timescale/timescaledb/blob/2.28.3/CMakeLists.txt
+  accessedAt: '2026-07-18'
 
 x-pg-cron-support-source: &pg_cron_support_source
   title: pg_cron 1.6.7 Installation
@@ -57,14 +57,14 @@ projects:
             lastVerified: '2026-07-09'
           timescaledb:
             ranges:
-              - '2.28.2'
+              - '2.28.3'
             relationship: extension
             confidence: high
             notes:
-              - TimescaleDB 2.28.2 explicitly permits builds against PostgreSQL 15 through 18.
+              - TimescaleDB 2.28.3 explicitly permits builds against PostgreSQL 15 through 18.
             sources:
               - *timescaledb_support_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-07-18'
           pg-cron:
             ranges:
               - '1.6.7'
@@ -100,14 +100,14 @@ projects:
             lastVerified: '2026-07-09'
           timescaledb:
             ranges:
-              - '2.28.2'
+              - '2.28.3'
             relationship: extension
             confidence: high
             notes:
-              - TimescaleDB 2.28.2 explicitly permits builds against PostgreSQL 15 through 18.
+              - TimescaleDB 2.28.3 explicitly permits builds against PostgreSQL 15 through 18.
             sources:
               - *timescaledb_support_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-07-18'
           pg-cron:
             ranges:
               - '1.6.7'
@@ -143,14 +143,14 @@ projects:
             lastVerified: '2026-07-09'
           timescaledb:
             ranges:
-              - '2.28.2'
+              - '2.28.3'
             relationship: extension
             confidence: high
             notes:
-              - TimescaleDB 2.28.2 explicitly permits builds against PostgreSQL 15 through 18.
+              - TimescaleDB 2.28.3 explicitly permits builds against PostgreSQL 15 through 18.
             sources:
               - *timescaledb_support_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-07-18'
           pg-cron:
             ranges:
               - '1.6.7'
