@@ -55,6 +55,7 @@ export interface CompatibilityCheckResponse extends CompatibilityCheckRequest {
   matchedRange: string | null;
   relationship: string | null;
   confidence: ConfidenceLevel;
+  lastVerified: string | null;
   notes: string[];
   sources: CompatibilitySource[];
 }

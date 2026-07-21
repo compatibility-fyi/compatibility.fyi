@@ -43,6 +43,7 @@ export function checkCompatibility(
     matchedRange,
     relationship: entry.relationship ?? null,
     confidence: entry.confidence,
+    lastVerified: entry.lastVerified,
     notes: includeEvidence ? entry.notes : [],
     sources: includeEvidence ? entry.sources : [],
   };

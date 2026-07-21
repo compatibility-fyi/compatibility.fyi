@@ -83,12 +83,14 @@ describe('api', () => {
       compatible: string;
       matchedRange: string | null;
       relationship: string | null;
+      lastVerified: string | null;
     };
 
     expect(response.status).toBe(200);
     expect(body.compatible).toBe('compatible');
     expect(body.matchedRange).toBe(fixture.entry.ranges[0]);
     expect(body.relationship).toBe(fixture.entry.relationship ?? null);
+    expect(body.lastVerified).toBe(fixture.entry.lastVerified);
   });
 
   it('checks compound compatibility from GET JSON dependencies', async () => {
@@ -160,6 +162,7 @@ describe('api', () => {
       compatible: string;
       matchedRange: string | null;
       confidence: string;
+      lastVerified: string | null;
       sources: unknown[];
     };
 
@@ -167,6 +170,7 @@ describe('api', () => {
     expect(body.compatible).toBe('incompatible');
     expect(body.matchedRange).toBeNull();
     expect(body.confidence).toBe(fixture.entry.confidence);
+    expect(body.lastVerified).toBe(fixture.entry.lastVerified);
     expect(body.sources).toEqual(fixture.entry.sources);
   });
 

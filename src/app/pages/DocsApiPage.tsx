@@ -56,6 +56,7 @@ const singleCheckResponse = `{
   "matchedRange": ">=14.0.0 <19.0.0",
   "relationship": "database",
   "confidence": "high",
+  "lastVerified": "2026-07-08",
   "notes": [
     "Keycloak current 26.x supported configurations list PostgreSQL 18.x, 17.x, 16.x, 15.x, and 14.x."
   ],
@@ -166,6 +167,10 @@ const responseFields: ResponseField[] = [
   {
     name: 'confidence',
     description: 'Evidence quality: high, medium, or low.',
+  },
+  {
+    name: 'lastVerified',
+    description: 'Date when the compatibility evidence was last verified, or null.',
   },
   {
     name: 'sources',

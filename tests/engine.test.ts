@@ -54,6 +54,7 @@ describe('compatibility engine', () => {
       compatible: 'compatible',
       matchedRange: '>=15 <=17',
       confidence: 'high',
+      lastVerified: '2026-07-08',
     });
   });
 
@@ -69,6 +70,7 @@ describe('compatibility engine', () => {
       compatible: 'incompatible',
       matchedRange: '<21',
       confidence: 'medium',
+      lastVerified: '2026-07-08',
     });
   });
 
@@ -84,6 +86,7 @@ describe('compatibility engine', () => {
       compatible: 'incompatible',
       matchedRange: null,
       confidence: 'high',
+      lastVerified: '2026-07-08',
       notes: ['Verified fixture'],
       sources: [{ title: 'Fixture', url: 'https://example.com' }],
     });
@@ -132,6 +135,7 @@ describe('compatibility engine', () => {
       }),
     ).toMatchObject({
       compatible: 'unknown',
+      lastVerified: '2026-07-08',
       notes: ['Upstream explicitly marks this combination as unverified'],
       sources: [{ title: 'Fixture', url: 'https://example.com/unverified' }],
     });
