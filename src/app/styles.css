@@ -123,6 +123,57 @@ p {
   margin: 14px 0 0;
 }
 
+.gate-promo {
+  align-items: center;
+  background: #eef3fb;
+  border: 1px solid #c8d6ee;
+  border-radius: 8px;
+  display: grid;
+  gap: 28px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  margin: 4px 0 32px;
+  padding: 24px;
+}
+
+.gate-promo h2 {
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+}
+
+.gate-promo p:not(.eyebrow) {
+  margin: 10px 0 0;
+  max-width: 760px;
+}
+
+.gate-promo-actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  justify-content: flex-end;
+}
+
+.gate-promo-actions a {
+  font-size: 0.92rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.gate-promo-primary {
+  background: #2563eb;
+  border: 1px solid #2563eb;
+  border-radius: 6px;
+  color: #ffffff;
+  display: inline-flex;
+  padding: 10px 14px;
+}
+
+.gate-promo-primary:hover {
+  background: #174ea6;
+  border-color: #174ea6;
+  color: #ffffff;
+  text-decoration: none;
+}
+
 .catalog-search {
   display: grid;
   gap: 8px;
@@ -1022,9 +1073,19 @@ th {
   }
 
   .docs-callout,
+  .gate-promo,
   .catalog-category-badges small,
   .endpoint-route {
     background: #0f1623;
+  }
+
+  .gate-promo {
+    border-color: #2f4f88;
+  }
+
+  .gate-promo-primary,
+  .gate-promo-primary:hover {
+    color: #ffffff;
   }
 
   .code-block {
@@ -1089,6 +1150,7 @@ th {
   }
 
   .catalog-layout,
+  .gate-promo,
   .docs-layout,
   .catalog-notes,
   .filter-bar,
@@ -1097,6 +1159,10 @@ th {
   .docs-definition-grid,
   .endpoint-heading {
     grid-template-columns: 1fr;
+  }
+
+  .gate-promo-actions {
+    justify-content: flex-start;
   }
 
   .section-title-row {

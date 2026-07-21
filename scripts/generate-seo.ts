@@ -298,6 +298,7 @@ async function writeLlms() {
       '',
       `- [Compatibility catalog](${absoluteUrl('/')})`,
       `- [HTTP API documentation](${absoluteUrl('/docs/api/')})`,
+      '- [Compatibility Gate GitHub Action](https://github.com/compatibility-fyi/compatibility-gate)',
       `- [XML sitemap](${absoluteUrl('/sitemap.xml')})`,
       '- [GitHub repository](https://github.com/compatibility-fyi/compatibility.fyi)',
       '',

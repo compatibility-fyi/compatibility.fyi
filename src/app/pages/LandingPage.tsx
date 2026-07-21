@@ -39,6 +39,27 @@ export function LandingPage({ dataset }: { dataset: CompatibilityDataset }) {
         </p>
       </section>
 
+      <section className="gate-promo" aria-labelledby="gate-promo-title">
+        <div>
+          <p className="eyebrow">GitHub Action</p>
+          <h2 id="gate-promo-title">Hold incompatible Renovate updates before the PR opens</h2>
+          <p>
+            Compatibility Gate reads the versions declared in your repository, checks them against
+            source-backed compatibility.fyi metadata, and publishes a commit status that Renovate
+            can wait on.
+          </p>
+        </div>
+        <div className="gate-promo-actions" aria-label="Compatibility Gate links">
+          <a
+            className="gate-promo-primary"
+            href="https://github.com/compatibility-fyi/compatibility-gate#quickstart"
+          >
+            Set up Compatibility Gate
+          </a>
+          <a href="https://github.com/compatibility-fyi/compatibility-gate">View on GitHub</a>
+        </div>
+      </section>
+
       <section className="catalog-layout" data-catalog>
         <div className="catalog-search" aria-label="Project search">
           <label className="sr-only" htmlFor="project-search">
