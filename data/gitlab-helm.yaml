@@ -8,6 +8,11 @@ x-gitlab-18-requirements-source: &gitlab_18_requirements_source
   url: https://gitlab.com/gitlab-org/gitlab/-/blob/v18.11.0-ee/doc/install/requirements.md
   accessedAt: '2026-07-21'
 
+x-gitlab-19-pipeline-source: &gitlab_19_pipeline_source
+  title: GitLab 19.2 tagged pipeline compatibility tests
+  url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.2.0-ee/doc/development/pipelines/_index.md
+  accessedAt: '2026-07-22'
+
 projects:
   gitlab-helm:
     name: GitLab Helm Chart
@@ -16,7 +21,7 @@ projects:
       - DevOps
       - Kubernetes
     website: https://docs.gitlab.com/charts/
-    description: GitLab Helm chart compatibility for GitLab and external PostgreSQL versions.
+    description: GitLab Helm chart compatibility for GitLab, external PostgreSQL, and Valkey versions.
     versions:
       '10':
         dependencies:
@@ -40,6 +45,17 @@ projects:
             sources:
               - *gitlab_19_requirements_source
             lastVerified: '2026-07-21'
+          valkey:
+            ranges:
+              - '>=7.2 <8'
+            relationship: cache and background jobs
+            confidence: high
+            notes:
+              - GitLab Helm chart 10.x maps to GitLab 19.x; GitLab 19.2 requirements list Valkey 7.2 as both the recommended and minimum supported version, and GitLab's weekly pipelines test Valkey 7.2.
+            sources:
+              - *gitlab_19_requirements_source
+              - *gitlab_19_pipeline_source
+            lastVerified: '2026-07-22'
       '9':
         dependencies:
           gitlab:

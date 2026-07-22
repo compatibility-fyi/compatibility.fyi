@@ -13,6 +13,11 @@ x-gitlab-17-requirements-source: &gitlab_17_requirements_source
   url: https://gitlab.com/gitlab-org/gitlab/-/blob/v17.11.0-ee/doc/install/requirements.md
   accessedAt: '2026-07-09'
 
+x-gitlab-19-pipeline-source: &gitlab_19_pipeline_source
+  title: GitLab 19.2 tagged pipeline compatibility tests
+  url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.2.0-ee/doc/development/pipelines/_index.md
+  accessedAt: '2026-07-22'
+
 projects:
   gitlab:
     name: GitLab
@@ -51,10 +56,11 @@ projects:
             relationship: cache and background jobs
             confidence: high
             notes:
-              - GitLab 19.x requirements state that Valkey 7.2 is supported as an alternative to Redis 7.2.
+              - GitLab 19.x requirements list Valkey 7.2 as both the recommended and minimum supported version, and GitLab's weekly pipelines test Valkey 7.2.
             sources:
               - *gitlab_19_requirements_source
-            lastVerified: '2026-07-18'
+              - *gitlab_19_pipeline_source
+            lastVerified: '2026-07-22'
           gitlab-helm:
             ranges:
               - '>=10 <11'
