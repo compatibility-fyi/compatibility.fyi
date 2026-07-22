@@ -204,7 +204,9 @@ export function ProjectPage({ dataset, projectId }: ProjectPageProps) {
                   data-version={version}
                   key={`${version}-${dependency}`}
                 >
-                  <td data-label="Version">{version}</td>
+                  <td data-label="Version">
+                    <span>{version}</span>
+                  </td>
                   <td data-label="Dependency">
                     <strong>
                       <a className="dependency-link" href={`/projects/${projectId}/${dependency}/`}>
@@ -274,6 +276,7 @@ function Evidence({ entry }: { entry: DependencyCompatibilityEntry }) {
           className="evidence-level"
           data-confidence-explanation={explanation}
           type="button"
+          aria-expanded="false"
           aria-label={`${entry.confidence} confidence. ${explanation}`}
         >
           {entry.confidence}

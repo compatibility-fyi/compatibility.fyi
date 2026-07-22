@@ -188,24 +188,58 @@ function initializeConfidenceTooltips() {
     return;
   }
 
+  let activeButton: HTMLButtonElement | undefined;
+
   const show = (button: HTMLButtonElement) => {
     const rect = button.getBoundingClientRect();
     const width = 300;
+    activeButton?.setAttribute('aria-expanded', 'false');
+    activeButton = button;
+    button.setAttribute('aria-expanded', 'true');
     tooltip.textContent = button.dataset.confidenceExplanation ?? '';
     tooltip.style.top = `${rect.bottom + 8}px`;
     tooltip.style.left = `${Math.min(Math.max(12, rect.left), window.innerWidth - width - 12)}px`;
     tooltip.hidden = false;
   };
   const hide = () => {
+    activeButton?.setAttribute('aria-expanded', 'false');
+    activeButton = undefined;
     tooltip.hidden = true;
   };
 
   for (const button of document.querySelectorAll<HTMLButtonElement>(
     '[data-confidence-explanation]',
   )) {
-    button.addEventListener('mouseenter', () => show(button));
-    button.addEventListener('focus', () => show(button));
-    button.addEventListener('mouseleave', hide);
+    button.addEventListener('pointerenter', (event) => {
+      if (event.pointerType === 'mouse') {
+        show(button);
+      }
+    });
+    button.addEventListener('pointerleave', (event) => {
+      if (event.pointerType === 'mouse') {
+        hide();
+      }
+    });
     button.addEventListener('blur', hide);
+    button.addEventListener('click', () => {
+      if (activeButton === button && !tooltip.hidden) {
+        hide();
+      } else {
+        show(button);
+      }
+    });
   }
+
+  document.addEventListener('pointerdown', (event) => {
+    if (activeButton && event.target instanceof Node && !activeButton.contains(event.target)) {
+      hide();
+    }
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      hide();
+    }
+  });
+  window.addEventListener('resize', hide);
+  window.addEventListener('scroll', hide, { passive: true });
 }
