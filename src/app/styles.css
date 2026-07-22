@@ -1244,25 +1244,34 @@ th {
   .table-section tr {
     border-bottom: 1px solid #d8dee8;
     display: grid;
-    gap: 8px 14px;
-    grid-template-columns: minmax(44px, 64px) minmax(0, 1fr);
+    gap: 12px;
+    grid-template-columns: minmax(0, 1fr);
     padding: 14px 0;
   }
 
   .table-section td {
+    align-items: start;
     border-bottom: 0;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: minmax(110px, 28%) minmax(0, 1fr);
     min-width: 0;
     padding: 0;
   }
 
-  .table-section td:first-child {
+  .table-section td::before {
     color: #6b7280;
-    grid-row: 1 / span 3;
-    padding-top: 2px;
+    content: attr(data-label);
+    font-size: 0.78rem;
+    font-weight: 800;
   }
 
-  .table-section td:not(:first-child) {
+  .table-section td > * {
     grid-column: 2;
+  }
+
+  .table-section td:first-child {
+    color: #6b7280;
   }
 
   .docs-heading {
@@ -1382,7 +1391,8 @@ th {
     border-color: #2f3b4f;
   }
 
-  .docs-table td::before {
+  .docs-table td::before,
+  .table-section td::before {
     color: #9aa7ba;
   }
 }

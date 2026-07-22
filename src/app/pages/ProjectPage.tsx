@@ -204,8 +204,8 @@ export function ProjectPage({ dataset, projectId }: ProjectPageProps) {
                   data-version={version}
                   key={`${version}-${dependency}`}
                 >
-                  <td>{version}</td>
-                  <td>
+                  <td data-label="Version">{version}</td>
+                  <td data-label="Dependency">
                     <strong>
                       <a className="dependency-link" href={`/projects/${projectId}/${dependency}/`}>
                         {formatDependencyName(dependency)}
@@ -215,7 +215,7 @@ export function ProjectPage({ dataset, projectId }: ProjectPageProps) {
                       <small className="relationship-label">{entry.relationship}</small>
                     ) : null}
                   </td>
-                  <td>
+                  <td data-label="Supported versions">
                     <div className="range-list" aria-label={`Supported versions for ${dependency}`}>
                       {entry.ranges.map((range) => (
                         <span className="range-chip" title={range} key={range}>
@@ -225,7 +225,7 @@ export function ProjectPage({ dataset, projectId }: ProjectPageProps) {
                     </div>
                     {entry.notes.length > 0 ? <p className="row-note">{entry.notes[0]}</p> : null}
                   </td>
-                  <td>
+                  <td data-label="Evidence">
                     <Evidence entry={entry} />
                   </td>
                 </tr>
