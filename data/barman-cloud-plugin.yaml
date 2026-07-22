@@ -1,0 +1,35 @@
+x-barman-cloud-plugin-013-requirements-source: &barman_cloud_plugin_013_requirements_source
+  title: Barman Cloud Plugin 0.13.0 requirements
+  url: https://github.com/cloudnative-pg/plugin-barman-cloud/blob/v0.13.0/web/versioned_docs/version-0.13.0/intro.md
+  accessedAt: '2026-07-22'
+
+x-barman-cloud-plugin-013-installation-source: &barman_cloud_plugin_013_installation_source
+  title: Barman Cloud Plugin 0.13.0 installation requirements
+  url: https://github.com/cloudnative-pg/plugin-barman-cloud/blob/v0.13.0/web/versioned_docs/version-0.13.0/installation.mdx
+  accessedAt: '2026-07-22'
+
+projects:
+  barman-cloud-plugin:
+    name: Barman Cloud Plugin
+    categories:
+      - Backup
+      - PostgreSQL
+      - Kubernetes
+    website: https://cloudnative-pg.io/plugin-barman-cloud/
+    description: Barman Cloud Plugin compatibility with CloudNativePG operator versions.
+    versions:
+      '0.13.0':
+        dependencies:
+          cloudnativepg:
+            ranges:
+              - '>=1.26.0'
+            relationship: operator
+            confidence: high
+            notes:
+              - Barman Cloud Plugin 0.13 requires CloudNativePG 1.26 or newer.
+              - Upstream strongly recommends CloudNativePG 1.27 or newer for improved plugin error handling and status reporting.
+              - The plugin also requires cert-manager or user-provided certificate bundles, but upstream does not specify a cert-manager version range.
+            sources:
+              - *barman_cloud_plugin_013_requirements_source
+              - *barman_cloud_plugin_013_installation_source
+            lastVerified: '2026-07-22'
