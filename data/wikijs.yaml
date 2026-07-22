@@ -1,0 +1,237 @@
+x-wikijs-requirements-source: &wikijs_requirements_source
+  title: Wiki.js Server Requirements
+  url: https://docs.requarks.io/install/requirements
+  accessedAt: '2026-07-22'
+
+x-wikijs-25314-database-source: &wikijs_25314_database_source
+  title: Wiki.js 2.5.314 Sample Configuration - Supported Database Engines
+  url: https://github.com/requarks/wiki/blob/v2.5.314/config.sample.yml
+  accessedAt: '2026-07-22'
+
+x-wikijs-25313-database-source: &wikijs_25313_database_source
+  title: Wiki.js 2.5.313 Sample Configuration - Supported Database Engines
+  url: https://github.com/requarks/wiki/blob/v2.5.313/config.sample.yml
+  accessedAt: '2026-07-22'
+
+x-wikijs-25312-database-source: &wikijs_25312_database_source
+  title: Wiki.js 2.5.312 Sample Configuration - Supported Database Engines
+  url: https://github.com/requarks/wiki/blob/v2.5.312/config.sample.yml
+  accessedAt: '2026-07-22'
+
+projects:
+  wikijs:
+    name: Wiki.js
+    categories:
+      - Knowledge Management
+      - Collaboration
+      - Node.js
+    website: https://js.wiki/
+    description: Wiki.js compatibility for the Node.js runtime and supported database engines.
+    versions:
+      '2.5.314':
+        dependencies:
+          nodejs:
+            ranges:
+              - '>=22 <23'
+              - '>=24 <25'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Wiki.js server requirements list Node.js 22.0 or later in the 22.x line and Node.js 24.0 or later in the 24.x line, supported since Wiki.js 2.5.302.
+            sources:
+              - *wikijs_requirements_source
+            lastVerified: '2026-07-22'
+          postgresql:
+            ranges:
+              - '>=9.5'
+            relationship: database
+            confidence: high
+            notes:
+              - Wiki.js 2.5.314 sample configuration lists PostgreSQL 9.5 or later as a supported database engine.
+              - Wiki.js recommends PostgreSQL for the best performance, features, and future compatibility.
+            sources:
+              - *wikijs_25314_database_source
+              - *wikijs_requirements_source
+            lastVerified: '2026-07-22'
+          mysql:
+            ranges:
+              - '>=8.0'
+            relationship: database
+            confidence: high
+            notes:
+              - Wiki.js 2.5.314 sample configuration lists MySQL 8.0 or later as supported.
+              - MySQL 5.7.8 is documented as only partially supported and is intentionally not represented as a compatible range.
+            sources:
+              - *wikijs_25314_database_source
+              - *wikijs_requirements_source
+            lastVerified: '2026-07-22'
+          mariadb:
+            ranges:
+              - '>=10.2.7'
+            relationship: database
+            confidence: high
+            notes:
+              - Wiki.js 2.5.314 sample configuration lists MariaDB 10.2.7 or later as a supported database engine.
+            sources:
+              - *wikijs_25314_database_source
+            lastVerified: '2026-07-22'
+          microsoft-sql-server:
+            ranges:
+              - '>=2012'
+            relationship: database
+            confidence: high
+            notes:
+              - Wiki.js 2.5.314 sample configuration lists Microsoft SQL Server 2012 or later as a supported database engine.
+            sources:
+              - *wikijs_25314_database_source
+            lastVerified: '2026-07-22'
+          sqlite:
+            ranges:
+              - '>=3.9'
+            relationship: database
+            confidence: high
+            notes:
+              - Wiki.js 2.5.314 sample configuration lists SQLite 3.9 or later as a supported database engine.
+              - Wiki.js does not recommend SQLite for production deployments.
+            sources:
+              - *wikijs_25314_database_source
+              - *wikijs_requirements_source
+            lastVerified: '2026-07-22'
+      '2.5.313':
+        dependencies:
+          nodejs:
+            ranges:
+              - '>=22 <23'
+              - '>=24 <25'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Wiki.js server requirements list Node.js 22.0 or later in the 22.x line and Node.js 24.0 or later in the 24.x line, supported since Wiki.js 2.5.302.
+            sources:
+              - *wikijs_requirements_source
+            lastVerified: '2026-07-22'
+          postgresql:
+            ranges:
+              - '>=9.5'
+            relationship: database
+            confidence: high
+            notes:
+              - Wiki.js 2.5.313 sample configuration lists PostgreSQL 9.5 or later as a supported database engine.
+              - Wiki.js recommends PostgreSQL for the best performance, features, and future compatibility.
+            sources:
+              - *wikijs_25313_database_source
+              - *wikijs_requirements_source
+            lastVerified: '2026-07-22'
+          mysql:
+            ranges:
+              - '>=8.0'
+            relationship: database
+            confidence: high
+            notes:
+              - Wiki.js 2.5.313 sample configuration lists MySQL 8.0 or later as supported.
+              - MySQL 5.7.8 is documented as only partially supported and is intentionally not represented as a compatible range.
+            sources:
+              - *wikijs_25313_database_source
+              - *wikijs_requirements_source
+            lastVerified: '2026-07-22'
+          mariadb:
+            ranges:
+              - '>=10.2.7'
+            relationship: database
+            confidence: high
+            notes:
+              - Wiki.js 2.5.313 sample configuration lists MariaDB 10.2.7 or later as a supported database engine.
+            sources:
+              - *wikijs_25313_database_source
+            lastVerified: '2026-07-22'
+          microsoft-sql-server:
+            ranges:
+              - '>=2012'
+            relationship: database
+            confidence: high
+            notes:
+              - Wiki.js 2.5.313 sample configuration lists Microsoft SQL Server 2012 or later as a supported database engine.
+            sources:
+              - *wikijs_25313_database_source
+            lastVerified: '2026-07-22'
+          sqlite:
+            ranges:
+              - '>=3.9'
+            relationship: database
+            confidence: high
+            notes:
+              - Wiki.js 2.5.313 sample configuration lists SQLite 3.9 or later as a supported database engine.
+              - Wiki.js does not recommend SQLite for production deployments.
+            sources:
+              - *wikijs_25313_database_source
+              - *wikijs_requirements_source
+            lastVerified: '2026-07-22'
+      '2.5.312':
+        dependencies:
+          nodejs:
+            ranges:
+              - '>=22 <23'
+              - '>=24 <25'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Wiki.js server requirements list Node.js 22.0 or later in the 22.x line and Node.js 24.0 or later in the 24.x line, supported since Wiki.js 2.5.302.
+            sources:
+              - *wikijs_requirements_source
+            lastVerified: '2026-07-22'
+          postgresql:
+            ranges:
+              - '>=9.5'
+            relationship: database
+            confidence: high
+            notes:
+              - Wiki.js 2.5.312 sample configuration lists PostgreSQL 9.5 or later as a supported database engine.
+              - Wiki.js recommends PostgreSQL for the best performance, features, and future compatibility.
+            sources:
+              - *wikijs_25312_database_source
+              - *wikijs_requirements_source
+            lastVerified: '2026-07-22'
+          mysql:
+            ranges:
+              - '>=8.0'
+            relationship: database
+            confidence: high
+            notes:
+              - Wiki.js 2.5.312 sample configuration lists MySQL 8.0 or later as supported.
+              - MySQL 5.7.8 is documented as only partially supported and is intentionally not represented as a compatible range.
+            sources:
+              - *wikijs_25312_database_source
+              - *wikijs_requirements_source
+            lastVerified: '2026-07-22'
+          mariadb:
+            ranges:
+              - '>=10.2.7'
+            relationship: database
+            confidence: high
+            notes:
+              - Wiki.js 2.5.312 sample configuration lists MariaDB 10.2.7 or later as a supported database engine.
+            sources:
+              - *wikijs_25312_database_source
+            lastVerified: '2026-07-22'
+          microsoft-sql-server:
+            ranges:
+              - '>=2012'
+            relationship: database
+            confidence: high
+            notes:
+              - Wiki.js 2.5.312 sample configuration lists Microsoft SQL Server 2012 or later as a supported database engine.
+            sources:
+              - *wikijs_25312_database_source
+            lastVerified: '2026-07-22'
+          sqlite:
+            ranges:
+              - '>=3.9'
+            relationship: database
+            confidence: high
+            notes:
+              - Wiki.js 2.5.312 sample configuration lists SQLite 3.9 or later as a supported database engine.
+              - Wiki.js does not recommend SQLite for production deployments.
+            sources:
+              - *wikijs_25312_database_source
+              - *wikijs_requirements_source
+            lastVerified: '2026-07-22'
