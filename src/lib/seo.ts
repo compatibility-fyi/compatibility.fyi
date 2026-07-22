@@ -67,7 +67,7 @@ export function getSeoMetadata(path: string, dataset: CompatibilityDataset): Seo
     return {
       title: `${siteName} | Open Software Compatibility Metadata`,
       description:
-        'Find source-backed compatibility matrices for software projects, runtimes, databases, Kubernetes versions, operators, and automation tools.',
+        'Find source-backed software compatibility matrices and gate Renovate updates with GitHub Actions or GitLab CI before incompatible changes are opened.',
       canonicalPath: '/',
     };
   }

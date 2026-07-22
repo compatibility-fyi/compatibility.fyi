@@ -32,6 +32,7 @@ describe('seo metadata', () => {
   it('returns default home metadata for root routes', () => {
     expect(getSeoMetadata('/', dataset)).toMatchObject({
       title: 'compatibility.fyi | Open Software Compatibility Metadata',
+      description: expect.stringContaining('GitLab CI'),
       canonicalPath: '/',
     });
   });
