@@ -310,7 +310,7 @@ p {
   display: grid;
   gap: 18px;
   grid-template-columns: minmax(180px, 1fr) minmax(110px, auto);
-  padding: 13px 0;
+  padding: 13px 10px;
 }
 
 .catalog-row:hover {
