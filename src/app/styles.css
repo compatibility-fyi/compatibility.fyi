@@ -124,13 +124,13 @@ p {
 }
 
 .gate-promo {
-  align-items: center;
+  align-items: start;
   background: #eef3fb;
   border: 1px solid #c8d6ee;
   border-radius: 8px;
   display: grid;
-  gap: 28px;
-  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 20px;
+  grid-template-columns: 1fr;
   margin: 4px 0 32px;
   padding: 24px;
 }
@@ -149,7 +149,7 @@ p {
   display: flex;
   flex-wrap: wrap;
   gap: 12px 16px;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .gate-promo-actions a {
@@ -1150,7 +1150,6 @@ th {
   }
 
   .catalog-layout,
-  .gate-promo,
   .docs-layout,
   .catalog-notes,
   .filter-bar,
@@ -1159,10 +1158,6 @@ th {
   .docs-definition-grid,
   .endpoint-heading {
     grid-template-columns: 1fr;
-  }
-
-  .gate-promo-actions {
-    justify-content: flex-start;
   }
 
   .section-title-row {

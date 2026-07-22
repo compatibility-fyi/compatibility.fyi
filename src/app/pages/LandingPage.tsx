@@ -138,8 +138,17 @@ export function LandingPage({ dataset }: { dataset: CompatibilityDataset }) {
           <p>
             The catalog is readable in the browser, but the real goal is automation. Renovate,
             Dependabot, Helm, Argo CD, Backstage, and CI pipelines should be able to check whether a
-            dependency update is compatible before it reaches production.
+            dependency update is compatible before it reaches production. Compatibility Gate
+            connects that data to Renovate in GitHub Actions and GitLab CI.
           </p>
+          <div className="catalog-links" aria-label="Compatibility Gate setup links">
+            <a href="https://github.com/compatibility-fyi/compatibility-gate#github-quickstart">
+              GitHub Action
+            </a>
+            <a href="https://github.com/compatibility-fyi/compatibility-gate#gitlab-quickstart">
+              GitLab CI pipeline
+            </a>
+          </div>
         </article>
         <article>
           <h2>Maintained By The Community</h2>
