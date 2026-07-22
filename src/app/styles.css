@@ -141,7 +141,6 @@ p {
 
 .gate-promo p:not(.eyebrow) {
   margin: 10px 0 0;
-  max-width: 760px;
 }
 
 .gate-promo-actions {
