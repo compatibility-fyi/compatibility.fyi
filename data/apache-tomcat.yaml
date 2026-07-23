@@ -1,0 +1,264 @@
+x-tomcat-version-source: &tomcat_version_source
+  title: Apache Tomcat Version and Specification Matrix
+  url: https://tomcat.apache.org/whichversion.html
+  accessedAt: '2026-07-23'
+
+projects:
+  apache-tomcat:
+    name: Apache Tomcat
+    categories:
+      - Application Server
+      - Web Server
+      - Java
+    website: https://tomcat.apache.org/
+    description: Apache Tomcat release-line compatibility for Java runtimes and implemented web API specifications.
+    versions:
+      '11.0':
+        dependencies:
+          java:
+            ranges:
+              - '>=17'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Apache Tomcat 11.0 supports Java 17 and every later stable Java release.
+              - Early-access Java builds are not included because they are not stable production targets.
+            sources:
+              - *tomcat_version_source
+            lastVerified: '2026-07-23'
+          servlet-api:
+            ranges:
+              - '6.1'
+            relationship: implemented web specification
+            confidence: high
+            notes:
+              - Apache Tomcat 11.0 implements Jakarta Servlet 6.1.
+            sources:
+              - *tomcat_version_source
+            lastVerified: '2026-07-23'
+          jsp-api:
+            ranges:
+              - '4.0'
+            relationship: implemented web specification
+            confidence: high
+            notes:
+              - Apache Tomcat 11.0 implements Jakarta Pages 4.0, commonly known as JSP.
+            sources:
+              - *tomcat_version_source
+            lastVerified: '2026-07-23'
+          debugging-support-api:
+            ranges:
+              - '2.0'
+            relationship: implemented web specification
+            confidence: high
+            notes:
+              - Apache Tomcat 11.0 implements Jakarta Debugging Support for Other Languages 2.0.
+            sources:
+              - *tomcat_version_source
+            lastVerified: '2026-07-23'
+          expression-language-api:
+            ranges:
+              - '6.0'
+            relationship: implemented web specification
+            confidence: high
+            notes:
+              - Apache Tomcat 11.0 implements Jakarta Expression Language 6.0.
+            sources:
+              - *tomcat_version_source
+            lastVerified: '2026-07-23'
+          websocket-api:
+            ranges:
+              - '2.2'
+            relationship: implemented web specification
+            confidence: high
+            notes:
+              - Apache Tomcat 11.0 implements Jakarta WebSocket 2.2.
+            sources:
+              - *tomcat_version_source
+            lastVerified: '2026-07-23'
+          authentication-api:
+            ranges:
+              - '3.1'
+            relationship: implemented web specification
+            confidence: high
+            notes:
+              - Apache Tomcat 11.0 implements Jakarta Authentication 3.1.
+            sources:
+              - *tomcat_version_source
+            lastVerified: '2026-07-23'
+          annotation-api:
+            ranges:
+              - '3.0'
+            relationship: implemented web specification
+            confidence: high
+            notes:
+              - Apache Tomcat 11.0 implements Jakarta Annotations 3.0.
+            sources:
+              - *tomcat_version_source
+            lastVerified: '2026-07-23'
+      '10.1':
+        dependencies:
+          java:
+            ranges:
+              - '>=11'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Apache Tomcat 10.1 supports Java 11 and every later stable Java release.
+              - Early-access Java builds are not included because they are not stable production targets.
+            sources:
+              - *tomcat_version_source
+            lastVerified: '2026-07-23'
+          servlet-api:
+            ranges:
+              - '6.0'
+            relationship: implemented web specification
+            confidence: high
+            notes:
+              - Apache Tomcat 10.1 implements Jakarta Servlet 6.0.
+            sources:
+              - *tomcat_version_source
+            lastVerified: '2026-07-23'
+          jsp-api:
+            ranges:
+              - '3.1'
+            relationship: implemented web specification
+            confidence: high
+            notes:
+              - Apache Tomcat 10.1 implements Jakarta Pages 3.1, commonly known as JSP.
+            sources:
+              - *tomcat_version_source
+            lastVerified: '2026-07-23'
+          debugging-support-api:
+            ranges:
+              - '2.0'
+            relationship: implemented web specification
+            confidence: high
+            notes:
+              - Apache Tomcat 10.1 implements Jakarta Debugging Support for Other Languages 2.0.
+            sources:
+              - *tomcat_version_source
+            lastVerified: '2026-07-23'
+          expression-language-api:
+            ranges:
+              - '5.0'
+            relationship: implemented web specification
+            confidence: high
+            notes:
+              - Apache Tomcat 10.1 implements Jakarta Expression Language 5.0.
+            sources:
+              - *tomcat_version_source
+            lastVerified: '2026-07-23'
+          websocket-api:
+            ranges:
+              - '2.1'
+            relationship: implemented web specification
+            confidence: high
+            notes:
+              - Apache Tomcat 10.1 implements Jakarta WebSocket 2.1.
+            sources:
+              - *tomcat_version_source
+            lastVerified: '2026-07-23'
+          authentication-api:
+            ranges:
+              - '3.0'
+            relationship: implemented web specification
+            confidence: high
+            notes:
+              - Apache Tomcat 10.1 implements Jakarta Authentication 3.0.
+            sources:
+              - *tomcat_version_source
+            lastVerified: '2026-07-23'
+          annotation-api:
+            ranges:
+              - '2.1'
+            relationship: implemented web specification
+            confidence: high
+            notes:
+              - Apache Tomcat 10.1 implements Jakarta Annotations 2.1.
+            sources:
+              - *tomcat_version_source
+            lastVerified: '2026-07-23'
+      '9.0':
+        dependencies:
+          java:
+            ranges:
+              - '>=8'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Apache Tomcat 9.0 supports Java 8 and every later stable Java release.
+              - Early-access Java builds are not included because they are not stable production targets.
+            sources:
+              - *tomcat_version_source
+            lastVerified: '2026-07-23'
+          servlet-api:
+            ranges:
+              - '4.0'
+            relationship: implemented web specification
+            confidence: high
+            notes:
+              - Apache Tomcat 9.0 implements Java Servlet 4.0 from Java EE 8.
+            sources:
+              - *tomcat_version_source
+            lastVerified: '2026-07-23'
+          jsp-api:
+            ranges:
+              - '2.3'
+            relationship: implemented web specification
+            confidence: high
+            notes:
+              - Apache Tomcat 9.0 implements JavaServer Pages 2.3 from Java EE 8.
+            sources:
+              - *tomcat_version_source
+            lastVerified: '2026-07-23'
+          debugging-support-api:
+            ranges:
+              - '1.0'
+            relationship: implemented web specification
+            confidence: high
+            notes:
+              - Apache Tomcat 9.0 implements Debugging Support for Other Languages 1.0 from Java EE 8.
+            sources:
+              - *tomcat_version_source
+            lastVerified: '2026-07-23'
+          expression-language-api:
+            ranges:
+              - '3.0'
+            relationship: implemented web specification
+            confidence: high
+            notes:
+              - Apache Tomcat 9.0 implements Expression Language 3.0 from Java EE 8.
+            sources:
+              - *tomcat_version_source
+            lastVerified: '2026-07-23'
+          websocket-api:
+            ranges:
+              - '1.1'
+            relationship: implemented web specification
+            confidence: high
+            notes:
+              - Apache Tomcat 9.0 implements the Java API for WebSocket 1.1 from Java EE 8.
+            sources:
+              - *tomcat_version_source
+            lastVerified: '2026-07-23'
+          authentication-api:
+            ranges:
+              - '1.1'
+            relationship: implemented web specification
+            confidence: high
+            notes:
+              - Apache Tomcat 9.0 implements JASPIC 1.1 from Java EE 8.
+            sources:
+              - *tomcat_version_source
+            lastVerified: '2026-07-23'
+          annotation-api:
+            ranges:
+              - '1.3'
+            relationship: implemented web specification
+            confidence: high
+            notes:
+              - Apache Tomcat 9.0 implements Common Annotations 1.3 from Java EE 8.
+            sources:
+              - *tomcat_version_source
+            lastVerified: '2026-07-23'
