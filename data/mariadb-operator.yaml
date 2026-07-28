@@ -1,0 +1,127 @@
+x-mariadb-operator-266-source: &mariadb_operator_266_source
+  title: MariaDB Operator 26.6.0 Compatibility
+  url: https://github.com/mariadb-operator/mariadb-operator/blob/26.6.0/README.md
+  accessedAt: '2026-07-28'
+
+x-mariadb-operator-263-source: &mariadb_operator_263_source
+  title: MariaDB Operator 26.3.0 Compatibility
+  url: https://github.com/mariadb-operator/mariadb-operator/blob/26.3.0/README.md
+  accessedAt: '2026-07-28'
+
+x-mariadb-operator-2510-source: &mariadb_operator_2510_source
+  title: MariaDB Operator 25.10.4 Compatibility
+  url: https://github.com/mariadb-operator/mariadb-operator/blob/25.10.4/README.md
+  accessedAt: '2026-07-28'
+
+projects:
+  mariadb-operator:
+    name: MariaDB Operator
+    categories:
+      - Databases
+      - MariaDB
+      - Kubernetes Operator
+    website: https://github.com/mariadb-operator/mariadb-operator
+    description: MariaDB Community operator compatibility for Kubernetes, MariaDB Server, and MaxScale.
+    versions:
+      '26.6':
+        dependencies:
+          kubernetes:
+            ranges:
+              - '>=1.31'
+            relationship: runtime
+            confidence: high
+            notes:
+              - MariaDB Operator 26.6.0 declares compatibility with Kubernetes 1.31 or later.
+            sources:
+              - *mariadb_operator_266_source
+            lastVerified: '2026-07-28'
+          mariadb:
+            ranges:
+              - '>=10.6'
+            relationship: managed database
+            confidence: high
+            notes:
+              - MariaDB Operator 26.6.0 declares compatibility with MariaDB Community 10.6 or later.
+              - The operator documentation limits compatibility to official MariaDB images.
+            sources:
+              - *mariadb_operator_266_source
+            lastVerified: '2026-07-28'
+          maxscale:
+            ranges:
+              - '>=23.08'
+            relationship: managed database proxy
+            confidence: high
+            notes:
+              - MariaDB Operator 26.6.0 declares compatibility with MaxScale 23.08 or later.
+              - The operator documentation limits compatibility to official MariaDB images.
+            sources:
+              - *mariadb_operator_266_source
+            lastVerified: '2026-07-28'
+      '26.3':
+        dependencies:
+          kubernetes:
+            ranges:
+              - '>=1.31'
+            relationship: runtime
+            confidence: high
+            notes:
+              - MariaDB Operator 26.3.0 declares compatibility with Kubernetes 1.31 or later.
+            sources:
+              - *mariadb_operator_263_source
+            lastVerified: '2026-07-28'
+          mariadb:
+            ranges:
+              - '>=10.6'
+            relationship: managed database
+            confidence: high
+            notes:
+              - MariaDB Operator 26.3.0 declares compatibility with MariaDB Community 10.6 or later.
+              - The operator documentation limits compatibility to official MariaDB images.
+            sources:
+              - *mariadb_operator_263_source
+            lastVerified: '2026-07-28'
+          maxscale:
+            ranges:
+              - '>=23.08'
+            relationship: managed database proxy
+            confidence: high
+            notes:
+              - MariaDB Operator 26.3.0 declares compatibility with MaxScale 23.08 or later.
+              - The operator documentation limits compatibility to official MariaDB images.
+            sources:
+              - *mariadb_operator_263_source
+            lastVerified: '2026-07-28'
+      '25.10':
+        dependencies:
+          kubernetes:
+            ranges:
+              - '>=1.31'
+            relationship: runtime
+            confidence: high
+            notes:
+              - MariaDB Operator 25.10.4 declares compatibility with Kubernetes 1.31 or later.
+            sources:
+              - *mariadb_operator_2510_source
+            lastVerified: '2026-07-28'
+          mariadb:
+            ranges:
+              - '>=10.6'
+            relationship: managed database
+            confidence: high
+            notes:
+              - MariaDB Operator 25.10.4 declares compatibility with MariaDB Community 10.6 or later.
+              - The operator documentation limits compatibility to official MariaDB images.
+            sources:
+              - *mariadb_operator_2510_source
+            lastVerified: '2026-07-28'
+          maxscale:
+            ranges:
+              - '>=23.08'
+            relationship: managed database proxy
+            confidence: high
+            notes:
+              - MariaDB Operator 25.10.4 declares compatibility with MaxScale 23.08 or later.
+              - The operator documentation limits compatibility to official MariaDB images.
+            sources:
+              - *mariadb_operator_2510_source
+            lastVerified: '2026-07-28'
