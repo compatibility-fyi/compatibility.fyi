@@ -1,3 +1,8 @@
+x-traefik-hub-chart-4110-source: &traefik_hub_chart_4110_source
+  title: Traefik Helm Chart 41.1.0 Version Support
+  url: https://github.com/traefik/traefik-helm-chart/releases/tag/v41.1.0
+  accessedAt: '2026-07-31'
+
 x-traefik-hub-chart-source: &traefik_hub_chart_source
   title: Traefik Helm Chart 41.0.2 Version Support
   url: https://github.com/traefik/traefik-helm-chart/releases/tag/v41.0.2
@@ -12,27 +17,43 @@ projects:
     website: https://doc.traefik.io/traefik-hub/
     description: Traefik Hub API Gateway compatibility with the official Traefik Helm chart.
     versions:
+      '3.20.7':
+        dependencies:
+          traefik-helm-chart:
+            ranges:
+              - '41.1.0'
+            relationship: deployment chart
+            confidence: high
+            notes:
+              - Traefik Helm chart 41.1.0 supports Traefik Hub versions 3.19.3 through 3.20.7.
+            sources:
+              - *traefik_hub_chart_4110_source
+            lastVerified: '2026-07-31'
       '3.20.6':
         dependencies:
           traefik-helm-chart:
             ranges:
+              - '41.1.0'
               - '41.0.2'
             relationship: deployment chart
             confidence: high
             notes:
-              - Traefik Helm chart 41.0.2 supports Traefik Hub versions 3.19.3 through 3.20.6.
+              - Traefik Helm chart 41.0.2 supports Traefik Hub versions 3.19.3 through 3.20.6, and chart 41.1.0 extends support through 3.20.7.
             sources:
+              - *traefik_hub_chart_4110_source
               - *traefik_hub_chart_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-07-31'
       '3.19.3':
         dependencies:
           traefik-helm-chart:
             ranges:
+              - '41.1.0'
               - '41.0.2'
             relationship: deployment chart
             confidence: high
             notes:
-              - Traefik Helm chart 41.0.2 supports Traefik Hub versions 3.19.3 through 3.20.6.
+              - Traefik Helm charts 41.0.2 and 41.1.0 both support Traefik Hub 3.19.3.
             sources:
+              - *traefik_hub_chart_4110_source
               - *traefik_hub_chart_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-07-31'
