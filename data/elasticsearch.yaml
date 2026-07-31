@@ -1,7 +1,7 @@
 x-elastic-stack-compatibility-source: &elastic_stack_compatibility_source
   title: Elastic Stack Version Compatibility
   url: https://www.elastic.co/docs/deploy-manage/deploy/self-managed/installing-elasticsearch
-  accessedAt: '2026-07-09'
+  accessedAt: '2026-07-31'
 
 x-elasticsearch-9-4-4-source: &elasticsearch_9_4_4_source
   title: Elasticsearch 9.4.4 Release
@@ -28,11 +28,11 @@ projects:
     website: https://www.elastic.co/elasticsearch
     description: Elasticsearch compatibility with other self-managed Elastic Stack components.
     versions:
-      '9.4.4':
+      '9.4':
         dependencies:
           kibana:
-            ranges:
-              - '9.4.4'
+            ranges: []
+            sameVersion: true
             relationship: Elastic Stack component
             confidence: high
             notes:
@@ -42,8 +42,8 @@ projects:
               - *elasticsearch_9_4_4_source
             lastVerified: '2026-07-27'
           logstash:
-            ranges:
-              - '9.4.4'
+            ranges: []
+            sameVersion: true
             relationship: Elastic Stack component
             confidence: high
             notes:
@@ -53,8 +53,8 @@ projects:
               - *elasticsearch_9_4_4_source
             lastVerified: '2026-07-27'
           beats:
-            ranges:
-              - '9.4.4'
+            ranges: []
+            sameVersion: true
             relationship: Elastic Stack component
             confidence: high
             notes:
@@ -64,8 +64,8 @@ projects:
               - *elasticsearch_9_4_4_source
             lastVerified: '2026-07-27'
           elastic-agent:
-            ranges:
-              - '9.4.4'
+            ranges: []
+            sameVersion: true
             relationship: Elastic Stack component
             confidence: high
             notes:
@@ -74,11 +74,11 @@ projects:
               - *elastic_stack_compatibility_source
               - *elasticsearch_9_4_4_source
             lastVerified: '2026-07-27'
-      '9.3.8':
+      '9.3':
         dependencies:
           kibana:
-            ranges:
-              - '9.3.8'
+            ranges: []
+            sameVersion: true
             relationship: Elastic Stack component
             confidence: high
             notes:
@@ -88,8 +88,8 @@ projects:
               - *elasticsearch_9_3_8_source
             lastVerified: '2026-07-27'
           logstash:
-            ranges:
-              - '9.3.8'
+            ranges: []
+            sameVersion: true
             relationship: Elastic Stack component
             confidence: high
             notes:
@@ -99,8 +99,8 @@ projects:
               - *elasticsearch_9_3_8_source
             lastVerified: '2026-07-27'
           beats:
-            ranges:
-              - '9.3.8'
+            ranges: []
+            sameVersion: true
             relationship: Elastic Stack component
             confidence: high
             notes:
@@ -110,8 +110,8 @@ projects:
               - *elasticsearch_9_3_8_source
             lastVerified: '2026-07-27'
           elastic-agent:
-            ranges:
-              - '9.3.8'
+            ranges: []
+            sameVersion: true
             relationship: Elastic Stack component
             confidence: high
             notes:
@@ -120,11 +120,11 @@ projects:
               - *elastic_stack_compatibility_source
               - *elasticsearch_9_3_8_source
             lastVerified: '2026-07-27'
-      '8.19.19':
+      '8.19':
         dependencies:
           kibana:
-            ranges:
-              - '8.19.19'
+            ranges: []
+            sameVersion: true
             relationship: Elastic Stack component
             confidence: high
             notes:
@@ -134,8 +134,8 @@ projects:
               - *elasticsearch_8_19_19_source
             lastVerified: '2026-07-27'
           logstash:
-            ranges:
-              - '8.19.19'
+            ranges: []
+            sameVersion: true
             relationship: Elastic Stack component
             confidence: high
             notes:
@@ -145,8 +145,8 @@ projects:
               - *elasticsearch_8_19_19_source
             lastVerified: '2026-07-27'
           beats:
-            ranges:
-              - '8.19.19'
+            ranges: []
+            sameVersion: true
             relationship: Elastic Stack component
             confidence: high
             notes:
@@ -156,8 +156,8 @@ projects:
               - *elasticsearch_8_19_19_source
             lastVerified: '2026-07-27'
           elastic-agent:
-            ranges:
-              - '8.19.19'
+            ranges: []
+            sameVersion: true
             relationship: Elastic Stack component
             confidence: high
             notes:
