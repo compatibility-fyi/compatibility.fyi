@@ -1,3 +1,8 @@
+x-cilium-120-kubernetes-source: &cilium_120_kubernetes_source
+  title: Cilium 1.20 Kubernetes Compatibility
+  url: https://docs.cilium.io/en/v1.20/network/kubernetes/compatibility/
+  accessedAt: '2026-07-31'
+
 x-cilium-kubernetes-source: &cilium_kubernetes_source
   title: Cilium 1.19 Kubernetes Compatibility
   url: https://docs.cilium.io/en/stable/network/kubernetes/compatibility/
@@ -24,6 +29,18 @@ projects:
     website: https://cilium.io/
     description: eBPF networking, security, and observability compatibility for Kubernetes versions.
     versions:
+      '1.20':
+        dependencies:
+          kubernetes:
+            ranges:
+              - '>=1.33 <1.37'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Cilium 1.20 docs list Kubernetes 1.33, 1.34, 1.35, and 1.36 as e2e tested and guaranteed compatible.
+            sources:
+              - *cilium_120_kubernetes_source
+            lastVerified: '2026-07-31'
       '1.19':
         dependencies:
           kubernetes:
