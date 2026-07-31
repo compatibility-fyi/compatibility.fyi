@@ -174,6 +174,45 @@ describe('api', () => {
     expect(body.sources).toEqual(fixture.entry.sources);
   });
 
+  it('checks exact project-version constraints through the API', async () => {
+    for (const [project, version, dependency] of [
+      ['elasticsearch', '9.4.4', 'kibana'],
+      ['mariadb', '11.8.8', 'mariadb-backup'],
+    ]) {
+      const compatibleResponse = await handleApiRequest(
+        new Request(
+          `https://compatibility.fyi/api/v1/check?${new URLSearchParams({
+            project,
+            version,
+            dependency,
+            dependencyVersion: version,
+          })}`,
+        ),
+      );
+      const incompatibleResponse = await handleApiRequest(
+        new Request(
+          `https://compatibility.fyi/api/v1/check?${new URLSearchParams({
+            project,
+            version,
+            dependency,
+            dependencyVersion: `${version}-different`,
+          })}`,
+        ),
+      );
+
+      await expect(compatibleResponse.json()).resolves.toMatchObject({
+        compatible: 'compatible',
+        matchedRange: null,
+        matchedConstraint: 'same-version',
+      });
+      await expect(incompatibleResponse.json()).resolves.toMatchObject({
+        compatible: 'incompatible',
+        matchedRange: null,
+        matchedConstraint: null,
+      });
+    }
+  });
+
   it.each(['18.2-rc2', '18.2_beta2', '18.2_SNAPSHOT'])(
     'does not treat prerelease %s as a stable release',
     async (dependencyVersion) => {
