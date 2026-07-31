@@ -1,17 +1,17 @@
 x-mariadb-releases-source: &mariadb_releases_source
   title: MariaDB Community Server Releases
   url: https://mariadb.com/docs/release-notes/community-server/all-releases
-  accessedAt: '2026-07-13'
+  accessedAt: '2026-07-31'
 
 x-mariadb-connector-j-source: &mariadb_connector_j_source
   title: MariaDB Connector/J Compatibility
   url: https://mariadb.com/docs/connectors/mariadb-connector-j/about-mariadb-connector-j
-  accessedAt: '2026-07-13'
+  accessedAt: '2026-07-31'
 
 x-mariadb-backup-source: &mariadb_backup_source
   title: MariaDB Backup Version Compatibility
   url: https://mariadb.com/docs/server/server-usage/backup-and-restore/mariadb-enterprise-backup
-  accessedAt: '2026-07-13'
+  accessedAt: '2026-07-31'
 
 projects:
   mariadb:
@@ -22,99 +22,99 @@ projects:
     website: https://mariadb.org/
     description: MariaDB Community Server compatibility with official client and backup tooling.
     versions:
-      '12.3.2':
+      '12.3':
         dependencies:
           mariadb-connector-j:
             ranges:
-              - '3.5.9'
+              - '3.5'
             relationship: Java client driver
             confidence: high
             notes:
-              - MariaDB Connector/J 3.5.9 is a stable release compatible with all MariaDB Server versions.
+              - The MariaDB Connector/J 3.5 release line is compatible with all MariaDB Server versions.
             sources:
               - *mariadb_releases_source
               - *mariadb_connector_j_source
-            lastVerified: '2026-07-13'
+            lastVerified: '2026-07-31'
           mariadb-backup:
-            ranges:
-              - '12.3.2'
+            ranges: []
+            sameVersion: true
             relationship: physical backup tool
             confidence: high
             notes:
-              - MariaDB recommends using the same MariaDB Backup version as the server because mismatched versions can produce errors or unusable backups.
+              - MariaDB recommends that MariaDB Backup exactly match the server version because mismatches can produce errors or unusable backups.
             sources:
               - *mariadb_releases_source
               - *mariadb_backup_source
-            lastVerified: '2026-07-13'
-      '11.8.8':
+            lastVerified: '2026-07-31'
+      '11.8':
         dependencies:
           mariadb-connector-j:
             ranges:
-              - '3.5.9'
+              - '3.5'
             relationship: Java client driver
             confidence: high
             notes:
-              - MariaDB Connector/J 3.5.9 is a stable release compatible with all MariaDB Server versions.
+              - The MariaDB Connector/J 3.5 release line is compatible with all MariaDB Server versions.
             sources:
               - *mariadb_releases_source
               - *mariadb_connector_j_source
-            lastVerified: '2026-07-13'
+            lastVerified: '2026-07-31'
           mariadb-backup:
-            ranges:
-              - '11.8.8'
+            ranges: []
+            sameVersion: true
             relationship: physical backup tool
             confidence: high
             notes:
-              - MariaDB recommends using the same MariaDB Backup version as the server because mismatched versions can produce errors or unusable backups.
+              - MariaDB recommends that MariaDB Backup exactly match the server version because mismatches can produce errors or unusable backups.
             sources:
               - *mariadb_releases_source
               - *mariadb_backup_source
-            lastVerified: '2026-07-13'
-      '11.4.12':
+            lastVerified: '2026-07-31'
+      '11.4':
         dependencies:
           mariadb-connector-j:
             ranges:
-              - '3.5.9'
+              - '3.5'
             relationship: Java client driver
             confidence: high
             notes:
-              - MariaDB Connector/J 3.5.9 is a stable release compatible with all MariaDB Server versions.
+              - The MariaDB Connector/J 3.5 release line is compatible with all MariaDB Server versions.
             sources:
               - *mariadb_releases_source
               - *mariadb_connector_j_source
-            lastVerified: '2026-07-13'
+            lastVerified: '2026-07-31'
           mariadb-backup:
-            ranges:
-              - '11.4.12'
+            ranges: []
+            sameVersion: true
             relationship: physical backup tool
             confidence: high
             notes:
-              - MariaDB recommends using the same MariaDB Backup version as the server because mismatched versions can produce errors or unusable backups.
+              - MariaDB recommends that MariaDB Backup exactly match the server version because mismatches can produce errors or unusable backups.
             sources:
               - *mariadb_releases_source
               - *mariadb_backup_source
-            lastVerified: '2026-07-13'
-      '10.11.18':
+            lastVerified: '2026-07-31'
+      '10.11':
         dependencies:
           mariadb-connector-j:
             ranges:
-              - '3.5.9'
+              - '3.5'
             relationship: Java client driver
             confidence: high
             notes:
-              - MariaDB Connector/J 3.5.9 is a stable release compatible with all MariaDB Server versions.
+              - The MariaDB Connector/J 3.5 release line is compatible with all MariaDB Server versions.
             sources:
               - *mariadb_releases_source
               - *mariadb_connector_j_source
-            lastVerified: '2026-07-13'
+            lastVerified: '2026-07-31'
           mariadb-backup:
-            ranges:
-              - '10.11.18'
+            ranges: []
+            sameVersion: true
             relationship: physical backup tool
             confidence: high
             notes:
-              - MariaDB recommends using the same MariaDB Backup version as the server because mismatched versions can produce errors or unusable backups.
+              - MariaDB recommends that MariaDB Backup exactly match the server version because mismatches can produce errors or unusable backups.
             sources:
               - *mariadb_releases_source
               - *mariadb_backup_source
-            lastVerified: '2026-07-13'
+            lastVerified: '2026-07-31'
