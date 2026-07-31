@@ -1,32 +1,22 @@
 x-mysql-shell-source: &mysql_shell_source
   title: MySQL Shell 9.7 Compatibility
   url: https://dev.mysql.com/doc/mysql-shell/9.7/en/
-  accessedAt: '2026-07-27'
+  accessedAt: '2026-07-31'
 
 x-mysql-router-source: &mysql_router_source
   title: MySQL Router 9.7 Compatibility
   url: https://dev.mysql.com/doc/mysql-router/9.7/en/mysql-router-general.html
-  accessedAt: '2026-07-27'
-
-x-mysql-shell-971-source: &mysql_shell_971_source
-  title: MySQL Shell 9.7.1 Release Notes
-  url: https://dev.mysql.com/doc/relnotes/mysql-shell/9.7/en/news-9-7-1.html
-  accessedAt: '2026-07-27'
-
-x-mysql-router-971-source: &mysql_router_971_source
-  title: MySQL Router 9.7.1 Release Notes
-  url: https://dev.mysql.com/doc/relnotes/mysql-router/9.7/en/news-9-7-1.html
-  accessedAt: '2026-07-27'
+  accessedAt: '2026-07-31'
 
 x-mysql-connector-j-source: &mysql_connector_j_source
   title: MySQL Connector/J 9.7 Compatibility
   url: https://dev.mysql.com/doc/connector-j/en/connector-j-versions.html
-  accessedAt: '2026-07-09'
+  accessedAt: '2026-07-31'
 
 x-mysql-connector-python-source: &mysql_connector_python_source
   title: MySQL Connector/Python Version Reference
   url: https://dev.mysql.com/doc/connector-python/en/connector-python-versions.html
-  accessedAt: '2026-07-09'
+  accessedAt: '2026-07-31'
 
 projects:
   mysql:
@@ -41,131 +31,125 @@ projects:
         dependencies:
           mysql-shell:
             ranges:
-              - '9.7.1'
+              - '9.7'
             relationship: administration client
             confidence: high
             notes:
-              - MySQL Shell 9.7.1 is the current 9.7 patch release and is recommended for any generally available MySQL Server version 8.0 or newer.
+              - MySQL Shell 9.7 is recommended for any generally available MySQL Server version 8.0 or newer.
             sources:
               - *mysql_shell_source
-              - *mysql_shell_971_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-07-31'
           mysql-router:
             ranges:
-              - '9.7.1'
+              - '9.7'
             relationship: routing proxy
             confidence: high
             notes:
-              - MySQL Router 9.7.1 is the current 9.7 patch release and officially supports active MySQL Server versions 8.0, 8.4, and 9.7.
+              - MySQL Router 9.7 officially supports active MySQL Server versions 8.0, 8.4, and 9.7.
             sources:
               - *mysql_router_source
-              - *mysql_router_971_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-07-31'
           mysql-connector-j:
             ranges:
-              - '9.7.0'
+              - '9.7'
             relationship: Java client driver
             confidence: high
             notes:
               - MySQL Connector/J 9.7 supports MySQL Server 8.0 and newer and requires JRE 8 or newer.
             sources:
               - *mysql_connector_j_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-07-31'
           mysql-connector-python:
             ranges:
-              - '9.7.0'
+              - '9.7'
             relationship: Python client driver
             confidence: high
             notes:
-              - MySQL Connector/Python 9.5.0 and newer support MySQL Server 8.0 and newer; 9.7.0 is the documented current release.
+              - MySQL Connector/Python 9.7 supports MySQL Server 8.0 and newer.
             sources:
               - *mysql_connector_python_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-07-31'
       '8.4':
         dependencies:
           mysql-shell:
             ranges:
-              - '9.7.1'
+              - '9.7'
             relationship: administration client
             confidence: high
             notes:
-              - MySQL Shell 9.7.1 is the current 9.7 patch release and is recommended for any generally available MySQL Server version 8.0 or newer.
+              - MySQL Shell 9.7 is recommended for any generally available MySQL Server version 8.0 or newer.
             sources:
               - *mysql_shell_source
-              - *mysql_shell_971_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-07-31'
           mysql-router:
             ranges:
-              - '9.7.1'
+              - '9.7'
             relationship: routing proxy
             confidence: high
             notes:
-              - MySQL Router 9.7.1 is the current 9.7 patch release and officially supports active MySQL Server versions 8.0, 8.4, and 9.7.
+              - MySQL Router 9.7 officially supports active MySQL Server versions 8.0, 8.4, and 9.7.
             sources:
               - *mysql_router_source
-              - *mysql_router_971_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-07-31'
           mysql-connector-j:
             ranges:
-              - '9.7.0'
+              - '9.7'
             relationship: Java client driver
             confidence: high
             notes:
               - MySQL Connector/J 9.7 supports MySQL Server 8.0 and newer and requires JRE 8 or newer.
             sources:
               - *mysql_connector_j_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-07-31'
           mysql-connector-python:
             ranges:
-              - '9.7.0'
+              - '9.7'
             relationship: Python client driver
             confidence: high
             notes:
-              - MySQL Connector/Python 9.5.0 and newer support MySQL Server 8.0 and newer; 9.7.0 is the documented current release.
+              - MySQL Connector/Python 9.7 supports MySQL Server 8.0 and newer.
             sources:
               - *mysql_connector_python_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-07-31'
       '8.0':
         dependencies:
           mysql-shell:
             ranges:
-              - '9.7.1'
+              - '9.7'
             relationship: administration client
             confidence: high
             notes:
-              - MySQL Shell 9.7.1 is the current 9.7 patch release and is recommended for any generally available MySQL Server version 8.0 or newer.
+              - MySQL Shell 9.7 is recommended for any generally available MySQL Server version 8.0 or newer.
             sources:
               - *mysql_shell_source
-              - *mysql_shell_971_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-07-31'
           mysql-router:
             ranges:
-              - '9.7.1'
+              - '9.7'
             relationship: routing proxy
             confidence: high
             notes:
-              - MySQL Router 9.7.1 is the current 9.7 patch release and officially supports active MySQL Server versions 8.0, 8.4, and 9.7.
+              - MySQL Router 9.7 officially supports active MySQL Server versions 8.0, 8.4, and 9.7.
             sources:
               - *mysql_router_source
-              - *mysql_router_971_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-07-31'
           mysql-connector-j:
             ranges:
-              - '9.7.0'
+              - '9.7'
             relationship: Java client driver
             confidence: high
             notes:
               - MySQL Connector/J 9.7 supports MySQL Server 8.0 and newer and requires JRE 8 or newer.
             sources:
               - *mysql_connector_j_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-07-31'
           mysql-connector-python:
             ranges:
-              - '9.7.0'
+              - '9.7'
             relationship: Python client driver
             confidence: high
             notes:
-              - MySQL Connector/Python 9.5.0 and newer support MySQL Server 8.0 and newer; 9.7.0 is the documented current release.
+              - MySQL Connector/Python 9.7 supports MySQL Server 8.0 and newer.
             sources:
               - *mysql_connector_python_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-07-31'
