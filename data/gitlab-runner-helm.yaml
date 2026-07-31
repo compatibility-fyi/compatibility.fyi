@@ -1,7 +1,7 @@
 x-gitlab-runner-helm-index-source: &gitlab_runner_helm_index_source
   title: GitLab Helm chart repository index
   url: https://charts.gitlab.io/index.yaml
-  accessedAt: '2026-07-22'
+  accessedAt: '2026-07-31'
 
 x-gitlab-runner-compatibility-source: &gitlab_runner_compatibility_source
   title: GitLab Runner version compatibility
@@ -39,7 +39,7 @@ projects:
               - *gitlab_runner_compatibility_source
               - *gitlab_helm_version_mapping_source
             lastVerified: '2026-07-22'
-      '0.90.1':
+      '0.90.2':
         dependencies:
           gitlab-helm:
             ranges:
@@ -47,14 +47,14 @@ projects:
             relationship: coordinator chart
             confidence: high
             notes:
-              - GitLab Runner chart 0.90.1 maps to GitLab Runner 19.1.1, while GitLab chart 10.1.x maps to GitLab 19.1.x.
+              - GitLab Runner chart 0.90.2 maps to GitLab Runner 19.1.2, while GitLab chart 10.1.x maps to GitLab 19.1.x.
               - GitLab recommends keeping GitLab Runner major.minor synchronized with the GitLab major.minor version.
             sources:
               - *gitlab_runner_helm_index_source
               - *gitlab_runner_compatibility_source
               - *gitlab_helm_version_mapping_source
-            lastVerified: '2026-07-22'
-      '0.89.2':
+            lastVerified: '2026-07-31'
+      '0.89.3':
         dependencies:
           gitlab-helm:
             ranges:
@@ -62,13 +62,13 @@ projects:
             relationship: coordinator chart
             confidence: high
             notes:
-              - GitLab Runner chart 0.89.2 maps to GitLab Runner 19.0.2, while GitLab chart 10.0.x maps to GitLab 19.0.x.
+              - GitLab Runner chart 0.89.3 maps to GitLab Runner 19.0.3, while GitLab chart 10.0.x maps to GitLab 19.0.x.
               - GitLab recommends keeping GitLab Runner major.minor synchronized with the GitLab major.minor version.
             sources:
               - *gitlab_runner_helm_index_source
               - *gitlab_runner_compatibility_source
               - *gitlab_helm_version_mapping_source
-            lastVerified: '2026-07-22'
+            lastVerified: '2026-07-31'
       '0.88.4':
         dependencies:
           gitlab-helm:
