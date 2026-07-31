@@ -8,6 +8,20 @@ describe('compatibility data validation', () => {
     expect(dataset.projects.sample.versions['1'].dependencies.runtime.status).toBe('compatible');
   });
 
+  it('accepts exact project-version constraints without ranges', () => {
+    const dataset = parseCompatibilityYaml(validYaml({ sameVersion: true }));
+    const entry = dataset.projects.sample.versions['1'].dependencies.runtime;
+
+    expect(entry.sameVersion).toBe(true);
+    expect(entry.ranges).toEqual([]);
+  });
+
+  it('rejects entries that combine ranges with exact project-version matching', () => {
+    expect(() =>
+      parseCompatibilityYaml(validYaml({ sameVersion: true, includeRanges: true })),
+    ).toThrow('either ranges or sameVersion');
+  });
+
   it.each(['latest', 'stable', 'current'])(
     'rejects the moving project version label %s',
     (version) => {
@@ -97,6 +111,8 @@ interface YamlOptions {
   sourceUrl?: string;
   accessedAt?: string | null;
   lastVerified?: string | null;
+  sameVersion?: boolean;
+  includeRanges?: boolean;
 }
 
 function validYaml(options: YamlOptions = {}): string {
@@ -109,6 +125,8 @@ function validYaml(options: YamlOptions = {}): string {
     sourceUrl = 'https://example.com/source',
     accessedAt = '2026-07-09',
     lastVerified = '2026-07-09',
+    sameVersion = false,
+    includeRanges = !sameVersion,
   } = options;
 
   return `projects:
@@ -120,8 +138,8 @@ function validYaml(options: YamlOptions = {}): string {
       '${version}':
         dependencies:
           ${dependency}:
-            ranges: ['>=1 <2']
-${status ? `            status: ${status}\n` : ''}            confidence: ${confidence}
+            ranges: ${includeRanges ? "['>=1 <2']" : '[]'}
+${sameVersion ? '            sameVersion: true\n' : ''}${status ? `            status: ${status}\n` : ''}            confidence: ${confidence}
             notes: [Verified fixture]
             sources:
               - title: Fixture

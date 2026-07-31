@@ -55,7 +55,10 @@ npm run build
 
 ## Data Format
 
-Compatibility entries are source-backed ranges for a project version and dependency.
+Compatibility entries are source-backed constraints for a project version and dependency. Prefer
+the broadest release line directly supported by the upstream evidence, such as `1.12` for all
+`1.12.x` patches. Keep exact patches for exact bundles, tested-version lists, and patch-gated
+compatibility.
 
 ```yaml
 projects:
@@ -81,8 +84,16 @@ projects:
             lastVerified: '2026-07-08'
 ```
 
-Compatibility is implicit when an entry has supported ranges. Use `status: incompatible` or
-`status: unknown` only when a source explicitly documents that state.
+Compatibility is implicit when an entry has supported ranges or `sameVersion: true`. Use
+`status: incompatible` or `status: unknown` only when a source explicitly documents that state.
+
+When upstream requires the dependency to have exactly the same version as the project, use an empty
+range list with `sameVersion: true`:
+
+```yaml
+ranges: []
+sameVersion: true
+```
 
 Confidence levels:
 

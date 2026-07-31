@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { formatDependencyName, formatRange } from '../../lib/format';
+import { formatCompatibilityConstraints, formatDependencyName } from '../../lib/format';
 import { compareVersions } from '../../lib/version';
 import type { CompatibilityDataset, DependencyCompatibilityEntry } from '../../types/compatibility';
 import { Layout } from '../components/Layout';
@@ -153,6 +153,16 @@ export function ProjectPage({ dataset, projectId }: ProjectPageProps) {
               ))}
             </select>
           </label>
+          {checkDependencies.some(([, entry]) => entry.sameVersion) ? (
+            <label className="search-field">
+              <span>Exact project version</span>
+              <input
+                data-check-exact-project-version
+                type="text"
+                placeholder={`e.g. ${activeCheckVersion}.1`}
+              />
+            </label>
+          ) : null}
           {checkDependencies.map(([dependency, entry]) => (
             <CheckerDependencyField dependency={dependency} entry={entry} key={dependency} />
           ))}
@@ -171,7 +181,7 @@ export function ProjectPage({ dataset, projectId }: ProjectPageProps) {
             <input
               data-matrix-search
               type="search"
-              placeholder="Search dependencies, ranges, notes, sources..."
+              placeholder="Search dependencies, constraints, notes, sources..."
             />
           </label>
           <label className="select-field">
@@ -219,9 +229,9 @@ export function ProjectPage({ dataset, projectId }: ProjectPageProps) {
                   </td>
                   <td data-label="Supported versions">
                     <div className="range-list" aria-label={`Supported versions for ${dependency}`}>
-                      {entry.ranges.map((range) => (
-                        <span className="range-chip" title={range} key={range}>
-                          {formatRange(range)}
+                      {formatCompatibilityConstraints(entry).map((constraint) => (
+                        <span className="range-chip" title={constraint} key={constraint}>
+                          {constraint}
                         </span>
                       ))}
                     </div>
@@ -260,7 +270,7 @@ function CheckerDependencyField({
       <input
         data-check-dependency={dependency}
         type="text"
-        placeholder={entry.ranges.map(formatRange).join(', ')}
+        placeholder={formatCompatibilityConstraints(entry).join(', ')}
       />
     </label>
   );
@@ -316,7 +326,7 @@ function matrixSearchText(
   return [
     dependency,
     version,
-    entry.ranges.join(' '),
+    formatCompatibilityConstraints(entry).join(' '),
     entry.notes.join(' '),
     entry.sources.map((source) => source.title).join(' '),
   ]

@@ -54,6 +54,7 @@ const singleCheckResponse = `{
   "dependencyVersion": "17",
   "compatible": "compatible",
   "matchedRange": ">=14.0.0 <19.0.0",
+  "matchedConstraint": null,
   "relationship": "database",
   "confidence": "high",
   "lastVerified": "2026-07-08",
@@ -84,6 +85,7 @@ const compoundCheckResponse = `{
       "dependencyVersion": "2.11",
       "compatible": "compatible",
       "matchedRange": "2.11",
+      "matchedConstraint": null,
       "relationship": "bundled"
     },
     {
@@ -91,6 +93,7 @@ const compoundCheckResponse = `{
       "dependencyVersion": "4.21.22",
       "compatible": "compatible",
       "matchedRange": ">=4.19 <4.22",
+      "matchedConstraint": null,
       "relationship": "hub runtime"
     }
   ]
@@ -98,7 +101,11 @@ const compoundCheckResponse = `{
 
 const endpointRows = [
   ['GET', '/api/v1/projects', 'Discover project ids and high-level metadata.'],
-  ['GET', '/api/v1/projects/{project}', 'Inspect versions, dependency keys, ranges, and evidence.'],
+  [
+    'GET',
+    '/api/v1/projects/{project}',
+    'Inspect versions, dependency keys, constraints, and evidence.',
+  ],
   ['GET', '/api/v1/check', 'Check one project/dependency version pair.'],
   ['POST', '/api/v1/check', 'Check a full project version combination.'],
 ];
@@ -126,7 +133,7 @@ const singleCheckParameters: Parameter[] = [
     name: 'dependencyVersion',
     location: 'query',
     required: 'yes',
-    description: 'Dependency version to test against the documented ranges.',
+    description: 'Dependency version to test against the documented constraints.',
   },
 ];
 
@@ -159,6 +166,11 @@ const responseFields: ResponseField[] = [
   {
     name: 'matchedRange',
     description: 'The documented range that matched the requested dependency version, or null.',
+  },
+  {
+    name: 'matchedConstraint',
+    description:
+      'Set to same-version when the dependency must exactly match the requested project version; otherwise null.',
   },
   {
     name: 'relationship',
@@ -222,7 +234,9 @@ export function DocsApiPage() {
               </div>
               <div className="quickstart-step">
                 <h3>2. Inspect one project</h3>
-                <p>Read the available versions, dependency keys, ranges, evidence, and sources.</p>
+                <p>
+                  Read the available versions, dependency keys, constraints, evidence, and sources.
+                </p>
                 <CodeBlock
                   copyable
                 >{`curl https://compatibility.fyi/api/v1/projects/red-hat-advanced-cluster-management`}</CodeBlock>
@@ -281,7 +295,7 @@ export function DocsApiPage() {
             method="GET"
             path="/api/v1/projects/{project}"
             title="Get project compatibility data"
-            description="Returns the complete compatibility document for one project, including known versions, dependency keys, ranges, confidence, notes, sources, and verification dates."
+            description="Returns the complete compatibility document for one project, including known versions, dependency keys, constraints, confidence, notes, sources, and verification dates."
           >
             <ParameterTable
               parameters={[
@@ -345,13 +359,13 @@ export function DocsApiPage() {
             <div className="docs-definition-grid">
               <div>
                 <span className="status-badge compatible">compatible</span>
-                <p>The dependency version matched a documented compatible range.</p>
+                <p>The dependency version matched a documented compatible constraint.</p>
               </div>
               <div>
                 <span className="status-badge incompatible">incompatible</span>
                 <p>
                   The dependency is known for that project version, but the requested version did
-                  not match any documented compatible range.
+                  not match any documented compatible constraint.
                 </p>
               </div>
               <div>

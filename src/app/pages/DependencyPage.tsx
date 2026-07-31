@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { formatDependencyName } from '../../lib/format';
+import {
+  countCompatibilityConstraints,
+  formatCompatibilityConstraints,
+  formatDependencyName,
+} from '../../lib/format';
 import {
   getDependencyEntries,
   getDependencyLastVerified,
@@ -66,9 +70,9 @@ export function DependencyPage({ dataset, projectId, dependencyId }: DependencyP
         </div>
         <div>
           <span className="summary-value">
-            {entries.reduce((total, [, entry]) => total + entry.ranges.length, 0)}
+            {entries.reduce((total, [, entry]) => total + countCompatibilityConstraints(entry), 0)}
           </span>
-          <span className="summary-label">Documented ranges</span>
+          <span className="summary-label">Documented constraints</span>
         </div>
         <div>
           <span className="summary-date">{lastVerified ?? 'Not verified'}</span>
@@ -100,9 +104,9 @@ export function DependencyPage({ dataset, projectId, dependencyId }: DependencyP
                     : `Documented ${dependencyName} versions`}
                 </p>
                 <div className="range-list">
-                  {entry.ranges.map((range) => (
-                    <span className="range-chip" key={range}>
-                      {range}
+                  {formatCompatibilityConstraints(entry).map((constraint) => (
+                    <span className="range-chip" key={constraint}>
+                      {constraint}
                     </span>
                   ))}
                 </div>
@@ -127,8 +131,8 @@ export function DependencyPage({ dataset, projectId, dependencyId }: DependencyP
           <p className="eyebrow">Primary evidence</p>
           <h2 id="dependency-sources-title">Sources</h2>
           <p>
-            Every range above is backed by upstream documentation, tagged source, release notes, or
-            another project-owned primary source.
+            Every constraint above is backed by upstream documentation, tagged source, release
+            notes, or another project-owned primary source.
           </p>
         </div>
         <ol>

@@ -97,7 +97,7 @@ function assertCompatibilityEntry(
 ): asserts value is DependencyCompatibilityEntry {
   const entry = asRecord(value, path);
   if (entry.status === 'compatible') {
-    throw new Error(`${path}.status must be omitted when compatibility ranges are provided`);
+    throw new Error(`${path}.status must be omitted when compatibility constraints are provided`);
   }
   entry.status ??= 'compatible';
 
@@ -113,6 +113,11 @@ function assertCompatibilityEntry(
       throw new Error(`${path}.ranges.${index} must be a valid semver range`);
     }
   }
+
+  if (entry.sameVersion !== undefined && entry.sameVersion !== true) {
+    throw new Error(`${path}.sameVersion must be true when provided`);
+  }
+  const sameVersion = entry.sameVersion === true;
 
   if (entry.relationship !== undefined) {
     assertString(entry.relationship, `${path}.relationship`);
@@ -132,12 +137,20 @@ function assertCompatibilityEntry(
     assertDateString(entry.lastVerified, `${path}.lastVerified`);
   }
 
-  if (entry.status === 'unknown' && entry.ranges.length > 0) {
-    throw new Error(`${path}.ranges must be empty when status is unknown`);
+  if (sameVersion && entry.ranges.length > 0) {
+    throw new Error(`${path} must use either ranges or sameVersion, not both`);
   }
 
-  if (entry.status !== 'unknown' && entry.ranges.length === 0) {
-    throw new Error(`${path}.ranges must include at least one range`);
+  if (entry.status === 'unknown' && (entry.ranges.length > 0 || sameVersion)) {
+    throw new Error(`${path} must not include compatibility constraints when status is unknown`);
+  }
+
+  if (entry.status === 'incompatible' && sameVersion) {
+    throw new Error(`${path}.sameVersion is only supported for compatible entries`);
+  }
+
+  if (entry.status !== 'unknown' && entry.ranges.length === 0 && !sameVersion) {
+    throw new Error(`${path} must include at least one range or sameVersion: true`);
   }
 
   if (entry.confidence !== 'low' && entry.sources.length === 0) {

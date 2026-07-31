@@ -86,7 +86,7 @@ export function getProjectSeoMetadata(
   const versions = Object.keys(project.versions).length;
   const dependencyIds = getProjectDependencyIds(project);
   const dependencyNames = dependencyIds.map(formatDependencyName);
-  const generatedDescription = `${project.name} version compatibility with ${formatList(dependencyNames)}. Source-backed ranges for ${versions} project ${versions === 1 ? 'version' : 'versions'}.`;
+  const generatedDescription = `${project.name} version compatibility with ${formatList(dependencyNames)}. Source-backed constraints for ${versions} project ${versions === 1 ? 'version' : 'versions'}.`;
   const description = truncateDescription(
     project.description ? `${project.description} ${generatedDescription}` : generatedDescription,
   );
@@ -107,7 +107,7 @@ export function getDependencySeoMetadata(
   const searchName = dependencyId === 'postgresql' ? 'PostgreSQL (Postgres)' : dependencyName;
   const entries = getDependencyEntries(project, dependencyId);
   const latestNote = entries[0]?.[1].notes[0];
-  const fallback = `${entries.length} ${project.name} versions include documented ${dependencyName} compatibility ranges, notes, sources, and verification dates.`;
+  const fallback = `${entries.length} ${project.name} versions include documented ${dependencyName} compatibility constraints, notes, sources, and verification dates.`;
 
   return {
     title: `${project.name} ${dependencyName} Version Compatibility | ${siteName}`,

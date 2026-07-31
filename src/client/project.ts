@@ -1,5 +1,5 @@
 import { checkCompoundCompatibility } from '../lib/engine';
-import { formatDependencyName, formatRange } from '../lib/format';
+import { formatCompatibilityConstraints, formatDependencyName, formatRange } from '../lib/format';
 import type {
   CompatibilityCheckResponse,
   CompatibilityDataset,
@@ -47,6 +47,7 @@ function initializeChecker(compatibilityDataset: CompatibilityDataset) {
 
   activeVersionSelect.addEventListener('change', () => {
     renderDependencyFields(
+      activeVersionSelect.value,
       project.versions[activeVersionSelect.value]?.dependencies ?? {},
       activeFields,
     );
@@ -55,6 +56,15 @@ function initializeChecker(compatibilityDataset: CompatibilityDataset) {
   activeFields.addEventListener('input', () => updateResult());
 
   function updateResult() {
+    const exactProjectVersionField = activeFields.querySelector<HTMLInputElement>(
+      '[data-check-exact-project-version]',
+    );
+    const exactProjectVersion = exactProjectVersionField?.value.trim();
+    if (exactProjectVersionField && !exactProjectVersion) {
+      clearResult(activeStatus, activeResultContainer);
+      return;
+    }
+
     const dependencies = Object.fromEntries(
       [...activeFields.querySelectorAll<HTMLInputElement>('[data-check-dependency]')]
         .map((input) => [input.dataset.checkDependency ?? '', input.value.trim()] as const)
@@ -68,7 +78,7 @@ function initializeChecker(compatibilityDataset: CompatibilityDataset) {
 
     const result = checkCompoundCompatibility(compatibilityDataset, {
       project: activeProjectId,
-      version: activeVersionSelect.value,
+      version: exactProjectVersion || activeVersionSelect.value,
       dependencies,
     });
 
@@ -80,6 +90,7 @@ function initializeChecker(compatibilityDataset: CompatibilityDataset) {
 }
 
 function renderDependencyFields(
+  projectVersion: string,
   dependencies: Record<string, DependencyCompatibilityEntry>,
   fields: HTMLElement,
 ) {
@@ -87,6 +98,22 @@ function renderDependencyFields(
   fields.replaceChildren();
   if (versionField) {
     fields.append(versionField);
+  }
+
+  if (Object.values(dependencies).some((entry) => entry.sameVersion)) {
+    const label = document.createElement('label');
+    label.className = 'search-field';
+
+    const name = document.createElement('span');
+    name.textContent = 'Exact project version';
+
+    const input = document.createElement('input');
+    input.dataset.checkExactProjectVersion = '';
+    input.type = 'text';
+    input.placeholder = `e.g. ${projectVersion}.1`;
+
+    label.append(name, input);
+    fields.append(label);
   }
 
   for (const [dependency, entry] of Object.entries(dependencies)) {
@@ -100,7 +127,7 @@ function renderDependencyFields(
     const input = document.createElement('input');
     input.dataset.checkDependency = dependency;
     input.type = 'text';
-    input.placeholder = entry.ranges.map(formatRange).join(', ');
+    input.placeholder = formatCompatibilityConstraints(entry).join(', ');
 
     label.append(name, input);
     fields.append(label);
@@ -135,7 +162,11 @@ function renderCheck(check: CompatibilityCheckResponse): HTMLElement {
   value.className = 'compound-result-value';
   const range = document.createElement('span');
   range.className = 'compound-result-range';
-  range.textContent = check.matchedRange ? formatRange(check.matchedRange) : 'No matching range';
+  range.textContent = check.matchedRange
+    ? formatRange(check.matchedRange)
+    : check.matchedConstraint === 'same-version'
+      ? 'Same exact version'
+      : 'No matching constraint';
   const badge = document.createElement('span');
   badge.className = `status-badge ${check.compatible}`;
   badge.textContent = check.compatible;

@@ -7,7 +7,7 @@ claims easy to audit and safe for tools to consume.
 
 1. Add a YAML file under `data/`, for example `data/envoy-gateway.yaml`.
 2. Use the project id as the top-level key under `projects`.
-3. Add versions and dependencies with ranges, relationship, confidence, notes, sources, and
+3. Add versions and dependencies with constraints, relationship, confidence, notes, sources, and
    `lastVerified`.
 4. Open a pull request with the YAML change. CI validates the data and runs all required checks.
 
@@ -21,19 +21,32 @@ Project maintainers can use a coding agent to draft a compatibility file. See `A
 repo-specific agent instructions and a copy-paste prompt.
 
 Maintainers should still review generated YAML before opening a pull request. In particular, check
-that every range is backed by the cited source and that no moving version labels were introduced.
+that every constraint is backed by the cited source and that no moving version labels were
+introduced.
 
 ## Adding compatibility entries
 
-Compatibility is implicit when an entry has supported ranges. Use `status: unknown` when there is
-not enough evidence, or `status: incompatible` only when a source explicitly documents an
-incompatibility.
+Compatibility is implicit when an entry has supported ranges or `sameVersion: true`. Use
+`status: unknown` when there is not enough evidence, or `status: incompatible` only when a source
+explicitly documents an incompatibility.
+
+Use the broadest release line directly supported by the source. A project key or dependency range
+such as `1.12` covers every stable `1.12.x` patch. Keep exact patches when the source publishes an
+exact bundle, chart mapping, tested-version list, same-version requirement, or patch-gated
+compatibility.
 
 Ranges should be semver-compatible where possible:
 
 ```yaml
 ranges:
   - '>=1.0.0 <2.0.0'
+```
+
+If the dependency must exactly match the requested project version, use:
+
+```yaml
+ranges: []
+sameVersion: true
 ```
 
 Ecosystems that cannot be expressed with semver should still use clear strings. The engine is

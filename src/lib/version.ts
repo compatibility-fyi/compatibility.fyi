@@ -63,6 +63,17 @@ export function compareVersions(left: string, right: string): number {
   return normalizedLeft.normalized.localeCompare(normalizedRight.normalized);
 }
 
+export function versionsEqual(left: string, right: string): boolean {
+  const normalizedLeft = normalizeVersion(left);
+  const normalizedRight = normalizeVersion(right);
+
+  if (normalizedLeft.semver && normalizedRight.semver) {
+    return semver.eq(normalizedLeft.semver, normalizedRight.semver);
+  }
+
+  return normalizedLeft.normalized === normalizedRight.normalized;
+}
+
 export function versionSatisfiesRange(version: string, range: string): boolean {
   const normalized = normalizeVersion(version);
 

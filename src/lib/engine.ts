@@ -6,7 +6,7 @@ import type {
   CompoundCompatibilityCheckResponse,
   DependencyCompatibilityEntry,
 } from '../types/compatibility';
-import { normalizeVersion, versionSatisfiesRange } from './version';
+import { normalizeVersion, versionsEqual, versionSatisfiesRange } from './version';
 
 const unknownEntry: DependencyCompatibilityEntry = {
   status: 'unknown',
@@ -27,20 +27,32 @@ export function checkCompatibility(
   const entry = dependency ?? unknownEntry;
   const dependencyExists = Boolean(dependency);
 
+  const sameVersionMatched =
+    entry.status !== 'unknown' &&
+    entry.sameVersion === true &&
+    versionsEqual(request.version, request.dependencyVersion);
   const matchedRange =
     entry.status === 'unknown'
       ? null
       : (entry.ranges.find((range) => versionSatisfiesRange(request.dependencyVersion, range)) ??
         null);
-  const compatible = getCompatibilityResult(entry, dependencyExists, matchedRange);
+  const matchedConstraint = sameVersionMatched ? 'same-version' : null;
+  const compatible = getCompatibilityResult(
+    entry,
+    dependencyExists,
+    Boolean(matchedRange || matchedConstraint),
+  );
   const includeEvidence =
     dependencyExists &&
-    (entry.status === 'unknown' || Boolean(matchedRange) || compatible === 'incompatible');
+    (entry.status === 'unknown' ||
+      Boolean(matchedRange || matchedConstraint) ||
+      compatible === 'incompatible');
 
   return {
     ...request,
     compatible,
     matchedRange,
+    matchedConstraint,
     relationship: entry.relationship ?? null,
     confidence: entry.confidence,
     lastVerified: entry.lastVerified,
@@ -84,13 +96,17 @@ function summarizeChecks(checks: CompatibilityCheckResponse[]) {
 function getCompatibilityResult(
   entry: DependencyCompatibilityEntry,
   dependencyExists: boolean,
-  matchedRange: string | null,
+  matched: boolean,
 ) {
-  if (matchedRange) {
+  if (matched) {
     return entry.status;
   }
 
-  if (dependencyExists && entry.status === 'compatible' && entry.ranges.length > 0) {
+  if (
+    dependencyExists &&
+    entry.status === 'compatible' &&
+    (entry.ranges.length > 0 || entry.sameVersion)
+  ) {
     return 'incompatible';
   }
 

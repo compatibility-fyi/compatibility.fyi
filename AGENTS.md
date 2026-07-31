@@ -22,10 +22,17 @@ optimize for small, reviewable data changes that are safe for automation tools t
 
 ## Data Rules
 
-- Compatibility is implicit when an entry has supported ranges. Do not write `status: compatible`.
+- Compatibility is implicit when an entry has supported ranges or `sameVersion: true`. Do not write
+  `status: compatible`.
 - Use `status: incompatible` only when a primary source explicitly documents an incompatibility.
 - Use `status: unknown` only when the project intentionally documents an unknown or unverified state.
 - Use semver-style ranges where possible, for example `>=1.30 <1.34`.
+- Prefer the broadest release line directly supported by the source, for example `1.12` when the
+  evidence applies to every `1.12.x` patch.
+- Keep exact patch versions for exact bundles, chart mappings, explicitly tested versions, and
+  patch-gated compatibility.
+- Use `sameVersion: true` with `ranges: []` only when the dependency must exactly match the requested
+  project version.
 - Use exact strings only when the dependency is not semver-like, for example a commit SHA or named
   runtime.
 - Include `confidence`, `notes`, `sources`, and `lastVerified` for every entry.
@@ -154,10 +161,17 @@ Research rules:
   platform-specific entry separately.
 
 Data rules:
-- Compatibility is implicit when an entry has supported ranges. Do not write status: compatible.
+- Compatibility is implicit when an entry has supported ranges or sameVersion: true. Do not write
+  status: compatible.
 - Use status: incompatible only when a primary source explicitly documents an incompatibility.
 - Use status: unknown only when the project intentionally documents an unknown or unverified state.
 - Use semver-style ranges where possible, for example ">=1.30 <1.34".
+- Prefer the broadest release line directly supported by the source, for example "1.12" when the
+  evidence applies to every 1.12.x patch.
+- Keep exact patch versions for exact bundles, chart mappings, explicitly tested versions, and
+  patch-gated compatibility.
+- Use sameVersion: true with ranges: [] only when the dependency must exactly match the requested
+  project version.
 - Use exact strings only when the dependency is not semver-like, for example a commit SHA or named
   runtime.
 - Include confidence, notes, sources, and lastVerified for every entry.

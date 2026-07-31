@@ -18,6 +18,15 @@ const dataset: CompatibilityDataset = {
               sources: [{ title: 'Fixture', url: 'https://example.com' }],
               lastVerified: '2026-07-08',
             },
+            peer: {
+              status: 'compatible',
+              ranges: [],
+              sameVersion: true,
+              confidence: 'high',
+              notes: ['Must match the project version exactly'],
+              sources: [{ title: 'Fixture', url: 'https://example.com/peer' }],
+              lastVerified: '2026-07-08',
+            },
             runtime: {
               status: 'incompatible',
               ranges: ['<21'],
@@ -89,6 +98,34 @@ describe('compatibility engine', () => {
       lastVerified: '2026-07-08',
       notes: ['Verified fixture'],
       sources: [{ title: 'Fixture', url: 'https://example.com' }],
+    });
+  });
+
+  it('matches dependencies that must equal the exact requested project version', () => {
+    expect(
+      checkCompatibility(dataset, {
+        project: 'sample',
+        version: '1.4.2',
+        dependency: 'peer',
+        dependencyVersion: '1.4.2',
+      }),
+    ).toMatchObject({
+      compatible: 'compatible',
+      matchedRange: null,
+      matchedConstraint: 'same-version',
+    });
+
+    expect(
+      checkCompatibility(dataset, {
+        project: 'sample',
+        version: '1.4.2',
+        dependency: 'peer',
+        dependencyVersion: '1.4.1',
+      }),
+    ).toMatchObject({
+      compatible: 'incompatible',
+      matchedRange: null,
+      matchedConstraint: null,
     });
   });
 

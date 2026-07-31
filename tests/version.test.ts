@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { compareVersions, normalizeVersion, versionSatisfiesRange } from '../src/lib/version';
+import {
+  compareVersions,
+  normalizeVersion,
+  versionsEqual,
+  versionSatisfiesRange,
+} from '../src/lib/version';
 
 describe('version utilities', () => {
   it('normalizes integer versions', () => {
@@ -13,6 +18,12 @@ describe('version utilities', () => {
   it('compares semver-compatible versions', () => {
     expect(compareVersions('17', '16')).toBeGreaterThan(0);
     expect(compareVersions('1.8.0', '1.8')).toBe(0);
+  });
+
+  it('compares exact versions across common version syntax', () => {
+    expect(versionsEqual('v9.4.4', '9.4.4')).toBe(true);
+    expect(versionsEqual('9.4.4+build.1', '9.4.4+build.2')).toBe(true);
+    expect(versionsEqual('9.4.4', '9.4.3')).toBe(false);
   });
 
   it('keeps hash-like versions as exact strings', () => {

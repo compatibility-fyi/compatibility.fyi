@@ -1,3 +1,5 @@
+import type { DependencyCompatibilityEntry } from '../types/compatibility';
+
 const dependencyWordLabels: Record<string, string> = {
   api: 'API',
   aurora: 'Aurora',
@@ -65,6 +67,18 @@ export function formatRange(range: string): string {
   }
 
   return range;
+}
+
+export function formatCompatibilityConstraints(entry: DependencyCompatibilityEntry): string[] {
+  if (entry.sameVersion) {
+    return ['Same exact version as project'];
+  }
+
+  return entry.ranges.map(formatRange);
+}
+
+export function countCompatibilityConstraints(entry: DependencyCompatibilityEntry): number {
+  return entry.ranges.length + (entry.sameVersion ? 1 : 0);
 }
 
 function formatLabelTitle(label: string): string {
