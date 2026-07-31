@@ -28,7 +28,7 @@ projects:
     website: https://cloudnative-pg.io/plugin-barman-cloud/
     description: Barman Cloud Plugin compatibility with CloudNativePG operator versions.
     versions:
-      '0.14.0':
+      '0.14':
         dependencies:
           cloudnativepg:
             ranges:
@@ -43,7 +43,7 @@ projects:
               - *barman_cloud_plugin_014_requirements_source
               - *barman_cloud_plugin_014_installation_source
             lastVerified: '2026-07-31'
-      '0.13.0':
+      '0.13':
         dependencies:
           cloudnativepg:
             ranges:
