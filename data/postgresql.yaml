@@ -9,14 +9,14 @@ x-postgis-support-source: &postgis_support_source
   accessedAt: '2026-07-09'
 
 x-pgvector-support-source: &pgvector_support_source
-  title: pgvector 0.8.5 Installation
-  url: https://github.com/pgvector/pgvector/blob/v0.8.5/README.md
-  accessedAt: '2026-07-09'
+  title: pgvector 0.8.6 Installation
+  url: https://github.com/pgvector/pgvector/blob/v0.8.6/README.md
+  accessedAt: '2026-07-31'
 
 x-timescaledb-support-source: &timescaledb_support_source
-  title: TimescaleDB 2.28.3 PostgreSQL Version Check
-  url: https://github.com/timescale/timescaledb/blob/2.28.3/CMakeLists.txt
-  accessedAt: '2026-07-18'
+  title: TimescaleDB 2.29.0 Release
+  url: https://github.com/timescale/timescaledb/releases/tag/2.29.0
+  accessedAt: '2026-07-31'
 
 x-pg-cron-support-source: &pg_cron_support_source
   title: pg_cron 1.6.7 Installation
@@ -47,24 +47,24 @@ projects:
             lastVerified: '2026-07-09'
           pgvector:
             ranges:
-              - '0.8.5'
+              - '0.8.6'
             relationship: extension
             confidence: high
             notes:
-              - pgvector 0.8.5 supports PostgreSQL 13 and newer and publishes PostgreSQL 18 container images.
+              - pgvector 0.8.6 supports PostgreSQL 13 and newer and publishes PostgreSQL 18 container images.
             sources:
               - *pgvector_support_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-07-31'
           timescaledb:
             ranges:
-              - '2.28.3'
+              - '2.29.0'
             relationship: extension
             confidence: high
             notes:
-              - TimescaleDB 2.28.3 explicitly permits builds against PostgreSQL 15 through 18.
+              - TimescaleDB 2.29.0 supports PostgreSQL 16, 17, and 18 and explicitly removes support for PostgreSQL 15.
             sources:
               - *timescaledb_support_source
-            lastVerified: '2026-07-18'
+            lastVerified: '2026-07-31'
           pg-cron:
             ranges:
               - '1.6.7'
@@ -90,24 +90,24 @@ projects:
             lastVerified: '2026-07-09'
           pgvector:
             ranges:
-              - '0.8.5'
+              - '0.8.6'
             relationship: extension
             confidence: high
             notes:
-              - pgvector 0.8.5 supports PostgreSQL 13 and newer and publishes PostgreSQL 17 container images.
+              - pgvector 0.8.6 supports PostgreSQL 13 and newer and publishes PostgreSQL 17 container images.
             sources:
               - *pgvector_support_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-07-31'
           timescaledb:
             ranges:
-              - '2.28.3'
+              - '2.29.0'
             relationship: extension
             confidence: high
             notes:
-              - TimescaleDB 2.28.3 explicitly permits builds against PostgreSQL 15 through 18.
+              - TimescaleDB 2.29.0 supports PostgreSQL 16, 17, and 18 and explicitly removes support for PostgreSQL 15.
             sources:
               - *timescaledb_support_source
-            lastVerified: '2026-07-18'
+            lastVerified: '2026-07-31'
           pg-cron:
             ranges:
               - '1.6.7'
@@ -133,24 +133,24 @@ projects:
             lastVerified: '2026-07-09'
           pgvector:
             ranges:
-              - '0.8.5'
+              - '0.8.6'
             relationship: extension
             confidence: high
             notes:
-              - pgvector 0.8.5 supports PostgreSQL 13 and newer and publishes PostgreSQL 16 container images.
+              - pgvector 0.8.6 supports PostgreSQL 13 and newer and publishes PostgreSQL 16 container images.
             sources:
               - *pgvector_support_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-07-31'
           timescaledb:
             ranges:
-              - '2.28.3'
+              - '2.29.0'
             relationship: extension
             confidence: high
             notes:
-              - TimescaleDB 2.28.3 explicitly permits builds against PostgreSQL 15 through 18.
+              - TimescaleDB 2.29.0 supports PostgreSQL 16, 17, and 18 and explicitly removes support for PostgreSQL 15.
             sources:
               - *timescaledb_support_source
-            lastVerified: '2026-07-18'
+            lastVerified: '2026-07-31'
           pg-cron:
             ranges:
               - '1.6.7'
