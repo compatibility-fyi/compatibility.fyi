@@ -1,3 +1,8 @@
+x-rancher-2150-source: &rancher_2150_source
+  title: Rancher 2.15.0 Release Notes
+  url: https://github.com/rancher/rancher/releases/tag/v2.15.0
+  accessedAt: '2026-07-31'
+
 x-rancher-2143-source: &rancher_2143_source
   title: Rancher Manager 2.14.3 Support Matrix
   url: https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/rancher-v2-14-3/
@@ -43,6 +48,39 @@ projects:
     website: https://www.rancher.com/products/rancher
     description: Rancher compatibility for downstream Kubernetes platforms, operating systems, architectures, integrations, and bundled applications.
     versions:
+      '2.15.0':
+        dependencies:
+          rke2:
+            ranges:
+              - '>=1.34 <1.37'
+            relationship: provisioned Kubernetes platform
+            confidence: high
+            notes:
+              - Rancher 2.15.0 release notes list RKE2 Kubernetes 1.34, 1.35, and 1.36 and identify 1.36 as the default version.
+            sources:
+              - *rancher_2150_source
+            lastVerified: '2026-07-31'
+          k3s:
+            ranges:
+              - '>=1.34 <1.37'
+            relationship: provisioned Kubernetes platform
+            confidence: high
+            notes:
+              - Rancher 2.15.0 release notes list K3s Kubernetes 1.34, 1.35, and 1.36 and identify 1.36 as the default version.
+            sources:
+              - *rancher_2150_source
+            lastVerified: '2026-07-31'
+          kubernetes:
+            ranges:
+              - '>=1.34 <1.37'
+            relationship: downstream cluster runtime
+            confidence: high
+            notes:
+              - Rancher 2.15 adds Kubernetes 1.36 support and removes Kubernetes 1.33 support, leaving supported minors 1.34 through 1.36.
+              - The full Rancher 2.15 SUSE support matrix is not yet published, so operating systems, architectures, cloud providers, and bundled applications are intentionally not modeled for this row.
+            sources:
+              - *rancher_2150_source
+            lastVerified: '2026-07-31'
       '2.14.3':
         dependencies:
           rke2: &rancher_2143_kubernetes_platform
