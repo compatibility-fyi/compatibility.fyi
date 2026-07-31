@@ -1,7 +1,7 @@
 x-kubevirt-release-notes-source: &kubevirt_release_notes_source
   title: KubeVirt Release Notes
   url: https://kubevirt.io/user-guide/release_notes/
-  accessedAt: '2026-07-09'
+  accessedAt: '2026-07-31'
 
 projects:
   kubevirt:
@@ -12,6 +12,18 @@ projects:
     website: https://kubevirt.io/
     description: Kubernetes virtualization add-on compatibility for Kubernetes runtime versions.
     versions:
+      '1.9':
+        dependencies:
+          kubernetes:
+            ranges:
+              - '>=1.34 <1.37'
+            relationship: runtime
+            confidence: high
+            notes:
+              - KubeVirt 1.9 is built for Kubernetes 1.36 and additionally supports the previous two Kubernetes minor versions.
+            sources:
+              - *kubevirt_release_notes_source
+            lastVerified: '2026-07-31'
       '1.8':
         dependencies:
           kubernetes:
