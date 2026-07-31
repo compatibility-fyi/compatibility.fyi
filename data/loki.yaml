@@ -23,6 +23,21 @@ x-loki-374-chart-1854-source: &loki_374_chart_1854_source
   url: https://github.com/grafana-community/helm-charts/blob/loki-18.5.4/charts/loki/Chart.yaml
   accessedAt: '2026-07-27'
 
+x-loki-374-chart-1860-source: &loki_374_chart_1860_source
+  title: Grafana Community Loki Helm 18.6.0 chart metadata
+  url: https://github.com/grafana-community/helm-charts/blob/loki-18.6.0/charts/loki/Chart.yaml
+  accessedAt: '2026-07-31'
+
+x-loki-374-chart-1870-source: &loki_374_chart_1870_source
+  title: Grafana Community Loki Helm 18.7.0 chart metadata
+  url: https://github.com/grafana-community/helm-charts/blob/loki-18.7.0/charts/loki/Chart.yaml
+  accessedAt: '2026-07-31'
+
+x-loki-374-chart-1871-source: &loki_374_chart_1871_source
+  title: Grafana Community Loki Helm 18.7.1 chart metadata
+  url: https://github.com/grafana-community/helm-charts/blob/loki-18.7.1/charts/loki/Chart.yaml
+  accessedAt: '2026-07-31'
+
 projects:
   loki:
     name: Loki
@@ -36,18 +51,24 @@ projects:
         dependencies:
           loki-helm:
             ranges:
+              - '18.7.1'
+              - '18.7.0'
+              - '18.6.0'
               - '18.5.4'
               - '18.5.3'
               - '18.5.2'
             relationship: deployment chart
             confidence: high
             notes:
-              - The official Grafana Community Loki Helm charts 18.5.2 through 18.5.4 declare Loki 3.7.4 as their appVersion.
+              - The official Grafana Community Loki Helm charts 18.5.2 through 18.7.1 declare Loki 3.7.4 as their appVersion.
             sources:
+              - *loki_374_chart_1871_source
+              - *loki_374_chart_1870_source
+              - *loki_374_chart_1860_source
               - *loki_374_chart_1852_source
               - *loki_374_chart_1853_source
               - *loki_374_chart_1854_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-07-31'
       '3.7.3':
         dependencies:
           loki-helm:
