@@ -3,15 +3,30 @@ x-rancher-2150-source: &rancher_2150_source
   url: https://github.com/rancher/rancher/releases/tag/v2.15.0
   accessedAt: '2026-07-31'
 
+x-rancher-2144-source: &rancher_2144_source
+  title: Rancher 2.14.4 Release Notes
+  url: https://documentation.suse.com/cloudnative/rancher-manager/v2.14/en/release-notes/v2.14.4.html
+  accessedAt: '2026-08-04'
+
 x-rancher-2143-source: &rancher_2143_source
   title: Rancher Manager 2.14.3 Support Matrix
   url: https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/rancher-v2-14-3/
   accessedAt: '2026-07-10'
 
+x-rancher-2138-source: &rancher_2138_source
+  title: Rancher 2.13.8 Release Notes
+  url: https://documentation.suse.com/cloudnative/rancher-manager/v2.13/en/release-notes/v2.13.8.html
+  accessedAt: '2026-08-04'
+
 x-rancher-2137-source: &rancher_2137_source
   title: Rancher Manager 2.13.7 Support Matrix
   url: https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/rancher-v2-13-7/
   accessedAt: '2026-07-10'
+
+x-rancher-21212-source: &rancher_21212_source
+  title: Rancher 2.12.12 Release Notes
+  url: https://documentation.suse.com/cloudnative/rancher-manager/v2.12/en/release-notes/v2.12.12.html
+  accessedAt: '2026-08-04'
 
 x-rancher-21211-source: &rancher_21211_source
   title: Rancher Manager 2.12.11 Support Matrix
@@ -81,6 +96,34 @@ projects:
             sources:
               - *rancher_2150_source
             lastVerified: '2026-07-31'
+      '2.14.4':
+        dependencies:
+          rke2:
+            ranges:
+              - '1.35.7'
+              - '1.34.10'
+              - '1.33.13'
+            relationship: provisioned Kubernetes platform
+            confidence: high
+            notes:
+              - Rancher 2.14.4 release notes list RKE2 Kubernetes 1.33.13, 1.34.10, and 1.35.7 and identify 1.35.7 as the default version.
+              - Other axes remain on the 2.14.3 row because the 2.14.4 support matrix has not yet been published.
+            sources:
+              - *rancher_2144_source
+            lastVerified: '2026-08-04'
+          k3s:
+            ranges:
+              - '1.35.7'
+              - '1.34.10'
+              - '1.33.13'
+            relationship: provisioned Kubernetes platform
+            confidence: high
+            notes:
+              - Rancher 2.14.4 release notes list K3s Kubernetes 1.33.13, 1.34.10, and 1.35.7 and identify 1.35.7 as the default version.
+              - Other axes remain on the 2.14.3 row because the 2.14.4 support matrix has not yet been published.
+            sources:
+              - *rancher_2144_source
+            lastVerified: '2026-08-04'
       '2.14.3':
         dependencies:
           rke2: &rancher_2143_kubernetes_platform
@@ -474,6 +517,34 @@ projects:
             sources:
               - *rancher_2143_source
             lastVerified: '2026-07-10'
+      '2.13.8':
+        dependencies:
+          rke2:
+            ranges:
+              - '1.34.10'
+              - '1.33.13'
+              - '1.32.13'
+            relationship: provisioned Kubernetes platform
+            confidence: high
+            notes:
+              - Rancher 2.13.8 release notes list RKE2 Kubernetes 1.32.13, 1.33.13, and 1.34.10 and identify 1.34.10 as the default version.
+              - Other axes remain on the 2.13.7 row because the 2.13.8 support matrix has not yet been published.
+            sources:
+              - *rancher_2138_source
+            lastVerified: '2026-08-04'
+          k3s:
+            ranges:
+              - '1.34.10'
+              - '1.33.13'
+              - '1.32.13'
+            relationship: provisioned Kubernetes platform
+            confidence: high
+            notes:
+              - Rancher 2.13.8 release notes list K3s Kubernetes 1.32.13, 1.33.13, and 1.34.10 and identify 1.34.10 as the default version.
+              - Other axes remain on the 2.13.7 row because the 2.13.8 support matrix has not yet been published.
+            sources:
+              - *rancher_2138_source
+            lastVerified: '2026-08-04'
       '2.13.7':
         dependencies:
           rke2: &rancher_2137_kubernetes_platform
@@ -867,6 +938,34 @@ projects:
             sources:
               - *rancher_2137_source
             lastVerified: '2026-07-10'
+      '2.12.12':
+        dependencies:
+          rke2:
+            ranges:
+              - '1.33.13'
+              - '1.32.13'
+              - '1.31.14'
+            relationship: provisioned Kubernetes platform
+            confidence: high
+            notes:
+              - Rancher 2.12.12 release notes list RKE2 Kubernetes 1.31.14, 1.32.13, and 1.33.13 and identify 1.33.13 as the default version.
+              - Other axes remain on the 2.12.11 row because the 2.12.12 support matrix has not yet been published.
+            sources:
+              - *rancher_21212_source
+            lastVerified: '2026-08-04'
+          k3s:
+            ranges:
+              - '1.33.13'
+              - '1.32.13'
+              - '1.31.14'
+            relationship: provisioned Kubernetes platform
+            confidence: high
+            notes:
+              - Rancher 2.12.12 release notes list K3s Kubernetes 1.31.14, 1.32.13, and 1.33.13 and identify 1.33.13 as the default version.
+              - Other axes remain on the 2.12.11 row because the 2.12.12 support matrix has not yet been published.
+            sources:
+              - *rancher_21212_source
+            lastVerified: '2026-08-04'
       '2.12.11':
         dependencies:
           rke2: &rancher_21211_kubernetes_platform
