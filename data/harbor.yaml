@@ -3,9 +3,19 @@ x-harbor-helm-matrix-source: &harbor_helm_matrix_source
   url: https://github.com/goharbor/harbor-helm
   accessedAt: '2026-07-08'
 
-x-harbor-215-chart-source: &harbor_215_chart_source
+x-harbor-2152-chart-source: &harbor_2152_chart_source
   title: Harbor Helm 1.19.2 chart metadata
   url: https://github.com/goharbor/harbor-helm/blob/v1.19.2/Chart.yaml
+  accessedAt: '2026-08-04'
+
+x-harbor-2151-chart-source: &harbor_2151_chart_source
+  title: Harbor Helm 1.19.1 chart metadata
+  url: https://github.com/goharbor/harbor-helm/blob/v1.19.1/Chart.yaml
+  accessedAt: '2026-08-04'
+
+x-harbor-2150-chart-source: &harbor_2150_chart_source
+  title: Harbor Helm 1.19.0 chart metadata
+  url: https://github.com/goharbor/harbor-helm/blob/v1.19.0/Chart.yaml
   accessedAt: '2026-08-04'
 
 projects:
@@ -28,7 +38,33 @@ projects:
               - Harbor Helm chart 1.19.2 declares Harbor 2.15.2 as its appVersion.
               - No Kubernetes compatibility is modeled for Harbor 2.15 because the official tested Kubernetes matrix still stops at Harbor 2.14.
             sources:
-              - *harbor_215_chart_source
+              - *harbor_2152_chart_source
+            lastVerified: '2026-08-04'
+      '2.15.1':
+        dependencies:
+          harbor-helm:
+            ranges:
+              - '1.19.1'
+            relationship: deployment chart
+            confidence: high
+            notes:
+              - Harbor Helm chart 1.19.1 declares Harbor 2.15.1 as its appVersion.
+              - No Kubernetes compatibility is modeled for Harbor 2.15 because the official tested Kubernetes matrix still stops at Harbor 2.14.
+            sources:
+              - *harbor_2151_chart_source
+            lastVerified: '2026-08-04'
+      '2.15.0':
+        dependencies:
+          harbor-helm:
+            ranges:
+              - '1.19.0'
+            relationship: deployment chart
+            confidence: high
+            notes:
+              - Harbor Helm chart 1.19.0 declares Harbor 2.15.0 as its appVersion.
+              - No Kubernetes compatibility is modeled for Harbor 2.15 because the official tested Kubernetes matrix still stops at Harbor 2.14.
+            sources:
+              - *harbor_2150_chart_source
             lastVerified: '2026-08-04'
       '2.14':
         dependencies:
