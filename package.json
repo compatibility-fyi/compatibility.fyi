@@ -50,10 +50,5 @@
     "vitest": "^4.1.10",
     "wrangler": "^4.116.0",
     "yaml": "^2.9.0"
-  },
-  "overrides": {
-    "miniflare": {
-      "undici": "^7.29.0"
-    }
   }
 }
