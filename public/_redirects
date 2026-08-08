@@ -1,0 +1,2 @@
+/projects/rancher-manager /projects/rancher/ 301
+/projects/rancher-manager/* /projects/rancher/:splat 301

@@ -38,6 +38,7 @@ describe('api', () => {
     expect(response.headers.get('Access-Control-Allow-Methods')).toContain('POST');
     expect(response.headers.get('Strict-Transport-Security')).toContain('max-age=31536000');
     expect(response.headers.get('X-Content-Type-Options')).toBe('nosniff');
+    expect(response.headers.get('X-Robots-Tag')).toBe('noindex');
   });
 
   it('lists every YAML-backed project', async () => {
@@ -49,6 +50,7 @@ describe('api', () => {
     expect(response.status).toBe(200);
     expect(response.headers.get('Cache-Control')).toBe('public, max-age=60');
     expect(response.headers.get('Content-Security-Policy')).toContain("default-src 'none'");
+    expect(response.headers.get('X-Robots-Tag')).toBe('noindex');
     expect(body.projects.map((project) => project.id)).toEqual(
       projectSummaries.map((project) => project.id),
     );
