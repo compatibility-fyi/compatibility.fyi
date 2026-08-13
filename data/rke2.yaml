@@ -1,17 +1,17 @@
 x-rke2-136-source: &rke2_136_source
   title: RKE2 1.36 Support Matrix
   url: https://www.suse.com/suse-rke2/support-matrix/all-supported-versions/rke2-v1-36/
-  accessedAt: '2026-07-10'
+  accessedAt: '2026-08-13'
 
 x-rke2-135-source: &rke2_135_source
   title: RKE2 1.35 Support Matrix
   url: https://www.suse.com/suse-rke2/support-matrix/all-supported-versions/rke2-v1-35/
-  accessedAt: '2026-07-10'
+  accessedAt: '2026-08-13'
 
 x-rke2-134-source: &rke2_134_source
   title: RKE2 1.34 Support Matrix
   url: https://www.suse.com/suse-rke2/support-matrix/all-supported-versions/rke2-v1-34/
-  accessedAt: '2026-07-10'
+  accessedAt: '2026-08-13'
 
 projects:
   rke2:
@@ -23,18 +23,18 @@ projects:
     website: https://docs.rke2.io/
     description: RKE2 compatibility for Kubernetes, operating systems, architectures, bundled components, network plugins, cloud integrations, and Windows workers.
     versions:
-      '1.36.2+rke2r1':
+      '1.36.3+rke2r1':
         dependencies:
           kubernetes:
             ranges:
-              - '1.36.2'
+              - '1.36.3'
             relationship: bundled Kubernetes version
             confidence: high
             notes:
-              - RKE2 1.36.2+rke2r1 packages Kubernetes 1.36.2.
+              - RKE2 1.36.3+rke2r1 packages Kubernetes 1.36.3.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           architecture:
             ranges:
               - x86_64
@@ -119,84 +119,84 @@ projects:
             lastVerified: '2026-07-10'
           etcd:
             ranges:
-              - '3.6.12-k3s1'
+              - '3.6.14-k3s1'
             relationship: bundled component
             confidence: high
             notes:
-              - RKE2 1.36.2+rke2r1 bundles etcd 3.6.12-k3s1.
+              - RKE2 1.36.3+rke2r1 bundles etcd 3.6.14-k3s1.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           containerd:
             ranges:
-              - '2.3.2-k3s2'
+              - '2.3.3-k3s1'
             relationship: bundled component
             confidence: high
             notes:
-              - RKE2 1.36.2+rke2r1 bundles containerd 2.3.2-k3s2.
+              - RKE2 1.36.3+rke2r1 bundles containerd 2.3.3-k3s1.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           runc:
             ranges:
-              - '1.4.2'
+              - '1.4.3'
             relationship: bundled component
             confidence: high
             notes:
-              - RKE2 1.36.2+rke2r1 bundles runc 1.4.2.
+              - RKE2 1.36.3+rke2r1 bundles runc 1.4.3.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           metrics-server:
             ranges:
-              - '0.8.1'
+              - '0.9.0'
             relationship: bundled component
             confidence: high
             notes:
-              - RKE2 1.36.2+rke2r1 bundles metrics-server 0.8.1.
+              - RKE2 1.36.3+rke2r1 bundles metrics-server 0.9.0.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           coredns:
             ranges:
-              - '1.14.3'
+              - '1.14.6'
             relationship: bundled component
             confidence: high
             notes:
-              - RKE2 1.36.2+rke2r1 bundles CoreDNS 1.14.3.
+              - RKE2 1.36.3+rke2r1 bundles CoreDNS 1.14.6.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           ingress-nginx:
             ranges:
-              - '1.15.1-prime2'
+              - '1.14.5-hardened2'
             relationship: bundled ingress controller
             confidence: high
             notes:
-              - RKE2 1.36.2+rke2r1 bundles Ingress-NGINX 1.15.1-prime2.
+              - RKE2 1.36.3+rke2r1 bundles Ingress-NGINX 1.14.5-hardened2.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           helm-controller:
             ranges:
-              - '0.17.1'
+              - '0.17.7'
             relationship: bundled component
             confidence: high
             notes:
-              - RKE2 1.36.2+rke2r1 bundles Helm Controller 0.17.1.
+              - RKE2 1.36.3+rke2r1 bundles Helm Controller 0.17.7.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           traefik:
             ranges:
-              - '3.7.4'
+              - '3.7.8'
             relationship: bundled component
             confidence: high
             notes:
-              - The RKE2 1.36 support matrix lists Traefik 3.7.4 in the certified component set.
+              - The RKE2 1.36 support matrix lists Traefik 3.7.8 in the certified component set.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           cni:
             ranges:
               - canal
@@ -213,64 +213,64 @@ projects:
             lastVerified: '2026-07-10'
           flannel:
             ranges:
-              - '0.28.5'
+              - '0.28.8'
             relationship: certified CNI component
             confidence: high
             notes:
-              - The support matrix certifies Flannel 0.28.5, including its use in Canal.
+              - The support matrix certifies Flannel 0.28.8, including its use in Canal.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           calico:
             ranges:
-              - '3.32.0'
+              - '3.32.1'
             relationship: certified CNI component
             confidence: high
             notes:
-              - The support matrix certifies Calico 3.32.0, including its use in Canal.
+              - The support matrix certifies Calico 3.32.1, including its use in Canal.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           cilium:
             ranges:
-              - '1.19.4'
+              - '1.19.6'
             relationship: certified CNI component
             confidence: high
             notes:
-              - The support matrix certifies Cilium 1.19.4.
+              - The support matrix certifies Cilium 1.19.6.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           multus:
             ranges:
-              - '4.2.4'
+              - '4.3.0'
             relationship: certified CNI component
             confidence: high
             notes:
-              - The support matrix certifies Multus 4.2.4.
+              - The support matrix certifies Multus 4.3.0.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           vsphere-cpi:
             ranges:
-              - '1.14.000'
+              - '1.15.300'
             relationship: supported out-of-tree cloud provider integration
             confidence: high
             notes:
-              - The support matrix lists vSphere CPI chart 1.14.000 and cautions against upgrading with in-tree cloud providers.
+              - The support matrix lists vSphere CPI chart 1.15.300 and cautions against upgrading with in-tree cloud providers.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           vsphere-csi:
             ranges:
-              - '3.7.0-rancher100'
+              - '3.7.2-rancher700'
             relationship: supported out-of-tree storage integration
             confidence: high
             notes:
-              - The support matrix lists vSphere CSI chart 3.7.0-rancher100.
+              - The support matrix lists vSphere CSI chart 3.7.2-rancher700.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           container-runtime:
             ranges:
               - nvidia-container-runtime
@@ -291,18 +291,18 @@ projects:
             sources:
               - *rke2_136_source
             lastVerified: '2026-07-10'
-      '1.35.6+rke2r1':
+      '1.35.7+rke2r1':
         dependencies:
           kubernetes:
             ranges:
-              - '1.35.6'
+              - '1.35.7'
             relationship: bundled Kubernetes version
             confidence: high
             notes:
-              - RKE2 1.35.6+rke2r1 packages Kubernetes 1.35.6.
+              - RKE2 1.35.7+rke2r1 packages Kubernetes 1.35.7.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           architecture:
             ranges:
               - x86_64
@@ -415,84 +415,84 @@ projects:
             lastVerified: '2026-07-10'
           etcd:
             ranges:
-              - '3.6.12-k3s1'
+              - '3.6.14-k3s1'
             relationship: bundled component
             confidence: high
             notes:
-              - RKE2 1.35.6+rke2r1 bundles etcd 3.6.12-k3s1.
+              - RKE2 1.35.7+rke2r1 bundles etcd 3.6.14-k3s1.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           containerd:
             ranges:
-              - '2.2.5-k3s2'
+              - '2.2.6-k3s1'
             relationship: bundled component
             confidence: high
             notes:
-              - RKE2 1.35.6+rke2r1 bundles containerd 2.2.5-k3s2.
+              - RKE2 1.35.7+rke2r1 bundles containerd 2.2.6-k3s1.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           runc:
             ranges:
-              - '1.4.2'
+              - '1.4.3'
             relationship: bundled component
             confidence: high
             notes:
-              - RKE2 1.35.6+rke2r1 bundles runc 1.4.2.
+              - RKE2 1.35.7+rke2r1 bundles runc 1.4.3.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           metrics-server:
             ranges:
-              - '0.8.1'
+              - '0.9.0'
             relationship: bundled component
             confidence: high
             notes:
-              - RKE2 1.35.6+rke2r1 bundles metrics-server 0.8.1.
+              - RKE2 1.35.7+rke2r1 bundles metrics-server 0.9.0.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           coredns:
             ranges:
-              - '1.14.3'
+              - '1.14.6'
             relationship: bundled component
             confidence: high
             notes:
-              - RKE2 1.35.6+rke2r1 bundles CoreDNS 1.14.3.
+              - RKE2 1.35.7+rke2r1 bundles CoreDNS 1.14.6.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           ingress-nginx:
             ranges:
               - '1.14.5-hardened2'
             relationship: bundled ingress controller
             confidence: high
             notes:
-              - RKE2 1.35.6+rke2r1 bundles Ingress-NGINX 1.14.5-hardened2.
+              - RKE2 1.35.7+rke2r1 bundles Ingress-NGINX 1.14.5-hardened2.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           helm-controller:
             ranges:
-              - '0.17.1'
+              - '0.17.7'
             relationship: bundled component
             confidence: high
             notes:
-              - RKE2 1.35.6+rke2r1 bundles Helm Controller 0.17.1.
+              - RKE2 1.35.7+rke2r1 bundles Helm Controller 0.17.7.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           traefik:
             ranges:
-              - '3.7.4'
+              - '3.7.8'
             relationship: bundled component
             confidence: high
             notes:
-              - The RKE2 1.35 support matrix lists Traefik 3.7.4 in the certified component set.
+              - The RKE2 1.35 support matrix lists Traefik 3.7.8 in the certified component set.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           cni:
             ranges:
               - canal
@@ -509,64 +509,64 @@ projects:
             lastVerified: '2026-07-10'
           flannel:
             ranges:
-              - '0.28.5'
+              - '0.28.8'
             relationship: certified CNI component
             confidence: high
             notes:
-              - The support matrix certifies Flannel 0.28.5, including its use in Canal.
+              - The support matrix certifies Flannel 0.28.8, including its use in Canal.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           calico:
             ranges:
-              - '3.32.0'
+              - '3.32.1'
             relationship: certified CNI component
             confidence: high
             notes:
-              - The support matrix certifies Calico 3.32.0, including its use in Canal.
+              - The support matrix certifies Calico 3.32.1, including its use in Canal.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           cilium:
             ranges:
-              - '1.19.4'
+              - '1.19.6'
             relationship: certified CNI component
             confidence: high
             notes:
-              - The support matrix certifies Cilium 1.19.4.
+              - The support matrix certifies Cilium 1.19.6.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           multus:
             ranges:
-              - '4.2.4'
+              - '4.3.0'
             relationship: certified CNI component
             confidence: high
             notes:
-              - The support matrix certifies Multus 4.2.4.
+              - The support matrix certifies Multus 4.3.0.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           vsphere-cpi:
             ranges:
-              - '1.13.000'
+              - '1.15.300'
             relationship: supported out-of-tree cloud provider integration
             confidence: high
             notes:
-              - The support matrix lists vSphere CPI chart 1.13.000 and cautions against upgrading with in-tree cloud providers.
+              - The support matrix lists vSphere CPI chart 1.15.300 and cautions against upgrading with in-tree cloud providers.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           vsphere-csi:
             ranges:
-              - '3.6.0-rancher100'
+              - '3.7.2-rancher700'
             relationship: supported out-of-tree storage integration
             confidence: high
             notes:
-              - The support matrix lists vSphere CSI chart 3.6.0-rancher100.
+              - The support matrix lists vSphere CSI chart 3.7.2-rancher700.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           container-runtime:
             ranges:
               - nvidia-container-runtime
@@ -588,18 +588,18 @@ projects:
             sources:
               - *rke2_135_source
             lastVerified: '2026-07-10'
-      '1.34.9+rke2r1':
+      '1.34.10+rke2r1':
         dependencies:
           kubernetes:
             ranges:
-              - '1.34.9'
+              - '1.34.10'
             relationship: bundled Kubernetes version
             confidence: high
             notes:
-              - RKE2 1.34.9+rke2r1 packages Kubernetes 1.34.9.
+              - RKE2 1.34.10+rke2r1 packages Kubernetes 1.34.10.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           architecture:
             ranges:
               - x86_64
@@ -713,84 +713,84 @@ projects:
             lastVerified: '2026-07-10'
           etcd:
             ranges:
-              - '3.6.12-k3s1'
+              - '3.6.14-k3s1'
             relationship: bundled component
             confidence: high
             notes:
-              - RKE2 1.34.9+rke2r1 bundles etcd 3.6.12-k3s1.
+              - RKE2 1.34.10+rke2r1 bundles etcd 3.6.14-k3s1.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           containerd:
             ranges:
-              - '2.2.5-k3s2'
+              - '2.2.6-k3s1'
             relationship: bundled component
             confidence: high
             notes:
-              - RKE2 1.34.9+rke2r1 bundles containerd 2.2.5-k3s2.
+              - RKE2 1.34.10+rke2r1 bundles containerd 2.2.6-k3s1.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           runc:
             ranges:
-              - '1.4.2'
+              - '1.4.3'
             relationship: bundled component
             confidence: high
             notes:
-              - RKE2 1.34.9+rke2r1 bundles runc 1.4.2.
+              - RKE2 1.34.10+rke2r1 bundles runc 1.4.3.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           metrics-server:
             ranges:
-              - '0.8.1'
+              - '0.9.0'
             relationship: bundled component
             confidence: high
             notes:
-              - RKE2 1.34.9+rke2r1 bundles metrics-server 0.8.1.
+              - RKE2 1.34.10+rke2r1 bundles metrics-server 0.9.0.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           coredns:
             ranges:
-              - '1.14.4'
+              - '1.14.6'
             relationship: bundled component
             confidence: high
             notes:
-              - RKE2 1.34.9+rke2r1 bundles CoreDNS 1.14.4.
+              - RKE2 1.34.10+rke2r1 bundles CoreDNS 1.14.6.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           ingress-nginx:
             ranges:
               - '1.14.5-hardened2'
             relationship: bundled ingress controller
             confidence: high
             notes:
-              - RKE2 1.34.9+rke2r1 bundles Ingress-NGINX 1.14.5-hardened2.
+              - RKE2 1.34.10+rke2r1 bundles Ingress-NGINX 1.14.5-hardened2.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           helm-controller:
             ranges:
-              - '0.17.1'
+              - '0.16.26'
             relationship: bundled component
             confidence: high
             notes:
-              - RKE2 1.34.9+rke2r1 bundles Helm Controller 0.17.1.
+              - RKE2 1.34.10+rke2r1 bundles Helm Controller 0.16.26.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           traefik:
             ranges:
-              - '3.7.4'
+              - '3.7.8'
             relationship: bundled component
             confidence: high
             notes:
-              - The RKE2 1.34 support matrix lists Traefik 3.7.4 in the certified component set.
+              - The RKE2 1.34 support matrix lists Traefik 3.7.8 in the certified component set.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           cni:
             ranges:
               - canal
@@ -807,64 +807,64 @@ projects:
             lastVerified: '2026-07-10'
           flannel:
             ranges:
-              - '0.28.5'
+              - '0.28.8'
             relationship: certified CNI component
             confidence: high
             notes:
-              - The support matrix certifies Flannel 0.28.5, including its use in Canal.
+              - The support matrix certifies Flannel 0.28.8, including its use in Canal.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           calico:
             ranges:
-              - '3.32.0'
+              - '3.32.1'
             relationship: certified CNI component
             confidence: high
             notes:
-              - The support matrix certifies Calico 3.32.0, including its use in Canal.
+              - The support matrix certifies Calico 3.32.1, including its use in Canal.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           cilium:
             ranges:
-              - '1.19.4'
+              - '1.19.6'
             relationship: certified CNI component
             confidence: high
             notes:
-              - The support matrix certifies Cilium 1.19.4.
+              - The support matrix certifies Cilium 1.19.6.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           multus:
             ranges:
-              - '4.2.4'
+              - '4.3.0'
             relationship: certified CNI component
             confidence: high
             notes:
-              - The support matrix certifies Multus 4.2.4.
+              - The support matrix certifies Multus 4.3.0.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           vsphere-cpi:
             ranges:
-              - '1.12.100'
+              - '1.15.300'
             relationship: supported out-of-tree cloud provider integration
             confidence: high
             notes:
-              - The support matrix lists vSphere CPI chart 1.12.100 and cautions against upgrading with in-tree cloud providers.
+              - The support matrix lists vSphere CPI chart 1.15.300 and cautions against upgrading with in-tree cloud providers.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           vsphere-csi:
             ranges:
-              - '3.5.0-rancher200'
+              - '3.7.2-rancher700'
             relationship: supported out-of-tree storage integration
             confidence: high
             notes:
-              - The support matrix lists vSphere CSI chart 3.5.0-rancher200.
+              - The support matrix lists vSphere CSI chart 3.7.2-rancher700.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-13'
           container-runtime:
             ranges:
               - nvidia-container-runtime
