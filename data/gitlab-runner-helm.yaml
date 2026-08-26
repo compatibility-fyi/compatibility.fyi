@@ -1,7 +1,7 @@
 x-gitlab-runner-helm-index-source: &gitlab_runner_helm_index_source
   title: GitLab Helm chart repository index
   url: https://charts.gitlab.io/index.yaml
-  accessedAt: '2026-07-31'
+  accessedAt: '2026-08-25'
 
 x-gitlab-runner-compatibility-source: &gitlab_runner_compatibility_source
   title: GitLab Runner version compatibility
@@ -24,7 +24,22 @@ projects:
     website: https://docs.gitlab.com/runner/install/kubernetes/
     description: GitLab Runner Helm chart compatibility with GitLab Helm chart versions.
     versions:
-      '0.91.0':
+      '0.92.1':
+        dependencies:
+          gitlab-helm:
+            ranges:
+              - '>=10.3.0 <10.4.0'
+            relationship: coordinator chart
+            confidence: high
+            notes:
+              - GitLab Runner chart 0.92.1 maps to GitLab Runner 19.3.1, while GitLab chart 10.3.x maps to GitLab 19.3.x.
+              - GitLab recommends keeping GitLab Runner major.minor synchronized with the GitLab major.minor version.
+            sources:
+              - *gitlab_runner_helm_index_source
+              - *gitlab_runner_compatibility_source
+              - *gitlab_helm_version_mapping_source
+            lastVerified: '2026-08-25'
+      '0.91.3':
         dependencies:
           gitlab-helm:
             ranges:
@@ -32,13 +47,13 @@ projects:
             relationship: coordinator chart
             confidence: high
             notes:
-              - GitLab Runner chart 0.91.0 maps to GitLab Runner 19.2.0, while GitLab chart 10.2.x maps to GitLab 19.2.x.
+              - GitLab Runner chart 0.91.3 maps to GitLab Runner 19.2.3, while GitLab chart 10.2.x maps to GitLab 19.2.x.
               - GitLab recommends keeping GitLab Runner major.minor synchronized with the GitLab major.minor version.
             sources:
               - *gitlab_runner_helm_index_source
               - *gitlab_runner_compatibility_source
               - *gitlab_helm_version_mapping_source
-            lastVerified: '2026-07-22'
+            lastVerified: '2026-08-25'
       '0.90.2':
         dependencies:
           gitlab-helm:
