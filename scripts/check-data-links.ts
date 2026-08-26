@@ -172,15 +172,20 @@ export async function checkLink(
       const response = await fetchLink(url, fetchImpl, timeoutMs, options);
       const result = classifyResponse(url, response.status, references);
 
-      if (
-        result.status !== 'fail' ||
-        !isRetryableStatus(response.status) ||
-        attempt === maxAttempts
-      ) {
+      if (result.status !== 'fail' || !isRetryableStatus(response.status)) {
         if (attempt > 1) {
           result.message += ` after ${attempt} attempts`;
         }
         return result;
+      }
+
+      if (attempt === maxAttempts) {
+        return {
+          url,
+          status: 'warn',
+          message: `HTTP ${response.status} after ${attempt} attempts; temporary server failure was not treated as broken`,
+          references,
+        };
       }
 
       lastError = new Error(`HTTP ${response.status}`);
@@ -240,8 +245,14 @@ async function fetchWithTimeout(
   const resolveHostname = options.resolveHostname ?? resolvePublicHostname;
   const maxRedirects = options.maxRedirects ?? defaults.maxRedirects;
   let currentUrl = new URL(url);
+  const visitedUrls = new Set<string>();
 
   for (let redirectCount = 0; redirectCount <= maxRedirects; redirectCount += 1) {
+    if (visitedUrls.has(currentUrl.href)) {
+      throw new UnsafeLinkError(`Redirect loop detected at ${currentUrl.href}`);
+    }
+    visitedUrls.add(currentUrl.href);
+
     await assertSafeLinkTarget(currentUrl, resolveHostname);
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), timeoutMs);

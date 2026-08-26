@@ -1,7 +1,7 @@
 x-grafana-13-install-source: &grafana_13_install_source
-  title: Grafana 13.0 Install Grafana - Supported databases
-  url: https://archive.grafana.com/docs/grafana/v13.0/setup-grafana/installation/
-  accessedAt: '2026-07-08'
+  title: Grafana 13.0 installation requirements
+  url: https://github.com/grafana/grafana/blob/v13.0.0/docs/sources/setup-grafana/installation/_index.md
+  accessedAt: '2026-08-25'
 
 x-grafana-12-install-source: &grafana_12_install_source
   title: Grafana 12.0 Install Grafana - Supported databases

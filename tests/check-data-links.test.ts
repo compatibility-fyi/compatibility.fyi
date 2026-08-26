@@ -56,6 +56,35 @@ describe('data link checker', () => {
     expect(fetchImpl).toHaveBeenCalledOnce();
   });
 
+  it('warns after repeated temporary server failures', async () => {
+    const fetchImpl = vi.fn<Fetch>().mockResolvedValue(new Response(null, { status: 502 }));
+
+    await expect(
+      checkLink('https://example.com', references, fetchImpl, options),
+    ).resolves.toMatchObject({
+      status: 'warn',
+      message: 'HTTP 502 after 3 attempts; temporary server failure was not treated as broken',
+    });
+    expect(fetchImpl).toHaveBeenCalledTimes(6);
+  });
+
+  it('fails immediately when redirects form a loop', async () => {
+    const fetchImpl = vi.fn<Fetch>((input) => {
+      const url = new URL(input.toString());
+      const location =
+        url.hostname === 'example.com' ? 'https://docs.example.com/' : 'https://example.com/';
+      return Promise.resolve(new Response(null, { status: 301, headers: { Location: location } }));
+    });
+
+    await expect(
+      checkLink('https://example.com/', references, fetchImpl, options),
+    ).resolves.toMatchObject({
+      status: 'fail',
+      message: 'Redirect loop detected at https://example.com/',
+    });
+    expect(fetchImpl).toHaveBeenCalledTimes(2);
+  });
+
   it('rejects literal and resolved private addresses without fetching them', async () => {
     const fetchImpl = vi.fn<Fetch>();
 
