@@ -1,7 +1,12 @@
 x-gitlab-runner-version-source: &gitlab_runner_version_source
   title: GitLab Runner - GitLab Runner versions
   url: https://docs.gitlab.com/runner/
-  accessedAt: '2026-07-18'
+  accessedAt: '2026-08-25'
+
+x-gitlab-19-3-release-source: &gitlab_19_3_release_source
+  title: GitLab 19.3 release notes - GitLab Runner 19.3
+  url: https://docs.gitlab.com/releases/19/gitlab-19-3-released/
+  accessedAt: '2026-08-25'
 
 x-gitlab-19-2-release-source: &gitlab_19_2_release_source
   title: GitLab 19.2 release notes - GitLab Runner 19.2
@@ -33,6 +38,21 @@ projects:
     website: https://docs.gitlab.com/runner/
     description: GitLab Runner compatibility with GitLab coordinator versions.
     versions:
+      '19.3':
+        dependencies:
+          gitlab:
+            ranges:
+              - '>=19.3 <19.4'
+            relationship: coordinator
+            confidence: high
+            notes:
+              - GitLab recommends keeping GitLab Runner major.minor in sync with the GitLab major.minor version.
+              - Older or newer runners may still work, but features may be unavailable or not work properly when versions differ.
+              - GitLab 19.3 release notes include GitLab Runner 19.3.
+            sources:
+              - *gitlab_runner_version_source
+              - *gitlab_19_3_release_source
+            lastVerified: '2026-08-25'
       '19.2':
         dependencies:
           gitlab:
