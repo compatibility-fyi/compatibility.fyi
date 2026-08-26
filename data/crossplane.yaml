@@ -1,7 +1,27 @@
+x-crossplane-v24-install-source: &crossplane_v24_install_source
+  title: Crossplane v2.4 Install Crossplane
+  url: https://docs.crossplane.io/v2.4/get-started/install/
+  accessedAt: '2026-08-25'
+
+x-crossplane-v24-upgrade-source: &crossplane_v24_upgrade_source
+  title: Crossplane v2.4 Upgrade Crossplane
+  url: https://docs.crossplane.io/v2.4/guides/upgrade-crossplane/
+  accessedAt: '2026-08-25'
+
 x-crossplane-v23-install-source: &crossplane_v23_install_source
   title: Crossplane v2.3 Install Crossplane
-  url: https://docs.crossplane.io/latest/get-started/install/
-  accessedAt: '2026-07-08'
+  url: https://docs.crossplane.io/v2.3/get-started/install/
+  accessedAt: '2026-08-25'
+
+x-crossplane-v23-upgrade-source: &crossplane_v23_upgrade_source
+  title: Crossplane v2.3 Upgrade Crossplane
+  url: https://docs.crossplane.io/v2.3/guides/upgrade-crossplane/
+  accessedAt: '2026-08-25'
+
+x-crossplane-v20-install-source: &crossplane_v20_install_source
+  title: Crossplane v2.0 Install Crossplane
+  url: https://docs.crossplane.io/v2.0/get-started/install/
+  accessedAt: '2026-08-25'
 
 x-crossplane-v120-install-source: &crossplane_v120_install_source
   title: Crossplane v1.20 Install Crossplane
@@ -11,7 +31,7 @@ x-crossplane-v120-install-source: &crossplane_v120_install_source
 x-crossplane-v2-upgrade-source: &crossplane_v2_upgrade_source
   title: Upgrade to Crossplane v2
   url: https://docs.crossplane.io/latest/guides/upgrade-to-crossplane-v2/
-  accessedAt: '2026-07-08'
+  accessedAt: '2026-08-25'
 
 projects:
   crossplane:
@@ -23,6 +43,29 @@ projects:
     website: https://www.crossplane.io/
     description: Crossplane installation and v2 upgrade compatibility requirements.
     versions:
+      '2.4':
+        dependencies:
+          helm:
+            ranges:
+              - '>=3.2.0'
+            relationship: installer
+            confidence: high
+            notes:
+              - Crossplane v2.4 installation prerequisites require Helm 3.2.0 or later.
+              - The same page requires an actively supported Kubernetes version, but that moving target is intentionally not encoded as a static range.
+            sources:
+              - *crossplane_v24_install_source
+            lastVerified: '2026-08-25'
+          crossplane-upgrade-source:
+            ranges:
+              - '2.3'
+            relationship: upgrade source
+            confidence: high
+            notes:
+              - Crossplane v2.4 upgrade documentation requires upgrading one minor release at a time, making Crossplane 2.3 the direct upgrade source for 2.4.
+            sources:
+              - *crossplane_v24_upgrade_source
+            lastVerified: '2026-08-25'
       '2.3':
         dependencies:
           helm:
@@ -35,17 +78,17 @@ projects:
               - The same page requires an actively supported Kubernetes version, but that moving target is intentionally not encoded as a static range.
             sources:
               - *crossplane_v23_install_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-08-25'
           crossplane-upgrade-source:
             ranges:
-              - '1.20'
+              - '2.2'
             relationship: upgrade source
             confidence: high
             notes:
-              - Crossplane v2 upgrade documentation says to upgrade to Crossplane v2 only from Crossplane 1.20.
+              - Crossplane v2.3 upgrade documentation requires upgrading one minor release at a time, making Crossplane 2.2 the direct upgrade source for 2.3.
             sources:
-              - *crossplane_v2_upgrade_source
-            lastVerified: '2026-07-08'
+              - *crossplane_v23_upgrade_source
+            lastVerified: '2026-08-25'
       '2.0':
         dependencies:
           helm:
@@ -57,8 +100,8 @@ projects:
               - Crossplane v2 installation prerequisites require Helm 3.2.0 or later.
               - The v2 install page requires an actively supported Kubernetes version, but that moving target is intentionally not encoded as a static range.
             sources:
-              - *crossplane_v23_install_source
-            lastVerified: '2026-07-08'
+              - *crossplane_v20_install_source
+            lastVerified: '2026-08-25'
           crossplane-upgrade-source:
             ranges:
               - '1.20'
@@ -68,7 +111,7 @@ projects:
               - Crossplane v2 upgrade documentation says to upgrade to Crossplane v2 only from Crossplane 1.20.
             sources:
               - *crossplane_v2_upgrade_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-08-25'
       '1.20':
         dependencies:
           helm:
