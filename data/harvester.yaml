@@ -1,7 +1,7 @@
 x-harvester-18-source: &harvester_18_source
   title: Harvester 1.8 Support Matrix
   url: https://www.suse.com/suse-harvester/support-matrix/all-supported-versions/harvester-v1-8-x/
-  accessedAt: '2026-07-10'
+  accessedAt: '2026-08-25'
 
 x-harvester-17-source: &harvester_17_source
   title: Harvester 1.7 Support Matrix
@@ -115,34 +115,36 @@ projects:
             ranges:
               - '1.8.0'
               - '1.8.1'
+              - '1.8.2'
             relationship: Rancher UI integration
             confidence: high
             notes:
-              - The support matrix lists Harvester UI Extension 1.8.0 and 1.8.1 for Rancher 2.14.0 and later.
+              - The support matrix lists Harvester UI Extension 1.8.0 through 1.8.2 for Rancher 2.14.0 and later.
             sources:
               - *harvester_18_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-25'
           ui-plugin-catalog:
             ranges:
               - '4.23.0'
               - '4.30.0'
+              - '4.34.0'
             relationship: Harvester UI extension asset image
             confidence: high
             notes:
-              - UI extension 1.8.0 uses ui-plugin-catalog 4.23.0 and extension 1.8.1 uses 4.30.0.
+              - UI extension 1.8.0 uses ui-plugin-catalog 4.23.0, extension 1.8.1 uses 4.30.0, and extension 1.8.2 uses 4.34.0.
             sources:
               - *harvester_18_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-25'
           terraform-provider-harvester:
             ranges:
               - '>=1.8 <1.9'
             relationship: infrastructure provider
             confidence: high
             notes:
-              - The support matrix maps Harvester 1.8.0 and 1.8.1 to matching Terraform provider versions.
+              - The support matrix maps Harvester 1.8.0 through 1.8.2 to matching Terraform provider versions.
             sources:
               - *harvester_18_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-08-25'
           harvester-upgrade-source:
             ranges:
               - '1.7'
