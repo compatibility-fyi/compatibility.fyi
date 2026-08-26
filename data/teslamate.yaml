@@ -1,3 +1,18 @@
+x-teslamate-420-requirements-source: &teslamate_420_requirements_source
+  title: TeslaMate 4.2.0 development and distribution requirements
+  url: https://github.com/teslamate-org/teslamate/blob/v4.2.0/website/docs/development.mdx
+  accessedAt: '2026-08-25'
+
+x-teslamate-410-requirements-source: &teslamate_410_requirements_source
+  title: TeslaMate 4.1.0 development and distribution requirements
+  url: https://github.com/teslamate-org/teslamate/blob/v4.1.0/website/docs/development.mdx
+  accessedAt: '2026-08-25'
+
+x-teslamate-411-requirements-source: &teslamate_411_requirements_source
+  title: TeslaMate 4.1.1 development and distribution requirements
+  url: https://github.com/teslamate-org/teslamate/blob/v4.1.1/website/docs/development.mdx
+  accessedAt: '2026-08-25'
+
 x-teslamate-400-requirements-source: &teslamate_400_requirements_source
   title: TeslaMate 4.0.0 development and distribution requirements
   url: https://github.com/teslamate-org/teslamate/blob/v4.0.0/website/docs/development.mdx
@@ -18,6 +33,33 @@ projects:
     website: https://docs.teslamate.org/
     description: TeslaMate compatibility with external PostgreSQL database versions.
     versions:
+      '4.2':
+        dependencies:
+          postgresql:
+            ranges:
+              - '>=18.0.0'
+            relationship: database
+            confidence: high
+            notes:
+              - TeslaMate 4.2.0 documentation lists PostgreSQL 18.0 or newer as an official requirement matching its distributed images.
+              - Upstream states that TeslaMate generally aims to support the latest three PostgreSQL major releases.
+            sources:
+              - *teslamate_420_requirements_source
+            lastVerified: '2026-08-25'
+      '4.1':
+        dependencies:
+          postgresql:
+            ranges:
+              - '>=18.0.0'
+            relationship: database
+            confidence: high
+            notes:
+              - TeslaMate 4.1.0 and 4.1.1 documentation list PostgreSQL 18.0 or newer as an official requirement matching their distributed images.
+              - Upstream states that TeslaMate generally aims to support the latest three PostgreSQL major releases.
+            sources:
+              - *teslamate_410_requirements_source
+              - *teslamate_411_requirements_source
+            lastVerified: '2026-08-25'
       '4.0':
         dependencies:
           postgresql:
