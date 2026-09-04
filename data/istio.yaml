@@ -1,7 +1,7 @@
 x-istio-supported-releases-source: &istio_supported_releases_source
   title: Istio Supported Releases
   url: https://istio.io/latest/docs/releases/supported-releases/
-  accessedAt: '2026-07-08'
+  accessedAt: '2026-09-04'
 
 projects:
   istio:
@@ -13,6 +13,18 @@ projects:
     website: https://istio.io/
     description: Service mesh compatibility for Kubernetes runtime versions.
     versions:
+      '1.31':
+        dependencies:
+          kubernetes:
+            ranges:
+              - '>=1.32 <1.37'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Istio supported releases list 1.31 with Kubernetes 1.32, 1.33, 1.34, 1.35, and 1.36.
+            sources:
+              - *istio_supported_releases_source
+            lastVerified: '2026-09-04'
       '1.30':
         dependencies:
           kubernetes:
