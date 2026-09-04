@@ -1,3 +1,23 @@
+x-mysql-shell-267-source: &mysql_shell_267_source
+  title: MySQL Shell 26.7 Compatibility
+  url: https://dev.mysql.com/doc/mysql-shell/26.7/en/
+  accessedAt: '2026-09-04'
+
+x-mysql-router-267-source: &mysql_router_267_source
+  title: MySQL Router 26.7 Compatibility
+  url: https://dev.mysql.com/doc/mysql-router/26.7/en/mysql-router-general.html
+  accessedAt: '2026-09-04'
+
+x-mysql-connector-j-267-source: &mysql_connector_j_267_source
+  title: MySQL Connector/J 26.7 Compatibility
+  url: https://dev.mysql.com/doc/connector-j/en/connector-j-versions.html
+  accessedAt: '2026-09-04'
+
+x-mysql-connector-python-267-source: &mysql_connector_python_267_source
+  title: MySQL Connector/Python 26.7.0 Release Notes
+  url: https://dev.mysql.com/doc/relnotes/connector-python/en/news-26-7-0.html
+  accessedAt: '2026-09-04'
+
 x-mysql-shell-source: &mysql_shell_source
   title: MySQL Shell 9.7 Compatibility
   url: https://dev.mysql.com/doc/mysql-shell/9.7/en/
@@ -10,13 +30,13 @@ x-mysql-router-source: &mysql_router_source
 
 x-mysql-connector-j-source: &mysql_connector_j_source
   title: MySQL Connector/J 9.7 Compatibility
-  url: https://dev.mysql.com/doc/connector-j/en/connector-j-versions.html
-  accessedAt: '2026-07-31'
+  url: https://dev.mysql.com/doc/relnotes/connector-j/en/news-9-7-0.html
+  accessedAt: '2026-09-04'
 
 x-mysql-connector-python-source: &mysql_connector_python_source
   title: MySQL Connector/Python Version Reference
   url: https://dev.mysql.com/doc/connector-python/en/connector-python-versions.html
-  accessedAt: '2026-07-31'
+  accessedAt: '2026-09-04'
 
 projects:
   mysql:
@@ -27,102 +47,172 @@ projects:
     website: https://www.mysql.com/
     description: MySQL Server compatibility with official administration, routing, and client tools.
     versions:
+      '26.7':
+        dependencies:
+          mysql-shell:
+            ranges:
+              - '26.7'
+            relationship: administration client
+            confidence: high
+            notes:
+              - MySQL Shell 26.7 is recommended for any generally available MySQL Server version 8.0 or newer.
+            sources:
+              - *mysql_shell_267_source
+            lastVerified: '2026-09-04'
+          mysql-router:
+            ranges:
+              - '26.7'
+            relationship: routing proxy
+            confidence: high
+            notes:
+              - MySQL Router 26.7 officially supports active MySQL Server versions 8.4, 9.7, and 26.7; Router 9.7 cannot be used with Server 26.7.
+            sources:
+              - *mysql_router_267_source
+            lastVerified: '2026-09-04'
+          mysql-connector-j:
+            ranges:
+              - '26.7'
+            relationship: Java client driver
+            confidence: high
+            notes:
+              - MySQL Connector/J 26.7 supports MySQL Server 8.4 and newer and requires JRE 8 or newer.
+            sources:
+              - *mysql_connector_j_267_source
+            lastVerified: '2026-09-04'
+          mysql-connector-python:
+            ranges:
+              - '26.7'
+            relationship: Python client driver
+            confidence: high
+            notes:
+              - MySQL Connector/Python 26.7 retains support for MySQL Server 8.0 and newer; its release aligns the version with Server 26.7 without functional changes.
+            sources:
+              - *mysql_connector_python_267_source
+              - *mysql_connector_python_source
+            lastVerified: '2026-09-04'
       '9.7':
         dependencies:
           mysql-shell:
             ranges:
+              - '26.7'
               - '9.7'
             relationship: administration client
             confidence: high
             notes:
               - MySQL Shell 9.7 is recommended for any generally available MySQL Server version 8.0 or newer.
+              - MySQL Shell 26.7 is recommended for any generally available MySQL Server version 8.0 or newer.
             sources:
+              - *mysql_shell_267_source
               - *mysql_shell_source
-            lastVerified: '2026-07-31'
+            lastVerified: '2026-09-04'
           mysql-router:
             ranges:
+              - '26.7'
               - '9.7'
             relationship: routing proxy
             confidence: high
             notes:
               - MySQL Router 9.7 officially supports active MySQL Server versions 8.0, 8.4, and 9.7.
+              - MySQL Router 26.7 officially supports active MySQL Server versions 8.4, 9.7, and 26.7; Router 9.7 cannot be used with Server 26.7.
             sources:
+              - *mysql_router_267_source
               - *mysql_router_source
-            lastVerified: '2026-07-31'
+            lastVerified: '2026-09-04'
           mysql-connector-j:
             ranges:
+              - '26.7'
               - '9.7'
             relationship: Java client driver
             confidence: high
             notes:
-              - MySQL Connector/J 9.7 supports MySQL Server 8.0 and newer and requires JRE 8 or newer.
+              - MySQL Connector/J 9.7 supports MySQL Server 8.0 and newer and implements JDBC 4.2.
+              - MySQL Connector/J 26.7 supports MySQL Server 8.4 and newer and requires JRE 8 or newer.
             sources:
+              - *mysql_connector_j_267_source
               - *mysql_connector_j_source
-            lastVerified: '2026-07-31'
+            lastVerified: '2026-09-04'
           mysql-connector-python:
             ranges:
+              - '26.7'
               - '9.7'
             relationship: Python client driver
             confidence: high
             notes:
               - MySQL Connector/Python 9.7 supports MySQL Server 8.0 and newer.
+              - MySQL Connector/Python 26.7 retains support for MySQL Server 8.0 and newer; its release aligns the version with Server 26.7 without functional changes.
             sources:
+              - *mysql_connector_python_267_source
               - *mysql_connector_python_source
-            lastVerified: '2026-07-31'
+            lastVerified: '2026-09-04'
       '8.4':
         dependencies:
           mysql-shell:
             ranges:
+              - '26.7'
               - '9.7'
             relationship: administration client
             confidence: high
             notes:
               - MySQL Shell 9.7 is recommended for any generally available MySQL Server version 8.0 or newer.
+              - MySQL Shell 26.7 is recommended for any generally available MySQL Server version 8.0 or newer.
             sources:
+              - *mysql_shell_267_source
               - *mysql_shell_source
-            lastVerified: '2026-07-31'
+            lastVerified: '2026-09-04'
           mysql-router:
             ranges:
+              - '26.7'
               - '9.7'
             relationship: routing proxy
             confidence: high
             notes:
               - MySQL Router 9.7 officially supports active MySQL Server versions 8.0, 8.4, and 9.7.
+              - MySQL Router 26.7 officially supports active MySQL Server versions 8.4, 9.7, and 26.7; Router 9.7 cannot be used with Server 26.7.
             sources:
+              - *mysql_router_267_source
               - *mysql_router_source
-            lastVerified: '2026-07-31'
+            lastVerified: '2026-09-04'
           mysql-connector-j:
             ranges:
+              - '26.7'
               - '9.7'
             relationship: Java client driver
             confidence: high
             notes:
-              - MySQL Connector/J 9.7 supports MySQL Server 8.0 and newer and requires JRE 8 or newer.
+              - MySQL Connector/J 9.7 supports MySQL Server 8.0 and newer and implements JDBC 4.2.
+              - MySQL Connector/J 26.7 supports MySQL Server 8.4 and newer and requires JRE 8 or newer.
             sources:
+              - *mysql_connector_j_267_source
               - *mysql_connector_j_source
-            lastVerified: '2026-07-31'
+            lastVerified: '2026-09-04'
           mysql-connector-python:
             ranges:
+              - '26.7'
               - '9.7'
             relationship: Python client driver
             confidence: high
             notes:
               - MySQL Connector/Python 9.7 supports MySQL Server 8.0 and newer.
+              - MySQL Connector/Python 26.7 retains support for MySQL Server 8.0 and newer; its release aligns the version with Server 26.7 without functional changes.
             sources:
+              - *mysql_connector_python_267_source
               - *mysql_connector_python_source
-            lastVerified: '2026-07-31'
+            lastVerified: '2026-09-04'
       '8.0':
         dependencies:
           mysql-shell:
             ranges:
+              - '26.7'
               - '9.7'
             relationship: administration client
             confidence: high
             notes:
               - MySQL Shell 9.7 is recommended for any generally available MySQL Server version 8.0 or newer.
+              - MySQL Shell 26.7 is recommended for any generally available MySQL Server version 8.0 or newer.
             sources:
+              - *mysql_shell_267_source
               - *mysql_shell_source
-            lastVerified: '2026-07-31'
+            lastVerified: '2026-09-04'
           mysql-router:
             ranges:
               - '9.7'
@@ -139,17 +229,20 @@ projects:
             relationship: Java client driver
             confidence: high
             notes:
-              - MySQL Connector/J 9.7 supports MySQL Server 8.0 and newer and requires JRE 8 or newer.
+              - MySQL Connector/J 9.7 supports MySQL Server 8.0 and newer and implements JDBC 4.2.
             sources:
               - *mysql_connector_j_source
-            lastVerified: '2026-07-31'
+            lastVerified: '2026-09-04'
           mysql-connector-python:
             ranges:
+              - '26.7'
               - '9.7'
             relationship: Python client driver
             confidence: high
             notes:
               - MySQL Connector/Python 9.7 supports MySQL Server 8.0 and newer.
+              - MySQL Connector/Python 26.7 retains support for MySQL Server 8.0 and newer; its release aligns the version with Server 26.7 without functional changes.
             sources:
+              - *mysql_connector_python_267_source
               - *mysql_connector_python_source
-            lastVerified: '2026-07-31'
+            lastVerified: '2026-09-04'
