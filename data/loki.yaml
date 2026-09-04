@@ -1,3 +1,28 @@
+x-loki-377-chart-18120-source: &loki_377_chart_18120_source
+  title: Grafana Community Loki Helm 18.12.0 chart metadata
+  url: https://github.com/grafana-community/helm-charts/blob/loki-18.12.0/charts/loki/Chart.yaml
+  accessedAt: '2026-09-04'
+
+x-loki-377-chart-18117-source: &loki_377_chart_18117_source
+  title: Grafana Community Loki Helm 18.11.7 chart metadata
+  url: https://github.com/grafana-community/helm-charts/blob/loki-18.11.7/charts/loki/Chart.yaml
+  accessedAt: '2026-09-04'
+
+x-loki-377-chart-18116-source: &loki_377_chart_18116_source
+  title: Grafana Community Loki Helm 18.11.6 chart metadata
+  url: https://github.com/grafana-community/helm-charts/blob/loki-18.11.6/charts/loki/Chart.yaml
+  accessedAt: '2026-09-04'
+
+x-loki-377-chart-18115-source: &loki_377_chart_18115_source
+  title: Grafana Community Loki Helm 18.11.5 chart metadata
+  url: https://github.com/grafana-community/helm-charts/blob/loki-18.11.5/charts/loki/Chart.yaml
+  accessedAt: '2026-09-04'
+
+x-loki-377-chart-18114-source: &loki_377_chart_18114_source
+  title: Grafana Community Loki Helm 18.11.4 chart metadata
+  url: https://github.com/grafana-community/helm-charts/blob/loki-18.11.4/charts/loki/Chart.yaml
+  accessedAt: '2026-09-04'
+
 x-loki-helm-index-source: &loki_helm_index_source
   title: Grafana Helm Charts Index
   url: https://grafana.github.io/helm-charts/index.yaml
@@ -122,6 +147,26 @@ projects:
     website: https://grafana.com/oss/loki/
     description: Loki compatibility metadata for official Grafana Helm chart releases.
     versions:
+      '3.7.7':
+        dependencies:
+          loki-helm:
+            ranges:
+              - '18.12.0'
+              - '18.11.7'
+              - '18.11.6'
+              - '18.11.5'
+              - '18.11.4'
+            relationship: deployment chart
+            confidence: high
+            notes:
+              - Grafana Community Helm charts 18.11.4 through 18.11.7 and 18.12.0 declare Loki appVersion 3.7.7. These are exact chart-to-application mappings.
+            sources:
+              - *loki_377_chart_18120_source
+              - *loki_377_chart_18117_source
+              - *loki_377_chart_18116_source
+              - *loki_377_chart_18115_source
+              - *loki_377_chart_18114_source
+            lastVerified: '2026-09-04'
       '3.7.6':
         dependencies:
           loki-helm:
