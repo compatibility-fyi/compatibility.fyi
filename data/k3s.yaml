@@ -1,17 +1,17 @@
 x-k3s-136-source: &k3s_136_source
   title: K3s 1.36 Support Matrix
   url: https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-36/
-  accessedAt: '2026-08-13'
+  accessedAt: '2026-09-04'
 
 x-k3s-135-source: &k3s_135_source
   title: K3s 1.35 Support Matrix
   url: https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-35/
-  accessedAt: '2026-08-13'
+  accessedAt: '2026-09-04'
 
 x-k3s-134-source: &k3s_134_source
   title: K3s 1.34 Support Matrix
   url: https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-34/
-  accessedAt: '2026-08-13'
+  accessedAt: '2026-09-04'
 
 projects:
   k3s:
@@ -23,18 +23,18 @@ projects:
     website: https://k3s.io/
     description: K3s compatibility for Kubernetes, operating systems, architectures, bundled components, external datastores, cloud integrations, and container runtimes.
     versions:
-      '1.36.3+k3s1':
+      '1.36.4+k3s1':
         dependencies:
           kubernetes:
             ranges:
-              - '1.36.3'
+              - '1.36.4'
             relationship: bundled Kubernetes version
             confidence: high
             notes:
-              - K3s 1.36.3+k3s1 packages Kubernetes 1.36.3.
+              - K3s 1.36.4+k3s1 packages Kubernetes 1.36.4.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           architecture:
             ranges:
               - x86_64
@@ -45,7 +45,7 @@ projects:
               - The support matrix certifies x86_64 and arm64 architectures.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           sles:
             ranges:
               - '16.0'
@@ -57,7 +57,7 @@ projects:
               - The support matrix certifies SLES 16.0, 15 SP7, and 15 SP6.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           sle-micro:
             ranges:
               - '6.2'
@@ -69,11 +69,13 @@ projects:
               - The support matrix certifies SLE Micro 6.2, 6.1, and 6.0.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           rhel:
             ranges:
+              - '10.2'
               - '10.1'
               - '10.0'
+              - '9.8'
               - '9.7'
             relationship: certified operating system
             confidence: high
@@ -81,11 +83,13 @@ projects:
               - The matrix certifies these RHEL versions and treats Oracle Linux and Rocky Linux as validated through RHEL testing.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           oracle-linux:
             ranges:
+              - '10.2'
               - '10.1'
               - '10.0'
+              - '9.8'
               - '9.7'
             relationship: operating system validated through RHEL testing
             confidence: high
@@ -93,11 +97,13 @@ projects:
               - The matrix treats Oracle Linux as validated through the listed RHEL testing.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           rocky-linux:
             ranges:
+              - '10.2'
               - '10.1'
               - '10.0'
+              - '9.8'
               - '9.7'
             relationship: operating system validated through RHEL testing
             confidence: high
@@ -105,128 +111,129 @@ projects:
               - The matrix treats Rocky Linux as validated through the listed RHEL testing.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           ubuntu:
             ranges:
+              - '26.04'
               - '24.04'
               - '22.04'
             relationship: certified operating system
             confidence: high
             notes:
-              - The support matrix certifies Ubuntu 24.04 and 22.04.
+              - The support matrix certifies Ubuntu 26.04, 24.04 and 22.04.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           kine:
             ranges:
-              - '0.16.3'
+              - '0.16.4'
             relationship: bundled datastore endpoint
             confidence: high
             notes:
-              - K3s 1.36.3+k3s1 bundles Kine 0.16.3.
+              - K3s 1.36.4+k3s1 bundles Kine 0.16.4.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           sqlite:
             ranges:
-              - '3.53.2'
+              - '3.53.4'
             relationship: bundled datastore
             confidence: high
             notes:
-              - K3s 1.36.3+k3s1 bundles SQLite 3.53.2.
+              - K3s 1.36.4+k3s1 bundles SQLite 3.53.4.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           etcd:
             ranges:
               - '3.6.14-k3s1'
             relationship: bundled datastore
             confidence: high
             notes:
-              - K3s 1.36.3+k3s1 bundles etcd 3.6.14-k3s1.
+              - K3s 1.36.4+k3s1 bundles etcd 3.6.14-k3s1.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           containerd:
             ranges:
-              - '2.3.2-k3s2'
+              - '2.3.4-k3s1.36'
             relationship: bundled component
             confidence: high
             notes:
-              - K3s 1.36.3+k3s1 bundles containerd 2.3.2-k3s2.
+              - K3s 1.36.4+k3s1 bundles containerd 2.3.4-k3s1.36.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           runc:
             ranges:
               - '1.4.2'
             relationship: bundled component
             confidence: high
             notes:
-              - K3s 1.36.3+k3s1 bundles runc 1.4.2.
+              - K3s 1.36.4+k3s1 bundles runc 1.4.2.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           flannel:
             ranges:
               - '0.28.4'
             relationship: bundled network plugin
             confidence: high
             notes:
-              - K3s 1.36.3+k3s1 bundles Flannel 0.28.4.
+              - K3s 1.36.4+k3s1 bundles Flannel 0.28.4.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           metrics-server:
             ranges:
               - '0.9.0'
             relationship: bundled component
             confidence: high
             notes:
-              - K3s 1.36.3+k3s1 bundles metrics-server 0.9.0.
+              - K3s 1.36.4+k3s1 bundles metrics-server 0.9.0.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           traefik:
             ranges:
               - '3.7.8'
             relationship: bundled ingress controller
             confidence: high
             notes:
-              - K3s 1.36.3+k3s1 bundles Traefik 3.7.8.
+              - K3s 1.36.4+k3s1 bundles Traefik 3.7.8.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           coredns:
             ranges:
               - '1.14.6'
             relationship: bundled component
             confidence: high
             notes:
-              - K3s 1.36.3+k3s1 bundles CoreDNS 1.14.6.
+              - K3s 1.36.4+k3s1 bundles CoreDNS 1.14.6.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           helm-controller:
             ranges:
               - '0.17.7'
             relationship: bundled component
             confidence: high
             notes:
-              - K3s 1.36.3+k3s1 bundles Helm Controller 0.17.7.
+              - K3s 1.36.4+k3s1 bundles Helm Controller 0.17.7.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           local-path-provisioner:
             ranges:
               - '0.0.36'
             relationship: bundled storage provisioner
             confidence: high
             notes:
-              - K3s 1.36.3+k3s1 bundles Local Path Provisioner 0.0.36.
+              - K3s 1.36.4+k3s1 bundles Local Path Provisioner 0.0.36.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           amazon-aurora-mysql:
             ranges:
               - '3.12.0'
@@ -236,7 +243,7 @@ projects:
               - The matrix supports Amazon Aurora MySQL 8.0 through Aurora version 3.12.0.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           mysql:
             ranges:
               - '8.4.8'
@@ -246,7 +253,7 @@ projects:
               - The support matrix lists MySQL 8.4.8.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           postgresql:
             ranges:
               - '18.3'
@@ -256,7 +263,7 @@ projects:
               - The support matrix lists PostgreSQL 18.3.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           mariadb:
             ranges:
               - '11.4.10'
@@ -266,27 +273,27 @@ projects:
               - The support matrix lists MariaDB 11.4.10.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           vsphere-cpi:
             ranges:
-              - '1.14.000'
+              - '1.15.300'
             relationship: supported out-of-tree cloud provider integration
             confidence: high
             notes:
-              - The support matrix lists vSphere CPI chart 1.14.000.
+              - The support matrix lists vSphere CPI chart 1.15.300.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           vsphere-csi:
             ranges:
-              - '3.7.0-rancher100'
+              - '3.7.2-rancher700'
             relationship: supported out-of-tree storage integration
             confidence: high
             notes:
-              - The support matrix lists vSphere CSI chart 3.7.0-rancher100.
+              - The support matrix lists vSphere CSI chart 3.7.2-rancher700.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           container-runtime:
             ranges:
               - nvidia-container-runtime
@@ -297,19 +304,19 @@ projects:
               - The support matrix lists NVIDIA Container Runtime and Docker CRI integrations.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-07-10'
-      '1.35.7+k3s1':
+            lastVerified: '2026-09-04'
+      '1.35.8+k3s1':
         dependencies:
           kubernetes:
             ranges:
-              - '1.35.7'
+              - '1.35.8'
             relationship: bundled Kubernetes version
             confidence: high
             notes:
-              - K3s 1.35.7+k3s1 packages Kubernetes 1.35.7.
+              - K3s 1.35.8+k3s1 packages Kubernetes 1.35.8.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           architecture:
             ranges:
               - x86_64
@@ -320,7 +327,7 @@ projects:
               - The support matrix certifies x86_64 and arm64 architectures.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           sles:
             ranges:
               - '16.0'
@@ -332,7 +339,7 @@ projects:
               - The support matrix certifies SLES 16.0, 15 SP7, and 15 SP6.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           sle-micro:
             ranges:
               - '6.2'
@@ -344,7 +351,7 @@ projects:
               - The support matrix certifies SLE Micro 6.2, 6.1, and 6.0.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           opensuse-leap:
             ranges:
               - '15.6'
@@ -356,7 +363,7 @@ projects:
               - The matrix lists openSUSE Leap 15.6, 15.5, and 15.4 as validated through SUSE Linux Enterprise testing.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           rhel:
             ranges:
               - '10.1'
@@ -373,7 +380,7 @@ projects:
               - The matrix certifies these RHEL versions and treats Oracle Linux and Rocky Linux as validated through RHEL testing.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           oracle-linux:
             ranges:
               - '10.1'
@@ -390,7 +397,7 @@ projects:
               - The matrix treats Oracle Linux as validated through the listed RHEL testing.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           rocky-linux:
             ranges:
               - '10.1'
@@ -407,129 +414,130 @@ projects:
               - The matrix treats Rocky Linux as validated through the listed RHEL testing.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           ubuntu:
             ranges:
+              - '26.04'
               - '24.04'
               - '22.04'
               - '20.04'
             relationship: certified operating system
             confidence: high
             notes:
-              - The support matrix certifies Ubuntu 24.04, 22.04, and 20.04.
+              - The support matrix certifies Ubuntu 26.04, 24.04, 22.04, and 20.04.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           kine:
             ranges:
-              - '0.16.3'
+              - '0.16.4'
             relationship: bundled datastore endpoint
             confidence: high
             notes:
-              - K3s 1.35.7+k3s1 bundles Kine 0.16.3.
+              - K3s 1.35.8+k3s1 bundles Kine 0.16.4.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           sqlite:
             ranges:
-              - '3.53.2'
+              - '3.53.4'
             relationship: bundled datastore
             confidence: high
             notes:
-              - K3s 1.35.7+k3s1 bundles SQLite 3.53.2.
+              - K3s 1.35.8+k3s1 bundles SQLite 3.53.4.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           etcd:
             ranges:
               - '3.6.14-k3s1'
             relationship: bundled datastore
             confidence: high
             notes:
-              - K3s 1.35.7+k3s1 bundles etcd 3.6.14-k3s1.
+              - K3s 1.35.8+k3s1 bundles etcd 3.6.14-k3s1.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           containerd:
             ranges:
-              - '2.2.5-k3s2'
+              - '2.2.7-k3s1'
             relationship: bundled component
             confidence: high
             notes:
-              - K3s 1.35.7+k3s1 bundles containerd 2.2.5-k3s2.
+              - K3s 1.35.8+k3s1 bundles containerd 2.2.7-k3s1.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           runc:
             ranges:
               - '1.4.2'
             relationship: bundled component
             confidence: high
             notes:
-              - K3s 1.35.7+k3s1 bundles runc 1.4.2.
+              - K3s 1.35.8+k3s1 bundles runc 1.4.2.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           flannel:
             ranges:
               - '0.28.4'
             relationship: bundled network plugin
             confidence: high
             notes:
-              - K3s 1.35.7+k3s1 bundles Flannel 0.28.4.
+              - K3s 1.35.8+k3s1 bundles Flannel 0.28.4.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           metrics-server:
             ranges:
               - '0.9.0'
             relationship: bundled component
             confidence: high
             notes:
-              - K3s 1.35.7+k3s1 bundles metrics-server 0.9.0.
+              - K3s 1.35.8+k3s1 bundles metrics-server 0.9.0.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           traefik:
             ranges:
               - '3.7.8'
             relationship: bundled ingress controller
             confidence: high
             notes:
-              - K3s 1.35.7+k3s1 bundles Traefik 3.7.8.
+              - K3s 1.35.8+k3s1 bundles Traefik 3.7.8.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           coredns:
             ranges:
               - '1.14.6'
             relationship: bundled component
             confidence: high
             notes:
-              - K3s 1.35.7+k3s1 bundles CoreDNS 1.14.6.
+              - K3s 1.35.8+k3s1 bundles CoreDNS 1.14.6.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           helm-controller:
             ranges:
               - '0.17.7'
             relationship: bundled component
             confidence: high
             notes:
-              - K3s 1.35.7+k3s1 bundles Helm Controller 0.17.7.
+              - K3s 1.35.8+k3s1 bundles Helm Controller 0.17.7.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           local-path-provisioner:
             ranges:
               - '0.0.36'
             relationship: bundled storage provisioner
             confidence: high
             notes:
-              - K3s 1.35.7+k3s1 bundles Local Path Provisioner 0.0.36.
+              - K3s 1.35.8+k3s1 bundles Local Path Provisioner 0.0.36.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           amazon-aurora-mysql:
             ranges:
               - '2.09.0'
@@ -539,7 +547,7 @@ projects:
               - The matrix supports Amazon Aurora MySQL 5.7 through Aurora version 2.09.0.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           mysql:
             ranges:
               - '5.7'
@@ -550,7 +558,7 @@ projects:
               - The support matrix lists MySQL 5.7 and 8.0.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           postgresql:
             ranges:
               - '13.1'
@@ -562,7 +570,7 @@ projects:
               - The support matrix lists PostgreSQL 13.1, 14.2, and 15.3.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           mariadb:
             ranges:
               - '10.11'
@@ -572,27 +580,27 @@ projects:
               - The support matrix lists MariaDB 10.11.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           vsphere-cpi:
             ranges:
-              - '1.13.100'
+              - '1.15.300'
             relationship: supported out-of-tree cloud provider integration
             confidence: high
             notes:
-              - The support matrix lists vSphere CPI chart 1.13.100.
+              - The support matrix lists vSphere CPI chart 1.15.300.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           vsphere-csi:
             ranges:
-              - '3.6.0-rancher100'
+              - '3.7.2-rancher700'
             relationship: supported out-of-tree storage integration
             confidence: high
             notes:
-              - The support matrix lists vSphere CSI chart 3.6.0-rancher100.
+              - The support matrix lists vSphere CSI chart 3.7.2-rancher700.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           container-runtime:
             ranges:
               - nvidia-container-runtime
@@ -603,19 +611,19 @@ projects:
               - The support matrix lists NVIDIA Container Runtime and Docker CRI integrations.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-07-10'
-      '1.34.10+k3s1':
+            lastVerified: '2026-09-04'
+      '1.34.11+k3s1':
         dependencies:
           kubernetes:
             ranges:
-              - '1.34.10'
+              - '1.34.11'
             relationship: bundled Kubernetes version
             confidence: high
             notes:
-              - K3s 1.34.10+k3s1 packages Kubernetes 1.34.10.
+              - K3s 1.34.11+k3s1 packages Kubernetes 1.34.11.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           architecture:
             ranges:
               - x86_64
@@ -626,7 +634,7 @@ projects:
               - The support matrix certifies x86_64 and arm64 architectures.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           sles:
             ranges:
               - '16.0'
@@ -639,7 +647,7 @@ projects:
               - The support matrix certifies SLES 16.0, 15 SP7, 15 SP6, and 15 SP5.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           sle-micro:
             ranges:
               - '6.1'
@@ -651,7 +659,7 @@ projects:
               - The support matrix certifies SLE Micro 6.1, 6.0, and 5.5.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           opensuse-leap:
             ranges:
               - '15.6'
@@ -663,11 +671,13 @@ projects:
               - The matrix lists openSUSE Leap 15.6, 15.5, and 15.4 as validated through SUSE Linux Enterprise testing.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           rhel:
             ranges:
+              - '10.2'
               - '10.1'
               - '10.0'
+              - '9.8'
               - '9.7'
               - '9.6'
               - '9.4'
@@ -680,11 +690,13 @@ projects:
               - The matrix certifies these RHEL versions and treats Oracle Linux and Rocky Linux as validated through RHEL testing.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           oracle-linux:
             ranges:
+              - '10.2'
               - '10.1'
               - '10.0'
+              - '9.8'
               - '9.7'
               - '9.6'
               - '9.4'
@@ -697,11 +709,13 @@ projects:
               - The matrix treats Oracle Linux as validated through the listed RHEL testing.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           rocky-linux:
             ranges:
+              - '10.2'
               - '10.1'
               - '10.0'
+              - '9.8'
               - '9.7'
               - '9.6'
               - '9.4'
@@ -714,129 +728,130 @@ projects:
               - The matrix treats Rocky Linux as validated through the listed RHEL testing.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           ubuntu:
             ranges:
+              - '26.04'
               - '24.04'
               - '22.04'
               - '20.04'
             relationship: certified operating system
             confidence: high
             notes:
-              - The support matrix certifies Ubuntu 24.04, 22.04, and 20.04.
+              - The support matrix certifies Ubuntu 26.04, 24.04, 22.04, and 20.04.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           kine:
             ranges:
-              - '0.16.3'
+              - '0.16.4'
             relationship: bundled datastore endpoint
             confidence: high
             notes:
-              - K3s 1.34.10+k3s1 bundles Kine 0.16.3.
+              - K3s 1.34.11+k3s1 bundles Kine 0.16.4.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           sqlite:
             ranges:
-              - '3.53.2'
+              - '3.53.4'
             relationship: bundled datastore
             confidence: high
             notes:
-              - K3s 1.34.10+k3s1 bundles SQLite 3.53.2.
+              - K3s 1.34.11+k3s1 bundles SQLite 3.53.4.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           etcd:
             ranges:
               - '3.6.14-k3s1'
             relationship: bundled datastore
             confidence: high
             notes:
-              - K3s 1.34.10+k3s1 bundles etcd 3.6.14-k3s1.
+              - K3s 1.34.11+k3s1 bundles etcd 3.6.14-k3s1.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           containerd:
             ranges:
-              - '2.2.5-k3s2'
+              - '2.2.7-k3s1'
             relationship: bundled component
             confidence: high
             notes:
-              - K3s 1.34.10+k3s1 bundles containerd 2.2.5-k3s2.
+              - K3s 1.34.11+k3s1 bundles containerd 2.2.7-k3s1.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           runc:
             ranges:
               - '1.4.2'
             relationship: bundled component
             confidence: high
             notes:
-              - K3s 1.34.10+k3s1 bundles runc 1.4.2.
+              - K3s 1.34.11+k3s1 bundles runc 1.4.2.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           flannel:
             ranges:
               - '0.28.4'
             relationship: bundled network plugin
             confidence: high
             notes:
-              - K3s 1.34.10+k3s1 bundles Flannel 0.28.4.
+              - K3s 1.34.11+k3s1 bundles Flannel 0.28.4.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           metrics-server:
             ranges:
               - '0.9.0'
             relationship: bundled component
             confidence: high
             notes:
-              - K3s 1.34.10+k3s1 bundles metrics-server 0.9.0.
+              - K3s 1.34.11+k3s1 bundles metrics-server 0.9.0.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           traefik:
             ranges:
               - '3.7.8'
             relationship: bundled ingress controller
             confidence: high
             notes:
-              - K3s 1.34.10+k3s1 bundles Traefik 3.7.8.
+              - K3s 1.34.11+k3s1 bundles Traefik 3.7.8.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           coredns:
             ranges:
               - '1.14.6'
             relationship: bundled component
             confidence: high
             notes:
-              - K3s 1.34.10+k3s1 bundles CoreDNS 1.14.6.
+              - K3s 1.34.11+k3s1 bundles CoreDNS 1.14.6.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           helm-controller:
             ranges:
               - '0.16.26'
             relationship: bundled component
             confidence: high
             notes:
-              - K3s 1.34.10+k3s1 bundles Helm Controller 0.16.26.
+              - K3s 1.34.11+k3s1 bundles Helm Controller 0.16.26.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           local-path-provisioner:
             ranges:
               - '0.0.36'
             relationship: bundled storage provisioner
             confidence: high
             notes:
-              - K3s 1.34.10+k3s1 bundles Local Path Provisioner 0.0.36.
+              - K3s 1.34.11+k3s1 bundles Local Path Provisioner 0.0.36.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-04'
           amazon-aurora-mysql:
             ranges:
               - '2.09.0'
@@ -846,7 +861,7 @@ projects:
               - The matrix supports Amazon Aurora MySQL 5.7 through Aurora version 2.09.0.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           mysql:
             ranges:
               - '5.7'
@@ -857,7 +872,7 @@ projects:
               - The support matrix lists MySQL 5.7 and 8.0.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           postgresql:
             ranges:
               - '13.1'
@@ -869,7 +884,7 @@ projects:
               - The support matrix lists PostgreSQL 13.1, 14.2, and 15.3.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           mariadb:
             ranges:
               - '10.11'
@@ -879,27 +894,27 @@ projects:
               - The support matrix lists MariaDB 10.11.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           vsphere-cpi:
             ranges:
-              - '1.12.100'
+              - '1.15.300'
             relationship: supported out-of-tree cloud provider integration
             confidence: high
             notes:
-              - The support matrix lists vSphere CPI chart 1.12.100.
+              - The support matrix lists vSphere CPI chart 1.15.300.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           vsphere-csi:
             ranges:
-              - '3.5.0-rancher200'
+              - '3.7.2-rancher700'
             relationship: supported out-of-tree storage integration
             confidence: high
             notes:
-              - The support matrix lists vSphere CSI chart 3.5.0-rancher200.
+              - The support matrix lists vSphere CSI chart 3.7.2-rancher700.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
           container-runtime:
             ranges:
               - nvidia-container-runtime
@@ -910,4 +925,4 @@ projects:
               - The support matrix lists NVIDIA Container Runtime and Docker CRI integrations.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-04'
