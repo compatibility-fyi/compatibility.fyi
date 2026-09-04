@@ -1,3 +1,8 @@
+x-traefik-hub-chart-4140-source: &traefik_hub_chart_4140_source
+  title: Traefik Helm Chart 41.4.0 Version Support
+  url: https://github.com/traefik/traefik-helm-chart/releases/tag/v41.4.0
+  accessedAt: '2026-09-04'
+
 x-traefik-hub-chart-4130-source: &traefik_hub_chart_4130_source
   title: Traefik Helm Chart 41.3.0 Version Support
   url: https://github.com/traefik/traefik-helm-chart/releases/tag/v41.3.0
@@ -32,36 +37,55 @@ projects:
     website: https://doc.traefik.io/traefik-hub/
     description: Traefik Hub API Gateway compatibility with the official Traefik Helm chart.
     versions:
+      '3.20.12':
+        dependencies:
+          traefik-helm-chart:
+            ranges:
+              - '41.4.0'
+            relationship: deployment chart
+            confidence: high
+            notes:
+              - Traefik Helm chart 41.4.0 supports every Traefik Hub version from 3.19.3 through 3.20.12.
+            sources:
+              - *traefik_hub_chart_4140_source
+            lastVerified: '2026-09-04'
       '>=3.20.9 <=3.20.11':
         dependencies:
           traefik-helm-chart:
             ranges:
+              - '41.4.0'
               - '41.3.0'
             relationship: deployment chart
             confidence: high
             notes:
               - Traefik Helm chart 41.3.0 supports every Traefik Hub version from 3.19.3 through 3.20.11, including 3.20.9 through 3.20.11.
+              - Traefik Helm chart 41.4.0 supports Traefik Hub versions 3.19.3 through 3.20.12.
             sources:
+              - *traefik_hub_chart_4140_source
               - *traefik_hub_chart_4130_source
-            lastVerified: '2026-08-25'
+            lastVerified: '2026-09-04'
       '3.20.8':
         dependencies:
           traefik-helm-chart:
             ranges:
+              - '41.4.0'
               - '41.3.0'
               - '41.2.0'
             relationship: deployment chart
             confidence: high
             notes:
               - Traefik Helm chart 41.2.0 supports Traefik Hub versions 3.19.3 through 3.20.8, and chart 41.3.0 supports versions 3.19.3 through 3.20.11.
+              - Traefik Helm chart 41.4.0 supports Traefik Hub versions 3.19.3 through 3.20.12.
             sources:
+              - *traefik_hub_chart_4140_source
               - *traefik_hub_chart_4130_source
               - *traefik_hub_chart_4120_source
-            lastVerified: '2026-08-25'
+            lastVerified: '2026-09-04'
       '3.20.7':
         dependencies:
           traefik-helm-chart:
             ranges:
+              - '41.4.0'
               - '41.3.0'
               - '41.2.0'
               - '41.1.1'
@@ -70,16 +94,19 @@ projects:
             confidence: high
             notes:
               - Traefik Helm charts 41.1.0, 41.1.1, 41.2.0, and 41.3.0 support Traefik Hub 3.20.7.
+              - Traefik Helm chart 41.4.0 supports Traefik Hub versions 3.19.3 through 3.20.12.
             sources:
+              - *traefik_hub_chart_4140_source
               - *traefik_hub_chart_4130_source
               - *traefik_hub_chart_4120_source
               - *traefik_hub_chart_4111_source
               - *traefik_hub_chart_4110_source
-            lastVerified: '2026-08-25'
+            lastVerified: '2026-09-04'
       '>=3.19.3 <=3.20.6':
         dependencies:
           traefik-helm-chart:
             ranges:
+              - '41.4.0'
               - '41.3.0'
               - '41.2.0'
               - '41.1.1'
@@ -89,10 +116,12 @@ projects:
             confidence: high
             notes:
               - Traefik Helm chart 41.0.2 supports every Traefik Hub version from 3.19.3 through 3.20.6, while charts 41.1.0, 41.1.1, 41.2.0, and 41.3.0 also support this range.
+              - Traefik Helm chart 41.4.0 supports Traefik Hub versions 3.19.3 through 3.20.12.
             sources:
+              - *traefik_hub_chart_4140_source
               - *traefik_hub_chart_4130_source
               - *traefik_hub_chart_4120_source
               - *traefik_hub_chart_4111_source
               - *traefik_hub_chart_4110_source
               - *traefik_hub_chart_source
-            lastVerified: '2026-08-25'
+            lastVerified: '2026-09-04'
