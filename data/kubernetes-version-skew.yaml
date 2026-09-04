@@ -1,7 +1,7 @@
 x-kubernetes-version-skew-source: &kubernetes_version_skew_source
   title: Kubernetes Version Skew Policy
   url: https://kubernetes.io/releases/version-skew-policy/
-  accessedAt: '2026-07-08'
+  accessedAt: '2026-09-04'
 
 projects:
   kubernetes-version-skew:
@@ -12,6 +12,78 @@ projects:
     website: https://kubernetes.io/
     description: Kubernetes component version skew policy for API servers, nodes, control plane components, and kubectl.
     versions:
+      '1.37':
+        dependencies:
+          kube-apiserver-ha-peer:
+            ranges:
+              - '>=1.36 <1.38'
+            relationship: control plane peer
+            confidence: high
+            notes:
+              - Kubernetes allows kube-apiserver instances in an HA cluster to differ by at most one minor version.
+            sources:
+              - *kubernetes_version_skew_source
+            lastVerified: '2026-09-04'
+          kubelet:
+            ranges:
+              - '>=1.34 <1.38'
+            relationship: node agent
+            confidence: high
+            notes:
+              - Kubelet must not be newer than kube-apiserver and may be up to three minor versions older.
+            sources:
+              - *kubernetes_version_skew_source
+            lastVerified: '2026-09-04'
+          kube-proxy:
+            ranges:
+              - '>=1.34 <1.38'
+            relationship: node networking
+            confidence: high
+            notes:
+              - kube-proxy must not be newer than kube-apiserver and may be up to three minor versions older.
+            sources:
+              - *kubernetes_version_skew_source
+            lastVerified: '2026-09-04'
+          kube-controller-manager:
+            ranges:
+              - '>=1.36 <1.38'
+            relationship: control plane component
+            confidence: high
+            notes:
+              - kube-controller-manager is expected to match kube-apiserver but may be up to one minor version older.
+            sources:
+              - *kubernetes_version_skew_source
+            lastVerified: '2026-09-04'
+          kube-scheduler:
+            ranges:
+              - '>=1.36 <1.38'
+            relationship: control plane component
+            confidence: high
+            notes:
+              - kube-scheduler is expected to match kube-apiserver but may be up to one minor version older.
+            sources:
+              - *kubernetes_version_skew_source
+            lastVerified: '2026-09-04'
+          cloud-controller-manager:
+            ranges:
+              - '>=1.36 <1.38'
+            relationship: control plane component
+            confidence: high
+            notes:
+              - cloud-controller-manager is expected to match kube-apiserver but may be up to one minor version older.
+            sources:
+              - *kubernetes_version_skew_source
+            lastVerified: '2026-09-04'
+          kubectl:
+            ranges:
+              - '>=1.36 <1.39'
+            relationship: client
+            confidence: high
+            notes:
+              - kubectl is supported within one minor version older or newer than kube-apiserver.
+            sources:
+              - *kubernetes_version_skew_source
+            lastVerified: '2026-09-04'
       '1.36':
         dependencies:
           kube-apiserver-ha-peer:
