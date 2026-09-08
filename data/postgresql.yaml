@@ -23,20 +23,20 @@ x-timescaledb-223-support-source: &timescaledb_223_support_source
   url: https://github.com/timescale/timescaledb/releases/tag/2.23.0
   accessedAt: '2026-07-31'
 
-x-timescaledb-229-support-source: &timescaledb_229_support_source
-  title: TimescaleDB 2.29.0 Release
-  url: https://github.com/timescale/timescaledb/releases/tag/2.29.0
-  accessedAt: '2026-07-31'
+x-timescaledb-230-support-source: &timescaledb_230_support_source
+  title: TimescaleDB 2.30.0 PostgreSQL version check
+  url: https://github.com/timescale/timescaledb/blob/2.30.0/CMakeLists.txt
+  accessedAt: '2026-09-08'
 
 x-pg-cron-160-support-source: &pg_cron_160_support_source
   title: pg_cron 1.6.0 Installation
   url: https://github.com/citusdata/pg_cron/blob/v1.6.0/README.md
   accessedAt: '2026-07-31'
 
-x-pg-cron-167-support-source: &pg_cron_167_support_source
-  title: pg_cron 1.6.7 Installation
-  url: https://github.com/citusdata/pg_cron/blob/v1.6.7/README.md
-  accessedAt: '2026-07-31'
+x-pg-cron-168-support-source: &pg_cron_168_support_source
+  title: pg_cron 1.6.8 Installation
+  url: https://github.com/citusdata/pg_cron/blob/v1.6.8/README.md
+  accessedAt: '2026-09-08'
 
 projects:
   postgresql:
@@ -73,15 +73,15 @@ projects:
             lastVerified: '2026-07-31'
           timescaledb:
             ranges:
-              - '>=2.23 <2.30'
+              - '>=2.23 <2.31'
             relationship: extension
             confidence: high
             notes:
-              - TimescaleDB 2.23 introduced PostgreSQL 18 support alongside PostgreSQL 16 and 17, and the 2.29 release line continues to support all three PostgreSQL majors.
+              - TimescaleDB 2.23 introduced PostgreSQL 18 support alongside PostgreSQL 16 and 17, and the 2.30 release line continues to support all three PostgreSQL majors.
             sources:
               - *timescaledb_223_support_source
-              - *timescaledb_229_support_source
-            lastVerified: '2026-07-31'
+              - *timescaledb_230_support_source
+            lastVerified: '2026-09-08'
           pg-cron:
             ranges:
               - '1.6'
@@ -91,8 +91,8 @@ projects:
               - The pg_cron 1.6 release line documents support for PostgreSQL 10 and newer.
             sources:
               - *pg_cron_160_support_source
-              - *pg_cron_167_support_source
-            lastVerified: '2026-07-31'
+              - *pg_cron_168_support_source
+            lastVerified: '2026-09-08'
       '17':
         dependencies:
           postgis:
@@ -119,15 +119,15 @@ projects:
             lastVerified: '2026-07-31'
           timescaledb:
             ranges:
-              - '>=2.23 <2.30'
+              - '>=2.23 <2.31'
             relationship: extension
             confidence: high
             notes:
-              - TimescaleDB 2.23 introduced PostgreSQL 18 support alongside PostgreSQL 16 and 17, and the 2.29 release line continues to support all three PostgreSQL majors.
+              - TimescaleDB 2.23 introduced PostgreSQL 18 support alongside PostgreSQL 16 and 17, and the 2.30 release line continues to support all three PostgreSQL majors.
             sources:
               - *timescaledb_223_support_source
-              - *timescaledb_229_support_source
-            lastVerified: '2026-07-31'
+              - *timescaledb_230_support_source
+            lastVerified: '2026-09-08'
           pg-cron:
             ranges:
               - '1.6'
@@ -137,8 +137,8 @@ projects:
               - The pg_cron 1.6 release line documents support for PostgreSQL 10 and newer.
             sources:
               - *pg_cron_160_support_source
-              - *pg_cron_167_support_source
-            lastVerified: '2026-07-31'
+              - *pg_cron_168_support_source
+            lastVerified: '2026-09-08'
       '16':
         dependencies:
           postgis:
@@ -165,15 +165,15 @@ projects:
             lastVerified: '2026-07-31'
           timescaledb:
             ranges:
-              - '>=2.23 <2.30'
+              - '>=2.23 <2.31'
             relationship: extension
             confidence: high
             notes:
-              - TimescaleDB 2.23 introduced PostgreSQL 18 support alongside PostgreSQL 16 and 17, and the 2.29 release line continues to support all three PostgreSQL majors.
+              - TimescaleDB 2.23 introduced PostgreSQL 18 support alongside PostgreSQL 16 and 17, and the 2.30 release line continues to support all three PostgreSQL majors.
             sources:
               - *timescaledb_223_support_source
-              - *timescaledb_229_support_source
-            lastVerified: '2026-07-31'
+              - *timescaledb_230_support_source
+            lastVerified: '2026-09-08'
           pg-cron:
             ranges:
               - '1.6'
@@ -183,5 +183,5 @@ projects:
               - The pg_cron 1.6 release line documents support for PostgreSQL 10 and newer.
             sources:
               - *pg_cron_160_support_source
-              - *pg_cron_167_support_source
-            lastVerified: '2026-07-31'
+              - *pg_cron_168_support_source
+            lastVerified: '2026-09-08'
