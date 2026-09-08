@@ -1,3 +1,8 @@
+x-loki-377-chart-18121-source: &loki_377_chart_18121_source
+  title: Grafana Community Loki Helm 18.12.1 chart metadata
+  url: https://github.com/grafana-community/helm-charts/blob/loki-18.12.1/charts/loki/Chart.yaml
+  accessedAt: '2026-09-08'
+
 x-loki-377-chart-18120-source: &loki_377_chart_18120_source
   title: Grafana Community Loki Helm 18.12.0 chart metadata
   url: https://github.com/grafana-community/helm-charts/blob/loki-18.12.0/charts/loki/Chart.yaml
@@ -151,6 +156,7 @@ projects:
         dependencies:
           loki-helm:
             ranges:
+              - '18.12.1'
               - '18.12.0'
               - '18.11.7'
               - '18.11.6'
@@ -159,14 +165,15 @@ projects:
             relationship: deployment chart
             confidence: high
             notes:
-              - Grafana Community Helm charts 18.11.4 through 18.11.7 and 18.12.0 declare Loki appVersion 3.7.7. These are exact chart-to-application mappings.
+              - Grafana Community Helm charts 18.11.4 through 18.11.7 and 18.12.0 through 18.12.1 declare Loki appVersion 3.7.7. These are exact chart-to-application mappings.
             sources:
+              - *loki_377_chart_18121_source
               - *loki_377_chart_18120_source
               - *loki_377_chart_18117_source
               - *loki_377_chart_18116_source
               - *loki_377_chart_18115_source
               - *loki_377_chart_18114_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-08'
       '3.7.6':
         dependencies:
           loki-helm:
