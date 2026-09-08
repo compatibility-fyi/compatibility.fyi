@@ -6,7 +6,7 @@ x-rhacm-217-source: &rhacm_217_source
 x-rhacm-216-source: &rhacm_216_source
   title: Red Hat Advanced Cluster Management for Kubernetes 2.16 Support Matrix
   url: https://access.redhat.com/articles/7136928
-  accessedAt: '2026-07-08'
+  accessedAt: '2026-09-08'
 
 x-rhacm-215-source: &rhacm_215_source
   title: Red Hat Advanced Cluster Management for Kubernetes 2.15 Support Matrix
@@ -16,7 +16,7 @@ x-rhacm-215-source: &rhacm_215_source
 x-rhacm-214-source: &rhacm_214_source
   title: Red Hat Advanced Cluster Management for Kubernetes 2.14 Support Matrix
   url: https://access.redhat.com/articles/7120842
-  accessedAt: '2026-07-08'
+  accessedAt: '2026-09-08'
 
 x-rhacm-213-source: &rhacm_213_source
   title: Red Hat Advanced Cluster Management for Kubernetes 2.13 Support Matrix
@@ -120,15 +120,14 @@ projects:
             lastVerified: '2026-07-08'
           openshift-management-cluster:
             ranges:
-              - '>=4.19 <4.22'
+              - '>=4.19 <4.23'
             relationship: hub runtime
             confidence: high
             notes:
-              - MCE 2.11 lists OpenShift 4.19, 4.20, and 4.21 as supported hub cluster versions.
+              - RHACM 2.16 lists OpenShift 4.19 through 4.22 as supported hub and managed cluster versions.
             sources:
-              - *mce_211_source
               - *rhacm_216_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-08'
           openshift-hosted-cluster:
             ranges:
               - '>=4.19 <4.22'
@@ -190,15 +189,14 @@ projects:
             lastVerified: '2026-07-08'
           openshift-management-cluster:
             ranges:
-              - '>=4.17 <4.20'
+              - '>=4.17 <4.21'
             relationship: hub runtime
             confidence: high
             notes:
-              - MCE 2.9 lists OpenShift 4.17, 4.18, and 4.19 as supported hub cluster versions.
+              - RHACM 2.14 lists OpenShift 4.17 through 4.20 as supported hub and managed cluster versions.
             sources:
-              - *mce_29_source
               - *rhacm_214_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-08'
           openshift-hosted-cluster:
             ranges:
               - '>=4.17 <4.20'
