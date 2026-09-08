@@ -1,7 +1,7 @@
 x-neuvector-56-source: &neuvector_56_source
   title: SUSE Security 5.6 System Requirements
   url: https://documentation.suse.com/cloudnative/security/5.6/en/requirements.html
-  accessedAt: '2026-07-18'
+  accessedAt: '2026-09-08'
 
 x-neuvector-55-source: &neuvector_55_source
   title: SUSE Security 5.5 System Requirements
@@ -32,24 +32,24 @@ projects:
         dependencies:
           kubernetes:
             ranges:
-              - '>=1.19 <1.33'
+              - '>=1.19 <1.37'
             relationship: tested orchestrator
             confidence: high
             notes:
-              - The SUSE Security 5.6 requirements state that Kubernetes 1.19 through 1.32 are tested with every release.
+              - The SUSE Security 5.6 requirements state that Kubernetes 1.19 through 1.36 are tested with every release.
             sources:
               - *neuvector_56_source
-            lastVerified: '2026-07-18'
+            lastVerified: '2026-09-08'
           openshift:
             ranges:
-              - '>=4.6 <4.17'
+              - '>=4.6 <4.23'
             relationship: tested orchestrator
             confidence: high
             notes:
-              - The SUSE Security 5.6 requirements state that Red Hat OpenShift 4.6 through 4.16 are tested with every release.
+              - The SUSE Security 5.6 requirements state that Red Hat OpenShift 4.6 through 4.22 are tested with every release.
             sources:
               - *neuvector_56_source
-            lastVerified: '2026-07-18'
+            lastVerified: '2026-09-08'
           docker:
             ranges:
               - '>=1.9'
