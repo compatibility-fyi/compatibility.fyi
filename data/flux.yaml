@@ -1,17 +1,17 @@
 x-flux-release-29-source: &flux_release_29_source
   title: Flux v2.9 GitHub Release - Kubernetes compatibility
-  url: https://github.com/fluxcd/flux2/releases
-  accessedAt: '2026-07-08'
+  url: https://github.com/fluxcd/flux2/releases/tag/v2.9.0
+  accessedAt: '2026-09-08'
 
 x-flux-release-28-source: &flux_release_28_source
-  title: Announcing Flux 2.8 GA - Supported Versions
-  url: https://fluxcd.io/blog/2026/02/flux-v2.8.0/
-  accessedAt: '2026-07-08'
+  title: Flux v2.8 GitHub Release - Kubernetes compatibility
+  url: https://github.com/fluxcd/flux2/releases/tag/v2.8.0
+  accessedAt: '2026-09-08'
 
 x-flux-release-27-source: &flux_release_27_source
-  title: Announcing Flux 2.7 GA - Supported Versions
-  url: https://fluxcd.io/blog/2025/09/flux-v2.7.0/
-  accessedAt: '2026-07-08'
+  title: Flux v2.7 GitHub Release - Kubernetes compatibility
+  url: https://github.com/fluxcd/flux2/releases/tag/v2.7.0
+  accessedAt: '2026-09-08'
 
 projects:
   flux:
@@ -27,35 +27,37 @@ projects:
         dependencies:
           kubernetes:
             ranges:
-              - '>=1.34 <1.37'
+              - '>=1.34.1 <1.37'
             relationship: runtime
             confidence: high
             notes:
-              - Flux v2.9 release notes list Kubernetes v1.34, v1.35, and v1.36 as compatible.
+              - Flux v2.9 release notes require Kubernetes 1.34.1 or later on the 1.34 line and support Kubernetes 1.35 and 1.36 from their initial patch releases.
             sources:
               - *flux_release_29_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-08'
       '2.8':
         dependencies:
           kubernetes:
             ranges:
-              - '>=1.33 <1.36'
+              - '>=1.33 <1.34'
+              - '>=1.34.1 <1.36'
             relationship: runtime
             confidence: high
             notes:
-              - Flux v2.8 GA announcement lists Kubernetes 1.33, 1.34, and 1.35 as supported.
+              - Flux v2.8 release notes list Kubernetes 1.33 through 1.35, with Kubernetes 1.34 support starting at 1.34.1.
             sources:
               - *flux_release_28_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-08'
       '2.7':
         dependencies:
           kubernetes:
             ranges:
-              - '>=1.32 <1.35'
+              - '>=1.32 <1.34'
+              - '>=1.34.1 <1.35'
             relationship: runtime
             confidence: high
             notes:
-              - Flux v2.7 GA announcement lists Kubernetes 1.32, 1.33, and 1.34 as supported.
+              - Flux v2.7 release notes list Kubernetes 1.32 through 1.34, with Kubernetes 1.34 support starting at 1.34.1.
             sources:
               - *flux_release_27_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-08'
