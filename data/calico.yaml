@@ -5,7 +5,7 @@ x-calico-requirements-source: &calico_requirements_source
 
 x-calico-331-requirements-source: &calico_331_requirements_source
   title: Calico 3.31 Kubernetes requirements
-  url: https://raw.githubusercontent.com/tigera/docs/main/calico_versioned_docs/version-3.31/_includes/partials/_system-requirements.mdx
+  url: https://raw.githubusercontent.com/tigera/docs/687e2bbffdca492a3736471447efc988f0788e81/calico_versioned_docs/version-3.31/_includes/partials/_system-requirements.mdx
   accessedAt: '2026-09-11'
 
 x-calico-330-requirements-source: &calico_330_requirements_source
@@ -15,7 +15,7 @@ x-calico-330-requirements-source: &calico_330_requirements_source
 
 x-calico-329-requirements-source: &calico_329_requirements_source
   title: Calico 3.29 Kubernetes requirements
-  url: https://github.com/tigera/docs/blob/main/calico_versioned_docs/version-3.29/_includes/partials/_system-requirements.mdx
+  url: https://raw.githubusercontent.com/tigera/docs/9b8e206648cca1097b440811d945ba8f7ce12382/calico_versioned_docs/version-3.29/_includes/partials/_system-requirements.mdx
   accessedAt: '2026-09-11'
 
 projects:
