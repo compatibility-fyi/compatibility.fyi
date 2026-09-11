@@ -1,17 +1,17 @@
 x-mariadb-operator-266-source: &mariadb_operator_266_source
   title: MariaDB Operator 26.6.0 Compatibility
   url: https://github.com/mariadb-operator/mariadb-operator/blob/26.6.0/README.md
-  accessedAt: '2026-07-28'
+  accessedAt: '2026-09-11'
 
 x-mariadb-operator-263-source: &mariadb_operator_263_source
   title: MariaDB Operator 26.3.0 Compatibility
   url: https://github.com/mariadb-operator/mariadb-operator/blob/26.3.0/README.md
-  accessedAt: '2026-07-28'
+  accessedAt: '2026-09-11'
 
 x-mariadb-operator-2510-source: &mariadb_operator_2510_source
   title: MariaDB Operator 25.10.4 Compatibility
   url: https://github.com/mariadb-operator/mariadb-operator/blob/25.10.4/README.md
-  accessedAt: '2026-07-28'
+  accessedAt: '2026-09-11'
 
 projects:
   mariadb-operator:
@@ -34,7 +34,7 @@ projects:
               - MariaDB Operator 26.6.0 declares compatibility with Kubernetes 1.31 or later.
             sources:
               - *mariadb_operator_266_source
-            lastVerified: '2026-07-28'
+            lastVerified: '2026-09-11'
           mariadb:
             ranges:
               - '>=10.6'
@@ -45,7 +45,7 @@ projects:
               - The operator documentation limits compatibility to official MariaDB images.
             sources:
               - *mariadb_operator_266_source
-            lastVerified: '2026-07-28'
+            lastVerified: '2026-09-11'
           maxscale:
             ranges:
               - '>=23.08'
@@ -56,7 +56,18 @@ projects:
               - The operator documentation limits compatibility to official MariaDB images.
             sources:
               - *mariadb_operator_266_source
-            lastVerified: '2026-07-28'
+            lastVerified: '2026-09-11'
+          openshift:
+            ranges:
+              - '>=4.18'
+            relationship: runtime
+            confidence: high
+            notes:
+              - MariaDB Operator 26.6.0 declares compatibility with OpenShift 4.18 or later.
+              - OpenShift installation is managed separately through the mariadb-operator-helm repository.
+            sources:
+              - *mariadb_operator_266_source
+            lastVerified: '2026-09-11'
       '26.3':
         dependencies:
           kubernetes:
@@ -68,7 +79,7 @@ projects:
               - MariaDB Operator 26.3.0 declares compatibility with Kubernetes 1.31 or later.
             sources:
               - *mariadb_operator_263_source
-            lastVerified: '2026-07-28'
+            lastVerified: '2026-09-11'
           mariadb:
             ranges:
               - '>=10.6'
@@ -79,7 +90,7 @@ projects:
               - The operator documentation limits compatibility to official MariaDB images.
             sources:
               - *mariadb_operator_263_source
-            lastVerified: '2026-07-28'
+            lastVerified: '2026-09-11'
           maxscale:
             ranges:
               - '>=23.08'
@@ -90,7 +101,18 @@ projects:
               - The operator documentation limits compatibility to official MariaDB images.
             sources:
               - *mariadb_operator_263_source
-            lastVerified: '2026-07-28'
+            lastVerified: '2026-09-11'
+          openshift:
+            ranges:
+              - '>=4.18'
+            relationship: runtime
+            confidence: high
+            notes:
+              - MariaDB Operator 26.3.0 declares compatibility with OpenShift 4.18 or later.
+              - OpenShift installation is managed separately through the mariadb-operator-helm repository.
+            sources:
+              - *mariadb_operator_263_source
+            lastVerified: '2026-09-11'
       '25.10':
         dependencies:
           kubernetes:
@@ -102,7 +124,7 @@ projects:
               - MariaDB Operator 25.10.4 declares compatibility with Kubernetes 1.31 or later.
             sources:
               - *mariadb_operator_2510_source
-            lastVerified: '2026-07-28'
+            lastVerified: '2026-09-11'
           mariadb:
             ranges:
               - '>=10.6'
@@ -113,7 +135,7 @@ projects:
               - The operator documentation limits compatibility to official MariaDB images.
             sources:
               - *mariadb_operator_2510_source
-            lastVerified: '2026-07-28'
+            lastVerified: '2026-09-11'
           maxscale:
             ranges:
               - '>=23.08'
@@ -124,4 +146,15 @@ projects:
               - The operator documentation limits compatibility to official MariaDB images.
             sources:
               - *mariadb_operator_2510_source
-            lastVerified: '2026-07-28'
+            lastVerified: '2026-09-11'
+          openshift:
+            ranges:
+              - '>=4.18'
+            relationship: runtime
+            confidence: high
+            notes:
+              - MariaDB Operator 25.10.4 declares compatibility with OpenShift 4.18 or later.
+              - OpenShift installation is managed separately through the mariadb-operator-helm repository.
+            sources:
+              - *mariadb_operator_2510_source
+            lastVerified: '2026-09-11'

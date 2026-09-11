@@ -1,17 +1,17 @@
 x-wikijs-requirements-source: &wikijs_requirements_source
   title: Wiki.js Server Requirements
   url: https://docs.requarks.io/install/requirements
-  accessedAt: '2026-07-22'
+  accessedAt: '2026-09-11'
 
 x-wikijs-25302-database-source: &wikijs_25302_database_source
   title: Wiki.js 2.5.302 Sample Configuration - Supported Database Engines
   url: https://github.com/requarks/wiki/blob/v2.5.302/config.sample.yml
-  accessedAt: '2026-07-22'
+  accessedAt: '2026-09-11'
 
 x-wikijs-25314-database-source: &wikijs_25314_database_source
   title: Wiki.js 2.5.314 Sample Configuration - Supported Database Engines
   url: https://github.com/requarks/wiki/blob/v2.5.314/config.sample.yml
-  accessedAt: '2026-07-22'
+  accessedAt: '2026-09-11'
 
 projects:
   wikijs:
@@ -35,7 +35,7 @@ projects:
               - Wiki.js server requirements list Node.js 22.0 or later in the 22.x line and Node.js 24.0 or later in the 24.x line, supported since Wiki.js 2.5.302.
             sources:
               - *wikijs_requirements_source
-            lastVerified: '2026-07-22'
+            lastVerified: '2026-09-11'
           postgresql:
             ranges:
               - '>=9.5'
@@ -48,7 +48,7 @@ projects:
               - *wikijs_25302_database_source
               - *wikijs_25314_database_source
               - *wikijs_requirements_source
-            lastVerified: '2026-07-22'
+            lastVerified: '2026-09-11'
           mysql:
             ranges:
               - '>=8.0'
@@ -61,7 +61,7 @@ projects:
               - *wikijs_25302_database_source
               - *wikijs_25314_database_source
               - *wikijs_requirements_source
-            lastVerified: '2026-07-22'
+            lastVerified: '2026-09-11'
           mariadb:
             ranges:
               - '>=10.2.7'
@@ -72,7 +72,7 @@ projects:
             sources:
               - *wikijs_25302_database_source
               - *wikijs_25314_database_source
-            lastVerified: '2026-07-22'
+            lastVerified: '2026-09-11'
           microsoft-sql-server:
             ranges:
               - '>=2012'
@@ -83,7 +83,7 @@ projects:
             sources:
               - *wikijs_25302_database_source
               - *wikijs_25314_database_source
-            lastVerified: '2026-07-22'
+            lastVerified: '2026-09-11'
           sqlite:
             ranges:
               - '>=3.9'
@@ -96,4 +96,4 @@ projects:
               - *wikijs_25302_database_source
               - *wikijs_25314_database_source
               - *wikijs_requirements_source
-            lastVerified: '2026-07-22'
+            lastVerified: '2026-09-11'

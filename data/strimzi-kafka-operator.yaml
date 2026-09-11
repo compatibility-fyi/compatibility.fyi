@@ -1,42 +1,42 @@
 x-strimzi-1-2-kafka-source: &strimzi_1_2_kafka_source
   title: Strimzi 1.2.0 Kafka Versions
   url: https://github.com/strimzi/strimzi-kafka-operator/blob/1.2.0/kafka-versions.yaml
-  accessedAt: '2026-08-25'
+  accessedAt: '2026-09-11'
 
 x-strimzi-1-2-platform-source: &strimzi_1_2_platform_source
   title: Strimzi 1.2.0 Documentation Attributes
   url: https://github.com/strimzi/strimzi-kafka-operator/blob/1.2.0/documentation/shared/attributes.adoc
-  accessedAt: '2026-08-25'
+  accessedAt: '2026-09-11'
 
 x-strimzi-1-1-kafka-source: &strimzi_1_1_kafka_source
   title: Strimzi 1.1.0 Kafka Versions
   url: https://github.com/strimzi/strimzi-kafka-operator/blob/1.1.0/kafka-versions.yaml
-  accessedAt: '2026-07-09'
+  accessedAt: '2026-09-11'
 
 x-strimzi-1-1-platform-source: &strimzi_1_1_platform_source
   title: Strimzi 1.1.0 Documentation Attributes
   url: https://github.com/strimzi/strimzi-kafka-operator/blob/1.1.0/documentation/shared/attributes.adoc
-  accessedAt: '2026-07-09'
+  accessedAt: '2026-09-11'
 
 x-strimzi-1-0-kafka-source: &strimzi_1_0_kafka_source
   title: Strimzi 1.0.1 Kafka Versions
   url: https://github.com/strimzi/strimzi-kafka-operator/blob/1.0.1/kafka-versions.yaml
-  accessedAt: '2026-07-09'
+  accessedAt: '2026-09-11'
 
 x-strimzi-1-0-platform-source: &strimzi_1_0_platform_source
   title: Strimzi 1.0.1 Documentation Attributes
   url: https://github.com/strimzi/strimzi-kafka-operator/blob/1.0.1/documentation/shared/attributes.adoc
-  accessedAt: '2026-07-09'
+  accessedAt: '2026-09-11'
 
 x-strimzi-0-51-kafka-source: &strimzi_0_51_kafka_source
   title: Strimzi 0.51.0 Kafka Versions
   url: https://github.com/strimzi/strimzi-kafka-operator/blob/0.51.0/kafka-versions.yaml
-  accessedAt: '2026-07-09'
+  accessedAt: '2026-09-11'
 
 x-strimzi-0-51-platform-source: &strimzi_0_51_platform_source
   title: Strimzi 0.51.0 Documentation Attributes
   url: https://github.com/strimzi/strimzi-kafka-operator/blob/0.51.0/documentation/shared/attributes.adoc
-  accessedAt: '2026-07-09'
+  accessedAt: '2026-09-11'
 
 projects:
   strimzi-kafka-operator:
@@ -63,7 +63,7 @@ projects:
               - Apache Kafka 4.3.1 is the default version for this Strimzi release.
             sources:
               - *strimzi_1_2_kafka_source
-            lastVerified: '2026-08-25'
+            lastVerified: '2026-09-11'
           kubernetes:
             ranges:
               - '>=1.30'
@@ -73,7 +73,7 @@ projects:
               - Strimzi 1.2.0 documentation requires Kubernetes 1.30 or later.
             sources:
               - *strimzi_1_2_platform_source
-            lastVerified: '2026-08-25'
+            lastVerified: '2026-09-11'
       '1.1.0':
         dependencies:
           apache-kafka:
@@ -88,7 +88,7 @@ projects:
               - Apache Kafka 4.3.0 is the default version for this Strimzi release.
             sources:
               - *strimzi_1_1_kafka_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-09-11'
           kubernetes:
             ranges:
               - '>=1.30'
@@ -98,7 +98,7 @@ projects:
               - Strimzi 1.1.0 documentation requires Kubernetes 1.30 or later.
             sources:
               - *strimzi_1_1_platform_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-09-11'
       '1.0.1':
         dependencies:
           apache-kafka:
@@ -114,7 +114,7 @@ projects:
               - Apache Kafka 4.2.0 is the default version for this Strimzi release.
             sources:
               - *strimzi_1_0_kafka_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-09-11'
           kubernetes:
             ranges:
               - '>=1.30'
@@ -124,7 +124,7 @@ projects:
               - Strimzi 1.0.1 documentation requires Kubernetes 1.30 or later.
             sources:
               - *strimzi_1_0_platform_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-09-11'
       '0.51.0':
         dependencies:
           apache-kafka:
@@ -139,7 +139,7 @@ projects:
               - Apache Kafka 4.2.0 is the default version for this Strimzi release.
             sources:
               - *strimzi_0_51_kafka_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-09-11'
           kubernetes:
             ranges:
               - '>=1.30'
@@ -149,4 +149,4 @@ projects:
               - Strimzi 0.51.0 documentation requires Kubernetes 1.30 or later.
             sources:
               - *strimzi_0_51_platform_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-09-11'

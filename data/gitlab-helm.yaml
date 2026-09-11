@@ -1,17 +1,12 @@
 x-gitlab-19-requirements-source: &gitlab_19_requirements_source
-  title: GitLab 19.2 tagged requirements
-  url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.2.0-ee/doc/install/requirements.md
-  accessedAt: '2026-07-21'
-
-x-gitlab-18-requirements-source: &gitlab_18_requirements_source
-  title: GitLab 18.11 tagged requirements
-  url: https://gitlab.com/gitlab-org/gitlab/-/blob/v18.11.0-ee/doc/install/requirements.md
-  accessedAt: '2026-07-21'
+  title: GitLab 19.3.2 tagged requirements
+  url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.3.2-ee/doc/install/requirements.md
+  accessedAt: '2026-09-11'
 
 x-gitlab-19-pipeline-source: &gitlab_19_pipeline_source
-  title: GitLab 19.2 tagged pipeline compatibility tests
-  url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.2.0-ee/doc/development/pipelines/_index.md
-  accessedAt: '2026-07-22'
+  title: GitLab 19.3.2 tagged pipeline compatibility tests
+  url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.3.2-ee/doc/development/pipelines/_index.md
+  accessedAt: '2026-09-11'
 
 projects:
   gitlab-helm:
@@ -23,7 +18,7 @@ projects:
     website: https://docs.gitlab.com/charts/
     description: GitLab Helm chart compatibility for GitLab, external PostgreSQL, and Valkey versions.
     versions:
-      '10':
+      '>=10.1 <10.4':
         dependencies:
           gitlab:
             ranges:
@@ -34,7 +29,7 @@ projects:
               - GitLab 19.x requirements map GitLab Helm chart 10.x to GitLab 19.x.
             sources:
               - *gitlab_19_requirements_source
-            lastVerified: '2026-07-21'
+            lastVerified: '2026-09-11'
           postgresql:
             ranges:
               - '>=17 <18'
@@ -44,59 +39,15 @@ projects:
               - GitLab 19.x requirements map Helm chart 10.x to GitLab 19.x and list PostgreSQL 17.x as the only supported PostgreSQL major.
             sources:
               - *gitlab_19_requirements_source
-            lastVerified: '2026-07-21'
+            lastVerified: '2026-09-11'
           valkey:
             ranges:
-              - '>=7.2 <8'
+              - '7.2'
             relationship: cache and background jobs
             confidence: high
             notes:
-              - GitLab Helm chart 10.x maps to GitLab 19.x; GitLab 19.2 requirements list Valkey 7.2 as both the recommended and minimum supported version, and GitLab's weekly pipelines test Valkey 7.2.
+              - GitLab Helm chart 10.x maps to GitLab 19.x; GitLab 19.3.2 requirements and weekly compatibility pipelines document Valkey 7.2. No broader Valkey minor-version support is inferred.
             sources:
               - *gitlab_19_requirements_source
               - *gitlab_19_pipeline_source
-            lastVerified: '2026-07-22'
-      '9':
-        dependencies:
-          gitlab:
-            ranges:
-              - '>=18 <19'
-            relationship: application
-            confidence: high
-            notes:
-              - GitLab 18.x requirements map GitLab Helm chart 9.x to GitLab 18.x.
-            sources:
-              - *gitlab_18_requirements_source
-            lastVerified: '2026-07-21'
-          postgresql:
-            ranges:
-              - '>=16.5 <18'
-            relationship: database
-            confidence: high
-            notes:
-              - GitLab 18.x requirements map Helm chart 9.x to GitLab 18.x, which supports PostgreSQL 16.5 through PostgreSQL 17.x.
-            sources:
-              - *gitlab_18_requirements_source
-            lastVerified: '2026-07-21'
-      '8':
-        dependencies:
-          gitlab:
-            ranges:
-              - '>=17 <18'
-            relationship: application
-            confidence: high
-            notes:
-              - GitLab 18.11 requirements map GitLab Helm chart 8.x to GitLab 17.x.
-            sources:
-              - *gitlab_18_requirements_source
-            lastVerified: '2026-07-21'
-          postgresql:
-            ranges:
-              - '>=14.14 <17'
-            relationship: database
-            confidence: high
-            notes:
-              - GitLab 18.11 requirements map Helm chart 8.x to GitLab 17.x, which supports PostgreSQL 14.14 through PostgreSQL 16.x.
-            sources:
-              - *gitlab_18_requirements_source
-            lastVerified: '2026-07-21'
+            lastVerified: '2026-09-11'

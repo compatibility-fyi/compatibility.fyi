@@ -45,7 +45,7 @@ describe('Worker with the generated YAML dataset', () => {
   it('checks compatibility using the bundled data', async () => {
     const response = await exports.default.fetch(
       new Request(
-        'https://compatibility.fyi/api/v1/check?project=keycloak&version=26&dependency=postgresql&dependencyVersion=17',
+        'https://compatibility.fyi/api/v1/check?project=keycloak&version=26.7&dependency=postgresql&dependencyVersion=17',
       ),
     );
     expect(response.status).toBe(200);
@@ -65,7 +65,7 @@ describe('Worker with the generated YAML dataset', () => {
 
   it.each([
     { project: 'constructor', version: '1', dependency: 'postgresql' },
-    { project: 'keycloak', version: '26', dependency: 'constructor' },
+    { project: 'keycloak', version: '26.7', dependency: 'constructor' },
     { project: 'keycloak', version: 'constructor', dependency: 'postgresql' },
   ])('treats inherited keys as missing metadata: %j', async (fields) => {
     const response = await exports.default.fetch(

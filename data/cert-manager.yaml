@@ -1,7 +1,7 @@
 x-cert-manager-releases-source: &cert_manager_releases_source
   title: cert-manager Supported Releases
   url: https://cert-manager.io/docs/releases/
-  accessedAt: '2026-07-09'
+  accessedAt: '2026-09-11'
 
 projects:
   cert-manager:
@@ -24,7 +24,7 @@ projects:
               - cert-manager supported releases list 1.21 with Kubernetes 1.33 through 1.36.
             sources:
               - *cert_manager_releases_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-09-11'
           openshift:
             ranges:
               - '>=4.20 <4.23'
@@ -34,7 +34,7 @@ projects:
               - cert-manager supported releases list 1.21 with OpenShift 4.20 through 4.22.
             sources:
               - *cert_manager_releases_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-09-11'
       '1.20':
         dependencies:
           kubernetes:
@@ -46,7 +46,7 @@ projects:
               - cert-manager supported releases list 1.20 with Kubernetes 1.32 through 1.35.
             sources:
               - *cert_manager_releases_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-09-11'
           openshift:
             ranges:
               - '>=4.19 <4.22'
@@ -56,4 +56,4 @@ projects:
               - cert-manager supported releases list 1.20 with OpenShift 4.19 through 4.21.
             sources:
               - *cert_manager_releases_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-09-11'

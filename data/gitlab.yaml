@@ -1,22 +1,12 @@
 x-gitlab-19-requirements-source: &gitlab_19_requirements_source
-  title: GitLab 19.2 tagged requirements
-  url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.2.0-ee/doc/install/requirements.md
-  accessedAt: '2026-07-18'
-
-x-gitlab-18-requirements-source: &gitlab_18_requirements_source
-  title: GitLab 18.11 tagged requirements
-  url: https://gitlab.com/gitlab-org/gitlab/-/blob/v18.11.0-ee/doc/install/requirements.md
-  accessedAt: '2026-07-09'
-
-x-gitlab-17-requirements-source: &gitlab_17_requirements_source
-  title: GitLab 17.11 tagged requirements
-  url: https://gitlab.com/gitlab-org/gitlab/-/blob/v17.11.0-ee/doc/install/requirements.md
-  accessedAt: '2026-07-09'
+  title: GitLab 19.3.2 tagged requirements
+  url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.3.2-ee/doc/install/requirements.md
+  accessedAt: '2026-09-11'
 
 x-gitlab-19-pipeline-source: &gitlab_19_pipeline_source
-  title: GitLab 19.2 tagged pipeline compatibility tests
-  url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.2.0-ee/doc/development/pipelines/_index.md
-  accessedAt: '2026-07-22'
+  title: GitLab 19.3.2 tagged pipeline compatibility tests
+  url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.3.2-ee/doc/development/pipelines/_index.md
+  accessedAt: '2026-09-11'
 
 projects:
   gitlab:
@@ -28,7 +18,7 @@ projects:
     website: https://about.gitlab.com/
     description: GitLab self-managed compatibility for PostgreSQL, Redis, Valkey, and the GitLab Helm chart.
     versions:
-      '19':
+      '19.3':
         dependencies:
           postgresql:
             ranges:
@@ -39,7 +29,7 @@ projects:
               - GitLab 19.x requirements list PostgreSQL 17.x as both the minimum and maximum supported PostgreSQL version.
             sources:
               - *gitlab_19_requirements_source
-            lastVerified: '2026-07-18'
+            lastVerified: '2026-09-11'
           redis:
             ranges:
               - '>=7 <8'
@@ -49,18 +39,18 @@ projects:
               - GitLab 19.x requirements recommend Redis 7.2 and require Redis 7.0 or newer.
             sources:
               - *gitlab_19_requirements_source
-            lastVerified: '2026-07-18'
+            lastVerified: '2026-09-11'
           valkey:
             ranges:
-              - '>=7.2 <8'
+              - '7.2'
             relationship: cache and background jobs
             confidence: high
             notes:
-              - GitLab 19.x requirements list Valkey 7.2 as both the recommended and minimum supported version, and GitLab's weekly pipelines test Valkey 7.2.
+              - GitLab 19.3.2 requirements specify Valkey 7.2 as the recommended and minimum version, and weekly pipelines test the 7.2 release line. No broader Valkey minor-version support is inferred.
             sources:
               - *gitlab_19_requirements_source
               - *gitlab_19_pipeline_source
-            lastVerified: '2026-07-22'
+            lastVerified: '2026-09-11'
           gitlab-helm:
             ranges:
               - '>=10 <11'
@@ -70,68 +60,64 @@ projects:
               - GitLab 19.x requirements map GitLab 19.x to GitLab Helm chart 10.x.
             sources:
               - *gitlab_19_requirements_source
-            lastVerified: '2026-07-18'
-      '18':
+            lastVerified: '2026-09-11'
+          postgresql-linux-package-fresh-install:
+            ranges:
+              - '>=17 <18'
+              - '18.4'
+            relationship: Linux package fresh-install database
+            confidence: high
+            notes:
+              - GitLab 19.3 introduces PostgreSQL 18.4 as an opt-in option for fresh Linux-package installations, alongside the supported PostgreSQL 17 line.
+              - Upgrading an existing installation to PostgreSQL 18.4 is explicitly not supported; this entry does not apply to the Helm chart or general external-database installations.
+            sources:
+              - title: GitLab 19.3 release notes - PostgreSQL 18.4 for fresh Linux-package installs
+                url: https://docs.gitlab.com/releases/19/gitlab-19-3-released/
+                accessedAt: 2026-09-11
+              - title: PostgreSQL versions shipped with the GitLab Linux package
+                url: https://docs.gitlab.com/administration/package_information/postgresql_versions/
+                accessedAt: 2026-09-11
+            lastVerified: 2026-09-11
+      '>=19.1 <19.3':
         dependencies:
           postgresql:
             ranges:
-              - '>=16.5 <18'
+              - '>=17 <18'
             relationship: database
             confidence: high
             notes:
-              - GitLab 18.x requirements list PostgreSQL 16.5 as the minimum and PostgreSQL 17.x as the maximum supported PostgreSQL version.
+              - GitLab 19.x requirements list PostgreSQL 17.x as both the minimum and maximum supported PostgreSQL version.
             sources:
-              - *gitlab_18_requirements_source
-            lastVerified: '2026-07-09'
+              - *gitlab_19_requirements_source
+            lastVerified: '2026-09-11'
           redis:
             ranges:
-              - '>=6 <8'
+              - '>=7 <8'
             relationship: cache and background jobs
             confidence: high
             notes:
-              - GitLab 18.11 requirements state that Redis 6.x or 7.x is required.
+              - GitLab 19.x requirements recommend Redis 7.2 and require Redis 7.0 or newer.
             sources:
-              - *gitlab_18_requirements_source
-            lastVerified: '2026-07-09'
-          gitlab-helm:
+              - *gitlab_19_requirements_source
+            lastVerified: '2026-09-11'
+          valkey:
             ranges:
-              - '>=9 <10'
-            relationship: deployment chart
-            confidence: high
-            notes:
-              - GitLab 18.x requirements map GitLab 18.x to GitLab Helm chart 9.x.
-            sources:
-              - *gitlab_18_requirements_source
-            lastVerified: '2026-07-09'
-      '17':
-        dependencies:
-          postgresql:
-            ranges:
-              - '>=14 <17'
-            relationship: database
-            confidence: high
-            notes:
-              - GitLab 17.11 requirements list PostgreSQL 14.x as the minimum and PostgreSQL 16.x as the maximum supported PostgreSQL version.
-            sources:
-              - *gitlab_17_requirements_source
-            lastVerified: '2026-07-09'
-          redis:
-            ranges:
-              - '>=6.2 <8'
+              - '7.2'
             relationship: cache and background jobs
             confidence: high
             notes:
-              - GitLab 17.11 requirements state that Redis 6.2.x or 7.x is required.
+              - GitLab 19.3.2 requirements specify Valkey 7.2 as the recommended and minimum version, and weekly pipelines test the 7.2 release line. No broader Valkey minor-version support is inferred.
             sources:
-              - *gitlab_17_requirements_source
-            lastVerified: '2026-07-09'
+              - *gitlab_19_requirements_source
+              - *gitlab_19_pipeline_source
+            lastVerified: '2026-09-11'
           gitlab-helm:
             ranges:
-              - '>=8 <9'
+              - '>=10 <11'
             relationship: deployment chart
             confidence: high
             notes:
-              - GitLab 18.11 requirements map GitLab 17.x to GitLab Helm chart 8.x.
+              - GitLab 19.x requirements map GitLab 19.x to GitLab Helm chart 10.x.
             sources:
-              - *gitlab_18_requirements_source
-            lastVerified: '2026-07-09'
+              - *gitlab_19_requirements_source
+            lastVerified: '2026-09-11'

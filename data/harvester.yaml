@@ -1,22 +1,22 @@
 x-harvester-18-source: &harvester_18_source
   title: Harvester 1.8 Support Matrix
   url: https://www.suse.com/suse-harvester/support-matrix/all-supported-versions/harvester-v1-8-x/
-  accessedAt: '2026-08-25'
+  accessedAt: '2026-09-11'
 
 x-harvester-17-source: &harvester_17_source
   title: Harvester 1.7 Support Matrix
   url: https://www.suse.com/suse-harvester/support-matrix/all-supported-versions/harvester-v1-7-x/
-  accessedAt: '2026-07-10'
+  accessedAt: '2026-09-11'
 
 x-harvester-16-source: &harvester_16_source
   title: Harvester 1.6 Support Matrix
   url: https://www.suse.com/suse-harvester/support-matrix/all-supported-versions/harvester-v1-6-x/
-  accessedAt: '2026-07-10'
+  accessedAt: '2026-09-11'
 
 x-harvester-components-source: &harvester_components_source
   title: SUSE Virtualization Upgrade Component Versions
   url: https://documentation.suse.com/cloudnative/virtualization/v1.8/en/upgrades/upgrades.html
-  accessedAt: '2026-07-10'
+  accessedAt: '2026-09-11'
 
 projects:
   harvester:
@@ -28,7 +28,7 @@ projects:
     website: https://harvesterhci.io/
     description: Harvester compatibility for Rancher, Kubernetes, bundled infrastructure components, upgrade sources, and validated guest operating systems.
     versions:
-      '1.8':
+      1.8.2:
         dependencies:
           rancher:
             ranges:
@@ -39,7 +39,7 @@ projects:
               - The Harvester 1.8 support matrix pairs Harvester 1.8 with Rancher 2.14.
             sources:
               - *harvester_18_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           rke2:
             ranges:
               - '>=1.33 <1.35'
@@ -50,7 +50,7 @@ projects:
               - The node driver supports RKE2 1.33 through 1.35, but the source documents a known issue for RKE2 1.35 through 1.35.3, so those patches are excluded.
             sources:
               - *harvester_18_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           embedded-rke2:
             ranges:
               - '1.35'
@@ -60,7 +60,7 @@ projects:
               - The SUSE Virtualization component table maps the 1.8 line to embedded RKE2 1.35.
             sources:
               - *harvester_components_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           kubevirt:
             ranges:
               - '1.7'
@@ -70,7 +70,7 @@ projects:
               - The SUSE Virtualization component table maps the 1.8 line to KubeVirt 1.7.
             sources:
               - *harvester_components_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           longhorn:
             ranges:
               - '1.11'
@@ -80,7 +80,7 @@ projects:
               - The SUSE Virtualization component table maps the 1.8 line to SUSE Storage, based on Longhorn, 1.11.
             sources:
               - *harvester_components_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           sle-micro:
             ranges:
               - '6.2'
@@ -90,7 +90,7 @@ projects:
               - The SUSE Virtualization component table maps the 1.8 line to SLE Micro 6.2.
             sources:
               - *harvester_components_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           harvester-cloud-provider:
             ranges:
               - '0.2.11'
@@ -100,17 +100,17 @@ projects:
               - The support matrix lists Harvester Cloud Provider 0.2.11 with feature-upgrade support for the documented RKE2 patch levels.
             sources:
               - *harvester_18_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           harvester-csi-driver:
             ranges:
               - '>=0.1.28'
             relationship: supported guest cluster storage driver
             confidence: high
             notes:
-              - The support matrix lists Harvester CSI Driver 0.1.28 and later in the 0.1 line with Cloud Provider 0.2.11 for the documented RKE2 patch levels.
+              - The support matrix lists Harvester CSI Driver 0.1.28 and later paired with Cloud Provider 0.2.11; see rke2-ccm-csi for required RKE2 patches.
             sources:
               - *harvester_18_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           harvester-ui-extension:
             ranges:
               - '1.8.0'
@@ -122,7 +122,7 @@ projects:
               - The support matrix lists Harvester UI Extension 1.8.0 through 1.8.2 for Rancher 2.14.0 and later.
             sources:
               - *harvester_18_source
-            lastVerified: '2026-08-25'
+            lastVerified: '2026-09-11'
           ui-plugin-catalog:
             ranges:
               - '4.23.0'
@@ -131,20 +131,20 @@ projects:
             relationship: Harvester UI extension asset image
             confidence: high
             notes:
-              - UI extension 1.8.0 uses ui-plugin-catalog 4.23.0, extension 1.8.1 uses 4.30.0, and extension 1.8.2 uses 4.34.0.
+              - Catalog 4.23.0 contains UI extension 1.8.0; 4.30.0 contains 1.8.0 through 1.8.1; 4.34.0 contains 1.8.0 through 1.8.2. The catalog must include the selected extension.
             sources:
               - *harvester_18_source
-            lastVerified: '2026-08-25'
+            lastVerified: '2026-09-11'
           terraform-provider-harvester:
             ranges:
-              - '>=1.8 <1.9'
+              - 1.8.2
             relationship: infrastructure provider
             confidence: high
             notes:
-              - The support matrix maps Harvester 1.8.0 through 1.8.2 to matching Terraform provider versions.
+              - The support matrix certifies Harvester 1.8.2 with Terraform Provider 1.8.2.
             sources:
               - *harvester_18_source
-            lastVerified: '2026-08-25'
+            lastVerified: '2026-09-11'
           harvester-upgrade-source:
             ranges:
               - '1.7'
@@ -154,7 +154,7 @@ projects:
               - The support matrix documents upgrades from Harvester 1.7 to 1.8; same-line patch upgrades are directional and therefore are not modeled as a broad range.
             sources:
               - *harvester_18_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           sles:
             ranges:
               - 15 SP7
@@ -165,7 +165,7 @@ projects:
               - The support matrix lists SLES 15 SP7 and 16 as validated guest operating systems.
             sources:
               - *harvester_18_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           sle-micro-guest:
             ranges:
               - '6.1'
@@ -176,7 +176,7 @@ projects:
               - The support matrix lists SLE Micro 6.1 and 6.2 as validated guest operating systems.
             sources:
               - *harvester_18_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           ubuntu:
             ranges:
               - '22.04'
@@ -187,7 +187,7 @@ projects:
               - The support matrix lists Ubuntu 22.04 and 24.04 as validated guest operating systems.
             sources:
               - *harvester_18_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           rhel:
             ranges:
               - '9'
@@ -198,7 +198,7 @@ projects:
               - The support matrix lists RHEL 9 and 10 as validated guest operating systems.
             sources:
               - *harvester_18_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           windows-server:
             ranges:
               - '2025'
@@ -208,7 +208,7 @@ projects:
               - The support matrix lists Windows Server 2025 as a validated guest operating system.
             sources:
               - *harvester_18_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           windows:
             ranges:
               - '11'
@@ -218,8 +218,427 @@ projects:
               - The support matrix lists Windows 11 workstation as a validated guest operating system.
             sources:
               - *harvester_18_source
-            lastVerified: '2026-07-10'
-      '1.7':
+            lastVerified: '2026-09-11'
+          rke2-ccm-csi:
+            ranges:
+              - '>=1.33.11 <1.34'
+              - '>=1.34.7 <1.35'
+              - '>=1.35.4 <1.36'
+            relationship: guest cluster with Cloud Provider 0.2.11 and CSI Driver >=0.1.28
+            confidence: high
+            notes:
+              - The CCM/CSI integration requires these RKE2 patch minimums, which are narrower than the general Harvester node-driver range.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+      1.8.1:
+        dependencies:
+          rancher:
+            ranges:
+              - '>=2.14 <2.15'
+            relationship: management integration
+            confidence: high
+            notes:
+              - The Harvester 1.8 support matrix pairs Harvester 1.8 with Rancher 2.14.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          rke2:
+            ranges:
+              - '>=1.33 <1.35'
+              - '>=1.35.4 <1.36'
+            relationship: Harvester node-driver guest cluster
+            confidence: high
+            notes:
+              - The node driver supports RKE2 1.33 through 1.35, but the source documents a known issue for RKE2 1.35 through 1.35.3, so those patches are excluded.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          embedded-rke2:
+            ranges:
+              - '1.35'
+            relationship: bundled Kubernetes runtime
+            confidence: high
+            notes:
+              - The SUSE Virtualization component table maps the 1.8 line to embedded RKE2 1.35.
+            sources:
+              - *harvester_components_source
+            lastVerified: '2026-09-11'
+          kubevirt:
+            ranges:
+              - '1.7'
+            relationship: bundled virtualization runtime
+            confidence: high
+            notes:
+              - The SUSE Virtualization component table maps the 1.8 line to KubeVirt 1.7.
+            sources:
+              - *harvester_components_source
+            lastVerified: '2026-09-11'
+          longhorn:
+            ranges:
+              - '1.11'
+            relationship: bundled storage runtime
+            confidence: high
+            notes:
+              - The SUSE Virtualization component table maps the 1.8 line to SUSE Storage, based on Longhorn, 1.11.
+            sources:
+              - *harvester_components_source
+            lastVerified: '2026-09-11'
+          sle-micro:
+            ranges:
+              - '6.2'
+            relationship: bundled host operating system
+            confidence: high
+            notes:
+              - The SUSE Virtualization component table maps the 1.8 line to SLE Micro 6.2.
+            sources:
+              - *harvester_components_source
+            lastVerified: '2026-09-11'
+          harvester-cloud-provider:
+            ranges:
+              - '0.2.11'
+            relationship: supported guest cluster cloud provider
+            confidence: high
+            notes:
+              - The support matrix lists Harvester Cloud Provider 0.2.11 with feature-upgrade support for the documented RKE2 patch levels.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          harvester-csi-driver:
+            ranges:
+              - '>=0.1.28'
+            relationship: supported guest cluster storage driver
+            confidence: high
+            notes:
+              - The support matrix lists Harvester CSI Driver 0.1.28 and later paired with Cloud Provider 0.2.11; see rke2-ccm-csi for required RKE2 patches.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          harvester-ui-extension:
+            ranges:
+              - '1.8.0'
+              - '1.8.1'
+              - '1.8.2'
+            relationship: Rancher UI integration
+            confidence: high
+            notes:
+              - The support matrix lists Harvester UI Extension 1.8.0 through 1.8.2 for Rancher 2.14.0 and later.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          ui-plugin-catalog:
+            ranges:
+              - '4.23.0'
+              - '4.30.0'
+              - '4.34.0'
+            relationship: Harvester UI extension asset image
+            confidence: high
+            notes:
+              - Catalog 4.23.0 contains UI extension 1.8.0; 4.30.0 contains 1.8.0 through 1.8.1; 4.34.0 contains 1.8.0 through 1.8.2. The catalog must include the selected extension.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          terraform-provider-harvester:
+            ranges:
+              - 1.8.1
+            relationship: infrastructure provider
+            confidence: high
+            notes:
+              - The support matrix certifies Harvester 1.8.1 with Terraform Provider 1.8.1.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          harvester-upgrade-source:
+            ranges:
+              - '1.7'
+            relationship: supported prior-minor upgrade source
+            confidence: high
+            notes:
+              - The support matrix documents upgrades from Harvester 1.7 to 1.8; same-line patch upgrades are directional and therefore are not modeled as a broad range.
+              - The matrix states that 1.8.1 is not published to the upgrade responder because of CVE-2026-7374; 1.8.2 addresses that issue.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          sles:
+            ranges:
+              - 15 SP7
+              - '16'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists SLES 15 SP7 and 16 as validated guest operating systems.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          sle-micro-guest:
+            ranges:
+              - '6.1'
+              - '6.2'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists SLE Micro 6.1 and 6.2 as validated guest operating systems.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          ubuntu:
+            ranges:
+              - '22.04'
+              - '24.04'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists Ubuntu 22.04 and 24.04 as validated guest operating systems.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          rhel:
+            ranges:
+              - '9'
+              - '10'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists RHEL 9 and 10 as validated guest operating systems.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          windows-server:
+            ranges:
+              - '2025'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists Windows Server 2025 as a validated guest operating system.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          windows:
+            ranges:
+              - '11'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists Windows 11 workstation as a validated guest operating system.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          rke2-ccm-csi:
+            ranges:
+              - '>=1.33.11 <1.34'
+              - '>=1.34.7 <1.35'
+              - '>=1.35.4 <1.36'
+            relationship: guest cluster with Cloud Provider 0.2.11 and CSI Driver >=0.1.28
+            confidence: high
+            notes:
+              - The CCM/CSI integration requires these RKE2 patch minimums, which are narrower than the general Harvester node-driver range.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+      1.8.0:
+        dependencies:
+          rancher:
+            ranges:
+              - '>=2.14 <2.15'
+            relationship: management integration
+            confidence: high
+            notes:
+              - The Harvester 1.8 support matrix pairs Harvester 1.8 with Rancher 2.14.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          rke2:
+            ranges:
+              - '>=1.33 <1.35'
+              - '>=1.35.4 <1.36'
+            relationship: Harvester node-driver guest cluster
+            confidence: high
+            notes:
+              - The node driver supports RKE2 1.33 through 1.35, but the source documents a known issue for RKE2 1.35 through 1.35.3, so those patches are excluded.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          embedded-rke2:
+            ranges:
+              - '1.35'
+            relationship: bundled Kubernetes runtime
+            confidence: high
+            notes:
+              - The SUSE Virtualization component table maps the 1.8 line to embedded RKE2 1.35.
+            sources:
+              - *harvester_components_source
+            lastVerified: '2026-09-11'
+          kubevirt:
+            ranges:
+              - '1.7'
+            relationship: bundled virtualization runtime
+            confidence: high
+            notes:
+              - The SUSE Virtualization component table maps the 1.8 line to KubeVirt 1.7.
+            sources:
+              - *harvester_components_source
+            lastVerified: '2026-09-11'
+          longhorn:
+            ranges:
+              - '1.11'
+            relationship: bundled storage runtime
+            confidence: high
+            notes:
+              - The SUSE Virtualization component table maps the 1.8 line to SUSE Storage, based on Longhorn, 1.11.
+            sources:
+              - *harvester_components_source
+            lastVerified: '2026-09-11'
+          sle-micro:
+            ranges:
+              - '6.2'
+            relationship: bundled host operating system
+            confidence: high
+            notes:
+              - The SUSE Virtualization component table maps the 1.8 line to SLE Micro 6.2.
+            sources:
+              - *harvester_components_source
+            lastVerified: '2026-09-11'
+          harvester-cloud-provider:
+            ranges:
+              - '0.2.11'
+            relationship: supported guest cluster cloud provider
+            confidence: high
+            notes:
+              - The support matrix lists Harvester Cloud Provider 0.2.11 with feature-upgrade support for the documented RKE2 patch levels.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          harvester-csi-driver:
+            ranges:
+              - '>=0.1.28'
+            relationship: supported guest cluster storage driver
+            confidence: high
+            notes:
+              - The support matrix lists Harvester CSI Driver 0.1.28 and later paired with Cloud Provider 0.2.11; see rke2-ccm-csi for required RKE2 patches.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          harvester-ui-extension:
+            ranges:
+              - '1.8.0'
+              - '1.8.1'
+              - '1.8.2'
+            relationship: Rancher UI integration
+            confidence: high
+            notes:
+              - The support matrix lists Harvester UI Extension 1.8.0 through 1.8.2 for Rancher 2.14.0 and later.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          ui-plugin-catalog:
+            ranges:
+              - '4.23.0'
+              - '4.30.0'
+              - '4.34.0'
+            relationship: Harvester UI extension asset image
+            confidence: high
+            notes:
+              - Catalog 4.23.0 contains UI extension 1.8.0; 4.30.0 contains 1.8.0 through 1.8.1; 4.34.0 contains 1.8.0 through 1.8.2. The catalog must include the selected extension.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          terraform-provider-harvester:
+            ranges:
+              - 1.8.0
+            relationship: infrastructure provider
+            confidence: high
+            notes:
+              - The support matrix certifies Harvester 1.8.0 with Terraform Provider 1.8.0.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          harvester-upgrade-source:
+            ranges:
+              - '1.7'
+            relationship: supported prior-minor upgrade source
+            confidence: high
+            notes:
+              - The support matrix documents upgrades from Harvester 1.7 to 1.8; same-line patch upgrades are directional and therefore are not modeled as a broad range.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          sles:
+            ranges:
+              - 15 SP7
+              - '16'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists SLES 15 SP7 and 16 as validated guest operating systems.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          sle-micro-guest:
+            ranges:
+              - '6.1'
+              - '6.2'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists SLE Micro 6.1 and 6.2 as validated guest operating systems.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          ubuntu:
+            ranges:
+              - '22.04'
+              - '24.04'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists Ubuntu 22.04 and 24.04 as validated guest operating systems.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          rhel:
+            ranges:
+              - '9'
+              - '10'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists RHEL 9 and 10 as validated guest operating systems.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          windows-server:
+            ranges:
+              - '2025'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists Windows Server 2025 as a validated guest operating system.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          windows:
+            ranges:
+              - '11'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists Windows 11 workstation as a validated guest operating system.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+          rke2-ccm-csi:
+            ranges:
+              - '>=1.33.11 <1.34'
+              - '>=1.34.7 <1.35'
+              - '>=1.35.4 <1.36'
+            relationship: guest cluster with Cloud Provider 0.2.11 and CSI Driver >=0.1.28
+            confidence: high
+            notes:
+              - The CCM/CSI integration requires these RKE2 patch minimums, which are narrower than the general Harvester node-driver range.
+            sources:
+              - *harvester_18_source
+            lastVerified: '2026-09-11'
+      1.7.3:
         dependencies:
           rancher:
             ranges:
@@ -230,7 +649,7 @@ projects:
               - The Harvester 1.7 support matrix pairs Harvester 1.7 with Rancher 2.13.
             sources:
               - *harvester_17_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           rke2:
             ranges:
               - '>=1.32 <1.35'
@@ -240,7 +659,7 @@ projects:
               - The Harvester 1.7 node driver supports RKE2 1.32, 1.33, and 1.34.
             sources:
               - *harvester_17_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           embedded-rke2:
             ranges:
               - '1.34'
@@ -250,7 +669,7 @@ projects:
               - The SUSE Virtualization component table maps the 1.7 line to embedded RKE2 1.34.
             sources:
               - *harvester_components_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           kubevirt:
             ranges:
               - '1.6'
@@ -260,7 +679,7 @@ projects:
               - The SUSE Virtualization component table maps the 1.7 line to KubeVirt 1.6.
             sources:
               - *harvester_components_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           longhorn:
             ranges:
               - '1.10'
@@ -270,7 +689,7 @@ projects:
               - The SUSE Virtualization component table maps the 1.7 line to SUSE Storage, based on Longhorn, 1.10.
             sources:
               - *harvester_components_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           sle-micro:
             ranges:
               - '6.1'
@@ -280,7 +699,7 @@ projects:
               - The SUSE Virtualization component table maps the 1.7 line to SLE Micro 6.1.
             sources:
               - *harvester_components_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           harvester-cloud-provider:
             ranges:
               - '>=0.2.9 <0.2.12'
@@ -290,7 +709,7 @@ projects:
               - The support matrix lists Cloud Provider 0.2.9, 0.2.10, and 0.2.11 in supported driver combinations; required RKE2 patches depend on the paired CSI driver.
             sources:
               - *harvester_17_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           harvester-csi-driver:
             ranges:
               - '>=0.1.22 <0.1.26'
@@ -300,37 +719,42 @@ projects:
               - The support matrix lists CSI Driver 0.1.22 through 0.1.25 in supported combinations; required RKE2 patches depend on the paired Cloud Provider version.
             sources:
               - *harvester_17_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           harvester-ui-extension:
             ranges:
-              - '1.7'
+              - 1.7.0
+              - 1.7.1
+              - 1.7.2
+              - 1.7.3
             relationship: Rancher UI integration
             confidence: high
             notes:
-              - The support matrix lists Harvester UI Extension 1.7.x for Rancher 2.13.0 and later.
+              - The support matrix lists Harvester UI Extensions 1.7.0 through 1.7.3 for Rancher 2.13.0 and later.
             sources:
               - *harvester_17_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           ui-plugin-catalog:
             ranges:
-              - '4.13.0'
+              - 4.13.0
+              - 4.32.0
+              - 4.34.0
             relationship: Harvester UI extension asset image
             confidence: high
             notes:
-              - Harvester UI Extension 1.7.x uses ui-plugin-catalog 4.13.0.
+              - Catalog 4.13.0 contains UI extension 1.7.0; 4.32.0 contains 1.7.0 through 1.7.2; 4.34.0 contains 1.7.0 through 1.7.3. The catalog must include the selected extension.
             sources:
               - *harvester_17_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           terraform-provider-harvester:
             ranges:
-              - '>=1.7 <1.8'
+              - 1.7.3
             relationship: infrastructure provider
             confidence: high
             notes:
-              - The support matrix maps Harvester 1.7.0 and 1.7.1 to matching Terraform provider versions.
+              - The support matrix certifies Harvester 1.7.3 with Terraform Provider 1.7.3.
             sources:
               - *harvester_17_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           harvester-upgrade-source:
             ranges:
               - '1.6'
@@ -340,18 +764,18 @@ projects:
               - The support matrix documents upgrades from Harvester 1.6 to 1.7; same-line patch upgrades are directional and therefore are not modeled as a broad range.
             sources:
               - *harvester_17_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           sles:
             ranges:
-              - 15 SP6
               - 15 SP7
+              - '16'
             relationship: validated virtual machine guest operating system
             confidence: high
             notes:
-              - The support matrix lists SLES 15 SP6 and 15 SP7 as validated guest operating systems.
+              - The support matrix validates SLES 15 SP7 and 16 for Harvester 1.7.3.
             sources:
               - *harvester_17_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           sle-micro-guest:
             ranges:
               - '6.0'
@@ -362,7 +786,7 @@ projects:
               - The support matrix lists SLE Micro 6.0 and 6.1 as validated guest operating systems.
             sources:
               - *harvester_17_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           ubuntu:
             ranges:
               - '22.04'
@@ -373,7 +797,7 @@ projects:
               - The support matrix lists Ubuntu 22.04 and 24.04 as validated guest operating systems.
             sources:
               - *harvester_17_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           rhel:
             ranges:
               - '9'
@@ -384,7 +808,7 @@ projects:
               - The support matrix lists RHEL 9 and 10 as validated guest operating systems.
             sources:
               - *harvester_17_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           windows-server:
             ranges:
               - '2025'
@@ -394,7 +818,7 @@ projects:
               - The support matrix lists Windows Server 2025 as a validated guest operating system.
             sources:
               - *harvester_17_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           windows:
             ranges:
               - '11'
@@ -404,7 +828,580 @@ projects:
               - The support matrix lists Windows 11 workstation as a validated guest operating system.
             sources:
               - *harvester_17_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
+      1.7.2:
+        dependencies:
+          rancher:
+            ranges:
+              - '>=2.13 <2.14'
+            relationship: management integration
+            confidence: high
+            notes:
+              - The Harvester 1.7 support matrix pairs Harvester 1.7 with Rancher 2.13.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          rke2:
+            ranges:
+              - '>=1.32 <1.35'
+            relationship: Harvester node-driver guest cluster
+            confidence: high
+            notes:
+              - The Harvester 1.7 node driver supports RKE2 1.32, 1.33, and 1.34.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          embedded-rke2:
+            ranges:
+              - '1.34'
+            relationship: bundled Kubernetes runtime
+            confidence: high
+            notes:
+              - The SUSE Virtualization component table maps the 1.7 line to embedded RKE2 1.34.
+            sources:
+              - *harvester_components_source
+            lastVerified: '2026-09-11'
+          kubevirt:
+            ranges:
+              - '1.6'
+            relationship: bundled virtualization runtime
+            confidence: high
+            notes:
+              - The SUSE Virtualization component table maps the 1.7 line to KubeVirt 1.6.
+            sources:
+              - *harvester_components_source
+            lastVerified: '2026-09-11'
+          longhorn:
+            ranges:
+              - '1.10'
+            relationship: bundled storage runtime
+            confidence: high
+            notes:
+              - The SUSE Virtualization component table maps the 1.7 line to SUSE Storage, based on Longhorn, 1.10.
+            sources:
+              - *harvester_components_source
+            lastVerified: '2026-09-11'
+          sle-micro:
+            ranges:
+              - '6.1'
+            relationship: bundled host operating system
+            confidence: high
+            notes:
+              - The SUSE Virtualization component table maps the 1.7 line to SLE Micro 6.1.
+            sources:
+              - *harvester_components_source
+            lastVerified: '2026-09-11'
+          harvester-cloud-provider:
+            ranges:
+              - '>=0.2.9 <0.2.12'
+            relationship: supported guest cluster cloud provider
+            confidence: high
+            notes:
+              - The support matrix lists Cloud Provider 0.2.9, 0.2.10, and 0.2.11 in supported driver combinations; required RKE2 patches depend on the paired CSI driver.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          harvester-csi-driver:
+            ranges:
+              - '>=0.1.22 <0.1.26'
+            relationship: supported guest cluster storage driver
+            confidence: high
+            notes:
+              - The support matrix lists CSI Driver 0.1.22 through 0.1.25 in supported combinations; required RKE2 patches depend on the paired Cloud Provider version.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          harvester-ui-extension:
+            ranges:
+              - 1.7.0
+              - 1.7.1
+              - 1.7.2
+              - 1.7.3
+            relationship: Rancher UI integration
+            confidence: high
+            notes:
+              - The support matrix lists Harvester UI Extensions 1.7.0 through 1.7.3 for Rancher 2.13.0 and later.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          ui-plugin-catalog:
+            ranges:
+              - 4.13.0
+              - 4.32.0
+              - 4.34.0
+            relationship: Harvester UI extension asset image
+            confidence: high
+            notes:
+              - Catalog 4.13.0 contains UI extension 1.7.0; 4.32.0 contains 1.7.0 through 1.7.2; 4.34.0 contains 1.7.0 through 1.7.3. The catalog must include the selected extension.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          terraform-provider-harvester:
+            ranges:
+              - 1.7.2
+            relationship: infrastructure provider
+            confidence: high
+            notes:
+              - The support matrix certifies Harvester 1.7.2 with Terraform Provider 1.7.2.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          harvester-upgrade-source:
+            ranges:
+              - '1.6'
+            relationship: supported prior-minor upgrade source
+            confidence: high
+            notes:
+              - The support matrix documents upgrades from Harvester 1.6 to 1.7; same-line patch upgrades are directional and therefore are not modeled as a broad range.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          sles:
+            ranges:
+              - 15 SP6
+              - 15 SP7
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix validates SLES 15 SP6 and 15 SP7 for Harvester 1.7.0 through 1.7.2.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          sle-micro-guest:
+            ranges:
+              - '6.0'
+              - '6.1'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists SLE Micro 6.0 and 6.1 as validated guest operating systems.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          ubuntu:
+            ranges:
+              - '22.04'
+              - '24.04'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists Ubuntu 22.04 and 24.04 as validated guest operating systems.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          rhel:
+            ranges:
+              - '9'
+              - '10'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists RHEL 9 and 10 as validated guest operating systems.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          windows-server:
+            ranges:
+              - '2025'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists Windows Server 2025 as a validated guest operating system.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          windows:
+            ranges:
+              - '11'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists Windows 11 workstation as a validated guest operating system.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+      1.7.1:
+        dependencies:
+          rancher:
+            ranges:
+              - '>=2.13 <2.14'
+            relationship: management integration
+            confidence: high
+            notes:
+              - The Harvester 1.7 support matrix pairs Harvester 1.7 with Rancher 2.13.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          rke2:
+            ranges:
+              - '>=1.32 <1.35'
+            relationship: Harvester node-driver guest cluster
+            confidence: high
+            notes:
+              - The Harvester 1.7 node driver supports RKE2 1.32, 1.33, and 1.34.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          embedded-rke2:
+            ranges:
+              - '1.34'
+            relationship: bundled Kubernetes runtime
+            confidence: high
+            notes:
+              - The SUSE Virtualization component table maps the 1.7 line to embedded RKE2 1.34.
+            sources:
+              - *harvester_components_source
+            lastVerified: '2026-09-11'
+          kubevirt:
+            ranges:
+              - '1.6'
+            relationship: bundled virtualization runtime
+            confidence: high
+            notes:
+              - The SUSE Virtualization component table maps the 1.7 line to KubeVirt 1.6.
+            sources:
+              - *harvester_components_source
+            lastVerified: '2026-09-11'
+          longhorn:
+            ranges:
+              - '1.10'
+            relationship: bundled storage runtime
+            confidence: high
+            notes:
+              - The SUSE Virtualization component table maps the 1.7 line to SUSE Storage, based on Longhorn, 1.10.
+            sources:
+              - *harvester_components_source
+            lastVerified: '2026-09-11'
+          sle-micro:
+            ranges:
+              - '6.1'
+            relationship: bundled host operating system
+            confidence: high
+            notes:
+              - The SUSE Virtualization component table maps the 1.7 line to SLE Micro 6.1.
+            sources:
+              - *harvester_components_source
+            lastVerified: '2026-09-11'
+          harvester-cloud-provider:
+            ranges:
+              - '>=0.2.9 <0.2.12'
+            relationship: supported guest cluster cloud provider
+            confidence: high
+            notes:
+              - The support matrix lists Cloud Provider 0.2.9, 0.2.10, and 0.2.11 in supported driver combinations; required RKE2 patches depend on the paired CSI driver.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          harvester-csi-driver:
+            ranges:
+              - '>=0.1.22 <0.1.26'
+            relationship: supported guest cluster storage driver
+            confidence: high
+            notes:
+              - The support matrix lists CSI Driver 0.1.22 through 0.1.25 in supported combinations; required RKE2 patches depend on the paired Cloud Provider version.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          harvester-ui-extension:
+            ranges:
+              - 1.7.0
+              - 1.7.1
+              - 1.7.2
+              - 1.7.3
+            relationship: Rancher UI integration
+            confidence: high
+            notes:
+              - The support matrix lists Harvester UI Extensions 1.7.0 through 1.7.3 for Rancher 2.13.0 and later.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          ui-plugin-catalog:
+            ranges:
+              - 4.13.0
+              - 4.32.0
+              - 4.34.0
+            relationship: Harvester UI extension asset image
+            confidence: high
+            notes:
+              - Catalog 4.13.0 contains UI extension 1.7.0; 4.32.0 contains 1.7.0 through 1.7.2; 4.34.0 contains 1.7.0 through 1.7.3. The catalog must include the selected extension.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          terraform-provider-harvester:
+            ranges:
+              - 1.7.1
+            relationship: infrastructure provider
+            confidence: high
+            notes:
+              - The support matrix certifies Harvester 1.7.1 with Terraform Provider 1.7.1.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          harvester-upgrade-source:
+            ranges:
+              - '1.6'
+            relationship: supported prior-minor upgrade source
+            confidence: high
+            notes:
+              - The support matrix documents upgrades from Harvester 1.6 to 1.7; same-line patch upgrades are directional and therefore are not modeled as a broad range.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          sles:
+            ranges:
+              - 15 SP6
+              - 15 SP7
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix validates SLES 15 SP6 and 15 SP7 for Harvester 1.7.0 through 1.7.2.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          sle-micro-guest:
+            ranges:
+              - '6.0'
+              - '6.1'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists SLE Micro 6.0 and 6.1 as validated guest operating systems.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          ubuntu:
+            ranges:
+              - '22.04'
+              - '24.04'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists Ubuntu 22.04 and 24.04 as validated guest operating systems.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          rhel:
+            ranges:
+              - '9'
+              - '10'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists RHEL 9 and 10 as validated guest operating systems.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          windows-server:
+            ranges:
+              - '2025'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists Windows Server 2025 as a validated guest operating system.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          windows:
+            ranges:
+              - '11'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists Windows 11 workstation as a validated guest operating system.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+      1.7.0:
+        dependencies:
+          rancher:
+            ranges:
+              - '>=2.13 <2.14'
+            relationship: management integration
+            confidence: high
+            notes:
+              - The Harvester 1.7 support matrix pairs Harvester 1.7 with Rancher 2.13.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          rke2:
+            ranges:
+              - '>=1.32 <1.35'
+            relationship: Harvester node-driver guest cluster
+            confidence: high
+            notes:
+              - The Harvester 1.7 node driver supports RKE2 1.32, 1.33, and 1.34.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          embedded-rke2:
+            ranges:
+              - '1.34'
+            relationship: bundled Kubernetes runtime
+            confidence: high
+            notes:
+              - The SUSE Virtualization component table maps the 1.7 line to embedded RKE2 1.34.
+            sources:
+              - *harvester_components_source
+            lastVerified: '2026-09-11'
+          kubevirt:
+            ranges:
+              - '1.6'
+            relationship: bundled virtualization runtime
+            confidence: high
+            notes:
+              - The SUSE Virtualization component table maps the 1.7 line to KubeVirt 1.6.
+            sources:
+              - *harvester_components_source
+            lastVerified: '2026-09-11'
+          longhorn:
+            ranges:
+              - '1.10'
+            relationship: bundled storage runtime
+            confidence: high
+            notes:
+              - The SUSE Virtualization component table maps the 1.7 line to SUSE Storage, based on Longhorn, 1.10.
+            sources:
+              - *harvester_components_source
+            lastVerified: '2026-09-11'
+          sle-micro:
+            ranges:
+              - '6.1'
+            relationship: bundled host operating system
+            confidence: high
+            notes:
+              - The SUSE Virtualization component table maps the 1.7 line to SLE Micro 6.1.
+            sources:
+              - *harvester_components_source
+            lastVerified: '2026-09-11'
+          harvester-cloud-provider:
+            ranges:
+              - '>=0.2.9 <0.2.12'
+            relationship: supported guest cluster cloud provider
+            confidence: high
+            notes:
+              - The support matrix lists Cloud Provider 0.2.9, 0.2.10, and 0.2.11 in supported driver combinations; required RKE2 patches depend on the paired CSI driver.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          harvester-csi-driver:
+            ranges:
+              - '>=0.1.22 <0.1.26'
+            relationship: supported guest cluster storage driver
+            confidence: high
+            notes:
+              - The support matrix lists CSI Driver 0.1.22 through 0.1.25 in supported combinations; required RKE2 patches depend on the paired Cloud Provider version.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          harvester-ui-extension:
+            ranges:
+              - 1.7.0
+              - 1.7.1
+              - 1.7.2
+              - 1.7.3
+            relationship: Rancher UI integration
+            confidence: high
+            notes:
+              - The support matrix lists Harvester UI Extensions 1.7.0 through 1.7.3 for Rancher 2.13.0 and later.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          ui-plugin-catalog:
+            ranges:
+              - 4.13.0
+              - 4.32.0
+              - 4.34.0
+            relationship: Harvester UI extension asset image
+            confidence: high
+            notes:
+              - Catalog 4.13.0 contains UI extension 1.7.0; 4.32.0 contains 1.7.0 through 1.7.2; 4.34.0 contains 1.7.0 through 1.7.3. The catalog must include the selected extension.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          terraform-provider-harvester:
+            ranges:
+              - 1.7.0
+            relationship: infrastructure provider
+            confidence: high
+            notes:
+              - The support matrix certifies Harvester 1.7.0 with Terraform Provider 1.7.0.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          harvester-upgrade-source:
+            ranges:
+              - '1.6'
+            relationship: supported prior-minor upgrade source
+            confidence: high
+            notes:
+              - The support matrix documents upgrades from Harvester 1.6 to 1.7; same-line patch upgrades are directional and therefore are not modeled as a broad range.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          sles:
+            ranges:
+              - 15 SP6
+              - 15 SP7
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix validates SLES 15 SP6 and 15 SP7 for Harvester 1.7.0 through 1.7.2.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          sle-micro-guest:
+            ranges:
+              - '6.0'
+              - '6.1'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists SLE Micro 6.0 and 6.1 as validated guest operating systems.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          ubuntu:
+            ranges:
+              - '22.04'
+              - '24.04'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists Ubuntu 22.04 and 24.04 as validated guest operating systems.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          rhel:
+            ranges:
+              - '9'
+              - '10'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists RHEL 9 and 10 as validated guest operating systems.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          windows-server:
+            ranges:
+              - '2025'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists Windows Server 2025 as a validated guest operating system.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
+          windows:
+            ranges:
+              - '11'
+            relationship: validated virtual machine guest operating system
+            confidence: high
+            notes:
+              - The support matrix lists Windows 11 workstation as a validated guest operating system.
+            sources:
+              - *harvester_17_source
+            lastVerified: '2026-09-11'
       '1.6':
         dependencies:
           rancher:
@@ -416,7 +1413,7 @@ projects:
               - The Harvester 1.6 support matrix pairs Harvester 1.6 with Rancher 2.12.
             sources:
               - *harvester_16_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           rke2:
             ranges:
               - '>=1.31 <1.34'
@@ -426,7 +1423,7 @@ projects:
               - The Harvester 1.6 node driver supports RKE2 1.31, 1.32, and 1.33.
             sources:
               - *harvester_16_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           embedded-rke2:
             ranges:
               - '1.33'
@@ -436,7 +1433,7 @@ projects:
               - The SUSE Virtualization component table maps the 1.6 line to embedded RKE2 1.33.
             sources:
               - *harvester_components_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           kubevirt:
             ranges:
               - '1.5'
@@ -446,7 +1443,7 @@ projects:
               - The SUSE Virtualization component table maps the 1.6 line to KubeVirt 1.5.
             sources:
               - *harvester_components_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           longhorn:
             ranges:
               - '1.9'
@@ -456,7 +1453,7 @@ projects:
               - The SUSE Virtualization component table maps the 1.6 line to SUSE Storage, based on Longhorn, 1.9.
             sources:
               - *harvester_components_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           sle-micro:
             ranges:
               - '5.5'
@@ -466,7 +1463,7 @@ projects:
               - The SUSE Virtualization component table maps the 1.6 line to SLE Micro 5.5.
             sources:
               - *harvester_components_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           harvester-cloud-provider:
             ranges:
               - '>=0.2.9 <0.2.11'
@@ -476,7 +1473,7 @@ projects:
               - The support matrix lists Cloud Provider 0.2.9 and 0.2.10 in supported driver combinations; required RKE2 patches depend on the paired CSI driver.
             sources:
               - *harvester_16_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           harvester-csi-driver:
             ranges:
               - '>=0.1.22 <0.1.25'
@@ -486,7 +1483,7 @@ projects:
               - The support matrix lists CSI Driver 0.1.22 through 0.1.24 in supported combinations; required RKE2 patches depend on the paired Cloud Provider version.
             sources:
               - *harvester_16_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           terraform-provider-harvester:
             ranges:
               - '1.6'
@@ -496,7 +1493,7 @@ projects:
               - The support matrix maps Harvester 1.6.0 and 1.6.1 to Terraform Provider 1.6.
             sources:
               - *harvester_16_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           harvester-upgrade-source:
             ranges:
               - '1.5'
@@ -506,7 +1503,7 @@ projects:
               - The support matrix documents upgrades from Harvester 1.5 to 1.6; same-line patch upgrades are directional and therefore are not modeled as a broad range.
             sources:
               - *harvester_16_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           sles:
             ranges:
               - 15 SP6
@@ -517,7 +1514,7 @@ projects:
               - The support matrix lists SLES 15 SP6 and 15 SP7 as validated guest operating systems.
             sources:
               - *harvester_16_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           sle-micro-guest:
             ranges:
               - '6.0'
@@ -528,7 +1525,7 @@ projects:
               - The support matrix lists SLE Micro 6.0 and 6.1 as validated guest operating systems.
             sources:
               - *harvester_16_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           ubuntu:
             ranges:
               - '22.04'
@@ -539,7 +1536,7 @@ projects:
               - The support matrix lists Ubuntu 22.04 and 24.04 as validated guest operating systems.
             sources:
               - *harvester_16_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           rhel:
             ranges:
               - '9'
@@ -550,7 +1547,7 @@ projects:
               - The support matrix lists RHEL 9 and 10 as validated guest operating systems.
             sources:
               - *harvester_16_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           windows-server:
             ranges:
               - '2025'
@@ -560,7 +1557,7 @@ projects:
               - The support matrix lists Windows Server 2025 as a validated guest operating system.
             sources:
               - *harvester_16_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           windows:
             ranges:
               - '11'
@@ -570,4 +1567,4 @@ projects:
               - The support matrix lists Windows 11 workstation as a validated guest operating system.
             sources:
               - *harvester_16_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'

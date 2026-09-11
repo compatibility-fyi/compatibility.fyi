@@ -1,22 +1,22 @@
 x-neuvector-56-source: &neuvector_56_source
   title: SUSE Security 5.6 System Requirements
   url: https://documentation.suse.com/cloudnative/security/5.6/en/requirements.html
-  accessedAt: '2026-09-08'
+  accessedAt: '2026-09-11'
 
 x-neuvector-55-source: &neuvector_55_source
   title: SUSE Security 5.5 System Requirements
   url: https://documentation.suse.com/cloudnative/security/5.5/en/requirements.html
-  accessedAt: '2026-07-10'
+  accessedAt: '2026-09-11'
 
 x-neuvector-54-source: &neuvector_54_source
   title: SUSE Security 5.4 System Requirements
   url: https://documentation.suse.com/cloudnative/security/5.4/en/requirements.html
-  accessedAt: '2026-07-10'
+  accessedAt: '2026-09-11'
 
 x-neuvector-53-source: &neuvector_53_source
   title: SUSE Security 5.3 System Requirements
   url: https://documentation.suse.com/cloudnative/security/5.3/en/requirements.html
-  accessedAt: '2026-07-10'
+  accessedAt: '2026-09-11'
 
 projects:
   neuvector:
@@ -39,7 +39,7 @@ projects:
               - The SUSE Security 5.6 requirements state that Kubernetes 1.19 through 1.36 are tested with every release.
             sources:
               - *neuvector_56_source
-            lastVerified: '2026-09-08'
+            lastVerified: '2026-09-11'
           openshift:
             ranges:
               - '>=4.6 <4.23'
@@ -49,27 +49,7 @@ projects:
               - The SUSE Security 5.6 requirements state that Red Hat OpenShift 4.6 through 4.22 are tested with every release.
             sources:
               - *neuvector_56_source
-            lastVerified: '2026-09-08'
-          docker:
-            ranges:
-              - '>=1.9'
-            relationship: container runtime
-            confidence: high
-            notes:
-              - The requirements support Docker runtime 1.9.0 and later; Docker on macOS and Windows is explicitly unsupported.
-            sources:
-              - *neuvector_56_source
-            lastVerified: '2026-07-18'
-          docker-api:
-            ranges:
-              - '>=1.21'
-            relationship: container runtime API
-            confidence: high
-            notes:
-              - The requirements support Docker API 1.21 and later for Community Edition and Enterprise Edition.
-            sources:
-              - *neuvector_56_source
-            lastVerified: '2026-07-18'
+            lastVerified: '2026-09-11'
           architecture:
             ranges:
               - amd64
@@ -80,7 +60,7 @@ projects:
               - The requirements list AMD64 and Arm architectures as supported.
             sources:
               - *neuvector_56_source
-            lastVerified: '2026-07-18'
+            lastVerified: '2026-09-11'
           container-runtime:
             ranges:
               - docker
@@ -92,7 +72,7 @@ projects:
               - Docker, containerd, and CRI-O are supported; containerd and CRI-O require the documented volume-path changes.
             sources:
               - *neuvector_56_source
-            lastVerified: '2026-07-18'
+            lastVerified: '2026-09-11'
           cni:
             ranges:
               - openshift-ovs
@@ -111,7 +91,7 @@ projects:
               - The requirements list these CNI implementations and public-cloud CNIs as tested and supported; Multus support was added in NeuVector 5.4.0.
             sources:
               - *neuvector_56_source
-            lastVerified: '2026-07-18'
+            lastVerified: '2026-09-11'
           linux-distribution:
             ranges:
               - suse-linux
@@ -128,7 +108,7 @@ projects:
               - The requirements officially support these Linux distribution families; no distribution version ranges are published.
             sources:
               - *neuvector_56_source
-            lastVerified: '2026-07-18'
+            lastVerified: '2026-09-11'
           kubernetes-platform:
             ranges:
               - rancher
@@ -150,7 +130,7 @@ projects:
               - The requirements distinguish platforms tested with every release from additional Kubernetes and Docker-compliant platforms verified to work; GKE Autopilot is explicitly unsupported.
             sources:
               - *neuvector_56_source
-            lastVerified: '2026-07-18'
+            lastVerified: '2026-09-11'
           ip-stack:
             ranges:
               - ipv4
@@ -160,7 +140,7 @@ projects:
               - The requirements explicitly state that IPv6 is unsupported.
             sources:
               - *neuvector_56_source
-            lastVerified: '2026-07-18'
+            lastVerified: '2026-09-11'
       '5.5':
         dependencies:
           kubernetes:
@@ -172,7 +152,7 @@ projects:
               - The SUSE Security 5.5 requirements state that Kubernetes 1.19 through 1.32 are tested with every release.
             sources:
               - *neuvector_55_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           openshift:
             ranges:
               - '>=4.6 <4.17'
@@ -182,7 +162,7 @@ projects:
               - The SUSE Security 5.5 requirements state that Red Hat OpenShift 4.6 through 4.16 are tested with every release.
             sources:
               - *neuvector_55_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           docker:
             ranges:
               - '>=1.9'
@@ -192,17 +172,17 @@ projects:
               - The requirements support Docker runtime 1.9.0 and later; Docker on macOS and Windows is explicitly unsupported.
             sources:
               - *neuvector_55_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           docker-api:
             ranges:
-              - '>=1.21'
+              - '1.21'
             relationship: container runtime API
             confidence: high
             notes:
-              - The requirements support Docker API 1.21 and later for Community Edition and Enterprise Edition.
+              - The requirements list Docker API version 1.21 for Community Edition and Enterprise Edition; they do not state an open-ended API version range.
             sources:
               - *neuvector_55_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           architecture:
             ranges:
               - amd64
@@ -213,7 +193,7 @@ projects:
               - The requirements list AMD64 and Arm architectures as supported.
             sources:
               - *neuvector_55_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           container-runtime:
             ranges:
               - docker
@@ -225,7 +205,7 @@ projects:
               - Docker, containerd, and CRI-O are supported; containerd and CRI-O require the documented volume-path changes.
             sources:
               - *neuvector_55_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           cni:
             ranges:
               - openshift-ovs
@@ -244,7 +224,7 @@ projects:
               - The requirements list these CNI implementations and public-cloud CNIs as tested and supported; Multus support was added in NeuVector 5.4.0.
             sources:
               - *neuvector_55_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           linux-distribution:
             ranges:
               - suse-linux
@@ -261,7 +241,7 @@ projects:
               - The requirements officially support these Linux distribution families; no distribution version ranges are published.
             sources:
               - *neuvector_55_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           kubernetes-platform:
             ranges:
               - rancher
@@ -283,7 +263,7 @@ projects:
               - The requirements distinguish platforms tested with every release from additional Kubernetes and Docker-compliant platforms verified to work; GKE Autopilot is explicitly unsupported.
             sources:
               - *neuvector_55_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           ip-stack:
             ranges:
               - ipv4
@@ -293,7 +273,7 @@ projects:
               - The requirements explicitly state that IPv6 is unsupported.
             sources:
               - *neuvector_55_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
       '5.4':
         dependencies:
           kubernetes:
@@ -305,7 +285,7 @@ projects:
               - The SUSE Security 5.4 requirements state that Kubernetes 1.19 through 1.32 are tested with every release.
             sources:
               - *neuvector_54_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           openshift:
             ranges:
               - '>=4.6 <4.17'
@@ -315,7 +295,7 @@ projects:
               - The SUSE Security 5.4 requirements state that Red Hat OpenShift 4.6 through 4.16 are tested with every release.
             sources:
               - *neuvector_54_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           docker:
             ranges:
               - '>=1.9'
@@ -325,17 +305,17 @@ projects:
               - The requirements support Docker runtime 1.9.0 and later; Docker on macOS and Windows is explicitly unsupported.
             sources:
               - *neuvector_54_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           docker-api:
             ranges:
-              - '>=1.21'
+              - '1.21'
             relationship: container runtime API
             confidence: high
             notes:
-              - The requirements support Docker API 1.21 and later for Community Edition and Enterprise Edition.
+              - The requirements list Docker API version 1.21 for Community Edition and Enterprise Edition; they do not state an open-ended API version range.
             sources:
               - *neuvector_54_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           architecture:
             ranges:
               - amd64
@@ -346,7 +326,7 @@ projects:
               - The requirements list AMD64 and Arm architectures as supported.
             sources:
               - *neuvector_54_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           container-runtime:
             ranges:
               - docker
@@ -358,7 +338,7 @@ projects:
               - Docker, containerd, and CRI-O are supported; containerd and CRI-O require the documented volume-path changes.
             sources:
               - *neuvector_54_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           cni:
             ranges:
               - openshift-ovs
@@ -377,7 +357,7 @@ projects:
               - The requirements list these CNI implementations and public-cloud CNIs as tested and supported; Multus support was added in NeuVector 5.4.0.
             sources:
               - *neuvector_54_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           linux-distribution:
             ranges:
               - suse-linux
@@ -394,7 +374,7 @@ projects:
               - The requirements officially support these Linux distribution families; no distribution version ranges are published.
             sources:
               - *neuvector_54_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           kubernetes-platform:
             ranges:
               - rancher
@@ -416,7 +396,7 @@ projects:
               - The requirements distinguish platforms tested with every release from additional Kubernetes and Docker-compliant platforms verified to work; GKE Autopilot is explicitly unsupported.
             sources:
               - *neuvector_54_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           ip-stack:
             ranges:
               - ipv4
@@ -426,7 +406,7 @@ projects:
               - The requirements explicitly state that IPv6 is unsupported.
             sources:
               - *neuvector_54_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
       '5.3':
         dependencies:
           kubernetes:
@@ -438,7 +418,7 @@ projects:
               - The SUSE Security 5.3 requirements state that Kubernetes 1.19 through 1.30 are tested with every release.
             sources:
               - *neuvector_53_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           openshift:
             ranges:
               - '>=4.6 <4.15'
@@ -448,7 +428,7 @@ projects:
               - The SUSE Security 5.3 requirements state that Red Hat OpenShift 4.6 through 4.14 are tested with every release.
             sources:
               - *neuvector_53_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           docker:
             ranges:
               - '>=1.9'
@@ -458,17 +438,17 @@ projects:
               - The requirements support Docker runtime 1.9.0 and later; Docker on macOS and Windows is explicitly unsupported.
             sources:
               - *neuvector_53_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           docker-api:
             ranges:
-              - '>=1.21'
+              - '1.21'
             relationship: container runtime API
             confidence: high
             notes:
-              - The requirements support Docker API 1.21 and later for Community Edition and Enterprise Edition.
+              - The requirements list Docker API version 1.21 for Community Edition and Enterprise Edition; they do not state an open-ended API version range.
             sources:
               - *neuvector_53_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           architecture:
             ranges:
               - amd64
@@ -479,7 +459,7 @@ projects:
               - The requirements list AMD64 and Arm architectures as supported.
             sources:
               - *neuvector_53_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           container-runtime:
             ranges:
               - docker
@@ -491,7 +471,7 @@ projects:
               - Docker, containerd, and CRI-O are supported; containerd and CRI-O require the documented volume-path changes.
             sources:
               - *neuvector_53_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           cni:
             ranges:
               - openshift-ovs
@@ -509,7 +489,7 @@ projects:
               - The requirements list these CNI implementations and public-cloud CNIs as tested and supported and explicitly state that Multus is unsupported in the 5.3 line.
             sources:
               - *neuvector_53_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           linux-distribution:
             ranges:
               - suse-linux
@@ -526,7 +506,7 @@ projects:
               - The requirements officially support these Linux distribution families; no distribution version ranges are published.
             sources:
               - *neuvector_53_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           kubernetes-platform:
             ranges:
               - rancher
@@ -548,7 +528,7 @@ projects:
               - The requirements distinguish platforms tested with every release from additional Kubernetes and Docker-compliant platforms verified to work; GKE Autopilot is explicitly unsupported.
             sources:
               - *neuvector_53_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'
           ip-stack:
             ranges:
               - ipv4
@@ -558,4 +538,4 @@ projects:
               - The requirements explicitly state that IPv6 is unsupported.
             sources:
               - *neuvector_53_source
-            lastVerified: '2026-07-10'
+            lastVerified: '2026-09-11'

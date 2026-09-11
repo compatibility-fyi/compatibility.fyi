@@ -1,7 +1,7 @@
 x-argocd-install-source: &argocd_install_source
-  title: Argo CD 3.5 tested Kubernetes versions
-  url: https://github.com/argoproj/argo-cd/blob/109ca7ca71139e514114499d294a492e7910a965/docs/operator-manual/tested-kubernetes-versions.md
-  accessedAt: '2026-08-13'
+  title: Argo CD v3.5.2 tagged tested Kubernetes versions
+  url: https://github.com/argoproj/argo-cd/blob/v3.5.2/docs/operator-manual/tested-kubernetes-versions.md
+  accessedAt: '2026-09-11'
 
 projects:
   argocd:
@@ -24,7 +24,7 @@ projects:
               - Argo CD installation docs list Argo CD 3.5 as tested with Kubernetes v1.36, v1.35, v1.34, and v1.33.
             sources:
               - *argocd_install_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-11'
       '3.4':
         dependencies:
           kubernetes:
@@ -36,7 +36,7 @@ projects:
               - Argo CD installation docs list Argo CD 3.4 as tested with Kubernetes v1.35, v1.34, v1.33, and v1.32.
             sources:
               - *argocd_install_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
       '3.3':
         dependencies:
           kubernetes:
@@ -48,4 +48,4 @@ projects:
               - Argo CD installation docs list Argo CD 3.3 as tested with Kubernetes v1.35, v1.34, v1.33, and v1.32.
             sources:
               - *argocd_install_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'

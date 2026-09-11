@@ -49,7 +49,7 @@ const projectResponse = `{
 
 const singleCheckResponse = `{
   "project": "keycloak",
-  "version": "26",
+  "version": "26.7",
   "dependency": "postgresql",
   "dependencyVersion": "17",
   "compatible": "compatible",
@@ -57,15 +57,15 @@ const singleCheckResponse = `{
   "matchedConstraint": null,
   "relationship": "database",
   "confidence": "high",
-  "lastVerified": "2026-07-08",
+  "lastVerified": "2026-09-11",
   "notes": [
-    "Keycloak current 26.x supported configurations list PostgreSQL 18.x, 17.x, 16.x, 15.x, and 14.x."
+    "Keycloak 26.7 supported configurations list PostgreSQL 18.x, 17.x, 16.x, 15.x, and 14.x."
   ],
   "sources": [
     {
-      "title": "Keycloak Supported Configurations - Supported Databases",
-      "url": "https://www.keycloak.org/server/supported-configurations",
-      "accessedAt": "2026-07-08"
+      "title": "Keycloak 26.7.3 supported database versions",
+      "url": "https://raw.githubusercontent.com/keycloak/keycloak/26.7.3/docs/guides/server/templates/databases.adoc",
+      "accessedAt": "2026-09-11"
     }
   ]
 }`;
@@ -245,7 +245,7 @@ export function DocsApiPage() {
                 <h3>3. Check compatibility</h3>
                 <p>Ask whether one dependency version is compatible with one project version.</p>
                 <CodeBlock copyable>
-                  {`curl "https://compatibility.fyi/api/v1/check?project=keycloak&version=26&dependency=postgresql&dependencyVersion=17"`}
+                  {`curl "https://compatibility.fyi/api/v1/check?project=keycloak&version=26.7&dependency=postgresql&dependencyVersion=17"`}
                 </CodeBlock>
               </div>
             </div>
@@ -322,7 +322,7 @@ export function DocsApiPage() {
           >
             <ParameterTable parameters={singleCheckParameters} />
             <CodeBlock copyable>
-              {`curl "https://compatibility.fyi/api/v1/check?project=keycloak&version=26&dependency=postgresql&dependencyVersion=17"`}
+              {`curl "https://compatibility.fyi/api/v1/check?project=keycloak&version=26.7&dependency=postgresql&dependencyVersion=17"`}
             </CodeBlock>
             <CodeBlock>{singleCheckResponse}</CodeBlock>
           </EndpointSection>

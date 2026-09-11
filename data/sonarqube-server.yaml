@@ -1,52 +1,32 @@
-x-sonarqube-lta-dependencies-source: &sonarqube_lta_dependencies_source
-  title: SonarQube Server 2026.1 LTA to LTA Release Notes - Dependencies
-  url: https://docs.sonarsource.com/sonarqube-server/2026.1/server-update-and-maintenance/lta-to-lta-release-notes
-  accessedAt: '2026-07-09'
-
 x-sonarqube-2026-4-host-source: &sonarqube_2026_4_host_source
   title: SonarQube Server 2026.4 host requirements
   url: https://docs.sonarsource.com/sonarqube-server/2026.4/server-installation/server-host-requirements
-  accessedAt: '2026-07-27'
+  accessedAt: '2026-09-11'
 
 x-sonarqube-2026-4-database-source: &sonarqube_2026_4_database_source
   title: SonarQube Server 2026.4 database requirements
   url: https://docs.sonarsource.com/sonarqube-server/2026.4/server-installation/installing-the-database
-  accessedAt: '2026-07-27'
+  accessedAt: '2026-09-11'
 
 x-sonarqube-2026-4-helm-source: &sonarqube_2026_4_helm_source
   title: SonarQube Server 2026.4.0 Helm chart compatibility
   url: https://github.com/SonarSource/helm-chart-sonarqube/blob/sonarqube-2026.4.0-sonarqube-dce-2026.4.0/charts/sonarqube/README.md
-  accessedAt: '2026-07-27'
+  accessedAt: '2026-09-11'
 
 x-sonarqube-2026-3-host-source: &sonarqube_2026_3_host_source
   title: SonarQube Server 2026.3 host requirements
   url: https://docs.sonarsource.com/sonarqube-server/2026.3/server-installation/server-host-requirements
-  accessedAt: '2026-07-13'
+  accessedAt: '2026-09-11'
 
 x-sonarqube-2026-3-database-source: &sonarqube_2026_3_database_source
   title: SonarQube Server 2026.3 database requirements
   url: https://docs.sonarsource.com/sonarqube-server/2026.3/server-installation/installing-the-database
-  accessedAt: '2026-07-13'
+  accessedAt: '2026-09-11'
 
 x-sonarqube-2026-3-helm-source: &sonarqube_2026_3_helm_source
   title: SonarQube Server 2026.3.1 Helm chart compatibility
   url: https://github.com/SonarSource/helm-chart-sonarqube/blob/sonarqube-2026.3.1-sonarqube-dce-2026.3.1/charts/sonarqube/README.md
-  accessedAt: '2026-07-13'
-
-x-sonarqube-2026-2-host-source: &sonarqube_2026_2_host_source
-  title: SonarQube Server 2026.2 host requirements
-  url: https://docs.sonarsource.com/sonarqube-server/2026.2/server-installation/server-host-requirements
-  accessedAt: '2026-07-13'
-
-x-sonarqube-2026-2-database-source: &sonarqube_2026_2_database_source
-  title: SonarQube Server 2026.2 database requirements
-  url: https://docs.sonarsource.com/sonarqube-server/2026.2/server-installation/installing-the-database
-  accessedAt: '2026-07-13'
-
-x-sonarqube-2026-2-helm-source: &sonarqube_2026_2_helm_source
-  title: SonarQube Server 2026.2.1 Helm chart compatibility
-  url: https://github.com/SonarSource/helm-chart-sonarqube/blob/sonarqube-2026.2.1-sonarqube-dce-2026.2.1/charts/sonarqube/README.md
-  accessedAt: '2026-07-13'
+  accessedAt: '2026-09-11'
 
 projects:
   sonarqube-server:
@@ -70,7 +50,7 @@ projects:
               - SonarQube Server 2026.4 supports Java 21 or Java 25 and requires a full JDK rather than only a JRE.
             sources:
               - *sonarqube_2026_4_host_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-09-11'
           postgresql:
             ranges:
               - '>=14 <19'
@@ -80,7 +60,7 @@ projects:
               - SonarQube Server 2026.4 supports PostgreSQL 14 through 18.
             sources:
               - *sonarqube_2026_4_database_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-09-11'
           microsoft-sql-server:
             ranges:
               - '>=14 <17'
@@ -90,7 +70,7 @@ projects:
               - SonarQube Server 2026.4 supports Microsoft SQL Server internal versions 14.0 through 16.0, corresponding to SQL Server 2017, 2019, and 2022.
             sources:
               - *sonarqube_2026_4_database_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-09-11'
           oracle:
             ranges:
               - '19c'
@@ -103,7 +83,7 @@ projects:
               - SonarQube Server 2026.4 supports Oracle 19c, 21c, 23ai, and XE editions.
             sources:
               - *sonarqube_2026_4_database_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-09-11'
           kubernetes:
             ranges:
               - '>=1.32 <1.36'
@@ -114,7 +94,7 @@ projects:
               - This platform range applies to non-OpenShift Kubernetes clusters deployed through the official SonarQube Helm chart.
             sources:
               - *sonarqube_2026_4_helm_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-09-11'
           openshift:
             ranges:
               - '>=4.17 <4.21'
@@ -124,7 +104,7 @@ projects:
               - The SonarQube Server 2026.4.0 Helm chart supports OpenShift 4.17 through 4.20 as a separately validated platform, including its embedded Kubernetes version.
             sources:
               - *sonarqube_2026_4_helm_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-09-11'
       '2026.3':
         dependencies:
           java:
@@ -137,7 +117,7 @@ projects:
               - SonarQube Server 2026.3 supports Java 21 or Java 25 and requires a full JDK rather than only a JRE.
             sources:
               - *sonarqube_2026_3_host_source
-            lastVerified: '2026-07-13'
+            lastVerified: '2026-09-11'
           postgresql:
             ranges:
               - '>=14 <19'
@@ -147,7 +127,7 @@ projects:
               - SonarQube Server 2026.3 supports PostgreSQL 14 through 18.
             sources:
               - *sonarqube_2026_3_database_source
-            lastVerified: '2026-07-13'
+            lastVerified: '2026-09-11'
           microsoft-sql-server:
             ranges:
               - '>=14 <17'
@@ -157,7 +137,7 @@ projects:
               - SonarQube Server 2026.3 supports Microsoft SQL Server internal versions 14.0 through 16.0, corresponding to SQL Server 2017, 2019, and 2022.
             sources:
               - *sonarqube_2026_3_database_source
-            lastVerified: '2026-07-13'
+            lastVerified: '2026-09-11'
           oracle:
             ranges:
               - '19c'
@@ -170,7 +150,7 @@ projects:
               - SonarQube Server 2026.3 supports Oracle 19c, 21c, 23ai, and XE editions.
             sources:
               - *sonarqube_2026_3_database_source
-            lastVerified: '2026-07-13'
+            lastVerified: '2026-09-11'
           kubernetes:
             ranges:
               - '>=1.32 <1.36'
@@ -181,7 +161,7 @@ projects:
               - This platform range applies to non-OpenShift Kubernetes clusters deployed through the official SonarQube Helm chart.
             sources:
               - *sonarqube_2026_3_helm_source
-            lastVerified: '2026-07-13'
+            lastVerified: '2026-09-11'
           openshift:
             ranges:
               - '>=4.17 <4.21'
@@ -191,75 +171,7 @@ projects:
               - The SonarQube Server 2026.3.1 Helm chart supports OpenShift 4.17 through 4.20 as a separately validated platform, including its embedded Kubernetes version.
             sources:
               - *sonarqube_2026_3_helm_source
-            lastVerified: '2026-07-13'
-      '2026.2':
-        dependencies:
-          java:
-            ranges:
-              - '21'
-              - '25'
-            relationship: server runtime
-            confidence: high
-            notes:
-              - SonarQube Server 2026.2 supports Java 21 or Java 25 and requires a full JDK rather than only a JRE.
-            sources:
-              - *sonarqube_2026_2_host_source
-            lastVerified: '2026-07-13'
-          postgresql:
-            ranges:
-              - '>=14 <19'
-            relationship: production database
-            confidence: high
-            notes:
-              - SonarQube Server 2026.2 supports PostgreSQL 14 through 18.
-            sources:
-              - *sonarqube_2026_2_database_source
-            lastVerified: '2026-07-13'
-          microsoft-sql-server:
-            ranges:
-              - '>=14 <17'
-            relationship: production database
-            confidence: high
-            notes:
-              - SonarQube Server 2026.2 supports Microsoft SQL Server internal versions 14.0 through 16.0, corresponding to SQL Server 2017, 2019, and 2022.
-            sources:
-              - *sonarqube_2026_2_database_source
-            lastVerified: '2026-07-13'
-          oracle:
-            ranges:
-              - '19c'
-              - '21c'
-              - '23ai'
-              - 'xe'
-            relationship: production database
-            confidence: high
-            notes:
-              - SonarQube Server 2026.2 supports Oracle 19c, 21c, 23ai, and XE editions.
-            sources:
-              - *sonarqube_2026_2_database_source
-            lastVerified: '2026-07-13'
-          kubernetes:
-            ranges:
-              - '>=1.32 <1.36'
-            relationship: Helm deployment platform
-            confidence: high
-            notes:
-              - The SonarQube Server 2026.2.1 Helm chart supports Kubernetes 1.32 through 1.35.
-              - This platform range applies to deployment through the official SonarQube Helm chart, not to ZIP or Docker installations outside Kubernetes.
-            sources:
-              - *sonarqube_2026_2_helm_source
-            lastVerified: '2026-07-13'
-          openshift:
-            ranges:
-              - '>=4.17 <4.21'
-            relationship: Helm deployment platform
-            confidence: high
-            notes:
-              - The SonarQube Server 2026.2.1 Helm chart supports OpenShift 4.17 through 4.20.
-              - This platform range applies to deployment through the official SonarQube Helm chart.
-            sources:
-              - *sonarqube_2026_2_helm_source
-            lastVerified: '2026-07-13'
+            lastVerified: '2026-09-11'
       '2026.1':
         dependencies:
           java:
@@ -271,8 +183,10 @@ projects:
             notes:
               - SonarQube Server 2026.1 LTA supports Java 21 or Java 25 and requires a full JDK rather than only a JRE.
             sources:
-              - *sonarqube_lta_dependencies_source
-            lastVerified: '2026-07-09'
+              - title: SonarQube Server 2026.1 host requirements
+                url: https://docs.sonarsource.com/sonarqube-server/2026.1/server-installation/server-host-requirements
+                accessedAt: 2026-09-11
+            lastVerified: '2026-09-11'
           postgresql:
             ranges:
               - '>=14 <19'
@@ -281,8 +195,10 @@ projects:
             notes:
               - SonarQube Server 2026.1 LTA supports PostgreSQL 14 through 18.
             sources:
-              - *sonarqube_lta_dependencies_source
-            lastVerified: '2026-07-09'
+              - title: SonarQube Server 2026.1 database requirements
+                url: https://docs.sonarsource.com/sonarqube-server/2026.1/server-installation/installing-the-database
+                accessedAt: 2026-09-11
+            lastVerified: '2026-09-11'
           microsoft-sql-server:
             ranges:
               - '>=14 <17'
@@ -291,21 +207,25 @@ projects:
             notes:
               - SonarQube Server 2026.1 LTA supports Microsoft SQL Server internal versions 14.0 through 16.0, corresponding to SQL Server 2017, 2019, and 2022.
             sources:
-              - *sonarqube_lta_dependencies_source
-            lastVerified: '2026-07-09'
+              - title: SonarQube Server 2026.1 database requirements
+                url: https://docs.sonarsource.com/sonarqube-server/2026.1/server-installation/installing-the-database
+                accessedAt: 2026-09-11
+            lastVerified: '2026-09-11'
           oracle:
             ranges:
-              - '19c'
-              - '21c'
-              - '21ai'
-              - 'xe'
+              - 19c
+              - 21c
+              - 23ai
+              - xe
             relationship: production database
             confidence: high
             notes:
-              - SonarQube Server 2026.1 LTA supports Oracle 19c, 21c, 21ai, and XE editions.
+              - SonarQube Server 2026.1 LTA supports Oracle 19c, 21c, 23ai, and XE editions.
             sources:
-              - *sonarqube_lta_dependencies_source
-            lastVerified: '2026-07-09'
+              - title: SonarQube Server 2026.1 database requirements
+                url: https://docs.sonarsource.com/sonarqube-server/2026.1/server-installation/installing-the-database
+                accessedAt: 2026-09-11
+            lastVerified: '2026-09-11'
           kubernetes:
             ranges:
               - '>=1.32 <1.36'
@@ -315,8 +235,10 @@ projects:
               - The SonarQube Server 2026.1 LTA Helm deployment supports Kubernetes 1.32 through 1.35.
               - This platform range applies to deployment through the official SonarQube Helm chart, not to ZIP or Docker installations outside Kubernetes.
             sources:
-              - *sonarqube_lta_dependencies_source
-            lastVerified: '2026-07-09'
+              - title: SonarQube Server 2026.1.0 Helm chart compatibility
+                url: https://github.com/SonarSource/helm-chart-sonarqube/blob/sonarqube-2026.1.0-sonarqube-dce-2026.1.0/charts/sonarqube/README.md
+                accessedAt: 2026-09-11
+            lastVerified: '2026-09-11'
           openshift:
             ranges:
               - '>=4.17 <4.21'
@@ -326,8 +248,10 @@ projects:
               - The SonarQube Server 2026.1 LTA Helm deployment supports OpenShift 4.17 through 4.20.
               - This platform range applies to deployment through the official SonarQube Helm chart.
             sources:
-              - *sonarqube_lta_dependencies_source
-            lastVerified: '2026-07-09'
+              - title: SonarQube Server 2026.1.0 Helm chart compatibility
+                url: https://github.com/SonarSource/helm-chart-sonarqube/blob/sonarqube-2026.1.0-sonarqube-dce-2026.1.0/charts/sonarqube/README.md
+                accessedAt: 2026-09-11
+            lastVerified: '2026-09-11'
       '2025.4':
         dependencies:
           java:
@@ -339,8 +263,10 @@ projects:
             notes:
               - SonarQube Server 2025.4 LTA supports Java 17 or Java 21 as its server runtime.
             sources:
-              - *sonarqube_lta_dependencies_source
-            lastVerified: '2026-07-09'
+              - title: SonarQube Server 2025.4 host requirements
+                url: https://docs.sonarsource.com/sonarqube-server/2025.4/server-installation/server-host-requirements
+                accessedAt: 2026-09-11
+            lastVerified: '2026-09-11'
           postgresql:
             ranges:
               - '>=13 <18'
@@ -349,8 +275,10 @@ projects:
             notes:
               - SonarQube Server 2025.4 LTA supports PostgreSQL 13 through 17.
             sources:
-              - *sonarqube_lta_dependencies_source
-            lastVerified: '2026-07-09'
+              - title: SonarQube Server 2025.4 database requirements
+                url: https://docs.sonarsource.com/sonarqube-server/2025.4/server-installation/installing-the-database
+                accessedAt: 2026-09-11
+            lastVerified: '2026-09-11'
           microsoft-sql-server:
             ranges:
               - '>=13 <17'
@@ -359,21 +287,25 @@ projects:
             notes:
               - SonarQube Server 2025.4 LTA supports Microsoft SQL Server internal versions 13.0 through 16.0, corresponding to SQL Server 2016 through 2022.
             sources:
-              - *sonarqube_lta_dependencies_source
-            lastVerified: '2026-07-09'
+              - title: SonarQube Server 2025.4 database requirements
+                url: https://docs.sonarsource.com/sonarqube-server/2025.4/server-installation/installing-the-database
+                accessedAt: 2026-09-11
+            lastVerified: '2026-09-11'
           oracle:
             ranges:
-              - '19c'
-              - '21c'
-              - '21ai'
-              - 'xe'
+              - 19c
+              - 21c
+              - 23ai
+              - xe
             relationship: production database
             confidence: high
             notes:
-              - SonarQube Server 2025.4 LTA supports Oracle 19c, 21c, 21ai, and XE editions.
+              - SonarQube Server 2025.4 LTA supports Oracle 19c, 21c, 23ai, and XE editions.
             sources:
-              - *sonarqube_lta_dependencies_source
-            lastVerified: '2026-07-09'
+              - title: SonarQube Server 2025.4 database requirements
+                url: https://docs.sonarsource.com/sonarqube-server/2025.4/server-installation/installing-the-database
+                accessedAt: 2026-09-11
+            lastVerified: '2026-09-11'
           kubernetes:
             ranges:
               - '>=1.30 <1.34'
@@ -383,8 +315,10 @@ projects:
               - The SonarQube Server 2025.4 LTA Helm deployment supports Kubernetes 1.30 through 1.33.
               - This platform range applies to deployment through the official SonarQube Helm chart, not to ZIP or Docker installations outside Kubernetes.
             sources:
-              - *sonarqube_lta_dependencies_source
-            lastVerified: '2026-07-09'
+              - title: SonarQube Server 2025.4.0 Helm chart compatibility
+                url: https://github.com/SonarSource/helm-chart-sonarqube/blob/sonarqube-2025.4.0-sonarqube-dce-2025.4.0/charts/sonarqube/README.md
+                accessedAt: 2026-09-11
+            lastVerified: '2026-09-11'
           openshift:
             ranges:
               - '>=4.11 <4.18'
@@ -394,5 +328,7 @@ projects:
               - The SonarQube Server 2025.4 LTA Helm deployment supports OpenShift 4.11 through 4.17.
               - This platform range applies to deployment through the official SonarQube Helm chart.
             sources:
-              - *sonarqube_lta_dependencies_source
-            lastVerified: '2026-07-09'
+              - title: SonarQube Server 2025.4.0 Helm chart compatibility
+                url: https://github.com/SonarSource/helm-chart-sonarqube/blob/sonarqube-2025.4.0-sonarqube-dce-2025.4.0/charts/sonarqube/README.md
+                accessedAt: 2026-09-11
+            lastVerified: '2026-09-11'

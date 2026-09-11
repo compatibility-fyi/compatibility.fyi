@@ -68,7 +68,7 @@ projects:
       - Authentication
     website: https://www.keycloak.org/
     versions:
-      '26':
+      '26.7':
         dependencies:
           postgresql:
             ranges:
@@ -76,12 +76,12 @@ projects:
             relationship: database
             confidence: high
             notes:
-              - Keycloak current 26.x supported configurations list PostgreSQL 18.x, 17.x, 16.x, 15.x, and 14.x.
+              - Keycloak 26.7 supported configurations list PostgreSQL 18.x, 17.x, 16.x, 15.x, and 14.x.
             sources:
-              - title: Keycloak Supported Configurations - Supported Databases
-                url: https://www.keycloak.org/server/supported-configurations
-                accessedAt: '2026-07-08'
-            lastVerified: '2026-07-08'
+              - title: Keycloak 26.7.3 supported database versions
+                url: https://raw.githubusercontent.com/keycloak/keycloak/26.7.3/docs/guides/server/templates/databases.adoc
+                accessedAt: '2026-09-11'
+            lastVerified: '2026-09-11'
 ```
 
 Compatibility is implicit when an entry has supported ranges or `sameVersion: true`. Use

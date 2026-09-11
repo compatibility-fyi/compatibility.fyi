@@ -31,7 +31,7 @@ x-loki-377-chart-18114-source: &loki_377_chart_18114_source
 x-loki-helm-index-source: &loki_helm_index_source
   title: Grafana Helm Charts Index
   url: https://grafana.github.io/helm-charts/index.yaml
-  accessedAt: '2026-07-08'
+  accessedAt: '2026-09-11'
 
 x-loki-373-chart-source: &loki_373_chart_source
   title: Grafana Community Loki Helm 18.5.1 chart metadata
@@ -173,7 +173,10 @@ projects:
               - *loki_377_chart_18116_source
               - *loki_377_chart_18115_source
               - *loki_377_chart_18114_source
-            lastVerified: '2026-09-08'
+              - title: Grafana Community Helm Charts Index
+                url: https://grafana-community.github.io/helm-charts/index.yaml
+                accessedAt: 2026-09-11
+            lastVerified: '2026-09-11'
       '3.7.6':
         dependencies:
           loki-helm:
@@ -209,7 +212,10 @@ projects:
               - *loki_376_chart_1876_source
               - *loki_376_chart_1875_source
               - *loki_376_chart_1874_source
-            lastVerified: '2026-08-25'
+              - title: Grafana Community Helm Charts Index
+                url: https://grafana-community.github.io/helm-charts/index.yaml
+                accessedAt: 2026-09-11
+            lastVerified: '2026-09-11'
       '3.7.5':
         dependencies:
           loki-helm:
@@ -221,7 +227,10 @@ projects:
               - The official Grafana Community Loki Helm chart 18.7.3 declares Loki 3.7.5 as its appVersion.
             sources:
               - *loki_375_chart_source
-            lastVerified: '2026-08-13'
+              - title: Grafana Community Helm Charts Index
+                url: https://grafana-community.github.io/helm-charts/index.yaml
+                accessedAt: 2026-09-11
+            lastVerified: '2026-09-11'
       '3.7.4':
         dependencies:
           loki-helm:
@@ -245,7 +254,10 @@ projects:
               - *loki_374_chart_1852_source
               - *loki_374_chart_1853_source
               - *loki_374_chart_1854_source
-            lastVerified: '2026-08-13'
+              - title: Grafana Community Helm Charts Index
+                url: https://grafana-community.github.io/helm-charts/index.yaml
+                accessedAt: 2026-09-11
+            lastVerified: '2026-09-11'
       '3.7.3':
         dependencies:
           loki-helm:
@@ -258,7 +270,52 @@ projects:
               - The Loki chart moved from the Grafana Helm repository to the Grafana Community Helm repository in March 2026 and uses a new chart version sequence.
             sources:
               - *loki_373_chart_source
-            lastVerified: '2026-07-18'
+              - title: Grafana Community Helm Charts Index
+                url: https://grafana-community.github.io/helm-charts/index.yaml
+                accessedAt: 2026-09-11
+            lastVerified: '2026-09-11'
+      3.6.12:
+        dependencies:
+          loki-helm:
+            ranges:
+              - 7.3.0
+            relationship: helm chart
+            confidence: high
+            notes:
+              - The official Grafana Helm chart index maps Loki chart 7.3.0 to appVersion 3.6.12. This is the chart's default application version.
+            sources:
+              - title: Grafana Helm Charts Index
+                url: https://grafana.github.io/helm-charts/index.yaml
+                accessedAt: 2026-09-11
+            lastVerified: 2026-09-11
+      3.6.11:
+        dependencies:
+          loki-helm:
+            ranges:
+              - 7.2.0
+            relationship: helm chart
+            confidence: high
+            notes:
+              - The official Grafana Helm chart index maps Loki chart 7.2.0 to appVersion 3.6.11. This is the chart's default application version.
+            sources:
+              - title: Grafana Helm Charts Index
+                url: https://grafana.github.io/helm-charts/index.yaml
+                accessedAt: 2026-09-11
+            lastVerified: 2026-09-11
+      3.6.8:
+        dependencies:
+          loki-helm:
+            ranges:
+              - 7.1.0
+            relationship: helm chart
+            confidence: high
+            notes:
+              - The official Grafana Helm chart index maps Loki chart 7.1.0 to appVersion 3.6.8. This is the chart's default application version.
+            sources:
+              - title: Grafana Helm Charts Index
+                url: https://grafana.github.io/helm-charts/index.yaml
+                accessedAt: 2026-09-11
+            lastVerified: 2026-09-11
       '3.6.7':
         dependencies:
           loki-helm:
@@ -272,7 +329,7 @@ projects:
               - The Grafana Helm chart index maps Loki chart 7.0.0, 6.55.0, and 6.54.0 to Loki appVersion 3.6.7.
             sources:
               - *loki_helm_index_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
       '3.6.5':
         dependencies:
           loki-helm:
@@ -284,7 +341,7 @@ projects:
               - The Grafana Helm chart index maps Loki chart 6.53.0 to Loki appVersion 3.6.5.
             sources:
               - *loki_helm_index_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
       '3.6.4':
         dependencies:
           loki-helm:
@@ -297,7 +354,7 @@ projects:
               - The Grafana Helm chart index maps Loki chart 6.52.0 and 6.51.0 to Loki appVersion 3.6.4.
             sources:
               - *loki_helm_index_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
       '3.6.3':
         dependencies:
           loki-helm:
@@ -310,7 +367,7 @@ projects:
               - The Grafana Helm chart index maps Loki chart 6.50.0 and 6.49.0 to Loki appVersion 3.6.3.
             sources:
               - *loki_helm_index_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
       '3.5.7':
         dependencies:
           loki-helm:
@@ -326,7 +383,7 @@ projects:
               - The Grafana Helm chart index maps Loki chart 6.46.0, 6.45.x, and 6.44.0 to Loki appVersion 3.5.7.
             sources:
               - *loki_helm_index_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
       '3.5.5':
         dependencies:
           loki-helm:
@@ -340,7 +397,7 @@ projects:
               - The Grafana Helm chart index maps Loki chart 6.43.0, 6.42.0, and 6.41.1 to Loki appVersion 3.5.5.
             sources:
               - *loki_helm_index_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
       '3.4.2':
         dependencies:
           loki-helm:
@@ -354,4 +411,4 @@ projects:
               - The Grafana Helm chart index maps Loki chart 6.29.0, 6.28.0, and 6.27.0 to Loki appVersion 3.4.2.
             sources:
               - *loki_helm_index_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'

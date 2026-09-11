@@ -1,7 +1,7 @@
 x-kubernetes-version-skew-source: &kubernetes_version_skew_source
   title: Kubernetes Version Skew Policy
   url: https://kubernetes.io/releases/version-skew-policy/
-  accessedAt: '2026-09-04'
+  accessedAt: '2026-09-11'
 
 projects:
   kubernetes-version-skew:
@@ -20,10 +20,10 @@ projects:
             relationship: control plane peer
             confidence: high
             notes:
-              - Kubernetes allows kube-apiserver instances in an HA cluster to differ by at most one minor version.
+              - Kubernetes allows kube-apiserver instances in an HA cluster to differ by at most one minor version. This range includes released peer versions both older and newer than the requested API server.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           kubelet:
             ranges:
               - '>=1.34 <1.38'
@@ -31,9 +31,10 @@ projects:
             confidence: high
             notes:
               - Kubelet must not be newer than kube-apiserver and may be up to three minor versions older.
+              - In HA clusters, this component must satisfy the skew policy for every API server it communicates with; mixed API server versions narrow the allowed range.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           kube-proxy:
             ranges:
               - '>=1.34 <1.38'
@@ -41,9 +42,10 @@ projects:
             confidence: high
             notes:
               - kube-proxy must not be newer than kube-apiserver and may be up to three minor versions older.
+              - In HA clusters, this component must satisfy the skew policy for every API server it communicates with; mixed API server versions narrow the allowed range.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           kube-controller-manager:
             ranges:
               - '>=1.36 <1.38'
@@ -51,9 +53,10 @@ projects:
             confidence: high
             notes:
               - kube-controller-manager is expected to match kube-apiserver but may be up to one minor version older.
+              - In HA clusters, this component must satisfy the skew policy for every API server it communicates with; mixed API server versions narrow the allowed range.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           kube-scheduler:
             ranges:
               - '>=1.36 <1.38'
@@ -61,9 +64,10 @@ projects:
             confidence: high
             notes:
               - kube-scheduler is expected to match kube-apiserver but may be up to one minor version older.
+              - In HA clusters, this component must satisfy the skew policy for every API server it communicates with; mixed API server versions narrow the allowed range.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           cloud-controller-manager:
             ranges:
               - '>=1.36 <1.38'
@@ -71,31 +75,34 @@ projects:
             confidence: high
             notes:
               - cloud-controller-manager is expected to match kube-apiserver but may be up to one minor version older.
+              - In HA clusters, this component must satisfy the skew policy for every API server it communicates with; mixed API server versions narrow the allowed range.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           kubectl:
             ranges:
-              - '>=1.36 <1.39'
+              - '>=1.36 <1.38'
             relationship: client
             confidence: high
             notes:
               - kubectl is supported within one minor version older or newer than kube-apiserver.
+              - In HA clusters, this component must satisfy the skew policy for every API server it communicates with; mixed API server versions narrow the allowed range.
+              - The policy permits a client one minor version newer, but Kubernetes 1.38 is not yet a released compatibility target.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
       '1.36':
         dependencies:
           kube-apiserver-ha-peer:
             ranges:
-              - '>=1.35 <1.37'
+              - '>=1.35 <1.38'
             relationship: control plane peer
             confidence: high
             notes:
-              - Kubernetes allows kube-apiserver instances in an HA cluster to differ by at most one minor version.
+              - Kubernetes allows kube-apiserver instances in an HA cluster to differ by at most one minor version. This range includes released peer versions both older and newer than the requested API server.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
           kubelet:
             ranges:
               - '>=1.33 <1.37'
@@ -103,9 +110,10 @@ projects:
             confidence: high
             notes:
               - Kubelet must not be newer than kube-apiserver and may be up to three minor versions older.
+              - In HA clusters, this component must satisfy the skew policy for every API server it communicates with; mixed API server versions narrow the allowed range.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
           kube-proxy:
             ranges:
               - '>=1.33 <1.37'
@@ -113,9 +121,10 @@ projects:
             confidence: high
             notes:
               - kube-proxy must not be newer than kube-apiserver and may be up to three minor versions older.
+              - In HA clusters, this component must satisfy the skew policy for every API server it communicates with; mixed API server versions narrow the allowed range.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
           kube-controller-manager:
             ranges:
               - '>=1.35 <1.37'
@@ -123,9 +132,10 @@ projects:
             confidence: high
             notes:
               - kube-controller-manager is expected to match kube-apiserver but may be up to one minor version older.
+              - In HA clusters, this component must satisfy the skew policy for every API server it communicates with; mixed API server versions narrow the allowed range.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
           kube-scheduler:
             ranges:
               - '>=1.35 <1.37'
@@ -133,9 +143,10 @@ projects:
             confidence: high
             notes:
               - kube-scheduler is expected to match kube-apiserver but may be up to one minor version older.
+              - In HA clusters, this component must satisfy the skew policy for every API server it communicates with; mixed API server versions narrow the allowed range.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
           cloud-controller-manager:
             ranges:
               - '>=1.35 <1.37'
@@ -143,9 +154,10 @@ projects:
             confidence: high
             notes:
               - cloud-controller-manager is expected to match kube-apiserver but may be up to one minor version older.
+              - In HA clusters, this component must satisfy the skew policy for every API server it communicates with; mixed API server versions narrow the allowed range.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
           kubectl:
             ranges:
               - '>=1.35 <1.38'
@@ -153,21 +165,22 @@ projects:
             confidence: high
             notes:
               - kubectl is supported within one minor version older or newer than kube-apiserver.
+              - In HA clusters, this component must satisfy the skew policy for every API server it communicates with; mixed API server versions narrow the allowed range.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
       '1.35':
         dependencies:
           kube-apiserver-ha-peer:
             ranges:
-              - '>=1.34 <1.36'
+              - '>=1.34 <1.37'
             relationship: control plane peer
             confidence: high
             notes:
-              - Kubernetes allows kube-apiserver instances in an HA cluster to differ by at most one minor version.
+              - Kubernetes allows kube-apiserver instances in an HA cluster to differ by at most one minor version. This range includes released peer versions both older and newer than the requested API server.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
           kubelet:
             ranges:
               - '>=1.32 <1.36'
@@ -175,9 +188,10 @@ projects:
             confidence: high
             notes:
               - Kubelet must not be newer than kube-apiserver and may be up to three minor versions older.
+              - In HA clusters, this component must satisfy the skew policy for every API server it communicates with; mixed API server versions narrow the allowed range.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
           kube-proxy:
             ranges:
               - '>=1.32 <1.36'
@@ -185,9 +199,10 @@ projects:
             confidence: high
             notes:
               - kube-proxy must not be newer than kube-apiserver and may be up to three minor versions older.
+              - In HA clusters, this component must satisfy the skew policy for every API server it communicates with; mixed API server versions narrow the allowed range.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
           kube-controller-manager:
             ranges:
               - '>=1.34 <1.36'
@@ -195,9 +210,10 @@ projects:
             confidence: high
             notes:
               - kube-controller-manager is expected to match kube-apiserver but may be up to one minor version older.
+              - In HA clusters, this component must satisfy the skew policy for every API server it communicates with; mixed API server versions narrow the allowed range.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
           kube-scheduler:
             ranges:
               - '>=1.34 <1.36'
@@ -205,9 +221,10 @@ projects:
             confidence: high
             notes:
               - kube-scheduler is expected to match kube-apiserver but may be up to one minor version older.
+              - In HA clusters, this component must satisfy the skew policy for every API server it communicates with; mixed API server versions narrow the allowed range.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
           cloud-controller-manager:
             ranges:
               - '>=1.34 <1.36'
@@ -215,9 +232,10 @@ projects:
             confidence: high
             notes:
               - cloud-controller-manager is expected to match kube-apiserver but may be up to one minor version older.
+              - In HA clusters, this component must satisfy the skew policy for every API server it communicates with; mixed API server versions narrow the allowed range.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
           kubectl:
             ranges:
               - '>=1.34 <1.37'
@@ -225,21 +243,22 @@ projects:
             confidence: high
             notes:
               - kubectl is supported within one minor version older or newer than kube-apiserver.
+              - In HA clusters, this component must satisfy the skew policy for every API server it communicates with; mixed API server versions narrow the allowed range.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
       '1.34':
         dependencies:
           kube-apiserver-ha-peer:
             ranges:
-              - '>=1.33 <1.35'
+              - '>=1.33 <1.36'
             relationship: control plane peer
             confidence: high
             notes:
-              - Kubernetes allows kube-apiserver instances in an HA cluster to differ by at most one minor version.
+              - Kubernetes allows kube-apiserver instances in an HA cluster to differ by at most one minor version. This range includes released peer versions both older and newer than the requested API server.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
           kubelet:
             ranges:
               - '>=1.31 <1.35'
@@ -247,9 +266,10 @@ projects:
             confidence: high
             notes:
               - Kubelet must not be newer than kube-apiserver and may be up to three minor versions older.
+              - In HA clusters, this component must satisfy the skew policy for every API server it communicates with; mixed API server versions narrow the allowed range.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
           kube-proxy:
             ranges:
               - '>=1.31 <1.35'
@@ -257,9 +277,10 @@ projects:
             confidence: high
             notes:
               - kube-proxy must not be newer than kube-apiserver and may be up to three minor versions older.
+              - In HA clusters, this component must satisfy the skew policy for every API server it communicates with; mixed API server versions narrow the allowed range.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
           kube-controller-manager:
             ranges:
               - '>=1.33 <1.35'
@@ -267,9 +288,10 @@ projects:
             confidence: high
             notes:
               - kube-controller-manager is expected to match kube-apiserver but may be up to one minor version older.
+              - In HA clusters, this component must satisfy the skew policy for every API server it communicates with; mixed API server versions narrow the allowed range.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
           kube-scheduler:
             ranges:
               - '>=1.33 <1.35'
@@ -277,9 +299,10 @@ projects:
             confidence: high
             notes:
               - kube-scheduler is expected to match kube-apiserver but may be up to one minor version older.
+              - In HA clusters, this component must satisfy the skew policy for every API server it communicates with; mixed API server versions narrow the allowed range.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
           cloud-controller-manager:
             ranges:
               - '>=1.33 <1.35'
@@ -287,9 +310,10 @@ projects:
             confidence: high
             notes:
               - cloud-controller-manager is expected to match kube-apiserver but may be up to one minor version older.
+              - In HA clusters, this component must satisfy the skew policy for every API server it communicates with; mixed API server versions narrow the allowed range.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'
           kubectl:
             ranges:
               - '>=1.33 <1.36'
@@ -297,6 +321,7 @@ projects:
             confidence: high
             notes:
               - kubectl is supported within one minor version older or newer than kube-apiserver.
+              - In HA clusters, this component must satisfy the skew policy for every API server it communicates with; mixed API server versions narrow the allowed range.
             sources:
               - *kubernetes_version_skew_source
-            lastVerified: '2026-07-08'
+            lastVerified: '2026-09-11'

@@ -1,27 +1,21 @@
+x-traefik-3-7-13-gateway-source: &traefik_3_7_13_gateway_source
+  title: Traefik Proxy 3.7.13 Kubernetes Gateway API Provider
+  url: https://github.com/traefik/traefik/blob/v3.7.13/docs/content/reference/install-configuration/providers/kubernetes/kubernetes-gateway.md
+  accessedAt: '2026-09-11'
 x-traefik-3-7-10-gateway-source: &traefik_3_7_10_gateway_source
   title: Traefik Proxy 3.7.10 Kubernetes Gateway API Provider
   url: https://github.com/traefik/traefik/blob/v3.7.10/docs/content/reference/install-configuration/providers/kubernetes/kubernetes-gateway.md
-  accessedAt: '2026-09-04'
-
-x-traefik-3-7-12-gateway-source: &traefik_3_7_12_gateway_source
-  title: Traefik Proxy 3.7.12 Kubernetes Gateway API Provider
-  url: https://github.com/traefik/traefik/blob/v3.7.12/docs/content/reference/install-configuration/providers/kubernetes/kubernetes-gateway.md
-  accessedAt: '2026-09-04'
+  accessedAt: '2026-09-11'
 
 x-traefik-3-7-gateway-source: &traefik_3_7_gateway_source
   title: Traefik Proxy 3.7.0 Kubernetes Gateway API Provider
   url: https://github.com/traefik/traefik/blob/v3.7.0/docs/content/reference/install-configuration/providers/kubernetes/kubernetes-gateway.md
-  accessedAt: '2026-09-04'
+  accessedAt: '2026-09-11'
 
 x-traefik-3-7-9-gateway-source: &traefik_3_7_9_gateway_source
   title: Traefik Proxy 3.7.9 Kubernetes Gateway API Provider
   url: https://github.com/traefik/traefik/blob/v3.7.9/docs/content/reference/install-configuration/providers/kubernetes/kubernetes-gateway.md
-  accessedAt: '2026-09-04'
-
-x-traefik-3-6-gateway-source: &traefik_3_6_gateway_source
-  title: Traefik Proxy 3.6 Kubernetes Gateway API Provider
-  url: https://doc.traefik.io/traefik/v3.6/reference/install-configuration/providers/kubernetes/kubernetes-gateway/
-  accessedAt: '2026-07-09'
+  accessedAt: '2026-09-11'
 
 projects:
   traefik-proxy:
@@ -41,12 +35,12 @@ projects:
             relationship: Kubernetes routing API
             confidence: high
             notes:
-              - Traefik Proxy 3.7.10 introduces the documented Gateway API Standard version 1.6.1 support, retained in 3.7.11 and 3.7.12.
+              - Traefik Proxy 3.7.10 introduces the documented Gateway API Standard version 1.6.1 support, retained through 3.7.13.
               - Earlier 3.7 patches document Gateway API 1.5.1 and are kept in a separate row.
             sources:
               - *traefik_3_7_10_gateway_source
-              - *traefik_3_7_12_gateway_source
-            lastVerified: '2026-09-04'
+              - *traefik_3_7_13_gateway_source
+            lastVerified: '2026-09-11'
       '>=3.7.0 <3.7.10':
         dependencies:
           gateway-api:
@@ -60,17 +54,4 @@ projects:
             sources:
               - *traefik_3_7_gateway_source
               - *traefik_3_7_9_gateway_source
-            lastVerified: '2026-09-04'
-      '3.6':
-        dependencies:
-          gateway-api:
-            ranges:
-              - '1.4.0'
-            relationship: Kubernetes routing API
-            confidence: high
-            notes:
-              - The Traefik Proxy 3.6 Kubernetes Gateway provider supports Gateway API Standard version 1.4.0.
-              - Traefik documents full support for HTTPRoute core features and selected extended features, with TCPRoute and TLSRoute support from the Experimental channel.
-            sources:
-              - *traefik_3_6_gateway_source
-            lastVerified: '2026-07-09'
+            lastVerified: '2026-09-11'

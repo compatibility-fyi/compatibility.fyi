@@ -1,7 +1,7 @@
 x-elastic-stack-compatibility-source: &elastic_stack_compatibility_source
   title: Elastic Stack Version Compatibility
   url: https://www.elastic.co/docs/deploy-manage/deploy/self-managed/installing-elasticsearch
-  accessedAt: '2026-07-31'
+  accessedAt: '2026-09-11'
 
 x-elasticsearch-9-5-1-source: &elasticsearch_9_5_1_source
   title: Elasticsearch 9.5.1 Release
@@ -45,7 +45,7 @@ projects:
             sources:
               - *elastic_stack_compatibility_source
               - *elasticsearch_9_5_1_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-11'
           logstash:
             ranges: []
             sameVersion: true
@@ -56,7 +56,7 @@ projects:
             sources:
               - *elastic_stack_compatibility_source
               - *elasticsearch_9_5_1_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-11'
           beats:
             ranges: []
             sameVersion: true
@@ -67,7 +67,7 @@ projects:
             sources:
               - *elastic_stack_compatibility_source
               - *elasticsearch_9_5_1_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-11'
           elastic-agent:
             ranges: []
             sameVersion: true
@@ -78,7 +78,7 @@ projects:
             sources:
               - *elastic_stack_compatibility_source
               - *elasticsearch_9_5_1_source
-            lastVerified: '2026-08-13'
+            lastVerified: '2026-09-11'
       '9.4':
         dependencies:
           kibana:
@@ -91,7 +91,7 @@ projects:
             sources:
               - *elastic_stack_compatibility_source
               - *elasticsearch_9_4_4_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-09-11'
           logstash:
             ranges: []
             sameVersion: true
@@ -102,7 +102,7 @@ projects:
             sources:
               - *elastic_stack_compatibility_source
               - *elasticsearch_9_4_4_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-09-11'
           beats:
             ranges: []
             sameVersion: true
@@ -113,7 +113,7 @@ projects:
             sources:
               - *elastic_stack_compatibility_source
               - *elasticsearch_9_4_4_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-09-11'
           elastic-agent:
             ranges: []
             sameVersion: true
@@ -124,7 +124,7 @@ projects:
             sources:
               - *elastic_stack_compatibility_source
               - *elasticsearch_9_4_4_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-09-11'
       '9.3':
         dependencies:
           kibana:
@@ -137,7 +137,7 @@ projects:
             sources:
               - *elastic_stack_compatibility_source
               - *elasticsearch_9_3_8_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-09-11'
           logstash:
             ranges: []
             sameVersion: true
@@ -148,7 +148,7 @@ projects:
             sources:
               - *elastic_stack_compatibility_source
               - *elasticsearch_9_3_8_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-09-11'
           beats:
             ranges: []
             sameVersion: true
@@ -159,7 +159,7 @@ projects:
             sources:
               - *elastic_stack_compatibility_source
               - *elasticsearch_9_3_8_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-09-11'
           elastic-agent:
             ranges: []
             sameVersion: true
@@ -170,7 +170,7 @@ projects:
             sources:
               - *elastic_stack_compatibility_source
               - *elasticsearch_9_3_8_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-09-11'
       '8.19':
         dependencies:
           kibana:
@@ -183,7 +183,7 @@ projects:
             sources:
               - *elastic_stack_compatibility_source
               - *elasticsearch_8_19_19_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-09-11'
           logstash:
             ranges: []
             sameVersion: true
@@ -194,7 +194,7 @@ projects:
             sources:
               - *elastic_stack_compatibility_source
               - *elasticsearch_8_19_19_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-09-11'
           beats:
             ranges: []
             sameVersion: true
@@ -205,7 +205,7 @@ projects:
             sources:
               - *elastic_stack_compatibility_source
               - *elasticsearch_8_19_19_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-09-11'
           elastic-agent:
             ranges: []
             sameVersion: true
@@ -216,4 +216,4 @@ projects:
             sources:
               - *elastic_stack_compatibility_source
               - *elasticsearch_8_19_19_source
-            lastVerified: '2026-07-27'
+            lastVerified: '2026-09-11'

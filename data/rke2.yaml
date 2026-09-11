@@ -1,17 +1,17 @@
 x-rke2-136-source: &rke2_136_source
   title: RKE2 1.36 Support Matrix
   url: https://www.suse.com/suse-rke2/support-matrix/all-supported-versions/rke2-v1-36/
-  accessedAt: '2026-09-04'
+  accessedAt: '2026-09-11'
 
 x-rke2-135-source: &rke2_135_source
   title: RKE2 1.35 Support Matrix
   url: https://www.suse.com/suse-rke2/support-matrix/all-supported-versions/rke2-v1-35/
-  accessedAt: '2026-09-04'
+  accessedAt: '2026-09-11'
 
 x-rke2-134-source: &rke2_134_source
   title: RKE2 1.34 Support Matrix
   url: https://www.suse.com/suse-rke2/support-matrix/all-supported-versions/rke2-v1-34/
-  accessedAt: '2026-09-04'
+  accessedAt: '2026-09-11'
 
 projects:
   rke2:
@@ -34,7 +34,7 @@ projects:
               - RKE2 1.36.4+rke2r1 packages Kubernetes 1.36.4.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           architecture:
             ranges:
               - x86_64
@@ -45,7 +45,7 @@ projects:
               - The support matrix certifies x86_64 and arm64 architectures.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           sles:
             ranges:
               - '16.0'
@@ -57,7 +57,7 @@ projects:
               - The support matrix certifies SLES 16.0, 15 SP7, and 15 SP6.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           sle-micro:
             ranges:
               - '6.2'
@@ -69,7 +69,7 @@ projects:
               - The support matrix certifies SLE Micro 6.2, 6.1, and 6.0.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           rhel:
             ranges:
               - '10.2'
@@ -83,7 +83,7 @@ projects:
               - The matrix certifies these RHEL versions and treats Oracle Linux and Rocky Linux as validated through RHEL testing.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           oracle-linux:
             ranges:
               - '10.2'
@@ -97,7 +97,7 @@ projects:
               - The matrix treats Oracle Linux as validated through the listed RHEL testing.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           rocky-linux:
             ranges:
               - '10.2'
@@ -111,7 +111,7 @@ projects:
               - The matrix treats Rocky Linux as validated through the listed RHEL testing.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           ubuntu:
             ranges:
               - '26.04'
@@ -123,7 +123,7 @@ projects:
               - The support matrix certifies Ubuntu 26.04, 24.04 and 22.04.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           etcd:
             ranges:
               - '3.6.14-k3s1'
@@ -133,7 +133,7 @@ projects:
               - RKE2 1.36.4+rke2r1 bundles etcd 3.6.14-k3s1.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           containerd:
             ranges:
               - '2.3.4-k3s1.36'
@@ -143,7 +143,7 @@ projects:
               - RKE2 1.36.4+rke2r1 bundles containerd 2.3.4-k3s1.36.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           runc:
             ranges:
               - '1.4.3'
@@ -153,7 +153,7 @@ projects:
               - RKE2 1.36.4+rke2r1 bundles runc 1.4.3.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           metrics-server:
             ranges:
               - '0.9.0'
@@ -163,7 +163,7 @@ projects:
               - RKE2 1.36.4+rke2r1 bundles metrics-server 0.9.0.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           coredns:
             ranges:
               - '1.14.7'
@@ -173,7 +173,7 @@ projects:
               - RKE2 1.36.4+rke2r1 bundles CoreDNS 1.14.7.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           ingress-nginx:
             ranges:
               - '1.15.1-prime11'
@@ -183,7 +183,7 @@ projects:
               - RKE2 1.36.4+rke2r1 bundles Ingress-NGINX 1.15.1-prime11.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           helm-controller:
             ranges:
               - '0.17.7'
@@ -193,7 +193,7 @@ projects:
               - RKE2 1.36.4+rke2r1 bundles Helm Controller 0.17.7.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           traefik:
             ranges:
               - '3.7.11'
@@ -203,7 +203,7 @@ projects:
               - The RKE2 1.36 support matrix lists Traefik 3.7.11 in the certified component set.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           cni:
             ranges:
               - canal
@@ -217,7 +217,7 @@ projects:
               - The support matrix certifies Canal, Calico, Cilium, Multus, and Flannel configurations.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           flannel:
             ranges:
               - '0.28.9'
@@ -227,7 +227,7 @@ projects:
               - The support matrix certifies Flannel 0.28.9, including its use in Canal.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           calico:
             ranges:
               - '3.32.1'
@@ -237,7 +237,7 @@ projects:
               - The support matrix certifies Calico 3.32.1, including its use in Canal.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           cilium:
             ranges:
               - '1.19.6'
@@ -247,7 +247,7 @@ projects:
               - The support matrix certifies Cilium 1.19.6.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           multus:
             ranges:
               - '4.3.0'
@@ -257,7 +257,7 @@ projects:
               - The support matrix certifies Multus 4.3.0.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           vsphere-cpi:
             ranges:
               - '1.15.300'
@@ -267,7 +267,7 @@ projects:
               - The support matrix lists vSphere CPI chart 1.15.300 and cautions against upgrading with in-tree cloud providers.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           vsphere-csi:
             ranges:
               - '3.7.2-rancher700'
@@ -277,7 +277,7 @@ projects:
               - The support matrix lists vSphere CSI chart 3.7.2-rancher700.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           container-runtime:
             ranges:
               - nvidia-container-runtime
@@ -287,7 +287,7 @@ projects:
               - The support matrix lists NVIDIA Container Runtime; Docker CRI is explicitly limited to K3s.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           windows-server:
             ranges:
               - '2022'
@@ -297,7 +297,18 @@ projects:
               - Windows Server 2022 workers are supported in Linux control-plane clusters and require Calico or Flannel CNI.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
+          windows-cni:
+            ranges:
+              - calico
+              - flannel
+            relationship: Windows worker network plugin
+            confidence: high
+            notes:
+              - The support matrix requires Calico or Flannel for Windows workers; the control plane must run on Linux.
+            sources:
+              - *rke2_136_source
+            lastVerified: '2026-09-11'
       '1.35.8+rke2r1':
         dependencies:
           kubernetes:
@@ -309,7 +320,7 @@ projects:
               - RKE2 1.35.8+rke2r1 packages Kubernetes 1.35.8.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           architecture:
             ranges:
               - x86_64
@@ -320,7 +331,7 @@ projects:
               - The support matrix certifies x86_64 and arm64 architectures.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           sles:
             ranges:
               - '16.0'
@@ -332,7 +343,7 @@ projects:
               - The support matrix certifies SLES 16.0, 15 SP7, and 15 SP6.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           sle-micro:
             ranges:
               - '6.2'
@@ -344,7 +355,7 @@ projects:
               - The support matrix certifies SLE Micro 6.2, 6.1, and 6.0.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           opensuse-leap:
             ranges:
               - '15.7'
@@ -356,7 +367,7 @@ projects:
               - The matrix lists openSUSE Leap 15.7, 15.6, and 15.5 as validated through SUSE Linux Enterprise testing.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           rhel:
             ranges:
               - '10.2'
@@ -375,7 +386,7 @@ projects:
               - The matrix certifies these RHEL versions and treats Oracle Linux and Rocky Linux as validated through RHEL testing.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           oracle-linux:
             ranges:
               - '10.2'
@@ -394,7 +405,7 @@ projects:
               - The matrix treats Oracle Linux as validated through the listed RHEL testing.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           rocky-linux:
             ranges:
               - '10.2'
@@ -413,7 +424,7 @@ projects:
               - The matrix treats Rocky Linux as validated through the listed RHEL testing.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           ubuntu:
             ranges:
               - '26.04'
@@ -426,7 +437,7 @@ projects:
               - The support matrix certifies Ubuntu 26.04, 24.04, 22.04, and 20.04.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           etcd:
             ranges:
               - '3.6.14-k3s1'
@@ -436,7 +447,7 @@ projects:
               - RKE2 1.35.8+rke2r1 bundles etcd 3.6.14-k3s1.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           containerd:
             ranges:
               - '2.2.7-k3s1'
@@ -446,7 +457,7 @@ projects:
               - RKE2 1.35.8+rke2r1 bundles containerd 2.2.7-k3s1.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           runc:
             ranges:
               - '1.4.3'
@@ -456,7 +467,7 @@ projects:
               - RKE2 1.35.8+rke2r1 bundles runc 1.4.3.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           metrics-server:
             ranges:
               - '0.9.0'
@@ -466,7 +477,7 @@ projects:
               - RKE2 1.35.8+rke2r1 bundles metrics-server 0.9.0.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           coredns:
             ranges:
               - '1.14.7'
@@ -476,7 +487,7 @@ projects:
               - RKE2 1.35.8+rke2r1 bundles CoreDNS 1.14.7.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           ingress-nginx:
             ranges:
               - '1.15.1-prime11'
@@ -486,7 +497,7 @@ projects:
               - RKE2 1.35.8+rke2r1 bundles Ingress-NGINX 1.15.1-prime11.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           helm-controller:
             ranges:
               - '0.17.7'
@@ -496,7 +507,7 @@ projects:
               - RKE2 1.35.8+rke2r1 bundles Helm Controller 0.17.7.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           traefik:
             ranges:
               - '3.7.11'
@@ -506,7 +517,7 @@ projects:
               - The RKE2 1.35 support matrix lists Traefik 3.7.11 in the certified component set.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           cni:
             ranges:
               - canal
@@ -520,7 +531,7 @@ projects:
               - The support matrix certifies Canal, Calico, Cilium, Multus, and Flannel configurations.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           flannel:
             ranges:
               - '0.28.9'
@@ -530,7 +541,7 @@ projects:
               - The support matrix certifies Flannel 0.28.9, including its use in Canal.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           calico:
             ranges:
               - '3.32.1'
@@ -540,7 +551,7 @@ projects:
               - The support matrix certifies Calico 3.32.1, including its use in Canal.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           cilium:
             ranges:
               - '1.19.6'
@@ -550,7 +561,7 @@ projects:
               - The support matrix certifies Cilium 1.19.6.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           multus:
             ranges:
               - '4.3.0'
@@ -560,7 +571,7 @@ projects:
               - The support matrix certifies Multus 4.3.0.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           vsphere-cpi:
             ranges:
               - '1.15.300'
@@ -570,7 +581,7 @@ projects:
               - The support matrix lists vSphere CPI chart 1.15.300 and cautions against upgrading with in-tree cloud providers.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           vsphere-csi:
             ranges:
               - '3.7.2-rancher700'
@@ -580,7 +591,7 @@ projects:
               - The support matrix lists vSphere CSI chart 3.7.2-rancher700.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           container-runtime:
             ranges:
               - nvidia-container-runtime
@@ -590,7 +601,7 @@ projects:
               - The support matrix lists NVIDIA Container Runtime; Docker CRI is explicitly limited to K3s.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           windows-server:
             ranges:
               - '2019'
@@ -601,7 +612,18 @@ projects:
               - Windows Server 2019 LTSC and 2022 workers are supported in Linux control-plane clusters and require Calico or Flannel CNI.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
+          windows-cni:
+            ranges:
+              - calico
+              - flannel
+            relationship: Windows worker network plugin
+            confidence: high
+            notes:
+              - The support matrix requires Calico or Flannel for Windows workers; the control plane must run on Linux.
+            sources:
+              - *rke2_135_source
+            lastVerified: '2026-09-11'
       '1.34.11+rke2r1':
         dependencies:
           kubernetes:
@@ -613,7 +635,7 @@ projects:
               - RKE2 1.34.11+rke2r1 packages Kubernetes 1.34.11.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           architecture:
             ranges:
               - x86_64
@@ -624,7 +646,7 @@ projects:
               - The support matrix certifies x86_64 and arm64 architectures.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           sles:
             ranges:
               - '16.0'
@@ -637,7 +659,7 @@ projects:
               - The support matrix certifies SLES 16.0, 15 SP7, 15 SP6, and 15 SP5.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           sle-micro:
             ranges:
               - '6.1'
@@ -649,7 +671,7 @@ projects:
               - The support matrix certifies SLE Micro 6.1, 6.0, and 5.5.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           opensuse-leap:
             ranges:
               - '15.7'
@@ -661,7 +683,7 @@ projects:
               - The matrix lists openSUSE Leap 15.7, 15.6, and 15.5 as validated through SUSE Linux Enterprise testing.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           rhel:
             ranges:
               - '10.2'
@@ -680,7 +702,7 @@ projects:
               - The matrix certifies these RHEL versions and treats Oracle Linux and Rocky Linux as validated through RHEL testing.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           oracle-linux:
             ranges:
               - '10.2'
@@ -699,7 +721,7 @@ projects:
               - The matrix treats Oracle Linux as validated through the listed RHEL testing.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           rocky-linux:
             ranges:
               - '10.2'
@@ -718,7 +740,7 @@ projects:
               - The matrix treats Rocky Linux as validated through the listed RHEL testing.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           ubuntu:
             ranges:
               - '26.04'
@@ -731,7 +753,7 @@ projects:
               - The support matrix certifies Ubuntu 26.04, 24.04, 22.04, and 20.04.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           etcd:
             ranges:
               - '3.6.14-k3s1'
@@ -741,7 +763,7 @@ projects:
               - RKE2 1.34.11+rke2r1 bundles etcd 3.6.14-k3s1.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           containerd:
             ranges:
               - '2.2.7-k3s1'
@@ -751,7 +773,7 @@ projects:
               - RKE2 1.34.11+rke2r1 bundles containerd 2.2.7-k3s1.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           runc:
             ranges:
               - '1.4.3'
@@ -761,7 +783,7 @@ projects:
               - RKE2 1.34.11+rke2r1 bundles runc 1.4.3.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           metrics-server:
             ranges:
               - '0.9.0'
@@ -771,7 +793,7 @@ projects:
               - RKE2 1.34.11+rke2r1 bundles metrics-server 0.9.0.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           coredns:
             ranges:
               - '1.14.7'
@@ -781,7 +803,7 @@ projects:
               - RKE2 1.34.11+rke2r1 bundles CoreDNS 1.14.7.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           ingress-nginx:
             ranges:
               - '1.15.1-prime11'
@@ -791,7 +813,7 @@ projects:
               - RKE2 1.34.11+rke2r1 bundles Ingress-NGINX 1.15.1-prime11.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           helm-controller:
             ranges:
               - '0.16.26'
@@ -801,7 +823,7 @@ projects:
               - RKE2 1.34.11+rke2r1 bundles Helm Controller 0.16.26.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           traefik:
             ranges:
               - '3.7.11'
@@ -811,7 +833,7 @@ projects:
               - The RKE2 1.34 support matrix lists Traefik 3.7.11 in the certified component set.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           cni:
             ranges:
               - canal
@@ -825,7 +847,7 @@ projects:
               - The support matrix certifies Canal, Calico, Cilium, Multus, and Flannel configurations.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           flannel:
             ranges:
               - '0.28.9'
@@ -835,7 +857,7 @@ projects:
               - The support matrix certifies Flannel 0.28.9, including its use in Canal.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           calico:
             ranges:
               - '3.32.1'
@@ -845,7 +867,7 @@ projects:
               - The support matrix certifies Calico 3.32.1, including its use in Canal.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           cilium:
             ranges:
               - '1.19.6'
@@ -855,7 +877,7 @@ projects:
               - The support matrix certifies Cilium 1.19.6.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           multus:
             ranges:
               - '4.3.0'
@@ -865,7 +887,7 @@ projects:
               - The support matrix certifies Multus 4.3.0.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           vsphere-cpi:
             ranges:
               - '1.15.300'
@@ -875,7 +897,7 @@ projects:
               - The support matrix lists vSphere CPI chart 1.15.300 and cautions against upgrading with in-tree cloud providers.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           vsphere-csi:
             ranges:
               - '3.7.2-rancher700'
@@ -885,7 +907,7 @@ projects:
               - The support matrix lists vSphere CSI chart 3.7.2-rancher700.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           container-runtime:
             ranges:
               - nvidia-container-runtime
@@ -895,7 +917,7 @@ projects:
               - The support matrix lists NVIDIA Container Runtime; Docker CRI is explicitly limited to K3s.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
           windows-server:
             ranges:
               - '2019'
@@ -906,4 +928,15 @@ projects:
               - Windows Server 2019 LTSC and 2022 workers are supported in Linux control-plane clusters and require Calico or Flannel CNI.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-04'
+            lastVerified: '2026-09-11'
+          windows-cni:
+            ranges:
+              - calico
+              - flannel
+            relationship: Windows worker network plugin
+            confidence: high
+            notes:
+              - The support matrix requires Calico or Flannel for Windows workers; the control plane must run on Linux.
+            sources:
+              - *rke2_134_source
+            lastVerified: '2026-09-11'

@@ -1,42 +1,42 @@
 x-postgis-release-source: &postgis_release_source
   title: PostGIS 3.6 Release Notes
   url: https://postgis.net/docs/release_notes.html
-  accessedAt: '2026-07-31'
+  accessedAt: '2026-09-11'
 
 x-postgis-support-source: &postgis_support_source
   title: PostGIS 3.6 Installation Requirements
   url: https://postgis.net/docs/manual-3.6/en/postgis_installation.html
-  accessedAt: '2026-07-31'
+  accessedAt: '2026-09-11'
 
 x-pgvector-080-support-source: &pgvector_080_support_source
   title: pgvector 0.8.0 Installation
   url: https://github.com/pgvector/pgvector/blob/v0.8.0/README.md
-  accessedAt: '2026-07-31'
+  accessedAt: '2026-09-11'
 
 x-pgvector-086-support-source: &pgvector_086_support_source
   title: pgvector 0.8.6 Installation
   url: https://github.com/pgvector/pgvector/blob/v0.8.6/README.md
-  accessedAt: '2026-07-31'
+  accessedAt: '2026-09-11'
 
 x-timescaledb-223-support-source: &timescaledb_223_support_source
   title: TimescaleDB 2.23.0 Release
   url: https://github.com/timescale/timescaledb/releases/tag/2.23.0
-  accessedAt: '2026-07-31'
+  accessedAt: '2026-09-11'
 
 x-timescaledb-230-support-source: &timescaledb_230_support_source
   title: TimescaleDB 2.30.0 PostgreSQL version check
   url: https://github.com/timescale/timescaledb/blob/2.30.0/CMakeLists.txt
-  accessedAt: '2026-09-08'
+  accessedAt: '2026-09-11'
 
 x-pg-cron-160-support-source: &pg_cron_160_support_source
   title: pg_cron 1.6.0 Installation
   url: https://github.com/citusdata/pg_cron/blob/v1.6.0/README.md
-  accessedAt: '2026-07-31'
+  accessedAt: '2026-09-11'
 
 x-pg-cron-168-support-source: &pg_cron_168_support_source
   title: pg_cron 1.6.8 Installation
   url: https://github.com/citusdata/pg_cron/blob/v1.6.8/README.md
-  accessedAt: '2026-09-08'
+  accessedAt: '2026-09-11'
 
 projects:
   postgresql:
@@ -59,18 +59,22 @@ projects:
             sources:
               - *postgis_release_source
               - *postgis_support_source
-            lastVerified: '2026-07-31'
+            lastVerified: '2026-09-11'
           pgvector:
             ranges:
-              - '0.8'
+              - '>=0.8.1 <0.9'
             relationship: extension
             confidence: high
             notes:
-              - The pgvector 0.8 release line documents support for PostgreSQL 13 and newer.
+              - PostgreSQL 18 support was introduced in pgvector 0.8.1; 0.8.0 does not include that support.
             sources:
-              - *pgvector_080_support_source
-              - *pgvector_086_support_source
-            lastVerified: '2026-07-31'
+              - title: pgvector 0.8.6 changelog - PostgreSQL 18 support added in 0.8.1
+                url: https://github.com/pgvector/pgvector/blob/v0.8.6/CHANGELOG.md
+                accessedAt: 2026-09-11
+              - title: pgvector 0.8.6 installation
+                url: https://github.com/pgvector/pgvector/blob/v0.8.6/README.md
+                accessedAt: 2026-09-11
+            lastVerified: '2026-09-11'
           timescaledb:
             ranges:
               - '>=2.23 <2.31'
@@ -81,18 +85,22 @@ projects:
             sources:
               - *timescaledb_223_support_source
               - *timescaledb_230_support_source
-            lastVerified: '2026-09-08'
+            lastVerified: '2026-09-11'
           pg-cron:
             ranges:
-              - '1.6'
+              - '>=1.6.6 <1.7'
             relationship: extension
             confidence: high
             notes:
-              - The pg_cron 1.6 release line documents support for PostgreSQL 10 and newer.
+              - pg_cron 1.6.6 introduced PostgreSQL 18 compatibility in the 1.6 release line.
             sources:
-              - *pg_cron_160_support_source
-              - *pg_cron_168_support_source
-            lastVerified: '2026-09-08'
+              - title: pg_cron 1.6.6 release
+                url: https://github.com/citusdata/pg_cron/releases/tag/v1.6.6
+                accessedAt: 2026-09-11
+              - title: pg_cron 1.6.8 installation
+                url: https://github.com/citusdata/pg_cron/blob/v1.6.8/README.md
+                accessedAt: 2026-09-11
+            lastVerified: '2026-09-11'
       '17':
         dependencies:
           postgis:
@@ -105,7 +113,7 @@ projects:
             sources:
               - *postgis_release_source
               - *postgis_support_source
-            lastVerified: '2026-07-31'
+            lastVerified: '2026-09-11'
           pgvector:
             ranges:
               - '0.8'
@@ -116,7 +124,7 @@ projects:
             sources:
               - *pgvector_080_support_source
               - *pgvector_086_support_source
-            lastVerified: '2026-07-31'
+            lastVerified: '2026-09-11'
           timescaledb:
             ranges:
               - '>=2.23 <2.31'
@@ -127,18 +135,22 @@ projects:
             sources:
               - *timescaledb_223_support_source
               - *timescaledb_230_support_source
-            lastVerified: '2026-09-08'
+            lastVerified: '2026-09-11'
           pg-cron:
             ranges:
-              - '1.6'
+              - '>=1.6.3 <1.7'
             relationship: extension
             confidence: high
             notes:
-              - The pg_cron 1.6 release line documents support for PostgreSQL 10 and newer.
+              - pg_cron 1.6.3 introduced PostgreSQL 17 compatibility in the 1.6 release line.
             sources:
-              - *pg_cron_160_support_source
-              - *pg_cron_168_support_source
-            lastVerified: '2026-09-08'
+              - title: pg_cron 1.6.3 release
+                url: https://github.com/citusdata/pg_cron/releases/tag/v1.6.3
+                accessedAt: 2026-09-11
+              - title: pg_cron 1.6.8 installation
+                url: https://github.com/citusdata/pg_cron/blob/v1.6.8/README.md
+                accessedAt: 2026-09-11
+            lastVerified: '2026-09-11'
       '16':
         dependencies:
           postgis:
@@ -151,7 +163,7 @@ projects:
             sources:
               - *postgis_release_source
               - *postgis_support_source
-            lastVerified: '2026-07-31'
+            lastVerified: '2026-09-11'
           pgvector:
             ranges:
               - '0.8'
@@ -162,7 +174,7 @@ projects:
             sources:
               - *pgvector_080_support_source
               - *pgvector_086_support_source
-            lastVerified: '2026-07-31'
+            lastVerified: '2026-09-11'
           timescaledb:
             ranges:
               - '>=2.23 <2.31'
@@ -173,7 +185,7 @@ projects:
             sources:
               - *timescaledb_223_support_source
               - *timescaledb_230_support_source
-            lastVerified: '2026-09-08'
+            lastVerified: '2026-09-11'
           pg-cron:
             ranges:
               - '1.6'
@@ -184,4 +196,4 @@ projects:
             sources:
               - *pg_cron_160_support_source
               - *pg_cron_168_support_source
-            lastVerified: '2026-09-08'
+            lastVerified: '2026-09-11'

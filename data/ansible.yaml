@@ -1,13 +1,3 @@
-x-ansible-community-package-source: &ansible_community_package_source
-  title: Ansible Community Package Release Matrix
-  url: https://docs.ansible.com/projects/ansible/latest/reference_appendices/release_and_maintenance.html#ansible-community-changelogs
-  accessedAt: '2026-07-18'
-
-x-ansible-14-build-source: &ansible_14_build_source
-  title: Ansible 14.2.0 dependency manifest
-  url: https://github.com/ansible-community/ansible-build-data/blob/14.2.0/14/ansible-14.2.0.deps
-  accessedAt: '2026-07-18'
-
 projects:
   ansible:
     name: Ansible
@@ -26,68 +16,12 @@ projects:
             relationship: core dependency
             confidence: high
             notes:
-              - The Ansible 14.2.0 dependency manifest pins ansible-core 2.21.2, and the Ansible 14 build constraints use ansible-core 2.21.
+              - Ansible 14 build metadata specifies ansible-core 2.21, and the released Ansible 14.4.0 dependency manifest pins ansible-core 2.21.4.
             sources:
-              - *ansible_community_package_source
-              - *ansible_14_build_source
-            lastVerified: '2026-07-18'
-      '13':
-        dependencies:
-          ansible-core:
-            ranges:
-              - '>=2.20 <2.21'
-            relationship: core dependency
-            confidence: high
-            notes:
-              - Ansible community package release matrix lists Ansible 13.x with ansible-core 2.20.
-            sources:
-              - *ansible_community_package_source
-            lastVerified: '2026-07-09'
-      '12':
-        dependencies:
-          ansible-core:
-            ranges:
-              - '>=2.19 <2.20'
-            relationship: core dependency
-            confidence: high
-            notes:
-              - Ansible community package release matrix lists Ansible 12.x with ansible-core 2.19.
-            sources:
-              - *ansible_community_package_source
-            lastVerified: '2026-07-09'
-      '11':
-        dependencies:
-          ansible-core:
-            ranges:
-              - '>=2.18 <2.19'
-            relationship: core dependency
-            confidence: high
-            notes:
-              - Ansible community package release matrix lists Ansible 11.x with ansible-core 2.18.
-            sources:
-              - *ansible_community_package_source
-            lastVerified: '2026-07-09'
-      '10':
-        dependencies:
-          ansible-core:
-            ranges:
-              - '>=2.17 <2.18'
-            relationship: core dependency
-            confidence: high
-            notes:
-              - Ansible community package release matrix lists Ansible 10.x with ansible-core 2.17.
-            sources:
-              - *ansible_community_package_source
-            lastVerified: '2026-07-09'
-      '9':
-        dependencies:
-          ansible-core:
-            ranges:
-              - '>=2.16 <2.17'
-            relationship: core dependency
-            confidence: high
-            notes:
-              - Ansible community package release matrix lists Ansible 9.x with ansible-core 2.16.
-            sources:
-              - *ansible_community_package_source
-            lastVerified: '2026-07-09'
+              - title: Ansible 14 build constraints at 14.4.0
+                url: https://github.com/ansible-community/ansible-build-data/blob/14.4.0/14/ansible-14.build
+                accessedAt: 2026-09-11
+              - title: Ansible 14.4.0 dependency manifest
+                url: https://github.com/ansible-community/ansible-build-data/blob/14.4.0/14/ansible-14.4.0.deps
+                accessedAt: 2026-09-11
+            lastVerified: '2026-09-11'
