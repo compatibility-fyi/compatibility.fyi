@@ -27,6 +27,9 @@
   "dependencies": {
     "semver": "^7.8.5"
   },
+  "overrides": {
+    "sharp": "0.35.4"
+  },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.43.2",
     "@cloudflare/vitest-pool-workers": "^0.22.0",
