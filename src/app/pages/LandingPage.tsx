@@ -4,15 +4,8 @@ import { listProjects } from '../../lib/catalog';
 import type { CompatibilityDataset, ProjectSummary } from '../../types/compatibility';
 import { Layout } from '../components/Layout';
 
-interface CatalogProject extends ProjectSummary {
-  categories: string[];
-}
-
 export function LandingPage({ dataset }: { dataset: CompatibilityDataset }) {
-  const projects: CatalogProject[] = listProjects(dataset).map((project) => ({
-    ...project,
-    categories: project.categories.length > 0 ? project.categories : ['Uncategorized'],
-  }));
+  const projects = listProjects(dataset);
   const counts = new Map<string, number>();
 
   for (const project of projects) {
@@ -172,7 +165,7 @@ export function LandingPage({ dataset }: { dataset: CompatibilityDataset }) {
   );
 }
 
-function ProjectRow({ project }: { project: CatalogProject }) {
+function ProjectRow({ project }: { project: ProjectSummary }) {
   const searchText = [
     project.id,
     project.name,

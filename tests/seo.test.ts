@@ -37,13 +37,16 @@ describe('seo metadata', () => {
     });
   });
 
-  it('normalizes project canonical paths without trailing slashes', () => {
-    expect(getSeoMetadata('/projects/sample/', dataset)).toMatchObject({
-      title: 'Sample Project Compatibility Matrix | compatibility.fyi',
-      description: expect.stringContaining('Sample project compatibility metadata.'),
-      canonicalPath: '/projects/sample/',
-    });
-  });
+  it.each(['/projects/sample', '/projects/sample/'])(
+    'canonicalizes %s with a trailing slash',
+    (path) => {
+      expect(getSeoMetadata(path, dataset)).toMatchObject({
+        title: 'Sample Project Compatibility Matrix | compatibility.fyi',
+        description: expect.stringContaining('Sample project compatibility metadata.'),
+        canonicalPath: '/projects/sample/',
+      });
+    },
+  );
 
   it('returns API documentation metadata', () => {
     expect(getSeoMetadata('/docs/api', dataset)).toMatchObject({

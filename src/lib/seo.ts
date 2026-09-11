@@ -122,10 +122,6 @@ export function absoluteUrl(path: string): string {
   return new URL(path, siteUrl).toString();
 }
 
-export function countProjectDependencies(project: ProjectCompatibility): number {
-  return getProjectDependencyIds(project).length;
-}
-
 export function getProjectDependencyIds(project: ProjectCompatibility): string[] {
   return [
     ...new Set(

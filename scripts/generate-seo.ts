@@ -196,15 +196,7 @@ function renderDocument(
     : '';
 
   return template
-    .replace(/<title>.*?<\/title>/s, `<title>${escapeHtml(metadata.title)}</title>`)
-    .replace(/<meta\s+name="description"\s+content="[^"]*"\s*\/?>/s, '')
-    .replace(/<meta\s+name="robots"\s+content="[^"]*"\s*\/?>/s, '')
-    .replace(/<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/s, '')
-    .replace(
-      /<meta\s+(?:property|name)="(?:og|twitter):[^"]+"\s+content="[^"]*"\s*\/?>\n?\s*/gs,
-      '',
-    )
-    .replace('</head>', `${head}\n  </head>`)
+    .replace('<!-- seo-head -->', () => head)
     .replace('<div id="root"></div>', `<div id="root">${staticHtml}</div>`)
     .replace('</body>', `${script}  </body>`);
 }
@@ -215,6 +207,7 @@ function renderHead(metadata: SeoMetadata, jsonLd?: unknown): string {
   const canonical = metadata.canonicalPath ? absoluteUrl(metadata.canonicalPath) : undefined;
 
   return [
+    `    <title>${escapedTitle}</title>`,
     `    <meta name="description" content="${escapedDescription}" />`,
     `    <meta name="robots" content="${metadata.robots ?? robotsContent}" />`,
     ...(canonical ? [`    <link rel="canonical" href="${canonical}" />`] : []),

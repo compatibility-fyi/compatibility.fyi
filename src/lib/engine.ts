@@ -21,9 +21,15 @@ export function checkCompatibility(
   dataset: CompatibilityDataset,
   request: CompatibilityCheckRequest,
 ): CompatibilityCheckResponse {
-  const project = dataset.projects[request.project];
+  const project = Object.hasOwn(dataset.projects, request.project)
+    ? dataset.projects[request.project]
+    : undefined;
   const versionKey = findVersionKey(Object.keys(project?.versions ?? {}), request.version);
-  const dependency = project?.versions[versionKey ?? '']?.dependencies[request.dependency];
+  const dependencies = versionKey ? project?.versions[versionKey].dependencies : undefined;
+  const dependency =
+    dependencies && Object.hasOwn(dependencies, request.dependency)
+      ? dependencies[request.dependency]
+      : undefined;
   const entry = dependency ?? unknownEntry;
   const dependencyExists = Boolean(dependency);
 

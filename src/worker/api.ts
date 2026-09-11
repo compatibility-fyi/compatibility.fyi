@@ -1,12 +1,11 @@
 import { checkCompatibility, checkCompoundCompatibility } from '../lib/engine';
 import { listProjects } from '../lib/catalog';
-import { loadDataset } from '../lib/data';
+import dataset from '../lib/data';
 import type {
   CompatibilityCheckRequest,
   CompoundCompatibilityCheckRequest,
 } from '../types/compatibility';
 
-const dataset = loadDataset();
 const maxPostBodyBytes = 16 * 1024;
 const maxFieldLength = 128;
 const maxDependencies = 32;
@@ -73,13 +72,11 @@ async function routeApiRequest(request: Request): Promise<Response> {
   const projectMatch = url.pathname.match(/^\/api\/v1\/projects\/([^/]+)$/);
   if (request.method === 'GET' && projectMatch) {
     const projectId = projectMatch[1];
-    const project = dataset.projects[projectId];
-
-    if (!project) {
+    if (!Object.hasOwn(dataset.projects, projectId)) {
       return json({ error: 'Project not found', project: projectId }, 404, false);
     }
 
-    return json({ id: projectId, ...project });
+    return json({ id: projectId, ...dataset.projects[projectId] });
   }
 
   if (url.pathname === '/api/v1/check') {
@@ -114,54 +111,21 @@ interface ApiValidationError {
 }
 
 function readGetCheckRequest(params: URLSearchParams): CheckRequest {
+  const record: Record<string, unknown> = Object.fromEntries(
+    [...new Set(params.keys())].map((key) => [key, params.get(key)]),
+  );
   const dependencies = params.get('dependencies');
-
-  if (dependencies) {
-    const fields = readRequiredQueryStrings(params, ['project', 'version']);
-    if ('error' in fields) {
-      return fields;
-    }
+  if (dependencies !== null) {
     if (dependencies.length > maxPostBodyBytes) {
       return { error: `dependencies must be at most ${maxPostBodyBytes} characters` };
     }
-
-    const parsedDependencies = parseDependencies(dependencies);
-    if ('error' in parsedDependencies) {
-      return parsedDependencies;
+    try {
+      record.dependencies = JSON.parse(dependencies) as unknown;
+    } catch {
+      return { error: 'dependencies must be a JSON object of dependency names to versions' };
     }
-
-    return {
-      project: fields.project,
-      version: fields.version,
-      dependencies: parsedDependencies.dependencies,
-    };
   }
-
-  return readSingleCheckRequest(params);
-}
-
-function readSingleCheckRequest(
-  params: URLSearchParams,
-): CompatibilityCheckRequest | ApiValidationError {
-  const fields = readRequiredQueryStrings(params, [
-    'project',
-    'version',
-    'dependency',
-    'dependencyVersion',
-  ]);
-  if ('error' in fields) {
-    return fields;
-  }
-  if (!identifierPattern.test(fields.project) || !identifierPattern.test(fields.dependency)) {
-    return { error: 'project and dependency must use lowercase-dash identifiers' };
-  }
-
-  return {
-    project: fields.project,
-    version: fields.version,
-    dependency: fields.dependency,
-    dependencyVersion: fields.dependencyVersion,
-  };
+  return validateCheckRequest(record, 'query');
 }
 
 async function readPostCheckRequest(request: Request): Promise<CheckRequest> {
@@ -178,11 +142,15 @@ async function readPostCheckRequest(request: Request): Promise<CheckRequest> {
   if (!body || typeof body !== 'object' || Array.isArray(body)) {
     return { error: 'Request body must be a JSON object' };
   }
+  return validateCheckRequest(body as Record<string, unknown>, 'body');
+}
 
-  const record = body as Record<string, unknown>;
-
+function validateCheckRequest(
+  record: Record<string, unknown>,
+  location: 'query' | 'body',
+): CheckRequest {
   if (record.dependencies !== undefined) {
-    const fields = readRequiredBodyStrings(record, ['project', 'version']);
+    const fields = readRequiredStrings(record, ['project', 'version'], location);
     if ('error' in fields) {
       return fields;
     }
@@ -193,33 +161,21 @@ async function readPostCheckRequest(request: Request): Promise<CheckRequest> {
     if ('error' in dependencies) {
       return dependencies;
     }
-
-    return {
-      project: fields.project,
-      version: fields.version,
-      dependencies: dependencies.dependencies,
-    };
+    return { ...fields, dependencies: dependencies.dependencies };
   }
 
-  const fields = readRequiredBodyStrings(record, [
-    'project',
-    'version',
-    'dependency',
-    'dependencyVersion',
-  ]);
+  const fields = readRequiredStrings(
+    record,
+    ['project', 'version', 'dependency', 'dependencyVersion'],
+    location,
+  );
   if ('error' in fields) {
     return fields;
   }
   if (!identifierPattern.test(fields.project) || !identifierPattern.test(fields.dependency)) {
     return { error: 'project and dependency must use lowercase-dash identifiers' };
   }
-
-  return {
-    project: fields.project,
-    version: fields.version,
-    dependency: fields.dependency,
-    dependencyVersion: fields.dependencyVersion,
-  };
+  return fields;
 }
 
 async function readJsonBody(request: Request): Promise<{ body: unknown } | ApiValidationError> {
@@ -266,18 +222,6 @@ async function readJsonBody(request: Request): Promise<{ body: unknown } | ApiVa
   }
 }
 
-function parseDependencies(
-  value: string,
-): { dependencies: Record<string, string> } | ApiValidationError {
-  let parsed: unknown;
-  try {
-    parsed = JSON.parse(value) as unknown;
-  } catch {
-    return { error: 'dependencies must be a JSON object of dependency names to versions' };
-  }
-  return validateDependencies(parsed);
-}
-
 function validateDependencies(
   value: unknown,
 ): { dependencies: Record<string, string> } | ApiValidationError {
@@ -310,36 +254,20 @@ function validateDependencies(
   return { dependencies };
 }
 
-function readRequiredQueryStrings<const Keys extends readonly string[]>(
-  params: URLSearchParams,
-  keys: Keys,
-): { [Key in Keys[number]]: string } | ApiValidationError {
-  const values = Object.fromEntries(
-    keys.map((key) => [key, params.get(key)?.trim() ?? '']),
-  ) as Record<string, string>;
-  const missing = keys.filter((key) => values[key] === '');
-  if (missing.length > 0) {
-    return { error: 'Missing required query parameters', missing: [...missing] };
-  }
-  const tooLong = keys.filter((key) => values[key].length > maxFieldLength);
-  if (tooLong.length > 0) {
-    return {
-      error: `Query parameters must be at most ${maxFieldLength} characters`,
-      invalid: [...tooLong],
-    };
-  }
-  return values as { [Key in Keys[number]]: string };
-}
-
-function readRequiredBodyStrings<const Keys extends readonly string[]>(
+function readRequiredStrings<const Keys extends readonly string[]>(
   record: Record<string, unknown>,
   keys: Keys,
+  location: 'query' | 'body',
 ): { [Key in Keys[number]]: string } | ApiValidationError {
   const missing = keys.filter(
     (key) => typeof record[key] !== 'string' || (record[key] as string).trim() === '',
   );
   if (missing.length > 0) {
-    return { error: 'Missing required body fields', missing: [...missing] };
+    return {
+      error:
+        location === 'query' ? 'Missing required query parameters' : 'Missing required body fields',
+      missing,
+    };
   }
   const values = Object.fromEntries(
     keys.map((key) => [key, (record[key] as string).trim()]),
@@ -347,8 +275,8 @@ function readRequiredBodyStrings<const Keys extends readonly string[]>(
   const tooLong = keys.filter((key) => values[key].length > maxFieldLength);
   if (tooLong.length > 0) {
     return {
-      error: `Body fields must be at most ${maxFieldLength} characters`,
-      invalid: [...tooLong],
+      error: `${location === 'query' ? 'Query parameters' : 'Body fields'} must be at most ${maxFieldLength} characters`,
+      invalid: tooLong,
     };
   }
   return values as { [Key in Keys[number]]: string };

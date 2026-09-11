@@ -1,54 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { checkCompatibility, checkCompoundCompatibility } from '../src/lib/engine';
-import type { CompatibilityDataset } from '../src/types/compatibility';
-
-const dataset: CompatibilityDataset = {
-  projects: {
-    sample: {
-      name: 'Sample',
-      categories: ['Test'],
-      versions: {
-        '1': {
-          dependencies: {
-            database: {
-              status: 'compatible',
-              ranges: ['>=15 <=17'],
-              confidence: 'high',
-              notes: ['Verified fixture'],
-              sources: [{ title: 'Fixture', url: 'https://example.com' }],
-              lastVerified: '2026-07-08',
-            },
-            peer: {
-              status: 'compatible',
-              ranges: [],
-              sameVersion: true,
-              confidence: 'high',
-              notes: ['Must match the project version exactly'],
-              sources: [{ title: 'Fixture', url: 'https://example.com/peer' }],
-              lastVerified: '2026-07-08',
-            },
-            runtime: {
-              status: 'incompatible',
-              ranges: ['<21'],
-              confidence: 'medium',
-              notes: ['Fixture incompatibility'],
-              sources: [{ title: 'Fixture', url: 'https://example.com/runtime' }],
-              lastVerified: '2026-07-08',
-            },
-            unverified: {
-              status: 'unknown',
-              ranges: [],
-              confidence: 'medium',
-              notes: ['Upstream explicitly marks this combination as unverified'],
-              sources: [{ title: 'Fixture', url: 'https://example.com/unverified' }],
-              lastVerified: '2026-07-08',
-            },
-          },
-        },
-      },
-    },
-  },
-};
+import { dataset } from './fixtures/compatibility';
 
 describe('compatibility engine', () => {
   it('returns compatible when a dependency version matches a compatible range', () => {
@@ -151,15 +103,43 @@ describe('compatibility engine', () => {
     ).toBe('unknown');
   });
 
-  it('matches patch releases to project minor-version rows', () => {
+  it('prefers a minor-version row over a broader major-version row', () => {
+    const project = dataset.projects.sample;
+    const overlappingDataset = {
+      projects: {
+        sample: {
+          ...project,
+          versions: {
+            ...project.versions,
+            '1.4': {
+              dependencies: {
+                database: {
+                  ...project.versions['1'].dependencies.database,
+                  ranges: ['>=18 <19'],
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+
     expect(
-      checkCompatibility(dataset, {
+      checkCompatibility(overlappingDataset, {
         project: 'sample',
         version: '1.4.2',
         dependency: 'database',
-        dependencyVersion: '17',
+        dependencyVersion: '18',
+      }),
+    ).toMatchObject({ compatible: 'compatible', matchedRange: '>=18 <19' });
+    expect(
+      checkCompatibility(overlappingDataset, {
+        project: 'sample',
+        version: '1.5.2',
+        dependency: 'database',
+        dependencyVersion: '18',
       }).compatible,
-    ).toBe('compatible');
+    ).toBe('incompatible');
   });
 
   it('returns evidence for intentionally unknown entries', () => {
@@ -178,33 +158,20 @@ describe('compatibility engine', () => {
     });
   });
 
-  it('summarizes compound checks as compatible when every dependency matches', () => {
-    expect(
-      checkCompoundCompatibility(dataset, {
-        project: 'sample',
-        version: '1',
-        dependencies: {
-          database: '17',
-        },
-      }),
-    ).toMatchObject({
-      compatible: 'compatible',
-      checks: [expect.objectContaining({ dependency: 'database', compatible: 'compatible' })],
+  it.each<{ dependencies: Record<string, string>; expected: string }>([
+    { dependencies: { database: '17', peer: '1' }, expected: 'compatible' },
+    { dependencies: { database: '17', peer: '2' }, expected: 'incompatible' },
+    { dependencies: { peer: '2', database: '17' }, expected: 'incompatible' },
+    { dependencies: { database: '17', runtime: '21' }, expected: 'unknown' },
+    { dependencies: { runtime: '21', database: '18' }, expected: 'incompatible' },
+    { dependencies: {}, expected: 'unknown' },
+  ])('summarizes $dependencies as $expected', ({ dependencies, expected }) => {
+    const result = checkCompoundCompatibility(dataset, {
+      project: 'sample',
+      version: '1',
+      dependencies,
     });
-  });
-
-  it('summarizes compound checks as incompatible when any dependency is incompatible', () => {
-    expect(
-      checkCompoundCompatibility(dataset, {
-        project: 'sample',
-        version: '1',
-        dependencies: {
-          database: '18',
-          runtime: '21',
-        },
-      }),
-    ).toMatchObject({
-      compatible: 'incompatible',
-    });
+    expect(result.compatible).toBe(expected);
+    expect(result.checks.map((check) => check.dependency)).toEqual(Object.keys(dependencies));
   });
 });

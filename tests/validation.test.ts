@@ -64,10 +64,10 @@ describe('compatibility data validation', () => {
     },
   );
 
-  it('requires accessedAt evidence for medium and high confidence', () => {
-    expect(() =>
-      parseCompatibilityYaml(validYaml({ confidence: 'medium', accessedAt: null })),
-    ).toThrow('must include an accessedAt date');
+  it.each(['medium', 'high'])('requires accessedAt evidence for %s confidence', (confidence) => {
+    expect(() => parseCompatibilityYaml(validYaml({ confidence, accessedAt: null }))).toThrow(
+      'must include an accessedAt date',
+    );
   });
 
   it('requires lastVerified for high confidence', () => {
@@ -91,14 +91,6 @@ describe('compatibility data validation', () => {
         { name: 'second', dataset },
       ]),
     ).toThrow('duplicate project id "sample"');
-  });
-
-  it('creates a project index without inherited property names', () => {
-    const dataset = mergeCompatibilityDatasets([
-      { name: 'sample.yaml', dataset: parseCompatibilityYaml(validYaml()) },
-    ]);
-    expect(Object.getPrototypeOf(dataset.projects)).toBeNull();
-    expect(dataset.projects.toString).toBeUndefined();
   });
 });
 
