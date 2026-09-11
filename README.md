@@ -84,8 +84,22 @@ projects:
             lastVerified: '2026-09-11'
 ```
 
-Compatibility is implicit when an entry has supported ranges or `sameVersion: true`. Use
-`status: incompatible` or `status: unknown` only when a source explicitly documents that state.
+Each entry records an evidence `basis`:
+
+- `supported` (default when omitted): upstream documents support for the range.
+- `tested`: upstream explicitly tests the listed versions; this does not imply a vendor support policy.
+- `recommended`: upstream recommends these versions, without establishing the full compatibility range.
+- `bundled`: upstream ships these exact versions together, without establishing general compatibility.
+
+A matching `supported` or `tested` entry returns `compatible`. A `recommended` or `bundled` match
+returns `unknown` while preserving the matched constraint and evidence basis. Versions outside the
+documented coverage also return `unknown`; lack of evidence does not establish incompatibility.
+Only a matching, source-backed `status: incompatible` entry returns `incompatible`. Use
+`status: unknown` only when upstream explicitly describes an unverified state. The `relationship`
+field describes how software is used and does not determine its evidence basis.
+
+For a compound check, an explicit incompatibility takes precedence. Otherwise, any unknown check
+makes the aggregate unknown; all checks must be compatible for the aggregate to be compatible.
 
 When upstream requires the dependency to have exactly the same version as the project, use an empty
 range list with `sameVersion: true`:

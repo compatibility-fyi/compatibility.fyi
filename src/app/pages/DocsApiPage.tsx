@@ -22,7 +22,7 @@ const projectIndexResponse = `{
       "name": "CloudNativePG",
       "categories": ["Databases"],
       "website": "https://cloudnative-pg.io/",
-      "versions": ["1.30", "1.29", "1.28"]
+      "versions": ["1.30", ">=1.29.2 <1.30", ">=1.29.0 <1.29.2"]
     }
   ]
 }`;
@@ -36,10 +36,12 @@ const projectResponse = `{
       "dependencies": {
         "multicluster-engine": {
           "ranges": ["2.11"],
+          "basis": "bundled",
           "relationship": "bundled"
         },
         "openshift-management-cluster": {
           "ranges": [">=4.19 <4.22"],
+          "basis": "supported",
           "relationship": "hub runtime"
         }
       }
@@ -53,6 +55,7 @@ const singleCheckResponse = `{
   "dependency": "postgresql",
   "dependencyVersion": "17",
   "compatible": "compatible",
+  "basis": "supported",
   "matchedRange": ">=14.0.0 <19.0.0",
   "matchedConstraint": null,
   "relationship": "database",
@@ -75,15 +78,15 @@ const compoundCheckResponse = `{
   "version": "2.16",
   "dependencies": {
     "multicluster-engine": "2.11",
-    "openshift-management-cluster": "4.21.22",
-    "openshift-hosted-cluster": "4.21.22"
+    "openshift-management-cluster": "4.21.22"
   },
-  "compatible": "compatible",
+  "compatible": "unknown",
   "checks": [
     {
       "dependency": "multicluster-engine",
       "dependencyVersion": "2.11",
-      "compatible": "compatible",
+      "compatible": "unknown",
+      "basis": "bundled",
       "matchedRange": "2.11",
       "matchedConstraint": null,
       "relationship": "bundled"
@@ -92,6 +95,7 @@ const compoundCheckResponse = `{
       "dependency": "openshift-management-cluster",
       "dependencyVersion": "4.21.22",
       "compatible": "compatible",
+      "basis": "supported",
       "matchedRange": ">=4.19 <4.22",
       "matchedConstraint": null,
       "relationship": "hub runtime"
@@ -164,13 +168,19 @@ const responseFields: ResponseField[] = [
     description: 'Aggregate or single check result: compatible, incompatible, or unknown.',
   },
   {
+    name: 'basis',
+    description:
+      'Evidence kind: supported, tested, recommended, or bundled. Null when no entry or only explicitly unknown evidence is available. A basis alone does not establish compatibility.',
+  },
+  {
     name: 'matchedRange',
-    description: 'The documented range that matched the requested dependency version, or null.',
+    description:
+      'The evidence range that matched the requested version, or null. A match may be only a recommendation or bundle.',
   },
   {
     name: 'matchedConstraint',
     description:
-      'Set to same-version when the dependency must exactly match the requested project version; otherwise null.',
+      'Set to same-version when an exact-version constraint matched; otherwise null. Check compatible and basis to interpret the match.',
   },
   {
     name: 'relationship',
@@ -295,7 +305,7 @@ export function DocsApiPage() {
             method="GET"
             path="/api/v1/projects/{project}"
             title="Get project compatibility data"
-            description="Returns the complete compatibility document for one project, including known versions, dependency keys, constraints, confidence, notes, sources, and verification dates."
+            description="Returns the complete compatibility document for one project, including known versions, dependency keys, constraints, evidence basis, confidence, notes, sources, and verification dates."
           >
             <ParameterTable
               parameters={[
@@ -342,8 +352,7 @@ export function DocsApiPage() {
     "version": "2.16",
     "dependencies": {
       "multicluster-engine": "2.11",
-      "openshift-management-cluster": "4.21.22",
-      "openshift-hosted-cluster": "4.21.22"
+      "openshift-management-cluster": "4.21.22"
     }
   }'`}</CodeBlock>
             <CodeBlock>{compoundCheckResponse}</CodeBlock>
@@ -359,25 +368,59 @@ export function DocsApiPage() {
             <div className="docs-definition-grid">
               <div>
                 <span className="status-badge compatible">compatible</span>
-                <p>The dependency version matched a documented compatible constraint.</p>
+                <p>The dependency version matched supported or tested compatibility evidence.</p>
               </div>
               <div>
                 <span className="status-badge incompatible">incompatible</span>
                 <p>
-                  The dependency is known for that project version, but the requested version did
-                  not match any documented compatible constraint.
+                  The requested version matched an explicit, source-backed incompatibility entry.
+                  Missing a supported range never produces this result.
                 </p>
               </div>
               <div>
                 <span className="status-badge unknown">unknown</span>
-                <p>The project, project version, dependency, or evidence is not known.</p>
+                <p>
+                  No compatibility evidence covers the requested combination, or the matching
+                  evidence is only a recommendation, a bundle, or explicitly unverified.
+                </p>
               </div>
             </div>
+
+            <p>
+              For compound checks, any explicit incompatibility makes the aggregate incompatible.
+              Otherwise, any unknown check makes it unknown. All checks must be compatible for a
+              compatible aggregate. Unknown is not evidence that an upgrade will fail or succeed.
+            </p>
 
             <h3>Response fields</h3>
             <ResponseFieldTable fields={responseFields} />
 
             <h3>Evidence model</h3>
+            <ul>
+              <li>
+                <code>supported</code>: upstream documents support. This is the default when basis
+                is omitted in project data.
+              </li>
+              <li>
+                <code>tested</code>: upstream explicitly tests these versions; this is distinct from
+                a vendor support policy.
+              </li>
+              <li>
+                <code>recommended</code>: upstream recommends these versions, without establishing
+                full compatibility.
+              </li>
+              <li>
+                <code>bundled</code>: upstream ships these versions together, without establishing
+                general compatibility.
+              </li>
+            </ul>
+            <p>
+              A matched range or same-version constraint identifies evidence, not necessarily a
+              compatible result. Recommendations and bundles return unknown even when they match.
+              The relationship field describes how the dependency is used; it does not determine the
+              evidence basis. Notes and sources may describe an existing entry even when its
+              constraints do not match the request.
+            </p>
             <p>
               High confidence means the entry is backed by official project documentation or tagged
               upstream source and includes a verification date. Compatibility data can still become

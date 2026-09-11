@@ -89,6 +89,13 @@ export function assertDataset(value: unknown): asserts value is CompatibilityDat
       }
     }
   }
+  for (const project of Object.values(projects) as CompatibilityDataset['projects'][string][]) {
+    for (const version of Object.values(project.versions)) {
+      for (const entry of Object.values(version.dependencies)) {
+        entry.status ??= 'compatible';
+      }
+    }
+  }
 }
 
 function assertCompatibilityEntry(
@@ -99,10 +106,20 @@ function assertCompatibilityEntry(
   if (entry.status === 'compatible') {
     throw new Error(`${path}.status must be omitted when compatibility constraints are provided`);
   }
-  entry.status ??= 'compatible';
+  const status = entry.status ?? 'compatible';
 
-  if (!compatibilityStatuses.has(entry.status as CompatibilityStatus)) {
+  if (!compatibilityStatuses.has(status as CompatibilityStatus)) {
     throw new Error(`${path}.status must be compatible, incompatible, or unknown`);
+  }
+
+  if (
+    entry.basis !== undefined &&
+    !['supported', 'tested', 'recommended', 'bundled'].includes(entry.basis as string)
+  ) {
+    throw new Error(`${path}.basis must be supported, tested, recommended, or bundled`);
+  }
+  if (entry.basis !== undefined && status !== 'compatible') {
+    throw new Error(`${path}.basis is only supported for implicit compatible entries`);
   }
 
   assertStringArray(entry.ranges, `${path}.ranges`);
@@ -141,15 +158,15 @@ function assertCompatibilityEntry(
     throw new Error(`${path} must use either ranges or sameVersion, not both`);
   }
 
-  if (entry.status === 'unknown' && (entry.ranges.length > 0 || sameVersion)) {
+  if (status === 'unknown' && (entry.ranges.length > 0 || sameVersion)) {
     throw new Error(`${path} must not include compatibility constraints when status is unknown`);
   }
 
-  if (entry.status === 'incompatible' && sameVersion) {
+  if (status === 'incompatible' && sameVersion) {
     throw new Error(`${path}.sameVersion is only supported for compatible entries`);
   }
 
-  if (entry.status !== 'unknown' && entry.ranges.length === 0 && !sameVersion) {
+  if (status !== 'unknown' && entry.ranges.length === 0 && !sameVersion) {
     throw new Error(`${path} must include at least one range or sameVersion: true`);
   }
 

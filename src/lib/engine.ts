@@ -43,27 +43,23 @@ export function checkCompatibility(
       : (entry.ranges.find((range) => versionSatisfiesRange(request.dependencyVersion, range)) ??
         null);
   const matchedConstraint = sameVersionMatched ? 'same-version' : null;
-  const compatible = getCompatibilityResult(
-    entry,
-    dependencyExists,
-    Boolean(matchedRange || matchedConstraint),
-  );
-  const includeEvidence =
-    dependencyExists &&
-    (entry.status === 'unknown' ||
-      Boolean(matchedRange || matchedConstraint) ||
-      compatible === 'incompatible');
+  const matched = Boolean(matchedRange || matchedConstraint);
+  const basis =
+    dependencyExists && entry.status !== 'unknown' ? (entry.basis ?? 'supported') : null;
+  const compatible =
+    matched && basis !== 'recommended' && basis !== 'bundled' ? entry.status : 'unknown';
 
   return {
     ...request,
     compatible,
+    basis,
     matchedRange,
     matchedConstraint,
     relationship: entry.relationship ?? null,
     confidence: entry.confidence,
     lastVerified: entry.lastVerified,
-    notes: includeEvidence ? entry.notes : [],
-    sources: includeEvidence ? entry.sources : [],
+    notes: entry.notes,
+    sources: entry.sources,
   };
 }
 
@@ -97,26 +93,6 @@ function summarizeChecks(checks: CompatibilityCheckResponse[]) {
   }
 
   return 'compatible';
-}
-
-function getCompatibilityResult(
-  entry: DependencyCompatibilityEntry,
-  dependencyExists: boolean,
-  matched: boolean,
-) {
-  if (matched) {
-    return entry.status;
-  }
-
-  if (
-    dependencyExists &&
-    entry.status === 'compatible' &&
-    (entry.ranges.length > 0 || entry.sameVersion)
-  ) {
-    return 'incompatible';
-  }
-
-  return 'unknown';
 }
 
 function findVersionKey(versions: string[], requestedVersion: string): string | null {

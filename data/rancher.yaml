@@ -68,11 +68,6 @@ x-harvester-16-source: &harvester_16_source
   url: https://www.suse.com/suse-harvester/support-matrix/all-supported-versions/harvester-v1-6-x/
   accessedAt: '2026-09-11'
 
-x-fleet-source: &fleet_source
-  title: Rancher Continuous Delivery with Fleet Overview
-  url: https://ranchermanager.docs.rancher.com/v2.14/integrations-in-rancher/fleet/overview
-  accessedAt: '2026-09-11'
-
 projects:
   rancher:
     name: Rancher
@@ -81,7 +76,7 @@ projects:
       - Kubernetes
       - Infrastructure
     website: https://www.rancher.com/products/rancher
-    description: Rancher compatibility for downstream Kubernetes platforms, operating systems, architectures, integrations, and bundled applications.
+    description: Rancher compatibility for downstream Kubernetes platforms, operating systems, architectures, and supported integrations.
     versions:
       '2.15.1':
         dependencies:
@@ -254,17 +249,6 @@ projects:
             sources:
               - *rancher_2151_source
             lastVerified: '2026-09-11'
-          fleet:
-            ranges:
-              - '0.16.1'
-            relationship: bundled continuous delivery engine
-            confidence: high
-            notes:
-              - The matrix certifies Rancher Continuous Delivery chart 110.0.1+up0.16.1; Rancher documentation identifies Continuous Delivery as the Fleet integration.
-            sources:
-              - *rancher_2151_source
-              - *fleet_source
-            lastVerified: '2026-09-11'
           longhorn:
             ranges:
               - '1.12.0'
@@ -278,60 +262,10 @@ projects:
           k3k:
             ranges:
               - '1.2.0'
-            relationship: certified virtual cluster component
+            relationship: certified virtual cluster integration
             confidence: high
             notes:
-              - The matrix certifies k3k, k3k-kubelet, and the SUSE Virtual Cluster UI extension at 1.2.0.
-            sources:
-              - *rancher_2151_source
-            lastVerified: '2026-09-11'
-          k3k-kubelet:
-            ranges:
-              - '1.2.0'
-            relationship: certified virtual cluster component
-            confidence: high
-            notes:
-              - The matrix certifies k3k, k3k-kubelet, and the SUSE Virtual Cluster UI extension at 1.2.0.
-            sources:
-              - *rancher_2151_source
-            lastVerified: '2026-09-11'
-          k3k-ui-extension:
-            ranges:
-              - '1.2.0'
-            relationship: certified virtual cluster component
-            confidence: high
-            notes:
-              - The matrix certifies k3k, k3k-kubelet, and the SUSE Virtual Cluster UI extension at 1.2.0.
-            sources:
-              - *rancher_2151_source
-            lastVerified: '2026-09-11'
-          rancher-ai-agent:
-            ranges:
-              - '1.0.2'
-            relationship: certified Rancher AI Assistant component
-            confidence: high
-            notes:
-              - The matrix certifies Rancher AI Assistant agent 1.0.2.
-            sources:
-              - *rancher_2151_source
-            lastVerified: '2026-09-11'
-          rancher-ai-mcp:
-            ranges:
-              - '1.0.0'
-            relationship: certified Rancher AI Assistant component
-            confidence: high
-            notes:
-              - The matrix certifies the Rancher AI Assistant MCP and UI extension at 1.0.0.
-            sources:
-              - *rancher_2151_source
-            lastVerified: '2026-09-11'
-          rancher-ai-ui-extension:
-            ranges:
-              - '1.0.0'
-            relationship: certified Rancher AI Assistant component
-            confidence: high
-            notes:
-              - The matrix certifies the Rancher AI Assistant MCP and UI extension at 1.0.0.
+              - The support matrix certifies k3k 1.2.0 for SUSE Virtual Cluster integration.
             sources:
               - *rancher_2151_source
             lastVerified: '2026-09-11'
@@ -342,116 +276,6 @@ projects:
             confidence: high
             notes:
               - The matrix certifies Terraform Rancher2 Provider 15.x with Terraform 1.5 or newer.
-            sources:
-              - *rancher_2151_source
-            lastVerified: '2026-09-11'
-          rancher-monitoring:
-            ranges:
-              - '80.9.1'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-monitoring chart 110.0.1+up80.9.1. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2151_source
-            lastVerified: '2026-09-11'
-          alerting-drivers:
-            ranges:
-              - '109.0.0'
-            relationship: certified Rancher application chart
-            confidence: high
-            notes:
-              - The matrix certifies alerting-drivers chart 109.0.0.
-            sources:
-              - *rancher_2151_source
-            lastVerified: '2026-09-11'
-          rancher-logging:
-            ranges:
-              - '4.10.0'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-logging chart 110.0.0+up4.10.0. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2151_source
-            lastVerified: '2026-09-11'
-          rancher-compliance:
-            ranges:
-              - '1.5.1'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-compliance chart 110.1.0+up1.5.1. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2151_source
-            lastVerified: '2026-09-11'
-          rancher-backup:
-            ranges:
-              - '11.0.2'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-backup chart 110.0.1+up11.0.2. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2151_source
-            lastVerified: '2026-09-11'
-          prometheus-federator:
-            ranges:
-              - '7.0.0'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies prometheus-federator chart 110.0.0+up7.0.0. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2151_source
-            lastVerified: '2026-09-11'
-          neuvector-helm-chart:
-            ranges:
-              - '2.11.1'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies neuvector chart 110.0.1+up2.11.1. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2151_source
-            lastVerified: '2026-09-11'
-          ui-plugin-operator:
-            ranges:
-              - '0.2.2'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies UI Plugin Operator chart 103.0.3+up0.2.2; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2151_source
-            lastVerified: '2026-09-11'
-          rancher-turtles:
-            ranges:
-              - '0.27.1'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-turtles chart 110.0.1+up0.27.1. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2151_source
-            lastVerified: '2026-09-11'
-          suse-observability-agent:
-            ranges:
-              - '1.2.8'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies SUSE Observability Agent chart 108.0.0+up1.2.8; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2151_source
-            lastVerified: '2026-09-11'
-          rancher-ali-operator:
-            ranges:
-              - '1.15.0'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-ali-operator chart 110.0.0+up1.15.0. This axis records the upstream chart version after +up.
             sources:
               - *rancher_2151_source
             lastVerified: '2026-09-11'
@@ -494,7 +318,7 @@ projects:
             confidence: high
             notes:
               - Rancher 2.15 adds Kubernetes 1.36 support and removes Kubernetes 1.33 support, leaving supported minors 1.34 through 1.36.
-              - The full Rancher 2.15 SUSE support matrix is not yet published, so operating systems, architectures, cloud providers, and bundled applications are intentionally not modeled for this row.
+              - This row records the Kubernetes support stated in the release notes; other patch rows include platform and integration certifications from their support matrices.
             sources:
               - *rancher_2150_source
             lastVerified: '2026-09-11'
@@ -678,17 +502,6 @@ projects:
             sources:
               - *harvester_18_source
             lastVerified: '2026-09-11'
-          fleet:
-            ranges:
-              - '0.15.6'
-            relationship: bundled continuous delivery engine
-            confidence: high
-            notes:
-              - The matrix certifies Rancher Continuous Delivery chart 109.0.6+up0.15.6; Rancher documentation identifies Continuous Delivery as the Fleet integration.
-            sources:
-              - *rancher_2145_source
-              - *fleet_source
-            lastVerified: '2026-09-11'
           longhorn:
             ranges:
               - '1.11.2'
@@ -702,60 +515,10 @@ projects:
           k3k:
             ranges:
               - '1.1.0'
-            relationship: certified virtual cluster component
+            relationship: certified virtual cluster integration
             confidence: high
             notes:
-              - The matrix certifies k3k, k3k-kubelet, and the SUSE Virtual Cluster UI extension at 1.1.0.
-            sources:
-              - *rancher_2145_source
-            lastVerified: '2026-09-11'
-          k3k-kubelet:
-            ranges:
-              - '1.1.0'
-            relationship: certified virtual cluster component
-            confidence: high
-            notes:
-              - The matrix certifies k3k, k3k-kubelet, and the SUSE Virtual Cluster UI extension at 1.1.0.
-            sources:
-              - *rancher_2145_source
-            lastVerified: '2026-09-11'
-          k3k-ui-extension:
-            ranges:
-              - '1.1.0'
-            relationship: certified virtual cluster component
-            confidence: high
-            notes:
-              - The matrix certifies k3k, k3k-kubelet, and the SUSE Virtual Cluster UI extension at 1.1.0.
-            sources:
-              - *rancher_2145_source
-            lastVerified: '2026-09-11'
-          rancher-ai-agent:
-            ranges:
-              - '1.0.2'
-            relationship: certified Rancher AI Assistant component
-            confidence: high
-            notes:
-              - The matrix certifies Rancher AI Assistant agent 1.0.2.
-            sources:
-              - *rancher_2145_source
-            lastVerified: '2026-09-11'
-          rancher-ai-mcp:
-            ranges:
-              - '1.0.0'
-            relationship: certified Rancher AI Assistant component
-            confidence: high
-            notes:
-              - The matrix certifies the Rancher AI Assistant MCP and UI extension at 1.0.0.
-            sources:
-              - *rancher_2145_source
-            lastVerified: '2026-09-11'
-          rancher-ai-ui-extension:
-            ranges:
-              - '1.0.0'
-            relationship: certified Rancher AI Assistant component
-            confidence: high
-            notes:
-              - The matrix certifies the Rancher AI Assistant MCP and UI extension at 1.0.0.
+              - The support matrix certifies k3k 1.1.0 for SUSE Virtual Cluster integration.
             sources:
               - *rancher_2145_source
             lastVerified: '2026-09-11'
@@ -766,116 +529,6 @@ projects:
             confidence: high
             notes:
               - The matrix certifies Terraform Rancher2 Provider 14.x.
-            sources:
-              - *rancher_2145_source
-            lastVerified: '2026-09-11'
-          rancher-monitoring:
-            ranges:
-              - '80.9.1'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-monitoring chart 109.0.5+up80.9.1. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2145_source
-            lastVerified: '2026-09-11'
-          alerting-drivers:
-            ranges:
-              - '109.0.0'
-            relationship: certified Rancher application chart
-            confidence: high
-            notes:
-              - The matrix certifies Alerting Drivers chart 109.0.0.
-            sources:
-              - *rancher_2145_source
-            lastVerified: '2026-09-11'
-          rancher-logging:
-            ranges:
-              - '4.10.0'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-logging chart 109.0.1+up4.10.0. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2145_source
-            lastVerified: '2026-09-11'
-          rancher-compliance:
-            ranges:
-              - '1.4.6'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-compliance chart 109.5.0+up1.4.6. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2145_source
-            lastVerified: '2026-09-11'
-          rancher-backup:
-            ranges:
-              - '10.0.9'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-backup chart 109.0.8+up10.0.9. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2145_source
-            lastVerified: '2026-09-11'
-          prometheus-federator:
-            ranges:
-              - '6.0.4'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies prometheus-federator chart 109.0.1+up6.0.4. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2145_source
-            lastVerified: '2026-09-11'
-          neuvector-helm-chart:
-            ranges:
-              - '2.11.1'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies neuvector chart 109.0.5+up2.11.1. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2145_source
-            lastVerified: '2026-09-11'
-          ui-plugin-operator:
-            ranges:
-              - '0.2.2'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies UI Plugin Operator chart 103.0.3+up0.2.2; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2145_source
-            lastVerified: '2026-09-11'
-          rancher-turtles:
-            ranges:
-              - '0.26.5'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-turtles chart 109.0.5+up0.26.5. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2145_source
-            lastVerified: '2026-09-11'
-          suse-observability-agent:
-            ranges:
-              - '1.2.8'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies SUSE Observability Agent chart 108.0.0+up1.2.8; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2145_source
-            lastVerified: '2026-09-11'
-          rancher-ali-operator:
-            ranges:
-              - '1.14.4'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-ali-operator chart 109.4.0+up1.14.4. This axis records the upstream chart version after +up.
             sources:
               - *rancher_2145_source
             lastVerified: '2026-09-11'
@@ -1108,17 +761,6 @@ projects:
             sources:
               - *harvester_18_source
             lastVerified: '2026-09-11'
-          fleet:
-            ranges:
-              - '0.15.2'
-            relationship: bundled continuous delivery engine
-            confidence: high
-            notes:
-              - The matrix certifies Rancher Continuous Delivery chart 109.0.4+upv0.15.2; Rancher documentation identifies Continuous Delivery as the Fleet integration.
-            sources:
-              - *rancher_2143_source
-              - *fleet_source
-            lastVerified: '2026-09-11'
           longhorn:
             ranges:
               - '1.11.2'
@@ -1132,60 +774,10 @@ projects:
           k3k: &rancher_2143_k3k
             ranges:
               - '1.1.0'
-            relationship: certified virtual cluster component
+            relationship: certified virtual cluster integration
             confidence: high
             notes:
-              - The matrix certifies k3k, k3k-kubelet, and the SUSE Virtual Cluster UI extension at 1.1.0.
-            sources:
-              - *rancher_2143_source
-            lastVerified: '2026-09-11'
-          k3k-kubelet:
-            ranges:
-              - '1.1.0'
-            relationship: certified virtual cluster component
-            confidence: high
-            notes:
-              - The matrix certifies k3k, k3k-kubelet, and the SUSE Virtual Cluster UI extension at 1.1.0.
-            sources:
-              - *rancher_2143_source
-            lastVerified: '2026-09-11'
-          k3k-ui-extension:
-            ranges:
-              - '1.1.0'
-            relationship: certified virtual cluster component
-            confidence: high
-            notes:
-              - The matrix certifies k3k, k3k-kubelet, and the SUSE Virtual Cluster UI extension at 1.1.0.
-            sources:
-              - *rancher_2143_source
-            lastVerified: '2026-09-11'
-          rancher-ai-agent:
-            ranges:
-              - '1.0.2'
-            relationship: certified Rancher AI Assistant component
-            confidence: high
-            notes:
-              - The matrix certifies Rancher AI Assistant agent 1.0.2.
-            sources:
-              - *rancher_2143_source
-            lastVerified: '2026-09-11'
-          rancher-ai-mcp: &rancher_2143_ai_100
-            ranges:
-              - '1.0.0'
-            relationship: certified Rancher AI Assistant component
-            confidence: high
-            notes:
-              - The matrix certifies the Rancher AI Assistant MCP and UI extension at 1.0.0.
-            sources:
-              - *rancher_2143_source
-            lastVerified: '2026-09-11'
-          rancher-ai-ui-extension:
-            ranges:
-              - '1.0.0'
-            relationship: certified Rancher AI Assistant component
-            confidence: high
-            notes:
-              - The matrix certifies the Rancher AI Assistant MCP and UI extension at 1.0.0.
+              - The support matrix certifies k3k 1.1.0 for SUSE Virtual Cluster integration.
             sources:
               - *rancher_2143_source
             lastVerified: '2026-09-11'
@@ -1196,116 +788,6 @@ projects:
             confidence: high
             notes:
               - The matrix certifies Terraform Rancher2 Provider 14.x.
-            sources:
-              - *rancher_2143_source
-            lastVerified: '2026-09-11'
-          rancher-monitoring:
-            ranges:
-              - '80.9.1'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-monitoring chart 109.0.3+up80.9.1; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2143_source
-            lastVerified: '2026-09-11'
-          alerting-drivers:
-            ranges:
-              - '109.0.0'
-            relationship: certified Rancher application chart
-            confidence: high
-            notes:
-              - The matrix certifies Alerting Drivers chart 109.0.0.
-            sources:
-              - *rancher_2143_source
-            lastVerified: '2026-09-11'
-          rancher-logging:
-            ranges:
-              - '4.10.0'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-logging chart 109.0.0+up4.10.0; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2143_source
-            lastVerified: '2026-09-11'
-          rancher-compliance:
-            ranges:
-              - '1.4.4'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-compliance chart 109.3.0+up1.4.4; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2143_source
-            lastVerified: '2026-09-11'
-          rancher-backup:
-            ranges:
-              - '10.0.5'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-backup chart 109.0.5+up10.0.5; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2143_source
-            lastVerified: '2026-09-11'
-          prometheus-federator:
-            ranges:
-              - '6.0.0'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies prometheus-federator chart 109.0.0+up6.0.0; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2143_source
-            lastVerified: '2026-09-11'
-          neuvector-helm-chart:
-            ranges:
-              - '2.10.3'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies NeuVector chart 109.0.3+up2.10.3; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2143_source
-            lastVerified: '2026-09-11'
-          ui-plugin-operator:
-            ranges:
-              - '0.2.2'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies UI Plugin Operator chart 103.0.3+up0.2.2; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2143_source
-            lastVerified: '2026-09-11'
-          rancher-turtles:
-            ranges:
-              - '0.26.3'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-turtles chart 109.0.3+up0.26.3; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2143_source
-            lastVerified: '2026-09-11'
-          suse-observability-agent:
-            ranges:
-              - '1.2.8'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies SUSE Observability Agent chart 108.0.0+up1.2.8; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2143_source
-            lastVerified: '2026-09-11'
-          rancher-ali-operator:
-            ranges:
-              - '1.14.2'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-ali-operator chart 109.2.0+up1.14.2; this axis records the upstream chart version after +up.
             sources:
               - *rancher_2143_source
             lastVerified: '2026-09-11'
@@ -1502,17 +984,6 @@ projects:
             sources:
               - *harvester_17_source
             lastVerified: '2026-09-11'
-          fleet:
-            ranges:
-              - '0.14.10'
-            relationship: bundled continuous delivery engine
-            confidence: high
-            notes:
-              - The matrix certifies Rancher Continuous Delivery chart 108.0.10+up0.14.10; Rancher documentation identifies Continuous Delivery as the Fleet integration.
-            sources:
-              - *rancher_2139_source
-              - *fleet_source
-            lastVerified: '2026-09-11'
           longhorn:
             ranges:
               - '1.11.2'
@@ -1526,60 +997,10 @@ projects:
           k3k:
             ranges:
               - '1.0.2'
-            relationship: certified virtual cluster component
+            relationship: certified virtual cluster integration
             confidence: high
             notes:
-              - The matrix certifies k3k, k3k-kubelet, and the SUSE Virtual Cluster UI extension at 1.0.2.
-            sources:
-              - *rancher_2139_source
-            lastVerified: '2026-09-11'
-          k3k-kubelet:
-            ranges:
-              - '1.0.2'
-            relationship: certified virtual cluster component
-            confidence: high
-            notes:
-              - The matrix certifies k3k, k3k-kubelet, and the SUSE Virtual Cluster UI extension at 1.0.2.
-            sources:
-              - *rancher_2139_source
-            lastVerified: '2026-09-11'
-          k3k-ui-extension:
-            ranges:
-              - '1.0.2'
-            relationship: certified virtual cluster component
-            confidence: high
-            notes:
-              - The matrix certifies k3k, k3k-kubelet, and the SUSE Virtual Cluster UI extension at 1.0.2.
-            sources:
-              - *rancher_2139_source
-            lastVerified: '2026-09-11'
-          rancher-ai-agent:
-            ranges:
-              - '1.0.2'
-            relationship: certified Rancher AI Assistant component
-            confidence: high
-            notes:
-              - The matrix certifies Rancher AI Assistant agent 1.0.2.
-            sources:
-              - *rancher_2139_source
-            lastVerified: '2026-09-11'
-          rancher-ai-mcp:
-            ranges:
-              - '1.0.0'
-            relationship: certified Rancher AI Assistant component
-            confidence: high
-            notes:
-              - The matrix certifies the Rancher AI Assistant MCP and UI extension at 1.0.0.
-            sources:
-              - *rancher_2139_source
-            lastVerified: '2026-09-11'
-          rancher-ai-ui-extension:
-            ranges:
-              - '1.0.0'
-            relationship: certified Rancher AI Assistant component
-            confidence: high
-            notes:
-              - The matrix certifies the Rancher AI Assistant MCP and UI extension at 1.0.0.
+              - The support matrix certifies k3k 1.0.2 for SUSE Virtual Cluster integration.
             sources:
               - *rancher_2139_source
             lastVerified: '2026-09-11'
@@ -1590,116 +1011,6 @@ projects:
             confidence: high
             notes:
               - The matrix certifies Terraform Rancher2 Provider 13.x.
-            sources:
-              - *rancher_2139_source
-            lastVerified: '2026-09-11'
-          rancher-monitoring:
-            ranges:
-              - '77.9.1'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-monitoring chart 108.0.8+up77.9.1. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2139_source
-            lastVerified: '2026-09-11'
-          alerting-drivers:
-            ranges:
-              - '108.0.1'
-            relationship: certified Rancher application chart
-            confidence: high
-            notes:
-              - The matrix certifies Alerting Drivers chart 108.0.1.
-            sources:
-              - *rancher_2139_source
-            lastVerified: '2026-09-11'
-          rancher-logging:
-            ranges:
-              - '4.10.0'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-logging chart 108.0.5+up4.10.0. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2139_source
-            lastVerified: '2026-09-11'
-          rancher-compliance:
-            ranges:
-              - '1.3.10'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-compliance chart 108.9.0+up1.3.10. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2139_source
-            lastVerified: '2026-09-11'
-          rancher-backup:
-            ranges:
-              - '9.0.7'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-backup chart 108.0.7+up9.0.7. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2139_source
-            lastVerified: '2026-09-11'
-          prometheus-federator:
-            ranges:
-              - '5.0.4'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies prometheus-federator chart 108.0.2+up5.0.4. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2139_source
-            lastVerified: '2026-09-11'
-          neuvector-helm-chart:
-            ranges:
-              - '2.11.1'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies neuvector chart 108.0.8+up2.11.1. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2139_source
-            lastVerified: '2026-09-11'
-          ui-plugin-operator:
-            ranges:
-              - '0.2.2'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies UI Plugin Operator chart 103.0.3+up0.2.2; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2139_source
-            lastVerified: '2026-09-11'
-          rancher-turtles:
-            ranges:
-              - '0.25.7'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-turtles chart 108.0.7+up0.25.7. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2139_source
-            lastVerified: '2026-09-11'
-          suse-observability-agent:
-            ranges:
-              - '1.2.8'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies SUSE Observability Agent chart 108.0.0+up1.2.8; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2139_source
-            lastVerified: '2026-09-11'
-          rancher-ali-operator:
-            ranges:
-              - '1.13.6'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-ali-operator chart 108.6.0+up1.13.6. This axis records the upstream chart version after +up.
             sources:
               - *rancher_2139_source
             lastVerified: '2026-09-11'
@@ -1934,17 +1245,6 @@ projects:
             sources:
               - *harvester_17_source
             lastVerified: '2026-09-11'
-          fleet:
-            ranges:
-              - '0.14.8'
-            relationship: bundled continuous delivery engine
-            confidence: high
-            notes:
-              - The matrix certifies Rancher Continuous Delivery chart 108.8+up0.14.8; Rancher documentation identifies Continuous Delivery as the Fleet integration.
-            sources:
-              - *rancher_2137_source
-              - *fleet_source
-            lastVerified: '2026-09-11'
           longhorn:
             ranges:
               - '1.11.2'
@@ -1958,60 +1258,10 @@ projects:
           k3k: &rancher_2137_k3k
             ranges:
               - '1.0.2'
-            relationship: certified virtual cluster component
+            relationship: certified virtual cluster integration
             confidence: high
             notes:
-              - The matrix certifies k3k, k3k-kubelet, and the SUSE Virtual Cluster UI extension at 1.0.2.
-            sources:
-              - *rancher_2137_source
-            lastVerified: '2026-09-11'
-          k3k-kubelet:
-            ranges:
-              - '1.0.2'
-            relationship: certified virtual cluster component
-            confidence: high
-            notes:
-              - The matrix certifies k3k, k3k-kubelet, and the SUSE Virtual Cluster UI extension at 1.0.2.
-            sources:
-              - *rancher_2137_source
-            lastVerified: '2026-09-11'
-          k3k-ui-extension:
-            ranges:
-              - '1.0.2'
-            relationship: certified virtual cluster component
-            confidence: high
-            notes:
-              - The matrix certifies k3k, k3k-kubelet, and the SUSE Virtual Cluster UI extension at 1.0.2.
-            sources:
-              - *rancher_2137_source
-            lastVerified: '2026-09-11'
-          rancher-ai-agent:
-            ranges:
-              - '1.0.2'
-            relationship: certified Rancher AI Assistant component
-            confidence: high
-            notes:
-              - The matrix certifies Rancher AI Assistant agent 1.0.2.
-            sources:
-              - *rancher_2137_source
-            lastVerified: '2026-09-11'
-          rancher-ai-mcp: &rancher_2137_ai_100
-            ranges:
-              - '1.0.0'
-            relationship: certified Rancher AI Assistant component
-            confidence: high
-            notes:
-              - The matrix certifies the Rancher AI Assistant MCP and UI extension at 1.0.0.
-            sources:
-              - *rancher_2137_source
-            lastVerified: '2026-09-11'
-          rancher-ai-ui-extension:
-            ranges:
-              - '1.0.0'
-            relationship: certified Rancher AI Assistant component
-            confidence: high
-            notes:
-              - The matrix certifies the Rancher AI Assistant MCP and UI extension at 1.0.0.
+              - The support matrix certifies k3k 1.0.2 for SUSE Virtual Cluster integration.
             sources:
               - *rancher_2137_source
             lastVerified: '2026-09-11'
@@ -2022,116 +1272,6 @@ projects:
             confidence: high
             notes:
               - The matrix certifies Terraform Rancher2 Provider 13.x.
-            sources:
-              - *rancher_2137_source
-            lastVerified: '2026-09-11'
-          rancher-monitoring:
-            ranges:
-              - '77.9.1'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-monitoring chart 108.0.6+up77.9.1; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2137_source
-            lastVerified: '2026-09-11'
-          alerting-drivers:
-            ranges:
-              - '108.0.1'
-            relationship: certified Rancher application chart
-            confidence: high
-            notes:
-              - The matrix certifies Alerting Drivers chart 108.0.1.
-            sources:
-              - *rancher_2137_source
-            lastVerified: '2026-09-11'
-          rancher-logging:
-            ranges:
-              - '4.10.0'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-logging chart 108.0.4+up4.10.0; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2137_source
-            lastVerified: '2026-09-11'
-          rancher-compliance:
-            ranges:
-              - '1.3.8'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-compliance chart 108.7.0+up1.3.8; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2137_source
-            lastVerified: '2026-09-11'
-          rancher-backup:
-            ranges:
-              - '9.0.4'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-backup chart 108.0.4+up9.0.4; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2137_source
-            lastVerified: '2026-09-11'
-          prometheus-federator:
-            ranges:
-              - '5.0.1'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies prometheus-federator chart 108.0.1+up5.0.1; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2137_source
-            lastVerified: '2026-09-11'
-          neuvector-helm-chart:
-            ranges:
-              - '2.10.3'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies NeuVector chart 108.0.6+up2.10.3; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2137_source
-            lastVerified: '2026-09-11'
-          ui-plugin-operator:
-            ranges:
-              - '0.2.2'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies UI Plugin Operator chart 103.0.3+up0.2.2; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2137_source
-            lastVerified: '2026-09-11'
-          rancher-turtles:
-            ranges:
-              - '0.25.5'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-turtles chart 108.0.5+up0.25.5; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2137_source
-            lastVerified: '2026-09-11'
-          suse-observability-agent:
-            ranges:
-              - '1.2.8'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies SUSE Observability Agent chart 108.0.0+up1.2.8; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_2137_source
-            lastVerified: '2026-09-11'
-          rancher-ali-operator:
-            ranges:
-              - '1.13.4'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-ali-operator chart 108.4.0+up1.13.4; this axis records the upstream chart version after +up.
             sources:
               - *rancher_2137_source
             lastVerified: '2026-09-11'
@@ -2325,17 +1465,6 @@ projects:
             sources:
               - *harvester_16_source
             lastVerified: '2026-09-11'
-          fleet:
-            ranges:
-              - '0.13.15'
-            relationship: bundled continuous delivery engine
-            confidence: high
-            notes:
-              - The matrix certifies Rancher Continuous Delivery chart 107.0.15+up0.13.15; Rancher documentation identifies Continuous Delivery as the Fleet integration.
-            sources:
-              - *rancher_21213_source
-              - *fleet_source
-            lastVerified: '2026-09-11'
           longhorn:
             ranges:
               - '1.11.2'
@@ -2349,30 +1478,10 @@ projects:
           k3k:
             ranges:
               - '1.0.0'
-            relationship: certified virtual cluster component
+            relationship: certified virtual cluster integration
             confidence: high
             notes:
-              - The matrix certifies k3k, k3k-kubelet, and the SUSE Virtual Cluster UI extension at 1.0.0.
-            sources:
-              - *rancher_21213_source
-            lastVerified: '2026-09-11'
-          k3k-kubelet:
-            ranges:
-              - '1.0.0'
-            relationship: certified virtual cluster component
-            confidence: high
-            notes:
-              - The matrix certifies k3k, k3k-kubelet, and the SUSE Virtual Cluster UI extension at 1.0.0.
-            sources:
-              - *rancher_21213_source
-            lastVerified: '2026-09-11'
-          k3k-ui-extension:
-            ranges:
-              - '1.0.0'
-            relationship: certified virtual cluster component
-            confidence: high
-            notes:
-              - The matrix certifies k3k, k3k-kubelet, and the SUSE Virtual Cluster UI extension at 1.0.0.
+              - The support matrix certifies k3k 1.0.0 for SUSE Virtual Cluster integration.
             sources:
               - *rancher_21213_source
             lastVerified: '2026-09-11'
@@ -2383,86 +1492,6 @@ projects:
             confidence: high
             notes:
               - The matrix certifies Terraform Rancher2 Provider 8.x.
-            sources:
-              - *rancher_21213_source
-            lastVerified: '2026-09-11'
-          rancher-monitoring:
-            ranges:
-              - '69.8.2'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-monitoring chart 107.2.5+up69.8.2. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_21213_source
-            lastVerified: '2026-09-11'
-          alerting-drivers:
-            ranges:
-              - '107.0.0'
-            relationship: certified Rancher application chart
-            confidence: high
-            notes:
-              - The matrix certifies Alerting Drivers chart 107.0.0.
-            sources:
-              - *rancher_21213_source
-            lastVerified: '2026-09-11'
-          rancher-compliance:
-            ranges:
-              - '1.2.12'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-compliance chart 107.12.0+up1.2.12. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_21213_source
-            lastVerified: '2026-09-11'
-          rancher-logging:
-            ranges:
-              - '4.10.0'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-logging chart 107.0.6+up4.10.0. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_21213_source
-            lastVerified: '2026-09-11'
-          rancher-backup:
-            ranges:
-              - '8.1.8'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-backup chart 107.1.8+up8.1.8. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_21213_source
-            lastVerified: '2026-09-11'
-          prometheus-federator:
-            ranges:
-              - '4.2.3'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies prometheus-federator chart 107.1.3+up4.2.3. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_21213_source
-            lastVerified: '2026-09-11'
-          neuvector-helm-chart:
-            ranges:
-              - '2.11.1'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies neuvector chart 107.1.0+up2.11.1. This axis records the upstream chart version after +up.
-            sources:
-              - *rancher_21213_source
-            lastVerified: '2026-09-11'
-          ui-plugin-operator:
-            ranges:
-              - '0.2.2'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies UI Plugin Operator chart 103.0.3+up0.2.2; this axis records the upstream chart version after +up.
             sources:
               - *rancher_21213_source
             lastVerified: '2026-09-11'
@@ -2684,17 +1713,6 @@ projects:
             sources:
               - *harvester_16_source
             lastVerified: '2026-09-11'
-          fleet:
-            ranges:
-              - '0.13.13'
-            relationship: bundled continuous delivery engine
-            confidence: high
-            notes:
-              - The matrix certifies Rancher Continuous Delivery chart 107.0.13+up0.13.13; Rancher documentation identifies Continuous Delivery as the Fleet integration.
-            sources:
-              - *rancher_21211_source
-              - *fleet_source
-            lastVerified: '2026-09-11'
           longhorn:
             ranges:
               - '1.11.2'
@@ -2708,30 +1726,10 @@ projects:
           k3k: &rancher_21211_k3k
             ranges:
               - '1.0.0'
-            relationship: certified virtual cluster component
+            relationship: certified virtual cluster integration
             confidence: high
             notes:
-              - The matrix certifies k3k, k3k-kubelet, and the SUSE Virtual Cluster UI extension at 1.0.0.
-            sources:
-              - *rancher_21211_source
-            lastVerified: '2026-09-11'
-          k3k-kubelet:
-            ranges:
-              - '1.0.0'
-            relationship: certified virtual cluster component
-            confidence: high
-            notes:
-              - The matrix certifies k3k, k3k-kubelet, and the SUSE Virtual Cluster UI extension at 1.0.0.
-            sources:
-              - *rancher_21211_source
-            lastVerified: '2026-09-11'
-          k3k-ui-extension:
-            ranges:
-              - '1.0.0'
-            relationship: certified virtual cluster component
-            confidence: high
-            notes:
-              - The matrix certifies k3k, k3k-kubelet, and the SUSE Virtual Cluster UI extension at 1.0.0.
+              - The support matrix certifies k3k 1.0.0 for SUSE Virtual Cluster integration.
             sources:
               - *rancher_21211_source
             lastVerified: '2026-09-11'
@@ -2742,86 +1740,6 @@ projects:
             confidence: high
             notes:
               - The matrix certifies Terraform Rancher2 Provider 8.x.
-            sources:
-              - *rancher_21211_source
-            lastVerified: '2026-09-11'
-          rancher-monitoring:
-            ranges:
-              - '69.8.2'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-monitoring chart 107.2.3+up69.8.2; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_21211_source
-            lastVerified: '2026-09-11'
-          alerting-drivers:
-            ranges:
-              - '107.0.0'
-            relationship: certified Rancher application chart
-            confidence: high
-            notes:
-              - The matrix certifies Alerting Drivers chart 107.0.0.
-            sources:
-              - *rancher_21211_source
-            lastVerified: '2026-09-11'
-          rancher-compliance:
-            ranges:
-              - '1.2.10'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-cis-benchmark, now named rancher-compliance, chart 107.10.0+up1.2.10; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_21211_source
-            lastVerified: '2026-09-11'
-          rancher-logging:
-            ranges:
-              - '4.10.0'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-logging chart 107.0.5+up4.10.0; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_21211_source
-            lastVerified: '2026-09-11'
-          rancher-backup:
-            ranges:
-              - '8.1.5'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies rancher-backup chart 107.1.5+up8.1.5; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_21211_source
-            lastVerified: '2026-09-11'
-          prometheus-federator:
-            ranges:
-              - '4.2.1'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies prometheus-federator chart 107.1.2+up4.2.1; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_21211_source
-            lastVerified: '2026-09-11'
-          neuvector-helm-chart:
-            ranges:
-              - '2.10.3'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies NeuVector chart 107.0.8+up2.10.3; this axis records the upstream chart version after +up.
-            sources:
-              - *rancher_21211_source
-            lastVerified: '2026-09-11'
-          ui-plugin-operator:
-            ranges:
-              - '0.2.2'
-            relationship: certified Rancher application upstream chart version
-            confidence: high
-            notes:
-              - The matrix certifies UI Plugin Operator chart 103.0.3+up0.2.2; this axis records the upstream chart version after +up.
             sources:
               - *rancher_21211_source
             lastVerified: '2026-09-11'

@@ -40,6 +40,7 @@ projects:
             sources:
               - *longhorn_112_source
             lastVerified: '2026-09-11'
+            basis: tested
       '1.11.3':
         dependencies:
           kubernetes:
@@ -52,6 +53,7 @@ projects:
             sources:
               - *longhorn_111_source
             lastVerified: '2026-09-11'
+            basis: tested
       '1.10.2':
         dependencies:
           kubernetes:
@@ -64,6 +66,7 @@ projects:
             sources:
               - *longhorn_110_source
             lastVerified: '2026-09-11'
+            basis: tested
       '1.9.2':
         dependencies:
           kubernetes:
@@ -76,3 +79,4 @@ projects:
             sources:
               - *longhorn_19_source
             lastVerified: '2026-09-11'
+            basis: tested

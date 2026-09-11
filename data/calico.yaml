@@ -41,6 +41,7 @@ projects:
             sources:
               - *calico_requirements_source
             lastVerified: '2026-09-11'
+            basis: tested
       '3.31':
         dependencies:
           kubernetes:
@@ -53,6 +54,7 @@ projects:
             sources:
               - *calico_331_requirements_source
             lastVerified: '2026-09-11'
+            basis: tested
       '3.30':
         dependencies:
           kubernetes:
@@ -65,6 +67,7 @@ projects:
             sources:
               - *calico_330_requirements_source
             lastVerified: '2026-09-11'
+            basis: tested
       '3.29':
         dependencies:
           kubernetes:
@@ -77,3 +80,4 @@ projects:
             sources:
               - *calico_329_requirements_source
             lastVerified: '2026-09-11'
+            basis: tested

@@ -16,7 +16,7 @@ projects:
     website: https://nextcloud.com/
     description: Nextcloud Server compatibility for PHP runtime and database versions.
     versions:
-      '34':
+      33 || 34:
         dependencies:
           php:
             ranges:
@@ -24,10 +24,11 @@ projects:
             relationship: runtime
             confidence: high
             notes:
-              - Nextcloud 34 system requirements list PHP 8.2, 8.3, 8.4, and 8.5.
+              - Nextcloud system requirements list PHP 8.2, 8.3, 8.4, and 8.5.
             sources:
+              - *nextcloud_33_requirements_source
               - *nextcloud_34_requirements_source
-            lastVerified: '2026-09-11'
+            lastVerified: 2026-09-11
           mysql:
             ranges:
               - '>=8.0 <8.1'
@@ -35,10 +36,11 @@ projects:
             relationship: database
             confidence: high
             notes:
-              - Nextcloud 34 system requirements list MySQL 8.0 and 8.4.
+              - Nextcloud system requirements list MySQL 8.0 and 8.4.
             sources:
+              - *nextcloud_33_requirements_source
               - *nextcloud_34_requirements_source
-            lastVerified: '2026-09-11'
+            lastVerified: 2026-09-11
           mariadb:
             ranges:
               - '>=10.6 <10.7'
@@ -48,63 +50,19 @@ projects:
             relationship: database
             confidence: high
             notes:
-              - Nextcloud 34 system requirements list MariaDB 10.6, 10.11, 11.4, and 11.8.
+              - Nextcloud system requirements list MariaDB 10.6, 10.11, 11.4, and 11.8.
             sources:
+              - *nextcloud_33_requirements_source
               - *nextcloud_34_requirements_source
-            lastVerified: '2026-09-11'
+            lastVerified: 2026-09-11
           postgresql:
             ranges:
               - '>=14 <19'
             relationship: database
             confidence: high
             notes:
-              - Nextcloud 34 system requirements list PostgreSQL 14, 15, 16, 17, and 18.
+              - Nextcloud system requirements list PostgreSQL 14, 15, 16, 17, and 18.
             sources:
+              - *nextcloud_33_requirements_source
               - *nextcloud_34_requirements_source
-            lastVerified: '2026-09-11'
-      '33':
-        dependencies:
-          php:
-            ranges:
-              - '>=8.2 <8.6'
-            relationship: runtime
-            confidence: high
-            notes:
-              - Nextcloud 33 system requirements list PHP 8.2, 8.3, 8.4, and 8.5.
-            sources:
-              - *nextcloud_33_requirements_source
-            lastVerified: '2026-09-11'
-          mysql:
-            ranges:
-              - '>=8.0 <8.1'
-              - '>=8.4 <8.5'
-            relationship: database
-            confidence: high
-            notes:
-              - Nextcloud 33 system requirements list MySQL 8.0 and 8.4.
-            sources:
-              - *nextcloud_33_requirements_source
-            lastVerified: '2026-09-11'
-          mariadb:
-            ranges:
-              - '>=10.6 <10.7'
-              - '>=10.11 <10.12'
-              - '>=11.4 <11.5'
-              - '>=11.8 <11.9'
-            relationship: database
-            confidence: high
-            notes:
-              - Nextcloud 33 system requirements list MariaDB 10.6, 10.11, 11.4, and 11.8.
-            sources:
-              - *nextcloud_33_requirements_source
-            lastVerified: '2026-09-11'
-          postgresql:
-            ranges:
-              - '>=14 <19'
-            relationship: database
-            confidence: high
-            notes:
-              - Nextcloud 33 system requirements list PostgreSQL 14, 15, 16, 17, and 18.
-            sources:
-              - *nextcloud_33_requirements_source
-            lastVerified: '2026-09-11'
+            lastVerified: 2026-09-11

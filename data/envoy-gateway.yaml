@@ -17,27 +17,19 @@ projects:
           envoy-proxy:
             ranges:
               - '1.39'
-            relationship: bundled
+            relationship: independently selected data plane
             confidence: high
             notes:
               - Envoy Gateway v1.9 lists the Envoy Proxy 1.39.x release series in the official compatibility matrix; each gateway release is tested against that Envoy minor version.
+              - The EnvoyProxy image setting allows independent selection. The matrix tests the listed minor version; other Envoy minor versions are untested and may reject generated configuration.
             sources:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-09-11'
-          rate-limit:
-            ranges:
-              - 17b1956c
-            relationship: bundled
-            confidence: high
-            notes:
-              - Envoy Gateway v1.9 lists Rate Limit 17b1956c in the official compatibility matrix.
-            sources:
-              - *envoy_gateway_matrix_source
-            lastVerified: '2026-09-11'
+            basis: tested
           gateway-api:
             ranges:
               - 1.6.1
-            relationship: compiled
+            relationship: supported Gateway API version
             confidence: high
             notes:
               - Envoy Gateway v1.9 lists Gateway API v1.6.1 in the official compatibility matrix.
@@ -54,32 +46,25 @@ projects:
             sources:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-09-11'
+            basis: tested
       '1.8':
         dependencies:
           envoy-proxy:
             ranges:
               - '1.38'
-            relationship: bundled
+            relationship: independently selected data plane
             confidence: high
             notes:
               - Envoy Gateway v1.8 lists the Envoy Proxy 1.38.x release series in the official compatibility matrix; each gateway release is tested against that Envoy minor version.
+              - The EnvoyProxy image setting allows independent selection. The matrix tests the listed minor version; other Envoy minor versions are untested and may reject generated configuration.
             sources:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-09-11'
-          rate-limit:
-            ranges:
-              - fe26676d
-            relationship: bundled
-            confidence: high
-            notes:
-              - Envoy Gateway v1.8 lists Rate Limit fe26676d in the official compatibility matrix.
-            sources:
-              - *envoy_gateway_matrix_source
-            lastVerified: '2026-09-11'
+            basis: tested
           gateway-api:
             ranges:
               - 1.5.1
-            relationship: compiled
+            relationship: supported Gateway API version
             confidence: high
             notes:
               - Envoy Gateway v1.8 lists Gateway API v1.5.1 in the official compatibility matrix.
@@ -96,3 +81,5 @@ projects:
             sources:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-09-11'
+            basis: tested
+    description: Envoy Gateway compatibility for independently selected Envoy data planes, Gateway API versions, and tested Kubernetes versions.

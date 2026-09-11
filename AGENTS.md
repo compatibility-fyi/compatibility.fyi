@@ -24,6 +24,10 @@ optimize for small, reviewable data changes that are safe for automation tools t
 
 - Compatibility is implicit when an entry has supported ranges or `sameVersion: true`. Do not write
   `status: compatible`.
+- Use `basis: tested`, `basis: recommended`, or `basis: bundled` when evidence only establishes
+  testing, preferred alignment, or packaging. Omitted `basis` means upstream-supported compatibility.
+  Recommendations and bundles do not produce positive compatibility answers.
+- Missing coverage returns unknown. Never infer incompatibility from a version absent from a range.
 - Use `status: incompatible` only when a primary source explicitly documents an incompatibility.
 - Use `status: unknown` only when the project intentionally documents an unknown or unverified state.
 - Use semver-style ranges where possible, for example `>=1.30 <1.34`.
@@ -31,8 +35,8 @@ optimize for small, reviewable data changes that are safe for automation tools t
   evidence applies to every `1.12.x` patch.
 - Keep exact patch versions for exact bundles, chart mappings, explicitly tested versions, and
   patch-gated compatibility.
-- Use `sameVersion: true` with `ranges: []` only when the dependency must exactly match the requested
-  project version.
+- Use `sameVersion: true` with `ranges: []` for documented exact version alignment. Mark preferred
+  alignment with `basis: recommended`; it does not establish compatibility.
 - Use exact strings only when the dependency is not semver-like, for example a commit SHA or named
   runtime.
 - Include `confidence`, `notes`, `sources`, and `lastVerified` for every entry.
@@ -163,6 +167,8 @@ Research rules:
 Data rules:
 - Compatibility is implicit when an entry has supported ranges or sameVersion: true. Do not write
   status: compatible.
+- Distinguish supported (default), tested, recommended, and bundled evidence using basis.
+  Recommendations and bundles do not establish compatibility; missing coverage is unknown.
 - Use status: incompatible only when a primary source explicitly documents an incompatibility.
 - Use status: unknown only when the project intentionally documents an unknown or unverified state.
 - Use semver-style ranges where possible, for example ">=1.30 <1.34".
@@ -170,8 +176,8 @@ Data rules:
   evidence applies to every 1.12.x patch.
 - Keep exact patch versions for exact bundles, chart mappings, explicitly tested versions, and
   patch-gated compatibility.
-- Use sameVersion: true with ranges: [] only when the dependency must exactly match the requested
-  project version.
+- Use sameVersion: true with ranges: [] for documented exact version alignment. Mark preferred
+  alignment with basis: recommended; it does not establish compatibility.
 - Use exact strings only when the dependency is not semver-like, for example a commit SHA or named
   runtime.
 - Include confidence, notes, sources, and lastVerified for every entry.

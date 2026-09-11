@@ -26,7 +26,7 @@ projects:
       - Kubernetes
       - Security
     website: https://neuvector.com/
-    description: NeuVector compatibility for tested orchestrator versions, container runtimes, architectures, Linux distributions, CNI plugins, and deployment platforms.
+    description: NeuVector compatibility for tested Kubernetes and OpenShift versions, versioned Docker requirements, architectures, and network protocol restrictions.
     versions:
       '5.6':
         dependencies:
@@ -40,6 +40,7 @@ projects:
             sources:
               - *neuvector_56_source
             lastVerified: '2026-09-11'
+            basis: tested
           openshift:
             ranges:
               - '>=4.6 <4.23'
@@ -50,6 +51,7 @@ projects:
             sources:
               - *neuvector_56_source
             lastVerified: '2026-09-11'
+            basis: tested
           architecture:
             ranges:
               - amd64
@@ -58,76 +60,6 @@ projects:
             confidence: high
             notes:
               - The requirements list AMD64 and Arm architectures as supported.
-            sources:
-              - *neuvector_56_source
-            lastVerified: '2026-09-11'
-          container-runtime:
-            ranges:
-              - docker
-              - containerd
-              - cri-o
-            relationship: runtime implementation
-            confidence: high
-            notes:
-              - Docker, containerd, and CRI-O are supported; containerd and CRI-O require the documented volume-path changes.
-            sources:
-              - *neuvector_56_source
-            lastVerified: '2026-09-11'
-          cni:
-            ranges:
-              - openshift-ovs
-              - calico
-              - flannel
-              - cilium
-              - antrea
-              - gke
-              - aks
-              - iks
-              - eks
-              - multus
-            relationship: tested network plugin
-            confidence: high
-            notes:
-              - The requirements list these CNI implementations and public-cloud CNIs as tested and supported; Multus support was added in NeuVector 5.4.0.
-            sources:
-              - *neuvector_56_source
-            lastVerified: '2026-09-11'
-          linux-distribution:
-            ranges:
-              - suse-linux
-              - ubuntu
-              - centos
-              - rhel
-              - debian
-              - coreos
-              - aws-bottlerocket
-              - photon
-            relationship: supported host operating system family
-            confidence: high
-            notes:
-              - The requirements officially support these Linux distribution families; no distribution version ranges are published.
-            sources:
-              - *neuvector_56_source
-            lastVerified: '2026-09-11'
-          kubernetes-platform:
-            ranges:
-              - rancher
-              - gke
-              - eks
-              - aks
-              - iks
-              - vmware-tanzu
-              - suse-caas
-              - oke
-              - mirantis-kubernetes-engine
-              - nutanix-kubernetes-engine
-              - docker-swarm
-              - docker-ucp
-              - docker-cloud
-            relationship: tested or verified container management platform
-            confidence: high
-            notes:
-              - The requirements distinguish platforms tested with every release from additional Kubernetes and Docker-compliant platforms verified to work; GKE Autopilot is explicitly unsupported.
             sources:
               - *neuvector_56_source
             lastVerified: '2026-09-11'
@@ -153,6 +85,7 @@ projects:
             sources:
               - *neuvector_55_source
             lastVerified: '2026-09-11'
+            basis: tested
           openshift:
             ranges:
               - '>=4.6 <4.17'
@@ -163,6 +96,7 @@ projects:
             sources:
               - *neuvector_55_source
             lastVerified: '2026-09-11'
+            basis: tested
           docker:
             ranges:
               - '>=1.9'
@@ -191,76 +125,6 @@ projects:
             confidence: high
             notes:
               - The requirements list AMD64 and Arm architectures as supported.
-            sources:
-              - *neuvector_55_source
-            lastVerified: '2026-09-11'
-          container-runtime:
-            ranges:
-              - docker
-              - containerd
-              - cri-o
-            relationship: runtime implementation
-            confidence: high
-            notes:
-              - Docker, containerd, and CRI-O are supported; containerd and CRI-O require the documented volume-path changes.
-            sources:
-              - *neuvector_55_source
-            lastVerified: '2026-09-11'
-          cni:
-            ranges:
-              - openshift-ovs
-              - calico
-              - flannel
-              - cilium
-              - antrea
-              - gke
-              - aks
-              - iks
-              - eks
-              - multus
-            relationship: tested network plugin
-            confidence: high
-            notes:
-              - The requirements list these CNI implementations and public-cloud CNIs as tested and supported; Multus support was added in NeuVector 5.4.0.
-            sources:
-              - *neuvector_55_source
-            lastVerified: '2026-09-11'
-          linux-distribution:
-            ranges:
-              - suse-linux
-              - ubuntu
-              - centos
-              - rhel
-              - debian
-              - coreos
-              - aws-bottlerocket
-              - photon
-            relationship: supported host operating system family
-            confidence: high
-            notes:
-              - The requirements officially support these Linux distribution families; no distribution version ranges are published.
-            sources:
-              - *neuvector_55_source
-            lastVerified: '2026-09-11'
-          kubernetes-platform:
-            ranges:
-              - rancher
-              - gke
-              - eks
-              - aks
-              - iks
-              - vmware-tanzu
-              - suse-caas
-              - oke
-              - mirantis-kubernetes-engine
-              - nutanix-kubernetes-engine
-              - docker-swarm
-              - docker-ucp
-              - docker-cloud
-            relationship: tested or verified container management platform
-            confidence: high
-            notes:
-              - The requirements distinguish platforms tested with every release from additional Kubernetes and Docker-compliant platforms verified to work; GKE Autopilot is explicitly unsupported.
             sources:
               - *neuvector_55_source
             lastVerified: '2026-09-11'
@@ -286,6 +150,7 @@ projects:
             sources:
               - *neuvector_54_source
             lastVerified: '2026-09-11'
+            basis: tested
           openshift:
             ranges:
               - '>=4.6 <4.17'
@@ -296,6 +161,7 @@ projects:
             sources:
               - *neuvector_54_source
             lastVerified: '2026-09-11'
+            basis: tested
           docker:
             ranges:
               - '>=1.9'
@@ -324,76 +190,6 @@ projects:
             confidence: high
             notes:
               - The requirements list AMD64 and Arm architectures as supported.
-            sources:
-              - *neuvector_54_source
-            lastVerified: '2026-09-11'
-          container-runtime:
-            ranges:
-              - docker
-              - containerd
-              - cri-o
-            relationship: runtime implementation
-            confidence: high
-            notes:
-              - Docker, containerd, and CRI-O are supported; containerd and CRI-O require the documented volume-path changes.
-            sources:
-              - *neuvector_54_source
-            lastVerified: '2026-09-11'
-          cni:
-            ranges:
-              - openshift-ovs
-              - calico
-              - flannel
-              - cilium
-              - antrea
-              - gke
-              - aks
-              - iks
-              - eks
-              - multus
-            relationship: tested network plugin
-            confidence: high
-            notes:
-              - The requirements list these CNI implementations and public-cloud CNIs as tested and supported; Multus support was added in NeuVector 5.4.0.
-            sources:
-              - *neuvector_54_source
-            lastVerified: '2026-09-11'
-          linux-distribution:
-            ranges:
-              - suse-linux
-              - ubuntu
-              - centos
-              - rhel
-              - debian
-              - coreos
-              - aws-bottlerocket
-              - photon
-            relationship: supported host operating system family
-            confidence: high
-            notes:
-              - The requirements officially support these Linux distribution families; no distribution version ranges are published.
-            sources:
-              - *neuvector_54_source
-            lastVerified: '2026-09-11'
-          kubernetes-platform:
-            ranges:
-              - rancher
-              - gke
-              - eks
-              - aks
-              - iks
-              - vmware-tanzu
-              - suse-caas
-              - oke
-              - mirantis-kubernetes-engine
-              - nutanix-kubernetes-engine
-              - docker-swarm
-              - docker-ucp
-              - docker-cloud
-            relationship: tested or verified container management platform
-            confidence: high
-            notes:
-              - The requirements distinguish platforms tested with every release from additional Kubernetes and Docker-compliant platforms verified to work; GKE Autopilot is explicitly unsupported.
             sources:
               - *neuvector_54_source
             lastVerified: '2026-09-11'
@@ -419,6 +215,7 @@ projects:
             sources:
               - *neuvector_53_source
             lastVerified: '2026-09-11'
+            basis: tested
           openshift:
             ranges:
               - '>=4.6 <4.15'
@@ -429,6 +226,7 @@ projects:
             sources:
               - *neuvector_53_source
             lastVerified: '2026-09-11'
+            basis: tested
           docker:
             ranges:
               - '>=1.9'
@@ -457,75 +255,6 @@ projects:
             confidence: high
             notes:
               - The requirements list AMD64 and Arm architectures as supported.
-            sources:
-              - *neuvector_53_source
-            lastVerified: '2026-09-11'
-          container-runtime:
-            ranges:
-              - docker
-              - containerd
-              - cri-o
-            relationship: runtime implementation
-            confidence: high
-            notes:
-              - Docker, containerd, and CRI-O are supported; containerd and CRI-O require the documented volume-path changes.
-            sources:
-              - *neuvector_53_source
-            lastVerified: '2026-09-11'
-          cni:
-            ranges:
-              - openshift-ovs
-              - calico
-              - flannel
-              - cilium
-              - antrea
-              - gke
-              - aks
-              - iks
-              - eks
-            relationship: tested network plugin
-            confidence: high
-            notes:
-              - The requirements list these CNI implementations and public-cloud CNIs as tested and supported and explicitly state that Multus is unsupported in the 5.3 line.
-            sources:
-              - *neuvector_53_source
-            lastVerified: '2026-09-11'
-          linux-distribution:
-            ranges:
-              - suse-linux
-              - ubuntu
-              - centos
-              - rhel
-              - debian
-              - coreos
-              - aws-bottlerocket
-              - photon
-            relationship: supported host operating system family
-            confidence: high
-            notes:
-              - The requirements officially support these Linux distribution families; no distribution version ranges are published.
-            sources:
-              - *neuvector_53_source
-            lastVerified: '2026-09-11'
-          kubernetes-platform:
-            ranges:
-              - rancher
-              - gke
-              - eks
-              - aks
-              - iks
-              - vmware-tanzu
-              - suse-caas
-              - oke
-              - mirantis-kubernetes-engine
-              - nutanix-kubernetes-engine
-              - docker-swarm
-              - docker-ucp
-              - docker-cloud
-            relationship: tested or verified container management platform
-            confidence: high
-            notes:
-              - The requirements distinguish platforms tested with every release from additional Kubernetes and Docker-compliant platforms verified to work; GKE Autopilot is explicitly unsupported.
             sources:
               - *neuvector_53_source
             lastVerified: '2026-09-11'

@@ -72,7 +72,7 @@ describe.each(['GET', 'POST'] as const)('%s compatibility checks', (method) => {
     const response = await handleApiRequest(request({ ...singleCheck, dependencyVersion: '18' }));
     expect(response.status).toBe(200);
     await expect(response.json()).resolves.toMatchObject({
-      compatible: 'incompatible',
+      compatible: 'unknown',
       matchedRange: null,
       confidence: 'high',
       lastVerified: '2026-07-08',
@@ -83,7 +83,7 @@ describe.each(['GET', 'POST'] as const)('%s compatibility checks', (method) => {
 
   it.each([
     ['1.4.2', 'compatible', 'same-version'],
-    ['1.4.1', 'incompatible', null],
+    ['1.4.1', 'unknown', null],
   ])(
     'checks exact-version dependency %s',
     async (dependencyVersion, compatible, matchedConstraint) => {
@@ -108,7 +108,7 @@ describe.each(['GET', 'POST'] as const)('%s compatibility checks', (method) => {
       request({ ...singleCheck, dependencyVersion: '17.0-rc1' }),
     );
     await expect(response.json()).resolves.toMatchObject({
-      compatible: 'incompatible',
+      compatible: 'unknown',
       matchedRange: null,
     });
   });

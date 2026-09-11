@@ -3,6 +3,47 @@ import { mergeCompatibilityDatasets } from '../src/lib/dataset';
 import { parseCompatibilityYaml } from '../src/lib/validation';
 
 describe('compatibility data validation', () => {
+  it.each(['supported', 'tested', 'recommended', 'bundled'])('accepts %s evidence', (basis) => {
+    const yaml = validYaml().replace(
+      '            confidence:',
+      `            basis: ${basis}\n            confidence:`,
+    );
+    expect(
+      parseCompatibilityYaml(yaml).projects.sample.versions['1'].dependencies.runtime.basis,
+    ).toBe(basis);
+  });
+
+  it('rejects invalid evidence kinds and misleading explicit-negative combinations', () => {
+    for (const [basis, status] of [
+      ['default', undefined],
+      ['recommended', 'incompatible'],
+      ['tested', 'unknown'],
+    ]) {
+      const yaml = validYaml({ status }).replace(
+        '            confidence:',
+        `            basis: ${basis}\n            confidence:`,
+      );
+      expect(() => parseCompatibilityYaml(yaml)).toThrow('.basis');
+    }
+  });
+
+  it('normalizes shared YAML entries only after validating all references', () => {
+    const yaml =
+      validYaml().replace('          runtime:', '          runtime: &runtime') +
+      '          another-runtime: *runtime\n';
+    const dependencies = parseCompatibilityYaml(yaml).projects.sample.versions['1'].dependencies;
+    expect(dependencies.runtime.status).toBe('compatible');
+    expect(dependencies['another-runtime'].status).toBe('compatible');
+    expect(() =>
+      parseCompatibilityYaml(
+        yaml.replace(
+          '            confidence:',
+          '            status: compatible\n            confidence:',
+        ),
+      ),
+    ).toThrow('status must be omitted');
+  });
+
   it('defaults supported ranges to compatible', () => {
     const dataset = parseCompatibilityYaml(validYaml());
     expect(dataset.projects.sample.versions['1'].dependencies.runtime.status).toBe('compatible');

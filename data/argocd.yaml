@@ -25,6 +25,7 @@ projects:
             sources:
               - *argocd_install_source
             lastVerified: '2026-09-11'
+            basis: tested
       '3.4':
         dependencies:
           kubernetes:
@@ -37,6 +38,7 @@ projects:
             sources:
               - *argocd_install_source
             lastVerified: '2026-09-11'
+            basis: tested
       '3.3':
         dependencies:
           kubernetes:
@@ -49,3 +51,4 @@ projects:
             sources:
               - *argocd_install_source
             lastVerified: '2026-09-11'
+            basis: tested

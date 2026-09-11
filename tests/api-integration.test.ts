@@ -52,6 +52,41 @@ describe('Worker with the generated YAML dataset', () => {
     await expect(response.json()).resolves.toMatchObject({ compatible: 'compatible' });
   });
 
+  it.each([
+    ['argocd', '3.5', 'kubernetes', '1.37', 'unknown', 'tested'],
+    ['longhorn', '1.12.0', 'kubernetes', '1.36.1', 'compatible', 'tested'],
+    ['gitlab-runner', '19.3', 'gitlab', '19.3.2', 'unknown', 'recommended'],
+    ['gitlab-runner', '19.3', 'gitlab', '19.2.6', 'unknown', 'recommended'],
+    [
+      'red-hat-advanced-cluster-management',
+      '2.17',
+      'multicluster-engine',
+      '2.17',
+      'unknown',
+      'bundled',
+    ],
+    ['grafana', '13.2', 'mysql', '9.7', 'unknown', 'supported'],
+    [
+      'traefik-helm-chart',
+      '41.5.0',
+      'traefik-hub-api-gateway',
+      '3.20.13',
+      'compatible',
+      'supported',
+    ],
+    ['elasticsearch', '9.5.0', 'logstash', '8.19.1', 'compatible', 'supported'],
+  ])(
+    'qualifies %s %s / %s %s as %s (%s)',
+    async (project, version, dependency, dependencyVersion, compatible, basis) => {
+      const response = await exports.default.fetch(
+        new Request(
+          `https://compatibility.fyi/api/v1/check?${new URLSearchParams({ project, version, dependency, dependencyVersion })}`,
+        ),
+      );
+      await expect(response.json()).resolves.toMatchObject({ compatible, basis });
+    },
+  );
+
   it.each(['constructor', 'toString', '__proto__'])(
     'does not expose inherited project %s',
     async (project) => {

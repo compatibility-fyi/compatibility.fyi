@@ -1,23 +1,19 @@
-x-gitlab-runner-version-source: &gitlab_runner_version_source
+x-gitlab-runner-version-source: &gitlab_runner_1
   title: GitLab Runner - GitLab Runner versions
   url: https://docs.gitlab.com/runner/
-  accessedAt: '2026-09-11'
-
-x-gitlab-19-3-release-source: &gitlab_19_3_release_source
+  accessedAt: 2026-09-11
+x-gitlab-19-3-release-source: &gitlab_runner_2
   title: GitLab 19.3 release notes - GitLab Runner 19.3
   url: https://docs.gitlab.com/releases/19/gitlab-19-3-released/
-  accessedAt: '2026-09-11'
-
-x-gitlab-19-2-release-source: &gitlab_19_2_release_source
+  accessedAt: 2026-09-11
+x-gitlab-19-2-release-source: &gitlab_runner_3
   title: GitLab 19.2 release notes - GitLab Runner 19.2
   url: https://docs.gitlab.com/releases/19/gitlab-19-2-released/
-  accessedAt: '2026-09-11'
-
-x-gitlab-19-1-release-source: &gitlab_19_1_release_source
+  accessedAt: 2026-09-11
+x-gitlab-19-1-release-source: &gitlab_runner_4
   title: GitLab 19.1 release notes - GitLab Runner 19.1
   url: https://docs.gitlab.com/releases/19/gitlab-19-1-released/
-  accessedAt: '2026-09-11'
-
+  accessedAt: 2026-09-11
 projects:
   gitlab-runner:
     name: GitLab Runner
@@ -40,9 +36,10 @@ projects:
               - Older or newer runners may still work, but features may be unavailable or not work properly when versions differ.
               - GitLab 19.3 release notes include GitLab Runner 19.3.
             sources:
-              - *gitlab_runner_version_source
-              - *gitlab_19_3_release_source
-            lastVerified: '2026-09-11'
+              - *gitlab_runner_1
+              - *gitlab_runner_2
+            lastVerified: 2026-09-11
+            basis: recommended
       '19.2':
         dependencies:
           gitlab:
@@ -55,9 +52,10 @@ projects:
               - Older or newer runners may still work, but features may be unavailable or not work properly when versions differ.
               - GitLab 19.2 release notes include GitLab Runner 19.2.
             sources:
-              - *gitlab_runner_version_source
-              - *gitlab_19_2_release_source
-            lastVerified: '2026-09-11'
+              - *gitlab_runner_1
+              - *gitlab_runner_3
+            lastVerified: 2026-09-11
+            basis: recommended
       '19.1':
         dependencies:
           gitlab:
@@ -70,6 +68,7 @@ projects:
               - Older or newer runners may still work, but features may be unavailable or not work properly when versions differ.
               - GitLab 19.1 release notes include GitLab Runner 19.1.
             sources:
-              - *gitlab_runner_version_source
-              - *gitlab_19_1_release_source
-            lastVerified: '2026-09-11'
+              - *gitlab_runner_1
+              - *gitlab_runner_4
+            lastVerified: 2026-09-11
+            basis: recommended

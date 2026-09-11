@@ -157,6 +157,19 @@ function renderCheck(check: CompatibilityCheckResponse): HTMLElement {
   const version = document.createElement('small');
   version.textContent = check.dependencyVersion;
   dependency.append(name, version);
+  if (check.basis) {
+    const evidence = document.createElement('small');
+    evidence.textContent = `Evidence: ${check.basis}`;
+    dependency.append(evidence);
+  }
+  if (check.compatible === 'unknown') {
+    const explanation = document.createElement('small');
+    explanation.textContent =
+      check.matchedRange || check.matchedConstraint
+        ? 'This evidence does not establish compatibility.'
+        : 'No matching evidence; incompatibility is not established.';
+    dependency.append(explanation);
+  }
 
   const value = document.createElement('span');
   value.className = 'compound-result-value';
@@ -166,7 +179,7 @@ function renderCheck(check: CompatibilityCheckResponse): HTMLElement {
     ? formatRange(check.matchedRange)
     : check.matchedConstraint === 'same-version'
       ? 'Same exact version'
-      : 'No matching constraint';
+      : 'No matching evidence';
   const badge = document.createElement('span');
   badge.className = `status-badge ${check.compatible}`;
   badge.textContent = check.compatible;

@@ -65,6 +65,7 @@ projects:
                 url: https://github.com/stolostron/multiclusterhub-operator/blob/8cd81252a1b2e3375878bb8b24aa9c2307c36ee8/COMPONENT_VERSION
                 accessedAt: 2026-09-11
             lastVerified: '2026-09-11'
+            basis: bundled
           openshift-management-cluster:
             ranges:
               - '>=4.20 <4.23'
@@ -131,6 +132,7 @@ projects:
               - *rhacm_216_source
               - *mce_211_source
             lastVerified: '2026-09-11'
+            basis: bundled
           openshift-management-cluster:
             ranges:
               - '>=4.19 <4.23'
@@ -165,6 +167,7 @@ projects:
               - *rhacm_215_source
               - *mce_210_source
             lastVerified: '2026-09-11'
+            basis: bundled
           openshift-management-cluster:
             ranges:
               - '>=4.18 <4.22'
@@ -200,6 +203,7 @@ projects:
               - *rhacm_214_source
               - *mce_29_source
             lastVerified: '2026-09-11'
+            basis: bundled
           openshift-management-cluster:
             ranges:
               - '>=4.17 <4.21'
@@ -234,6 +238,7 @@ projects:
               - *rhacm_213_source
               - *mce_28_source
             lastVerified: '2026-09-11'
+            basis: bundled
           openshift-management-cluster:
             ranges:
               - '>=4.16 <4.20'

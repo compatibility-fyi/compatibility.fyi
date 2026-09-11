@@ -2,6 +2,8 @@ export type CompatibilityStatus = 'compatible' | 'incompatible' | 'unknown';
 
 export type ConfidenceLevel = 'low' | 'medium' | 'high';
 
+export type CompatibilityBasis = 'supported' | 'tested' | 'recommended' | 'bundled';
+
 export interface CompatibilitySource {
   title: string;
   url: string;
@@ -10,6 +12,7 @@ export interface CompatibilitySource {
 
 export interface DependencyCompatibilityEntry {
   status: CompatibilityStatus;
+  basis?: CompatibilityBasis;
   ranges: string[];
   sameVersion?: true;
   relationship?: string;
@@ -53,6 +56,7 @@ export interface CompatibilityCheckRequest {
 
 export interface CompatibilityCheckResponse extends CompatibilityCheckRequest {
   compatible: CompatibilityStatus;
+  basis: CompatibilityBasis | null;
   matchedRange: string | null;
   matchedConstraint: 'same-version' | null;
   relationship: string | null;

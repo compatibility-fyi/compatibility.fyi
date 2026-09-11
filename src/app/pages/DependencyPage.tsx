@@ -66,7 +66,7 @@ export function DependencyPage({ dataset, projectId, dependencyId }: DependencyP
       <section className="dependency-summary" aria-label="Compatibility summary">
         <div>
           <span className="summary-value">{entries.length}</span>
-          <span className="summary-label">Project versions</span>
+          <span className="summary-label">Version groups</span>
         </div>
         <div>
           <span className="summary-value">
@@ -90,6 +90,11 @@ export function DependencyPage({ dataset, projectId, dependencyId }: DependencyP
           </div>
         </div>
 
+        <p>
+          Supported and tested versions have compatibility evidence. Recommended and bundled
+          versions describe upstream choices without establishing compatibility. Versions outside
+          the documented coverage are unknown, not necessarily incompatible.
+        </p>
         <div className="dependency-answer-list">
           {entries.map(([version, entry]) => (
             <article key={version}>
@@ -101,7 +106,9 @@ export function DependencyPage({ dataset, projectId, dependencyId }: DependencyP
                 <p className="dependency-range-label">
                   {entry.status === 'incompatible'
                     ? `Incompatible ${dependencyName} versions`
-                    : `Documented ${dependencyName} versions`}
+                    : entry.status === 'unknown'
+                      ? `Unverified ${dependencyName} versions`
+                      : `${{ supported: 'Supported', tested: 'Tested', recommended: 'Recommended', bundled: 'Bundled' }[entry.basis ?? 'supported']} ${dependencyName} versions`}
                 </p>
                 <div className="range-list">
                   {formatCompatibilityConstraints(entry).map((constraint) => (

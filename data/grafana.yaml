@@ -10,200 +10,148 @@ projects:
       '13.2':
         dependencies:
           postgresql:
-            ranges:
+            ranges: &grafana_2
               - '>=14 <19'
             relationship: configuration database
             confidence: high
-            notes:
-              - Grafana 13.2 requires PostgreSQL 12 or newer and limits support to versions supported upstream when Grafana is released.
+            notes: &grafana_3
+              - Grafana requires PostgreSQL 12 or newer and limits support to versions supported upstream when Grafana is released.
               - PostgreSQL 14 through 18 were the supported major releases when this Grafana minor was released in 2026; PostgreSQL 12 and 13 were already end of life.
             sources:
-              - title: Grafana 13.2 installation requirements
+              - &grafana_1
+                title: Grafana 13.2 installation requirements
                 url: https://github.com/grafana/grafana/blob/v13.2.0/docs/sources/setup-grafana/installation/_index.md
                 accessedAt: 2026-09-11
-              - title: PostgreSQL versioning policy and supported releases
+              - &grafana_4
+                title: PostgreSQL versioning policy and supported releases
                 url: https://www.postgresql.org/support/versioning/
                 accessedAt: 2026-09-11
             lastVerified: 2026-09-11
           sqlite:
-            ranges:
+            ranges: &grafana_5
               - '3'
             relationship: embedded configuration database
             confidence: high
-            notes:
-              - Grafana 13.2 uses SQLite 3 by default; high availability requires MySQL or PostgreSQL.
+            notes: &grafana_6
+              - Grafana uses SQLite 3 by default; high availability requires MySQL or PostgreSQL.
+              - SQLite is not recommended for production environments; the tagged requirements limit its recommended use to local development and small evaluation instances.
             sources:
-              - title: Grafana 13.2 installation requirements
-                url: https://github.com/grafana/grafana/blob/v13.2.0/docs/sources/setup-grafana/installation/_index.md
-                accessedAt: 2026-09-11
+              - *grafana_1
             lastVerified: 2026-09-11
           mysql:
-            ranges:
+            ranges: &grafana_8
               - '8.4'
             relationship: configuration database
             confidence: high
-            notes:
-              - Grafana 13.2 requires MySQL 8.0 or newer and limits support to versions supported upstream when Grafana is released.
+            notes: &grafana_9
+              - Grafana requires MySQL 8.0 or newer and limits support to versions supported upstream when Grafana is released.
               - MySQL 8.4 is an LTS series released in April 2024 with five years of premier support, covering the release dates of these Grafana minors.
               - This entry verifies the 8.4 LTS line only; the support periods of other MySQL release lines have not been mapped to every Grafana patch.
             sources:
-              - title: Grafana 13.2 installation requirements
-                url: https://github.com/grafana/grafana/blob/v13.2.0/docs/sources/setup-grafana/installation/_index.md
-                accessedAt: 2026-09-11
-              - title: MySQL LTS release support policy
+              - *grafana_1
+              - &grafana_10
+                title: MySQL LTS release support policy
                 url: https://dev.mysql.com/doc/refman/8.4/en/mysql-releases.html
                 accessedAt: 2026-09-11
-              - title: MySQL 8.4.0 LTS release notes
+              - &grafana_11
+                title: MySQL 8.4.0 LTS release notes
                 url: https://dev.mysql.com/doc/relnotes/mysql/8.4/en/news-8-4-0.html
                 accessedAt: 2026-09-11
             lastVerified: 2026-09-11
       '13.1':
         dependencies:
           postgresql:
-            ranges:
-              - '>=14 <19'
+            ranges: *grafana_2
             relationship: configuration database
             confidence: high
-            notes:
-              - Grafana 13.1 requires PostgreSQL 12 or newer and limits support to versions supported upstream when Grafana is released.
-              - PostgreSQL 14 through 18 were the supported major releases when this Grafana minor was released in 2026; PostgreSQL 12 and 13 were already end of life.
+            notes: *grafana_3
             sources:
-              - title: Grafana 13.1 installation requirements
+              - &grafana_7
+                title: Grafana 13.1 installation requirements
                 url: https://github.com/grafana/grafana/blob/v13.1.0/docs/sources/setup-grafana/installation/_index.md
                 accessedAt: 2026-09-11
-              - title: PostgreSQL versioning policy and supported releases
-                url: https://www.postgresql.org/support/versioning/
-                accessedAt: 2026-09-11
+              - *grafana_4
             lastVerified: 2026-09-11
           sqlite:
-            ranges:
-              - '3'
+            ranges: *grafana_5
             relationship: embedded configuration database
             confidence: high
-            notes:
-              - Grafana 13.1 uses SQLite 3 by default; high availability requires MySQL or PostgreSQL.
+            notes: *grafana_6
             sources:
-              - title: Grafana 13.1 installation requirements
-                url: https://github.com/grafana/grafana/blob/v13.1.0/docs/sources/setup-grafana/installation/_index.md
-                accessedAt: 2026-09-11
+              - *grafana_7
             lastVerified: 2026-09-11
           mysql:
-            ranges:
-              - '8.4'
+            ranges: *grafana_8
             relationship: configuration database
             confidence: high
-            notes:
-              - Grafana 13.1 requires MySQL 8.0 or newer and limits support to versions supported upstream when Grafana is released.
-              - MySQL 8.4 is an LTS series released in April 2024 with five years of premier support, covering the release dates of these Grafana minors.
-              - This entry verifies the 8.4 LTS line only; the support periods of other MySQL release lines have not been mapped to every Grafana patch.
+            notes: *grafana_9
             sources:
-              - title: Grafana 13.1 installation requirements
-                url: https://github.com/grafana/grafana/blob/v13.1.0/docs/sources/setup-grafana/installation/_index.md
-                accessedAt: 2026-09-11
-              - title: MySQL LTS release support policy
-                url: https://dev.mysql.com/doc/refman/8.4/en/mysql-releases.html
-                accessedAt: 2026-09-11
-              - title: MySQL 8.4.0 LTS release notes
-                url: https://dev.mysql.com/doc/relnotes/mysql/8.4/en/news-8-4-0.html
-                accessedAt: 2026-09-11
+              - *grafana_7
+              - *grafana_10
+              - *grafana_11
             lastVerified: 2026-09-11
       '13.0':
         dependencies:
           postgresql:
-            ranges:
-              - '>=14 <19'
+            ranges: *grafana_2
             relationship: configuration database
             confidence: high
-            notes:
-              - Grafana 13.0 requires PostgreSQL 12 or newer and limits support to versions supported upstream when Grafana is released.
-              - PostgreSQL 14 through 18 were the supported major releases when this Grafana minor was released in 2026; PostgreSQL 12 and 13 were already end of life.
+            notes: *grafana_3
             sources:
-              - title: Grafana 13.0 installation requirements
+              - &grafana_12
+                title: Grafana 13.0 installation requirements
                 url: https://github.com/grafana/grafana/blob/v13.0.0/docs/sources/setup-grafana/installation/_index.md
                 accessedAt: 2026-09-11
-              - title: PostgreSQL versioning policy and supported releases
-                url: https://www.postgresql.org/support/versioning/
-                accessedAt: 2026-09-11
+              - *grafana_4
             lastVerified: 2026-09-11
           sqlite:
-            ranges:
-              - '3'
+            ranges: *grafana_5
             relationship: embedded configuration database
             confidence: high
-            notes:
-              - Grafana 13.0 uses SQLite 3 by default; high availability requires MySQL or PostgreSQL.
+            notes: *grafana_6
             sources:
-              - title: Grafana 13.0 installation requirements
-                url: https://github.com/grafana/grafana/blob/v13.0.0/docs/sources/setup-grafana/installation/_index.md
-                accessedAt: 2026-09-11
+              - *grafana_12
             lastVerified: 2026-09-11
           mysql:
-            ranges:
-              - '8.4'
+            ranges: *grafana_8
             relationship: configuration database
             confidence: high
-            notes:
-              - Grafana 13.0 requires MySQL 8.0 or newer and limits support to versions supported upstream when Grafana is released.
-              - MySQL 8.4 is an LTS series released in April 2024 with five years of premier support, covering the release dates of these Grafana minors.
-              - This entry verifies the 8.4 LTS line only; the support periods of other MySQL release lines have not been mapped to every Grafana patch.
+            notes: *grafana_9
             sources:
-              - title: Grafana 13.0 installation requirements
-                url: https://github.com/grafana/grafana/blob/v13.0.0/docs/sources/setup-grafana/installation/_index.md
-                accessedAt: 2026-09-11
-              - title: MySQL LTS release support policy
-                url: https://dev.mysql.com/doc/refman/8.4/en/mysql-releases.html
-                accessedAt: 2026-09-11
-              - title: MySQL 8.4.0 LTS release notes
-                url: https://dev.mysql.com/doc/relnotes/mysql/8.4/en/news-8-4-0.html
-                accessedAt: 2026-09-11
+              - *grafana_12
+              - *grafana_10
+              - *grafana_11
             lastVerified: 2026-09-11
       '12.4':
         dependencies:
           postgresql:
-            ranges:
-              - '>=14 <19'
+            ranges: *grafana_2
             relationship: configuration database
             confidence: high
-            notes:
-              - Grafana 12.4 requires PostgreSQL 12 or newer and limits support to versions supported upstream when Grafana is released.
-              - PostgreSQL 14 through 18 were the supported major releases when this Grafana minor was released in 2026; PostgreSQL 12 and 13 were already end of life.
+            notes: *grafana_3
             sources:
-              - title: Grafana 12.4 installation requirements
+              - &grafana_13
+                title: Grafana 12.4 installation requirements
                 url: https://github.com/grafana/grafana/blob/v12.4.0/docs/sources/setup-grafana/installation/_index.md
                 accessedAt: 2026-09-11
-              - title: PostgreSQL versioning policy and supported releases
-                url: https://www.postgresql.org/support/versioning/
-                accessedAt: 2026-09-11
+              - *grafana_4
             lastVerified: 2026-09-11
           sqlite:
-            ranges:
-              - '3'
+            ranges: *grafana_5
             relationship: embedded configuration database
             confidence: high
             notes:
-              - Grafana 12.4 uses SQLite 3 by default; high availability requires MySQL or PostgreSQL.
+              - Grafana uses SQLite 3 by default; high availability requires MySQL or PostgreSQL.
             sources:
-              - title: Grafana 12.4 installation requirements
-                url: https://github.com/grafana/grafana/blob/v12.4.0/docs/sources/setup-grafana/installation/_index.md
-                accessedAt: 2026-09-11
+              - *grafana_13
             lastVerified: 2026-09-11
           mysql:
-            ranges:
-              - '8.4'
+            ranges: *grafana_8
             relationship: configuration database
             confidence: high
-            notes:
-              - Grafana 12.4 requires MySQL 8.0 or newer and limits support to versions supported upstream when Grafana is released.
-              - MySQL 8.4 is an LTS series released in April 2024 with five years of premier support, covering the release dates of these Grafana minors.
-              - This entry verifies the 8.4 LTS line only; the support periods of other MySQL release lines have not been mapped to every Grafana patch.
+            notes: *grafana_9
             sources:
-              - title: Grafana 12.4 installation requirements
-                url: https://github.com/grafana/grafana/blob/v12.4.0/docs/sources/setup-grafana/installation/_index.md
-                accessedAt: 2026-09-11
-              - title: MySQL LTS release support policy
-                url: https://dev.mysql.com/doc/refman/8.4/en/mysql-releases.html
-                accessedAt: 2026-09-11
-              - title: MySQL 8.4.0 LTS release notes
-                url: https://dev.mysql.com/doc/relnotes/mysql/8.4/en/news-8-4-0.html
-                accessedAt: 2026-09-11
+              - *grafana_13
+              - *grafana_10
+              - *grafana_11
             lastVerified: 2026-09-11

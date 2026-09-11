@@ -98,7 +98,7 @@ export function ProjectPage({ dataset, projectId }: ProjectPageProps) {
       <section className="project-summary" aria-label={`${project.name} compatibility summary`}>
         <div>
           <span className="summary-value">{versions.length}</span>
-          <span className="summary-label">Project versions</span>
+          <span className="summary-label">Version groups</span>
         </div>
         <div>
           <span className="summary-value">{dependencyCount}</span>
@@ -125,7 +125,7 @@ export function ProjectPage({ dataset, projectId }: ProjectPageProps) {
                 {project.name} {formatDependencyName(dependency)} compatibility
               </strong>
               <span>
-                {guideVersions} {guideVersions === 1 ? 'project version' : 'project versions'}
+                {guideVersions} {guideVersions === 1 ? 'version group' : 'version groups'}
               </span>
             </a>
           ))}
@@ -167,6 +167,11 @@ export function ProjectPage({ dataset, projectId }: ProjectPageProps) {
             <CheckerDependencyField dependency={dependency} entry={entry} key={dependency} />
           ))}
         </div>
+        <p className="row-note">
+          Supported or tested matches establish compatibility. Recommendations and bundles alone do
+          not. Missing coverage is unknown; only explicit upstream evidence establishes
+          incompatibility.
+        </p>
         <div className="compound-result" data-check-result hidden />
       </section>
 
@@ -202,7 +207,7 @@ export function ProjectPage({ dataset, projectId }: ProjectPageProps) {
               <tr>
                 <th>{project.name}</th>
                 <th>Dependency</th>
-                <th>Supported versions</th>
+                <th>Documented versions</th>
                 <th>Evidence</th>
               </tr>
             </thead>
@@ -227,8 +232,11 @@ export function ProjectPage({ dataset, projectId }: ProjectPageProps) {
                       <small className="relationship-label">{entry.relationship}</small>
                     ) : null}
                   </td>
-                  <td data-label="Supported versions">
-                    <div className="range-list" aria-label={`Supported versions for ${dependency}`}>
+                  <td data-label="Documented versions">
+                    <div
+                      className="range-list"
+                      aria-label={`Documented versions for ${dependency}`}
+                    >
                       {formatCompatibilityConstraints(entry).map((constraint) => (
                         <span className="range-chip" title={constraint} key={constraint}>
                           {constraint}
@@ -281,6 +289,11 @@ function Evidence({ entry }: { entry: DependencyCompatibilityEntry }) {
 
   return (
     <div className="evidence">
+      {entry.status === 'incompatible' || entry.status === 'unknown' ? (
+        <span className={`status-badge ${entry.status}`}>{entry.status}</span>
+      ) : (
+        <span>Evidence: {entry.basis ?? 'supported'}</span>
+      )}
       <div>
         <button
           className="evidence-level"
@@ -326,6 +339,8 @@ function matrixSearchText(
   return [
     dependency,
     version,
+    entry.basis ?? 'supported',
+    entry.status,
     formatCompatibilityConstraints(entry).join(' '),
     entry.notes.join(' '),
     entry.sources.map((source) => source.title).join(' '),

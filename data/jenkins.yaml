@@ -34,3 +34,4 @@ projects:
               - *jenkins_2568_source
               - *jenkins_java_support_source
             lastVerified: '2026-09-11'
+            basis: tested
