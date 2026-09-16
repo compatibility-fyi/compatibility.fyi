@@ -1,27 +1,27 @@
 x-teslamate-420-requirements-source: &teslamate_420_requirements_source
   title: TeslaMate 4.2.0 development and distribution requirements
   url: https://github.com/teslamate-org/teslamate/blob/v4.2.0/website/docs/development.mdx
-  accessedAt: '2026-09-11'
+  accessedAt: '2026-09-16'
 
 x-teslamate-410-requirements-source: &teslamate_410_requirements_source
   title: TeslaMate 4.1.0 development and distribution requirements
   url: https://github.com/teslamate-org/teslamate/blob/v4.1.0/website/docs/development.mdx
-  accessedAt: '2026-09-11'
+  accessedAt: '2026-09-16'
 
 x-teslamate-411-requirements-source: &teslamate_411_requirements_source
   title: TeslaMate 4.1.1 development and distribution requirements
   url: https://github.com/teslamate-org/teslamate/blob/v4.1.1/website/docs/development.mdx
-  accessedAt: '2026-09-11'
+  accessedAt: '2026-09-16'
 
 x-teslamate-400-requirements-source: &teslamate_400_requirements_source
   title: TeslaMate 4.0.0 development and distribution requirements
   url: https://github.com/teslamate-org/teslamate/blob/v4.0.0/website/docs/development.mdx
-  accessedAt: '2026-09-11'
+  accessedAt: '2026-09-16'
 
 x-teslamate-401-requirements-source: &teslamate_401_requirements_source
   title: TeslaMate 4.0.1 development and distribution requirements
   url: https://github.com/teslamate-org/teslamate/blob/v4.0.1/website/docs/development.mdx
-  accessedAt: '2026-09-11'
+  accessedAt: '2026-09-16'
 
 projects:
   teslamate:
@@ -49,4 +49,4 @@ projects:
               - *teslamate_411_requirements_source
               - *teslamate_400_requirements_source
               - *teslamate_401_requirements_source
-            lastVerified: 2026-09-11
+            lastVerified: 2026-09-16

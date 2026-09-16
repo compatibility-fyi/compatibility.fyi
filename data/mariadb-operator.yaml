@@ -1,17 +1,17 @@
 x-mariadb-operator-266-source: &mariadb_operator_266_source
   title: MariaDB Operator 26.6.0 Compatibility
   url: https://github.com/mariadb-operator/mariadb-operator/blob/26.6.0/README.md
-  accessedAt: '2026-09-11'
+  accessedAt: '2026-09-16'
 
 x-mariadb-operator-263-source: &mariadb_operator_263_source
   title: MariaDB Operator 26.3.0 Compatibility
   url: https://github.com/mariadb-operator/mariadb-operator/blob/26.3.0/README.md
-  accessedAt: '2026-09-11'
+  accessedAt: '2026-09-16'
 
 x-mariadb-operator-2510-source: &mariadb_operator_2510_source
   title: MariaDB Operator 25.10.4 Compatibility
   url: https://github.com/mariadb-operator/mariadb-operator/blob/25.10.4/README.md
-  accessedAt: '2026-09-11'
+  accessedAt: '2026-09-16'
 
 projects:
   mariadb-operator:
@@ -36,7 +36,7 @@ projects:
               - *mariadb_operator_266_source
               - *mariadb_operator_263_source
               - *mariadb_operator_2510_source
-            lastVerified: 2026-09-11
+            lastVerified: 2026-09-16
           mariadb:
             ranges:
               - '>=10.6'
@@ -49,7 +49,7 @@ projects:
               - *mariadb_operator_266_source
               - *mariadb_operator_263_source
               - *mariadb_operator_2510_source
-            lastVerified: 2026-09-11
+            lastVerified: 2026-09-16
           maxscale:
             ranges:
               - '>=23.08'
@@ -62,7 +62,7 @@ projects:
               - *mariadb_operator_266_source
               - *mariadb_operator_263_source
               - *mariadb_operator_2510_source
-            lastVerified: 2026-09-11
+            lastVerified: 2026-09-16
           openshift:
             ranges:
               - '>=4.18'
@@ -75,4 +75,4 @@ projects:
               - *mariadb_operator_266_source
               - *mariadb_operator_263_source
               - *mariadb_operator_2510_source
-            lastVerified: 2026-09-11
+            lastVerified: 2026-09-16

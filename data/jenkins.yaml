@@ -1,12 +1,12 @@
 x-jenkins-java-support-source: &jenkins_java_support_source
   title: Jenkins Java Support Policy
   url: https://www.jenkins.io/doc/book/platform-information/support-policy-java/
-  accessedAt: '2026-09-11'
+  accessedAt: '2026-09-16'
 
 x-jenkins-2568-source: &jenkins_2568_source
   title: Jenkins 2.568.3 changelog
   url: https://www.jenkins.io/changelog/2.568.3/
-  accessedAt: '2026-09-11'
+  accessedAt: '2026-09-16'
 
 projects:
   jenkins:
@@ -16,8 +16,31 @@ projects:
       - Automation
       - Java
     website: https://www.jenkins.io/
-    description: Jenkins LTS release-line compatibility for the Java runtime used by controllers, agents, and CLI clients.
+    description: Jenkins weekly and LTS compatibility for the Java runtime used by controllers, agents, and CLI clients.
     versions:
+      '2.582':
+        dependencies:
+          java:
+            ranges:
+              - '21'
+              - '25'
+            relationship: controller, agent, and CLI runtime
+            basis: tested
+            confidence: high
+            notes:
+              - Jenkins weekly 2.582 tests Java 21 and Java 25 in its tagged build configuration, consistent with the Java support policy for weekly releases since 2.545.
+              - These runtime requirements apply to controllers, agents, and CLI clients; JDK versions used by jobs and build tools are independent.
+            sources:
+              - title: Jenkins 2.582 tagged Java test configurations
+                url: https://github.com/jenkinsci/jenkins/blob/jenkins-2.582/Jenkinsfile
+                accessedAt: '2026-09-16'
+              - title: Jenkins Java Support Policy
+                url: https://www.jenkins.io/doc/book/platform-information/support-policy-java/
+                accessedAt: '2026-09-16'
+              - title: Jenkins 2.582 changelog
+                url: https://www.jenkins.io/changelog/2.582/
+                accessedAt: '2026-09-16'
+            lastVerified: '2026-09-16'
       '2.568':
         dependencies:
           java:
@@ -32,6 +55,9 @@ projects:
               - JDK versions used by jobs and build tools are independent and are not modeled by this entry.
             sources:
               - *jenkins_2568_source
+              - title: Jenkins 2.568.3 tagged Java test configurations
+                url: https://github.com/jenkinsci/jenkins/blob/jenkins-2.568.3/Jenkinsfile
+                accessedAt: '2026-09-16'
               - *jenkins_java_support_source
-            lastVerified: '2026-09-11'
+            lastVerified: '2026-09-16'
             basis: tested

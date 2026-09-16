@@ -1,22 +1,22 @@
 x-calico-requirements-source: &calico_requirements_source
   title: Calico Kubernetes requirements
   url: https://docs.tigera.io/calico/latest/getting-started/kubernetes/requirements
-  accessedAt: '2026-09-11'
+  accessedAt: '2026-09-16'
 
 x-calico-331-requirements-source: &calico_331_requirements_source
   title: Calico 3.31 Kubernetes requirements
   url: https://raw.githubusercontent.com/tigera/docs/687e2bbffdca492a3736471447efc988f0788e81/calico_versioned_docs/version-3.31/_includes/partials/_system-requirements.mdx
-  accessedAt: '2026-09-11'
+  accessedAt: '2026-09-16'
 
 x-calico-330-requirements-source: &calico_330_requirements_source
   title: Calico 3.30 Kubernetes requirements
   url: https://docs.tigera.io/calico/3.30/getting-started/kubernetes/requirements
-  accessedAt: '2026-09-11'
+  accessedAt: '2026-09-16'
 
 x-calico-329-requirements-source: &calico_329_requirements_source
   title: Calico 3.29 Kubernetes requirements
   url: https://raw.githubusercontent.com/tigera/docs/9b8e206648cca1097b440811d945ba8f7ce12382/calico_versioned_docs/version-3.29/_includes/partials/_system-requirements.mdx
-  accessedAt: '2026-09-11'
+  accessedAt: '2026-09-16'
 
 projects:
   calico:
@@ -40,7 +40,7 @@ projects:
               - Calico Open Source v3.32 system requirements list Kubernetes 1.34, 1.35, and 1.36 as actively tested.
             sources:
               - *calico_requirements_source
-            lastVerified: '2026-09-11'
+            lastVerified: '2026-09-16'
             basis: tested
       '3.31':
         dependencies:
@@ -53,7 +53,7 @@ projects:
               - Calico Open Source v3.31 system requirements list Kubernetes 1.32, 1.33, 1.34, and 1.35 as actively tested.
             sources:
               - *calico_331_requirements_source
-            lastVerified: '2026-09-11'
+            lastVerified: '2026-09-16'
             basis: tested
       '3.30':
         dependencies:
@@ -66,7 +66,7 @@ projects:
               - Calico Open Source v3.30 system requirements list Kubernetes 1.31, 1.32, 1.33, 1.34, and 1.35 as actively tested.
             sources:
               - *calico_330_requirements_source
-            lastVerified: '2026-09-11'
+            lastVerified: '2026-09-16'
             basis: tested
       '3.29':
         dependencies:
@@ -79,5 +79,5 @@ projects:
               - Calico Open Source v3.29 system requirements list Kubernetes 1.29, 1.30, 1.31, and 1.32 as actively tested.
             sources:
               - *calico_329_requirements_source
-            lastVerified: '2026-09-11'
+            lastVerified: '2026-09-16'
             basis: tested

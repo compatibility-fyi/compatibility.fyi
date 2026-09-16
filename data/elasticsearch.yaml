@@ -1,23 +1,23 @@
 x-elastic-stack-compatibility-source: &elastic_2
   title: Elastic Stack Version Compatibility
   url: https://www.elastic.co/docs/deploy-manage/deploy/self-managed/installing-elasticsearch
-  accessedAt: 2026-09-11
+  accessedAt: '2026-09-16'
 x-elasticsearch-9-5-1-source: &elastic_1
   title: Elasticsearch 9.5.1 Release
   url: https://github.com/elastic/elasticsearch/releases/tag/v9.5.1
-  accessedAt: 2026-08-13
+  accessedAt: '2026-09-16'
 x-elasticsearch-9-4-4-source: &elastic_6
   title: Elasticsearch 9.4.4 Release
   url: https://github.com/elastic/elasticsearch/releases/tag/v9.4.4
-  accessedAt: 2026-07-27
+  accessedAt: '2026-09-16'
 x-elasticsearch-9-3-8-source: &elastic_11
   title: Elasticsearch 9.3.8 Release
   url: https://github.com/elastic/elasticsearch/releases/tag/v9.3.8
-  accessedAt: 2026-07-27
+  accessedAt: '2026-09-16'
 x-elasticsearch-8-19-19-source: &elastic_13
   title: Elasticsearch 8.19.19 Release
   url: https://github.com/elastic/elasticsearch/releases/tag/v8.19.19
-  accessedAt: 2026-07-27
+  accessedAt: '2026-09-16'
 projects:
   elasticsearch:
     name: Elasticsearch
@@ -42,9 +42,9 @@ projects:
               - &elastic_5
                 title: Kibana and Elasticsearch version compatibility
                 url: https://www.elastic.co/docs/deploy-manage/deploy/self-managed/install-kibana
-                accessedAt: 2026-09-11
+                accessedAt: '2026-09-16'
               - *elastic_1
-            lastVerified: 2026-09-11
+            lastVerified: '2026-09-16'
           logstash: &elastic_3
             ranges: &elastic_7
               - '8.19'
@@ -57,10 +57,10 @@ projects:
               - &elastic_9
                 title: Elastic Stack 8.19 components with Elasticsearch 9.x
                 url: https://www.elastic.co/docs/deploy-manage/upgrade/prepare-to-upgrade
-                accessedAt: 2026-09-11
+                accessedAt: '2026-09-16'
               - *elastic_2
               - *elastic_1
-            lastVerified: 2026-09-11
+            lastVerified: '2026-09-16'
           beats: *elastic_3
           elastic-agent: *elastic_3
       '9.4':
@@ -74,7 +74,7 @@ projects:
             sources:
               - *elastic_5
               - *elastic_6
-            lastVerified: 2026-09-11
+            lastVerified: '2026-09-16'
           logstash: &elastic_10
             ranges: *elastic_7
             relationship: Elastic Stack component
@@ -84,7 +84,7 @@ projects:
               - *elastic_9
               - *elastic_2
               - *elastic_6
-            lastVerified: 2026-09-11
+            lastVerified: '2026-09-16'
           beats: *elastic_10
           elastic-agent: *elastic_10
       '9.3':
@@ -98,7 +98,7 @@ projects:
             sources:
               - *elastic_5
               - *elastic_11
-            lastVerified: 2026-09-11
+            lastVerified: '2026-09-16'
           logstash: &elastic_12
             ranges: *elastic_7
             relationship: Elastic Stack component
@@ -108,7 +108,7 @@ projects:
               - *elastic_9
               - *elastic_2
               - *elastic_11
-            lastVerified: 2026-09-11
+            lastVerified: '2026-09-16'
           beats: *elastic_12
           elastic-agent: *elastic_12
       '8.19':
@@ -121,7 +121,7 @@ projects:
             sources:
               - *elastic_5
               - *elastic_13
-            lastVerified: 2026-09-11
+            lastVerified: '2026-09-16'
           logstash: &elastic_14
             ranges: []
             sameVersion: true
@@ -132,7 +132,7 @@ projects:
             sources:
               - *elastic_2
               - *elastic_13
-            lastVerified: 2026-09-11
+            lastVerified: '2026-09-16'
             basis: recommended
           beats: *elastic_14
           elastic-agent: *elastic_14

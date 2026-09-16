@@ -1,21 +1,21 @@
 x-traefik-3-7-13-gateway-source: &traefik_3_7_13_gateway_source
   title: Traefik Proxy 3.7.13 Kubernetes Gateway API Provider
   url: https://github.com/traefik/traefik/blob/v3.7.13/docs/content/reference/install-configuration/providers/kubernetes/kubernetes-gateway.md
-  accessedAt: '2026-09-11'
+  accessedAt: '2026-09-16'
 x-traefik-3-7-10-gateway-source: &traefik_3_7_10_gateway_source
   title: Traefik Proxy 3.7.10 Kubernetes Gateway API Provider
   url: https://github.com/traefik/traefik/blob/v3.7.10/docs/content/reference/install-configuration/providers/kubernetes/kubernetes-gateway.md
-  accessedAt: '2026-09-11'
+  accessedAt: '2026-09-16'
 
 x-traefik-3-7-gateway-source: &traefik_3_7_gateway_source
   title: Traefik Proxy 3.7.0 Kubernetes Gateway API Provider
   url: https://github.com/traefik/traefik/blob/v3.7.0/docs/content/reference/install-configuration/providers/kubernetes/kubernetes-gateway.md
-  accessedAt: '2026-09-11'
+  accessedAt: '2026-09-16'
 
 x-traefik-3-7-9-gateway-source: &traefik_3_7_9_gateway_source
   title: Traefik Proxy 3.7.9 Kubernetes Gateway API Provider
   url: https://github.com/traefik/traefik/blob/v3.7.9/docs/content/reference/install-configuration/providers/kubernetes/kubernetes-gateway.md
-  accessedAt: '2026-09-11'
+  accessedAt: '2026-09-16'
 
 projects:
   traefik-proxy:
@@ -40,7 +40,7 @@ projects:
             sources:
               - *traefik_3_7_10_gateway_source
               - *traefik_3_7_13_gateway_source
-            lastVerified: '2026-09-11'
+            lastVerified: '2026-09-16'
       '>=3.7.0 <3.7.10':
         dependencies:
           gateway-api:
@@ -54,4 +54,4 @@ projects:
             sources:
               - *traefik_3_7_gateway_source
               - *traefik_3_7_9_gateway_source
-            lastVerified: '2026-09-11'
+            lastVerified: '2026-09-16'
