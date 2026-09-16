@@ -53,10 +53,18 @@ describe('Worker with the generated YAML dataset', () => {
   });
 
   it.each([
-    ['argocd', '3.5', 'kubernetes', '1.37', 'unknown', 'tested'],
-    ['longhorn', '1.12.0', 'kubernetes', '1.36.1', 'compatible', 'tested'],
-    ['gitlab-runner', '19.3', 'gitlab', '19.3.2', 'unknown', 'recommended'],
-    ['gitlab-runner', '19.3', 'gitlab', '19.2.6', 'unknown', 'recommended'],
+    ['argocd', '3.5', 'kubernetes', '1.37', 'unknown', 'tested', 'dependency-version-not-covered'],
+    ['longhorn', '1.12.0', 'kubernetes', '1.36.1', 'compatible', 'tested', null],
+    ['gitlab-runner', '19.3', 'gitlab', '19.3.2', 'unknown', 'recommended', 'recommendation-only'],
+    [
+      'gitlab-runner',
+      '19.3',
+      'gitlab',
+      '19.2.6',
+      'unknown',
+      'recommended',
+      'dependency-version-not-covered',
+    ],
     [
       'red-hat-advanced-cluster-management',
       '2.17',
@@ -64,8 +72,9 @@ describe('Worker with the generated YAML dataset', () => {
       '2.17',
       'unknown',
       'bundled',
+      'bundle-only',
     ],
-    ['grafana', '13.2', 'mysql', '9.7', 'unknown', 'supported'],
+    ['grafana', '13.2', 'mysql', '9.7', 'unknown', 'supported', 'dependency-version-not-covered'],
     [
       'traefik-helm-chart',
       '41.5.0',
@@ -73,17 +82,18 @@ describe('Worker with the generated YAML dataset', () => {
       '3.20.13',
       'compatible',
       'supported',
+      null,
     ],
-    ['elasticsearch', '9.5.0', 'logstash', '8.19.1', 'compatible', 'supported'],
-  ])(
+    ['elasticsearch', '9.5.0', 'logstash', '8.19.1', 'compatible', 'supported', null],
+  ] as const)(
     'qualifies %s %s / %s %s as %s (%s)',
-    async (project, version, dependency, dependencyVersion, compatible, basis) => {
+    async (project, version, dependency, dependencyVersion, compatible, basis, reason) => {
       const response = await exports.default.fetch(
         new Request(
           `https://compatibility.fyi/api/v1/check?${new URLSearchParams({ project, version, dependency, dependencyVersion })}`,
         ),
       );
-      await expect(response.json()).resolves.toMatchObject({ compatible, basis });
+      await expect(response.json()).resolves.toMatchObject({ compatible, basis, reason });
     },
   );
 

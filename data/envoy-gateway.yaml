@@ -36,6 +36,29 @@ projects:
             sources:
               - *envoy_gateway_matrix_source
             lastVerified: '2026-09-16'
+          gateway-api-standard:
+            ranges:
+              - 1.6.1
+              - 1.6.2
+            relationship: Standard-channel CRD interoperability
+            confidence: high
+            notes:
+              - Applies only to Gateway API Standard-channel CRDs installed from standard-install.yaml; Experimental-channel CRDs and fields are excluded.
+              - Envoy Gateway v1.9 supports Gateway API v1.6.1 according to its compatibility matrix. Gateway API's Standard-channel contract guarantees that newer schemas within the same API version remain interoperable with implementations built against older schemas.
+              - The v1.6.1 to v1.6.2 tagged Standard-channel CRD changes only update bundle-version annotations and clarify HTTP redirect conformance descriptions; API versions, fields, and validation are unchanged.
+              - Compatibility with v1.6.2 follows that documented interoperability contract. This does not claim that Envoy Gateway passed the v1.6.2 conformance suite, which is version-specific.
+            sources:
+              - *envoy_gateway_matrix_source
+              - title: Gateway API v1.6.2 implementer's guide - Standard-channel compatibility and version-specific conformance
+                url: https://github.com/kubernetes-sigs/gateway-api/blob/v1.6.2/site/content/en/guides/implementers-guide/_index.md
+                accessedAt: '2026-09-16'
+              - title: Gateway API v1.6.1 to v1.6.2 tagged changes
+                url: https://github.com/kubernetes-sigs/gateway-api/compare/v1.6.1...v1.6.2
+                accessedAt: '2026-09-16'
+              - title: Gateway API v1.6.2 release notes
+                url: https://github.com/kubernetes-sigs/gateway-api/releases/tag/v1.6.2
+                accessedAt: '2026-09-16'
+            lastVerified: '2026-09-16'
           kubernetes:
             ranges:
               - '>=1.33 <1.37'
@@ -70,6 +93,20 @@ projects:
               - Envoy Gateway v1.8 lists Gateway API v1.5.1 in the official compatibility matrix.
             sources:
               - *envoy_gateway_matrix_source
+            lastVerified: '2026-09-16'
+          gateway-api-standard:
+            ranges:
+              - 1.5.1
+            relationship: Standard-channel CRD interoperability
+            confidence: high
+            notes:
+              - Applies only to Gateway API Standard-channel CRDs installed from standard-install.yaml; Experimental-channel CRDs and fields are excluded.
+              - Envoy Gateway v1.8 lists Gateway API v1.5.1 in its compatibility matrix. The v1.8.3 tagged installation guide explicitly documents selecting the Standard channel when installing Gateway API CRDs separately.
+            sources:
+              - *envoy_gateway_matrix_source
+              - title: Envoy Gateway v1.8.3 installation guide - selecting Standard-channel Gateway API CRDs
+                url: https://github.com/envoyproxy/gateway/blob/v1.8.3/site/content/en/latest/install/install-helm.md
+                accessedAt: '2026-09-16'
             lastVerified: '2026-09-16'
           kubernetes:
             ranges:

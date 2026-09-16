@@ -19,10 +19,21 @@ describe('compatibility engine', () => {
         basis,
         matchedRange: '>=15 <=17',
         compatible: basis === 'supported' || basis === 'tested' ? 'compatible' : 'unknown',
+        reason:
+          basis === 'recommended'
+            ? 'recommendation-only'
+            : basis === 'bundled'
+              ? 'bundle-only'
+              : null,
       });
       expect(
         checkCompatibility(evidenceDataset, { ...request, dependencyVersion: '18' }),
-      ).toMatchObject({ basis, compatible: 'unknown', matchedRange: null });
+      ).toMatchObject({
+        basis,
+        compatible: 'unknown',
+        reason: 'dependency-version-not-covered',
+        matchedRange: null,
+      });
       expect(
         checkCompoundCompatibility(evidenceDataset, {
           project: 'sample',
@@ -43,6 +54,7 @@ describe('compatibility engine', () => {
       }),
     ).toMatchObject({
       compatible: 'compatible',
+      reason: null,
       matchedRange: '>=15 <=17',
       confidence: 'high',
       lastVerified: '2026-07-08',
@@ -59,6 +71,7 @@ describe('compatibility engine', () => {
       }),
     ).toMatchObject({
       compatible: 'incompatible',
+      reason: null,
       matchedRange: '<21',
       confidence: 'medium',
       lastVerified: '2026-07-08',
@@ -75,6 +88,7 @@ describe('compatibility engine', () => {
       }),
     ).toMatchObject({
       compatible: 'unknown',
+      reason: 'dependency-version-not-covered',
       matchedRange: null,
       confidence: 'high',
       lastVerified: '2026-07-08',
@@ -93,6 +107,7 @@ describe('compatibility engine', () => {
       }),
     ).toMatchObject({
       compatible: 'compatible',
+      reason: null,
       matchedRange: null,
       matchedConstraint: 'same-version',
     });
@@ -106,31 +121,51 @@ describe('compatibility engine', () => {
       }),
     ).toMatchObject({
       compatible: 'unknown',
+      reason: 'dependency-version-not-covered',
       matchedRange: null,
       matchedConstraint: null,
     });
   });
 
-  it('returns unknown for unknown projects', () => {
+  it.each([
+    ['missing', '99', 'missing', 'project-not-found'],
+    ['sample', '99', 'missing', 'project-version-not-found'],
+    ['sample', '1', 'missing', 'dependency-not-found'],
+  ])('identifies missing metadata for %s/%s/%s', (project, version, dependency, reason) => {
     expect(
       checkCompatibility(dataset, {
-        project: 'missing',
-        version: '1',
-        dependency: 'database',
+        project,
+        version,
+        dependency,
         dependencyVersion: '17',
-      }).compatible,
-    ).toBe('unknown');
+      }),
+    ).toMatchObject({ compatible: 'unknown', reason, basis: null, sources: [] });
   });
 
-  it('returns unknown for unknown dependencies', () => {
+  it.each([
+    ['recommended', 'recommendation-only'],
+    ['bundled', 'bundle-only'],
+  ] as const)('diagnoses %s exact-version evidence only when it matches', (basis, reason) => {
+    const evidenceDataset = structuredClone(dataset);
+    evidenceDataset.projects.sample.versions['1'].dependencies.peer.basis = basis;
+    const request = {
+      project: 'sample',
+      version: '1.4.2',
+      dependency: 'peer',
+      dependencyVersion: '1.4.2',
+    };
+    expect(checkCompatibility(evidenceDataset, request)).toMatchObject({
+      compatible: 'unknown',
+      reason,
+      matchedConstraint: 'same-version',
+    });
     expect(
-      checkCompatibility(dataset, {
-        project: 'sample',
-        version: '1',
-        dependency: 'missing',
-        dependencyVersion: '17',
-      }).compatible,
-    ).toBe('unknown');
+      checkCompatibility(evidenceDataset, { ...request, dependencyVersion: '1.4.1' }),
+    ).toMatchObject({
+      compatible: 'unknown',
+      reason: 'dependency-version-not-covered',
+      matchedConstraint: null,
+    });
   });
 
   it('prefers a minor-version row over a broader major-version row', () => {
@@ -182,6 +217,7 @@ describe('compatibility engine', () => {
       }),
     ).toMatchObject({
       compatible: 'unknown',
+      reason: 'explicitly-unknown',
       lastVerified: '2026-07-08',
       notes: ['Upstream explicitly marks this combination as unverified'],
       sources: [{ title: 'Fixture', url: 'https://example.com/unverified' }],

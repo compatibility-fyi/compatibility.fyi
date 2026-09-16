@@ -4,6 +4,15 @@ export type ConfidenceLevel = 'low' | 'medium' | 'high';
 
 export type CompatibilityBasis = 'supported' | 'tested' | 'recommended' | 'bundled';
 
+export type CompatibilityUnknownReason =
+  | 'project-not-found'
+  | 'project-version-not-found'
+  | 'dependency-not-found'
+  | 'dependency-version-not-covered'
+  | 'recommendation-only'
+  | 'bundle-only'
+  | 'explicitly-unknown';
+
 export interface CompatibilitySource {
   title: string;
   url: string;
@@ -56,6 +65,7 @@ export interface CompatibilityCheckRequest {
 
 export interface CompatibilityCheckResponse extends CompatibilityCheckRequest {
   compatible: CompatibilityStatus;
+  reason?: CompatibilityUnknownReason | null;
   basis: CompatibilityBasis | null;
   matchedRange: string | null;
   matchedConstraint: 'same-version' | null;

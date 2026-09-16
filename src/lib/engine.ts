@@ -49,9 +49,27 @@ export function checkCompatibility(
   const compatible =
     matched && basis !== 'recommended' && basis !== 'bundled' ? entry.status : 'unknown';
 
+  let reason: CompatibilityCheckResponse['reason'] = null;
+  if (!project) {
+    reason = 'project-not-found';
+  } else if (!versionKey) {
+    reason = 'project-version-not-found';
+  } else if (!dependency) {
+    reason = 'dependency-not-found';
+  } else if (entry.status === 'unknown') {
+    reason = 'explicitly-unknown';
+  } else if (!matched) {
+    reason = 'dependency-version-not-covered';
+  } else if (basis === 'recommended') {
+    reason = 'recommendation-only';
+  } else if (basis === 'bundled') {
+    reason = 'bundle-only';
+  }
+
   return {
     ...request,
     compatible,
+    reason,
     basis,
     matchedRange,
     matchedConstraint,

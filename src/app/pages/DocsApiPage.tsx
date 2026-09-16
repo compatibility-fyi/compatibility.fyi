@@ -55,6 +55,7 @@ const singleCheckResponse = `{
   "dependency": "postgresql",
   "dependencyVersion": "17",
   "compatible": "compatible",
+  "reason": null,
   "basis": "supported",
   "matchedRange": ">=14.0.0 <19.0.0",
   "matchedConstraint": null,
@@ -86,6 +87,7 @@ const compoundCheckResponse = `{
       "dependency": "multicluster-engine",
       "dependencyVersion": "2.11",
       "compatible": "unknown",
+      "reason": "bundle-only",
       "basis": "bundled",
       "matchedRange": "2.11",
       "matchedConstraint": null,
@@ -95,6 +97,7 @@ const compoundCheckResponse = `{
       "dependency": "openshift-management-cluster",
       "dependencyVersion": "4.21.22",
       "compatible": "compatible",
+      "reason": null,
       "basis": "supported",
       "matchedRange": ">=4.19 <4.22",
       "matchedConstraint": null,
@@ -168,6 +171,11 @@ const responseFields: ResponseField[] = [
     description: 'Aggregate or single check result: compatible, incompatible, or unknown.',
   },
   {
+    name: 'reason',
+    description:
+      'Machine-readable explanation for an unknown single check, or null for compatible/incompatible. Included on each compound checks item, not the aggregate. Older responses may omit it.',
+  },
+  {
     name: 'basis',
     description:
       'Evidence kind: supported, tested, recommended, or bundled. Null when no entry or only explicitly unknown evidence is available. A basis alone does not establish compatibility.',
@@ -197,6 +205,35 @@ const responseFields: ResponseField[] = [
   {
     name: 'sources',
     description: 'Source documents used to verify the entry.',
+  },
+];
+
+const unknownReasons: ResponseField[] = [
+  { name: 'project-not-found', description: 'The project id is absent from the catalog.' },
+  {
+    name: 'project-version-not-found',
+    description: 'The project exists, but no version row covers the requested project version.',
+  },
+  {
+    name: 'dependency-not-found',
+    description: 'The selected project version has no entry for this dependency key.',
+  },
+  {
+    name: 'dependency-version-not-covered',
+    description: 'The dependency entry exists, but none of its version constraints match.',
+  },
+  {
+    name: 'recommendation-only',
+    description:
+      'The requested versions match recommended alignment, not support or test evidence.',
+  },
+  {
+    name: 'bundle-only',
+    description: 'The requested versions match a bundle, which does not establish compatibility.',
+  },
+  {
+    name: 'explicitly-unknown',
+    description: 'The dependency entry explicitly records an unknown or unverified state.',
   },
 ];
 
@@ -394,6 +431,17 @@ export function DocsApiPage() {
 
             <h3>Response fields</h3>
             <ResponseFieldTable fields={responseFields} />
+
+            <h3>Unknown reasons</h3>
+            <ResponseFieldTable fields={unknownReasons} />
+            <p>
+              Missing project, project version, or dependency metadata is reported at the first
+              failed lookup. An explicitly unknown entry returns <code>explicitly-unknown</code>.
+              Otherwise, a version outside the entry’s constraints returns{' '}
+              <code>dependency-version-not-covered</code>, even for recommended or bundled evidence.{' '}
+              <code>recommendation-only</code> and <code>bundle-only</code> require a matching
+              constraint. These diagnostics do not change the compatibility verdict.
+            </p>
 
             <h3>Evidence model</h3>
             <ul>

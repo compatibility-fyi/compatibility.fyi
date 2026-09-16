@@ -46,6 +46,7 @@ describe.each(['GET', 'POST'] as const)('%s compatibility checks', (method) => {
     await expect(response.json()).resolves.toMatchObject({
       ...singleCheck,
       compatible: 'compatible',
+      reason: null,
       matchedRange: '>=15 <=17',
       matchedConstraint: null,
       relationship: null,
@@ -73,6 +74,7 @@ describe.each(['GET', 'POST'] as const)('%s compatibility checks', (method) => {
     expect(response.status).toBe(200);
     await expect(response.json()).resolves.toMatchObject({
       compatible: 'unknown',
+      reason: 'dependency-version-not-covered',
       matchedRange: null,
       confidence: 'high',
       lastVerified: '2026-07-08',
@@ -114,13 +116,35 @@ describe.each(['GET', 'POST'] as const)('%s compatibility checks', (method) => {
   });
 
   it.each([
-    { ...singleCheck, project: 'missing' },
-    { ...singleCheck, dependency: 'missing' },
-    { ...singleCheck, version: '99' },
-  ])('returns unknown for missing metadata: $project/$version/$dependency', async (fields) => {
+    [{ ...singleCheck, project: 'missing' }, 'project-not-found'],
+    [{ ...singleCheck, dependency: 'missing' }, 'dependency-not-found'],
+    [{ ...singleCheck, version: '99' }, 'project-version-not-found'],
+  ] as const)('diagnoses missing metadata: %j', async (fields, reason) => {
     const response = await handleApiRequest(request(fields));
     expect(response.status).toBe(200);
-    await expect(response.json()).resolves.toMatchObject({ compatible: 'unknown', sources: [] });
+    await expect(response.json()).resolves.toMatchObject({
+      compatible: 'unknown',
+      reason,
+      sources: [],
+    });
+  });
+
+  it('keeps distinct reasons on compound results', async () => {
+    const response = await handleApiRequest(
+      request({
+        ...compoundCheck,
+        dependencies: { database: '18', missing: '1', unverified: '1', runtime: '20' },
+      }),
+    );
+    await expect(response.json()).resolves.toMatchObject({
+      compatible: 'incompatible',
+      checks: [
+        { dependency: 'database', compatible: 'unknown', reason: 'dependency-version-not-covered' },
+        { dependency: 'missing', compatible: 'unknown', reason: 'dependency-not-found' },
+        { dependency: 'unverified', compatible: 'unknown', reason: 'explicitly-unknown' },
+        { dependency: 'runtime', compatible: 'incompatible', reason: null },
+      ],
+    });
   });
 
   it.each([

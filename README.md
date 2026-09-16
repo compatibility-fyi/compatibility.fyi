@@ -37,6 +37,12 @@ The API is documented at [compatibility.fyi/docs/api](https://compatibility.fyi/
 Start there for endpoint details, request examples, response semantics, confidence levels, and
 source evidence fields.
 
+Each check includes a `reason` explaining an `unknown` result: `project-not-found`,
+`project-version-not-found`, `dependency-not-found`, `dependency-version-not-covered`,
+`recommendation-only`, `bundle-only`, or `explicitly-unknown`. Known compatible and incompatible
+results have `reason: null`. Compound responses include the reason on each item in `checks`.
+This field is additive; clients should also accept responses from older deployments that omit it.
+
 ## Local Development
 
 ```sh
