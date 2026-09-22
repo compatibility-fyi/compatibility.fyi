@@ -1,7 +1,7 @@
 x-envoy-gateway-matrix-source: &envoy_gateway_matrix_source
   title: Envoy Gateway Compatibility Matrix
   url: https://gateway.envoyproxy.io/news/releases/matrix/
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 projects:
   envoy-gateway:
@@ -24,7 +24,7 @@ projects:
               - The EnvoyProxy image setting allows independent selection. The matrix tests the listed minor version; other Envoy minor versions are untested and may reject generated configuration.
             sources:
               - *envoy_gateway_matrix_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
             basis: tested
           gateway-api:
             ranges:
@@ -35,7 +35,7 @@ projects:
               - Envoy Gateway v1.9 lists Gateway API v1.6.1 in the official compatibility matrix.
             sources:
               - *envoy_gateway_matrix_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           gateway-api-standard:
             ranges:
               - 1.6.1
@@ -49,8 +49,8 @@ projects:
               - *envoy_gateway_matrix_source
               - title: Gateway API v1.6.2 implementer's guide - Standard-channel compatibility and version-specific conformance
                 url: https://github.com/kubernetes-sigs/gateway-api/blob/v1.6.2/site/content/en/guides/implementers-guide/_index.md
-                accessedAt: '2026-09-16'
-            lastVerified: '2026-09-16'
+                accessedAt: '2026-09-22'
+            lastVerified: '2026-09-22'
           kubernetes:
             ranges:
               - '>=1.33 <1.37'
@@ -60,7 +60,7 @@ projects:
               - Envoy Gateway v1.9 lists Kubernetes v1.33, v1.34, v1.35, and v1.36 in the official compatibility matrix.
             sources:
               - *envoy_gateway_matrix_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
             basis: tested
       '1.8':
         dependencies:
@@ -74,7 +74,7 @@ projects:
               - The EnvoyProxy image setting allows independent selection. The matrix tests the listed minor version; other Envoy minor versions are untested and may reject generated configuration.
             sources:
               - *envoy_gateway_matrix_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
             basis: tested
           gateway-api:
             ranges:
@@ -85,7 +85,7 @@ projects:
               - Envoy Gateway v1.8 lists Gateway API v1.5.1 in the official compatibility matrix.
             sources:
               - *envoy_gateway_matrix_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           gateway-api-standard:
             ranges:
               - 1.5.1
@@ -98,8 +98,8 @@ projects:
               - *envoy_gateway_matrix_source
               - title: Envoy Gateway v1.8.3 installation guide - selecting Standard-channel Gateway API CRDs
                 url: https://github.com/envoyproxy/gateway/blob/v1.8.3/site/content/en/latest/install/install-helm.md
-                accessedAt: '2026-09-16'
-            lastVerified: '2026-09-16'
+                accessedAt: '2026-09-22'
+            lastVerified: '2026-09-22'
           kubernetes:
             ranges:
               - '>=1.32 <1.36'
@@ -109,6 +109,6 @@ projects:
               - Envoy Gateway v1.8 lists Kubernetes v1.32, v1.33, v1.34, and v1.35 in the official compatibility matrix.
             sources:
               - *envoy_gateway_matrix_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
             basis: tested
     description: Envoy Gateway compatibility for independently selected Envoy data planes, Gateway API versions, and tested Kubernetes versions.

@@ -1,7 +1,7 @@
 x-tomcat-version-source: &apache_tomcat_1
   title: Apache Tomcat Version and Specification Matrix
   url: https://tomcat.apache.org/whichversion.html
-  accessedAt: 2026-09-16
+  accessedAt: 2026-09-22
 projects:
   apache-tomcat:
     name: Apache Tomcat
@@ -24,7 +24,7 @@ projects:
               - Early-access Java builds are not included because they are not stable production targets.
             sources:
               - *apache_tomcat_1
-            lastVerified: 2026-09-16
+            lastVerified: 2026-09-22
       '10.1':
         dependencies:
           java:
@@ -37,7 +37,7 @@ projects:
               - Early-access Java builds are not included because they are not stable production targets.
             sources:
               - *apache_tomcat_1
-            lastVerified: 2026-09-16
+            lastVerified: 2026-09-22
       '9.0':
         dependencies:
           java:
@@ -50,4 +50,4 @@ projects:
               - Early-access Java builds are not included because they are not stable production targets.
             sources:
               - *apache_tomcat_1
-            lastVerified: 2026-09-16
+            lastVerified: 2026-09-22

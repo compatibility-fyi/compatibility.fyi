@@ -1,7 +1,7 @@
 x-helm-version-skew-source: &helm_version_skew_source
   title: Helm Version Support Policy
   url: https://helm.sh/docs/topics/version_skew/
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 projects:
   helm:
@@ -25,8 +25,8 @@ projects:
               - *helm_version_skew_source
               - title: Helm v4.3.0 release
                 url: https://github.com/helm/helm/releases/tag/v4.3.0
-                accessedAt: 2026-09-16
-            lastVerified: '2026-09-16'
+                accessedAt: 2026-09-22
+            lastVerified: '2026-09-22'
       '3.22':
         dependencies:
           kubernetes:
@@ -39,8 +39,8 @@ projects:
             sources:
               - title: Helm 3 Version Support Policy
                 url: https://helm.sh/docs/v3/topics/version_skew/
-                accessedAt: '2026-09-16'
+                accessedAt: '2026-09-22'
               - title: Helm v3.22.0 release
                 url: https://github.com/helm/helm/releases/tag/v3.22.0
-                accessedAt: '2026-09-16'
-            lastVerified: '2026-09-16'
+                accessedAt: '2026-09-22'
+            lastVerified: '2026-09-22'

@@ -1,7 +1,7 @@
 x-rook-maintenance-source: &rook_maintenance_source
   title: Rook Ceph Maintenance and Support
   url: https://rook.io/docs/rook/v1.20/Getting-Started/maintenance-and-support/
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 projects:
   rook-ceph:
@@ -24,7 +24,7 @@ projects:
               - Rook 1.20 support matrix lists Kubernetes 1.31 through 1.37.
             sources:
               - *rook_maintenance_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           ceph:
             ranges:
               - '>=19.2.0 <20.0.0'
@@ -35,7 +35,7 @@ projects:
               - Rook 1.20 support matrix lists Ceph Squid 19.2.0+ and Ceph Tentacle 20.2.1+.
             sources:
               - *rook_maintenance_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
       '1.19':
         dependencies:
           kubernetes:
@@ -47,7 +47,7 @@ projects:
               - Rook 1.19 support matrix lists Kubernetes 1.30 through 1.35.
             sources:
               - *rook_maintenance_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           ceph:
             ranges:
               - '>=19.2.0 <20.0.0'
@@ -58,4 +58,4 @@ projects:
               - Rook 1.19 support matrix lists Ceph Squid 19.2.0+ and Ceph Tentacle 20.2.1+.
             sources:
               - *rook_maintenance_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'

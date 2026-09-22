@@ -1,7 +1,7 @@
 x-kyverno-1-19-support-source: &kyverno_1_19_support_source
   title: Kyverno 1.19 Release Support
   url: https://kyverno.io/docs/installation/releases/
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 projects:
   kyverno:
@@ -25,4 +25,4 @@ projects:
               - Other Kubernetes versions may work, but Kyverno does not test or guarantee them.
             sources:
               - *kyverno_1_19_support_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'

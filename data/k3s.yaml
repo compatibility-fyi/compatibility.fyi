@@ -1,17 +1,22 @@
+x-k3s-137-source: &k3s_137_source
+  title: K3s 1.37 Support Matrix
+  url: https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-37/
+  accessedAt: '2026-09-22'
+
 x-k3s-136-source: &k3s_136_source
   title: K3s 1.36 Support Matrix
   url: https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-36/
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 x-k3s-135-source: &k3s_135_source
   title: K3s 1.35 Support Matrix
   url: https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-35/
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 x-k3s-134-source: &k3s_134_source
   title: K3s 1.34 Support Matrix
   url: https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-34/
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 projects:
   k3s:
@@ -23,7 +28,7 @@ projects:
     website: https://k3s.io/
     description: K3s compatibility for host operating systems, architectures, external datastores, cloud integrations, and runtime integrations.
     versions:
-      1.37.0+k3s1:
+      '1.37.0+k3s1':
         dependencies:
           architecture:
             ranges:
@@ -34,15 +39,158 @@ projects:
             confidence: high
             notes:
               - The upstream requirements list x86_64, armhf, and arm64/aarch64; this release provides binaries for all three architectures.
-              - This entry describes upstream architecture availability. A SUSE 1.37 certification matrix was not available when verified, so earlier operating-system, datastore, and cloud-integration certifications are not inherited.
+              - This entry describes upstream architecture availability; the SUSE 1.37 matrix certifies x86_64 and arm64. Operating-system, datastore, and cloud-integration entries below describe that narrower certified scope.
             sources:
               - title: K3s Installation Requirements - Architecture
                 url: https://docs.k3s.io/installation/requirements
-                accessedAt: 2026-09-16
+                accessedAt: 2026-09-22
               - title: K3s v1.37.0+k3s1 release and architecture-specific assets
                 url: https://github.com/k3s-io/k3s/releases/tag/v1.37.0%2Bk3s1
-                accessedAt: 2026-09-16
-            lastVerified: 2026-09-16
+                accessedAt: 2026-09-22
+            lastVerified: 2026-09-22
+          sles:
+            ranges:
+              - '16.0'
+              - 15 SP7
+            relationship: certified operating system
+            confidence: high
+            notes:
+              - The support matrix certifies SLES 16.0 and 15 SP7.
+            sources:
+              - *k3s_137_source
+            lastVerified: '2026-09-22'
+          sle-micro:
+            ranges:
+              - '6.2'
+              - '6.1'
+            relationship: certified operating system
+            confidence: high
+            notes:
+              - The support matrix certifies SLE Micro 6.2 and 6.1.
+            sources:
+              - *k3s_137_source
+            lastVerified: '2026-09-22'
+          rhel:
+            ranges:
+              - '10.2'
+              - '10.0'
+              - '9.8'
+              - '9.6'
+            relationship: certified operating system
+            confidence: high
+            notes:
+              - The matrix certifies these RHEL versions and treats Oracle Linux and Rocky Linux as validated through RHEL testing.
+            sources:
+              - *k3s_137_source
+            lastVerified: '2026-09-22'
+          oracle-linux:
+            ranges:
+              - '10.2'
+              - '10.0'
+              - '9.8'
+              - '9.6'
+            relationship: operating system validated through RHEL testing
+            confidence: high
+            notes:
+              - The matrix treats Oracle Linux as validated through the listed RHEL testing.
+            sources:
+              - *k3s_137_source
+            lastVerified: '2026-09-22'
+          rocky-linux:
+            ranges:
+              - '10.2'
+              - '10.0'
+              - '9.8'
+              - '9.6'
+            relationship: operating system validated through RHEL testing
+            confidence: high
+            notes:
+              - The matrix treats Rocky Linux as validated through the listed RHEL testing.
+            sources:
+              - *k3s_137_source
+            lastVerified: '2026-09-22'
+          ubuntu:
+            ranges:
+              - '26.04'
+              - '24.04'
+            relationship: certified operating system
+            confidence: high
+            notes:
+              - The support matrix certifies Ubuntu 26.04 and 24.04.
+            sources:
+              - *k3s_137_source
+            lastVerified: '2026-09-22'
+          amazon-aurora-mysql:
+            ranges:
+              - '3.12.0'
+            relationship: supported external datastore
+            confidence: high
+            notes:
+              - The matrix supports Amazon Aurora MySQL 8.0 through Aurora version 3.12.0.
+            sources:
+              - *k3s_137_source
+            lastVerified: '2026-09-22'
+          mysql:
+            ranges:
+              - '8.4.8'
+            relationship: supported external datastore
+            confidence: high
+            notes:
+              - The support matrix lists MySQL 8.4.8.
+            sources:
+              - *k3s_137_source
+            lastVerified: '2026-09-22'
+          postgresql:
+            ranges:
+              - '18.3'
+            relationship: supported external datastore
+            confidence: high
+            notes:
+              - The support matrix lists PostgreSQL 18.3.
+            sources:
+              - *k3s_137_source
+            lastVerified: '2026-09-22'
+          mariadb:
+            ranges:
+              - '11.4.10'
+            relationship: supported external datastore
+            confidence: high
+            notes:
+              - The support matrix lists MariaDB 11.4.10.
+            sources:
+              - *k3s_137_source
+            lastVerified: '2026-09-22'
+          vsphere-cpi:
+            ranges:
+              - '1.15.300'
+            relationship: supported out-of-tree cloud provider integration
+            confidence: high
+            notes:
+              - The support matrix lists vSphere CPI chart 1.15.300.
+            sources:
+              - *k3s_137_source
+            lastVerified: '2026-09-22'
+          vsphere-csi:
+            ranges:
+              - '3.7.2-rancher700'
+            relationship: supported out-of-tree storage integration
+            confidence: high
+            notes:
+              - The support matrix lists vSphere CSI chart 3.7.2-rancher700.
+            sources:
+              - *k3s_137_source
+            lastVerified: '2026-09-22'
+          container-runtime:
+            ranges:
+              - nvidia-container-runtime
+              - docker-cri
+            relationship: additionally supported runtime integration
+            confidence: high
+            notes:
+              - The support matrix lists NVIDIA Container Runtime and Docker CRI integrations.
+            sources:
+              - *k3s_137_source
+            lastVerified: '2026-09-22'
       '1.36.4+k3s1':
         dependencies:
           architecture:
@@ -55,7 +203,7 @@ projects:
               - The support matrix certifies x86_64 and arm64 architectures.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sles:
             ranges:
               - '16.0'
@@ -67,7 +215,7 @@ projects:
               - The support matrix certifies SLES 16.0, 15 SP7, and 15 SP6.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sle-micro:
             ranges:
               - '6.2'
@@ -79,7 +227,7 @@ projects:
               - The support matrix certifies SLE Micro 6.2, 6.1, and 6.0.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rhel:
             ranges:
               - '10.2'
@@ -93,7 +241,7 @@ projects:
               - The matrix certifies these RHEL versions and treats Oracle Linux and Rocky Linux as validated through RHEL testing.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           oracle-linux:
             ranges:
               - '10.2'
@@ -107,7 +255,7 @@ projects:
               - The matrix treats Oracle Linux as validated through the listed RHEL testing.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rocky-linux:
             ranges:
               - '10.2'
@@ -121,7 +269,7 @@ projects:
               - The matrix treats Rocky Linux as validated through the listed RHEL testing.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           ubuntu:
             ranges:
               - '26.04'
@@ -133,7 +281,7 @@ projects:
               - The support matrix certifies Ubuntu 26.04, 24.04 and 22.04.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           amazon-aurora-mysql:
             ranges:
               - '3.12.0'
@@ -143,7 +291,7 @@ projects:
               - The matrix supports Amazon Aurora MySQL 8.0 through Aurora version 3.12.0.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           mysql:
             ranges:
               - '8.4.8'
@@ -153,7 +301,7 @@ projects:
               - The support matrix lists MySQL 8.4.8.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           postgresql:
             ranges:
               - '18.3'
@@ -163,7 +311,7 @@ projects:
               - The support matrix lists PostgreSQL 18.3.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           mariadb:
             ranges:
               - '11.4.10'
@@ -173,7 +321,7 @@ projects:
               - The support matrix lists MariaDB 11.4.10.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           vsphere-cpi:
             ranges:
               - '1.15.300'
@@ -183,7 +331,7 @@ projects:
               - The support matrix lists vSphere CPI chart 1.15.300.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           vsphere-csi:
             ranges:
               - '3.7.2-rancher700'
@@ -193,7 +341,7 @@ projects:
               - The support matrix lists vSphere CSI chart 3.7.2-rancher700.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           container-runtime:
             ranges:
               - nvidia-container-runtime
@@ -204,7 +352,7 @@ projects:
               - The support matrix lists NVIDIA Container Runtime and Docker CRI integrations.
             sources:
               - *k3s_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
       '1.35.8+k3s1':
         dependencies:
           architecture:
@@ -217,7 +365,7 @@ projects:
               - The support matrix certifies x86_64 and arm64 architectures.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sles:
             ranges:
               - '16.0'
@@ -229,7 +377,7 @@ projects:
               - The support matrix certifies SLES 16.0, 15 SP7, and 15 SP6.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sle-micro:
             ranges:
               - '6.2'
@@ -241,7 +389,7 @@ projects:
               - The support matrix certifies SLE Micro 6.2, 6.1, and 6.0.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           opensuse-leap:
             ranges:
               - '15.6'
@@ -253,7 +401,7 @@ projects:
               - The matrix lists openSUSE Leap 15.6, 15.5, and 15.4 as validated through SUSE Linux Enterprise testing.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rhel:
             ranges:
               - '10.1'
@@ -270,7 +418,7 @@ projects:
               - The matrix certifies these RHEL versions and treats Oracle Linux and Rocky Linux as validated through RHEL testing.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           oracle-linux:
             ranges:
               - '10.1'
@@ -287,7 +435,7 @@ projects:
               - The matrix treats Oracle Linux as validated through the listed RHEL testing.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rocky-linux:
             ranges:
               - '10.1'
@@ -304,7 +452,7 @@ projects:
               - The matrix treats Rocky Linux as validated through the listed RHEL testing.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           ubuntu:
             ranges:
               - '26.04'
@@ -317,7 +465,7 @@ projects:
               - The support matrix certifies Ubuntu 26.04, 24.04, 22.04, and 20.04.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           amazon-aurora-mysql:
             ranges:
               - '2.09.0'
@@ -327,7 +475,7 @@ projects:
               - The matrix supports Amazon Aurora MySQL 5.7 through Aurora version 2.09.0.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           mysql:
             ranges:
               - '5.7'
@@ -338,7 +486,7 @@ projects:
               - The support matrix lists MySQL 5.7 and 8.0.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           postgresql:
             ranges:
               - '13.1'
@@ -350,7 +498,7 @@ projects:
               - The support matrix lists PostgreSQL 13.1, 14.2, and 15.3.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           mariadb:
             ranges:
               - '10.11'
@@ -360,7 +508,7 @@ projects:
               - The support matrix lists MariaDB 10.11.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           vsphere-cpi:
             ranges:
               - '1.15.300'
@@ -370,7 +518,7 @@ projects:
               - The support matrix lists vSphere CPI chart 1.15.300.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           vsphere-csi:
             ranges:
               - '3.7.2-rancher700'
@@ -380,7 +528,7 @@ projects:
               - The support matrix lists vSphere CSI chart 3.7.2-rancher700.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           container-runtime:
             ranges:
               - nvidia-container-runtime
@@ -391,7 +539,7 @@ projects:
               - The support matrix lists NVIDIA Container Runtime and Docker CRI integrations.
             sources:
               - *k3s_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
       '1.34.11+k3s1':
         dependencies:
           architecture:
@@ -404,7 +552,7 @@ projects:
               - The support matrix certifies x86_64 and arm64 architectures.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sles:
             ranges:
               - '16.0'
@@ -417,7 +565,7 @@ projects:
               - The support matrix certifies SLES 16.0, 15 SP7, 15 SP6, and 15 SP5.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sle-micro:
             ranges:
               - '6.1'
@@ -429,7 +577,7 @@ projects:
               - The support matrix certifies SLE Micro 6.1, 6.0, and 5.5.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           opensuse-leap:
             ranges:
               - '15.6'
@@ -441,7 +589,7 @@ projects:
               - The matrix lists openSUSE Leap 15.6, 15.5, and 15.4 as validated through SUSE Linux Enterprise testing.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rhel:
             ranges:
               - '10.2'
@@ -460,7 +608,7 @@ projects:
               - The matrix certifies these RHEL versions and treats Oracle Linux and Rocky Linux as validated through RHEL testing.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           oracle-linux:
             ranges:
               - '10.2'
@@ -479,7 +627,7 @@ projects:
               - The matrix treats Oracle Linux as validated through the listed RHEL testing.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rocky-linux:
             ranges:
               - '10.2'
@@ -498,7 +646,7 @@ projects:
               - The matrix treats Rocky Linux as validated through the listed RHEL testing.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           ubuntu:
             ranges:
               - '26.04'
@@ -511,7 +659,7 @@ projects:
               - The support matrix certifies Ubuntu 26.04, 24.04, 22.04, and 20.04.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           amazon-aurora-mysql:
             ranges:
               - '2.09.0'
@@ -521,7 +669,7 @@ projects:
               - The matrix supports Amazon Aurora MySQL 5.7 through Aurora version 2.09.0.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           mysql:
             ranges:
               - '5.7'
@@ -532,7 +680,7 @@ projects:
               - The support matrix lists MySQL 5.7 and 8.0.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           postgresql:
             ranges:
               - '13.1'
@@ -544,7 +692,7 @@ projects:
               - The support matrix lists PostgreSQL 13.1, 14.2, and 15.3.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           mariadb:
             ranges:
               - '10.11'
@@ -554,7 +702,7 @@ projects:
               - The support matrix lists MariaDB 10.11.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           vsphere-cpi:
             ranges:
               - '1.15.300'
@@ -564,7 +712,7 @@ projects:
               - The support matrix lists vSphere CPI chart 1.15.300.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           vsphere-csi:
             ranges:
               - '3.7.2-rancher700'
@@ -574,7 +722,7 @@ projects:
               - The support matrix lists vSphere CSI chart 3.7.2-rancher700.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           container-runtime:
             ranges:
               - nvidia-container-runtime
@@ -585,4 +733,4 @@ projects:
               - The support matrix lists NVIDIA Container Runtime and Docker CRI integrations.
             sources:
               - *k3s_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'

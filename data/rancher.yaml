@@ -1,72 +1,77 @@
+x-rancher-harvester-19-source: &rancher_harvester_19_source
+  title: Harvester 1.9 Support Matrix
+  url: https://www.suse.com/suse-harvester/support-matrix/all-supported-versions/harvester-v1-9-x/
+  accessedAt: '2026-09-22'
+
 x-rancher-2151-source: &rancher_2151_source
   title: Rancher 2.15.1 Support Matrix
   url: https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/rancher-v2-15-1/
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 x-rancher-2145-source: &rancher_2145_source
   title: Rancher 2.14.5 Support Matrix
   url: https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/rancher-v2-14-5/
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 x-rancher-2139-source: &rancher_2139_source
   title: Rancher 2.13.9 Support Matrix
   url: https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/rancher-v2-13-9/
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 x-rancher-21213-source: &rancher_21213_source
   title: Rancher 2.12.13 Support Matrix
   url: https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/rancher-v2-12-13/
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 x-rancher-2150-source: &rancher_2150_source
   title: Rancher 2.15.0 Release Notes
   url: https://github.com/rancher/rancher/releases/tag/v2.15.0
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 x-rancher-2144-source: &rancher_2144_source
   title: Rancher 2.14.4 Release Notes
   url: https://documentation.suse.com/cloudnative/rancher-manager/v2.14/en/release-notes/v2.14.4.html
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 x-rancher-2143-source: &rancher_2143_source
   title: Rancher Manager 2.14.3 Support Matrix
   url: https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/rancher-v2-14-3/
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 x-rancher-2138-source: &rancher_2138_source
   title: Rancher 2.13.8 Release Notes
   url: https://documentation.suse.com/cloudnative/rancher-manager/v2.13/en/release-notes/v2.13.8.html
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 x-rancher-2137-source: &rancher_2137_source
   title: Rancher Manager 2.13.7 Support Matrix
   url: https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/rancher-v2-13-7/
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 x-rancher-21212-source: &rancher_21212_source
   title: Rancher 2.12.12 Release Notes
   url: https://documentation.suse.com/cloudnative/rancher-manager/v2.12/en/release-notes/v2.12.12.html
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 x-rancher-21211-source: &rancher_21211_source
   title: Rancher Manager 2.12.11 Support Matrix
   url: https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/rancher-v2-12-11/
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 x-harvester-18-source: &harvester_18_source
   title: Harvester 1.8 Support Matrix
   url: https://www.suse.com/suse-harvester/support-matrix/all-supported-versions/harvester-v1-8-x/
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 x-harvester-17-source: &harvester_17_source
   title: Harvester 1.7 Support Matrix
   url: https://www.suse.com/suse-harvester/support-matrix/all-supported-versions/harvester-v1-7-x/
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 x-harvester-16-source: &harvester_16_source
   title: Harvester 1.6 Support Matrix
   url: https://www.suse.com/suse-harvester/support-matrix/all-supported-versions/harvester-v1-6-x/
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 projects:
   rancher:
@@ -89,7 +94,7 @@ projects:
               - The Rancher 2.15.1 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.34 through 1.36 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2151_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           k3s:
             ranges:
               - '>=1.34 <1.37'
@@ -99,7 +104,7 @@ projects:
               - The Rancher 2.15.1 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.34 through 1.36 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2151_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           aks:
             ranges:
               - '>=1.34 <1.37'
@@ -109,7 +114,7 @@ projects:
               - The Rancher 2.15.1 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.34 through 1.36 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2151_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           eks:
             ranges:
               - '>=1.34 <1.37'
@@ -119,7 +124,7 @@ projects:
               - The Rancher 2.15.1 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.34 through 1.36 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2151_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           gke:
             ranges:
               - '>=1.34 <1.37'
@@ -129,7 +134,7 @@ projects:
               - The Rancher 2.15.1 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.34 through 1.36 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2151_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           ack:
             ranges:
               - '>=1.34 <1.37'
@@ -139,7 +144,7 @@ projects:
               - The Rancher 2.15.1 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.34 through 1.36 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2151_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           kubernetes:
             ranges:
               - '>=1.34 <1.37'
@@ -149,7 +154,7 @@ projects:
               - The matrix certifies importing other Kubernetes distributions from 1.34 through 1.36 into Rancher 2.15.1.
             sources:
               - *rancher_2151_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           architecture:
             ranges:
               - 'x86'
@@ -161,7 +166,7 @@ projects:
               - The matrix supports x86, arm64, and mixed-architecture clusters. Footnote 15 excludes arm64 and mixed architectures on vSphere.
             sources:
               - *rancher_2151_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sles:
             ranges:
               - '16.0'
@@ -172,7 +177,7 @@ projects:
               - The matrix validates these SLES and openSUSE Leap versions for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_2151_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           opensuse-leap:
             ranges:
               - '16.0'
@@ -183,7 +188,7 @@ projects:
               - The matrix validates these SLES and openSUSE Leap versions for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_2151_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sle-micro:
             ranges:
               - '6.2'
@@ -194,7 +199,7 @@ projects:
               - The matrix validates these SLE Micro versions for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_2151_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rhel:
             ranges: &a1
               - '10.2'
@@ -208,7 +213,7 @@ projects:
               - The matrix validates these RHEL versions for custom-node Rancher-provisioned RKE2 and K3s clusters and treats Oracle Linux and Rocky Linux as validated through RHEL testing; node-driver certification varies by provider.
             sources:
               - *rancher_2151_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           oracle-linux:
             ranges: *a1
             relationship: custom-node RKE2 or K3s operating system
@@ -217,7 +222,7 @@ projects:
               - The matrix validates these RHEL versions for custom-node Rancher-provisioned RKE2 and K3s clusters and treats Oracle Linux and Rocky Linux as validated through RHEL testing; node-driver certification varies by provider.
             sources:
               - *rancher_2151_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rocky-linux:
             ranges: *a1
             relationship: custom-node RKE2 or K3s operating system
@@ -226,7 +231,7 @@ projects:
               - The matrix validates these RHEL versions for custom-node Rancher-provisioned RKE2 and K3s clusters and treats Oracle Linux and Rocky Linux as validated through RHEL testing; node-driver certification varies by provider.
             sources:
               - *rancher_2151_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           amazon-linux:
             ranges:
               - '2023'
@@ -236,7 +241,7 @@ projects:
               - The matrix lists Amazon Linux 2023 as validated through RHEL testing for custom-node Rancher-provisioned RKE2 and K3s clusters; EKS certification specifically applies to Managed Node Groups.
             sources:
               - *rancher_2151_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           ubuntu:
             ranges:
               - '26.04'
@@ -248,7 +253,7 @@ projects:
               - The matrix validates Ubuntu 26.04, 24.04, and 22.04 for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_2151_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           longhorn:
             ranges:
               - '1.12.0'
@@ -258,7 +263,7 @@ projects:
               - The matrix certifies Longhorn 1.12.0 with default component settings.
             sources:
               - *rancher_2151_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           k3k:
             ranges:
               - '1.2.0'
@@ -268,7 +273,7 @@ projects:
               - The support matrix certifies k3k 1.2.0 for SUSE Virtual Cluster integration.
             sources:
               - *rancher_2151_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           terraform-provider-rancher2:
             ranges:
               - '>=15 <16'
@@ -278,7 +283,7 @@ projects:
               - The matrix certifies Terraform Rancher2 Provider 15.x with Terraform 1.5 or newer.
             sources:
               - *rancher_2151_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           architecture-vsphere:
             ranges:
               - x86
@@ -288,7 +293,17 @@ projects:
               - The matrix excludes ARM64 and mixed-architecture node provisioning on vSphere.
             sources:
               - *rancher_2151_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
+          harvester:
+            ranges:
+              - '1.9'
+            relationship: virtualization integration
+            confidence: high
+            notes:
+              - The Harvester 1.9 support matrix pairs Harvester 1.9 with Rancher 2.15.
+            sources:
+              - *rancher_harvester_19_source
+            lastVerified: '2026-09-22'
       '2.15.0':
         dependencies:
           rke2:
@@ -300,7 +315,7 @@ projects:
               - Rancher 2.15.0 release notes list RKE2 Kubernetes 1.34, 1.35, and 1.36 and identify 1.36 as the default version.
             sources:
               - *rancher_2150_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           k3s:
             ranges:
               - '>=1.34 <1.37'
@@ -310,7 +325,7 @@ projects:
               - Rancher 2.15.0 release notes list K3s Kubernetes 1.34, 1.35, and 1.36 and identify 1.36 as the default version.
             sources:
               - *rancher_2150_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           kubernetes:
             ranges:
               - '>=1.34 <1.37'
@@ -321,7 +336,17 @@ projects:
               - This row records the Kubernetes support stated in the release notes; other patch rows include platform and integration certifications from their support matrices.
             sources:
               - *rancher_2150_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
+          harvester:
+            ranges:
+              - '1.9'
+            relationship: virtualization integration
+            confidence: high
+            notes:
+              - The Harvester 1.9 support matrix pairs Harvester 1.9 with Rancher 2.15.
+            sources:
+              - *rancher_harvester_19_source
+            lastVerified: '2026-09-22'
       '2.14.5':
         dependencies:
           rke2:
@@ -333,7 +358,7 @@ projects:
               - The Rancher 2.14.5 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.33 through 1.35 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2145_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           k3s:
             ranges:
               - '>=1.33 <1.36'
@@ -343,7 +368,7 @@ projects:
               - The Rancher 2.14.5 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.33 through 1.35 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2145_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           aks:
             ranges:
               - '>=1.33 <1.36'
@@ -353,7 +378,7 @@ projects:
               - The Rancher 2.14.5 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.33 through 1.35 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2145_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           eks:
             ranges:
               - '>=1.33 <1.36'
@@ -363,7 +388,7 @@ projects:
               - The Rancher 2.14.5 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.33 through 1.35 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2145_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           gke:
             ranges:
               - '>=1.33 <1.36'
@@ -373,7 +398,7 @@ projects:
               - The Rancher 2.14.5 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.33 through 1.35 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2145_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           ack:
             ranges:
               - '>=1.33 <1.36'
@@ -383,7 +408,7 @@ projects:
               - The Rancher 2.14.5 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.33 through 1.35 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2145_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           kubernetes:
             ranges:
               - '>=1.33 <1.36'
@@ -393,7 +418,7 @@ projects:
               - The matrix certifies importing other Kubernetes distributions from 1.33 through 1.35 into Rancher 2.14.5.
             sources:
               - *rancher_2145_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           architecture:
             ranges:
               - 'x86'
@@ -404,7 +429,7 @@ projects:
               - The matrix supports x86 and arm64; mixed x86 and arm64 environments are explicitly experimental and unsupported.
             sources:
               - *rancher_2145_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sles:
             ranges:
               - '16.0'
@@ -415,7 +440,7 @@ projects:
               - The matrix validates these SLES and openSUSE Leap versions for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_2145_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           opensuse-leap:
             ranges:
               - '16.0'
@@ -426,7 +451,7 @@ projects:
               - The matrix validates these SLES and openSUSE Leap versions for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_2145_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sle-micro:
             ranges:
               - '6.2'
@@ -437,7 +462,7 @@ projects:
               - The matrix validates these SLE Micro versions for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_2145_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rhel:
             ranges: &a1
               - '10.2'
@@ -452,7 +477,7 @@ projects:
               - The matrix validates these RHEL versions for custom-node Rancher-provisioned RKE2 and K3s clusters and treats Oracle Linux and Rocky Linux as validated through RHEL testing; node-driver certification varies by provider.
             sources:
               - *rancher_2145_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           oracle-linux:
             ranges: *a1
             relationship: custom-node RKE2 or K3s operating system
@@ -461,7 +486,7 @@ projects:
               - The matrix validates these RHEL versions for custom-node Rancher-provisioned RKE2 and K3s clusters and treats Oracle Linux and Rocky Linux as validated through RHEL testing; node-driver certification varies by provider.
             sources:
               - *rancher_2145_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rocky-linux:
             ranges: *a1
             relationship: custom-node RKE2 or K3s operating system
@@ -470,7 +495,7 @@ projects:
               - The matrix validates these RHEL versions for custom-node Rancher-provisioned RKE2 and K3s clusters and treats Oracle Linux and Rocky Linux as validated through RHEL testing; node-driver certification varies by provider.
             sources:
               - *rancher_2145_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           amazon-linux:
             ranges:
               - '2023'
@@ -480,7 +505,7 @@ projects:
               - The matrix lists Amazon Linux 2023 as validated through RHEL testing for custom-node Rancher-provisioned RKE2 and K3s clusters; EKS certification specifically applies to Managed Node Groups.
             sources:
               - *rancher_2145_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           ubuntu:
             ranges:
               - '24.04'
@@ -491,7 +516,7 @@ projects:
               - The matrix validates Ubuntu 24.04 and 22.04 for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_2145_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           harvester:
             ranges:
               - '1.8'
@@ -501,7 +526,7 @@ projects:
               - The Harvester 1.8 support matrix pairs Harvester 1.8 with Rancher 2.14.
             sources:
               - *harvester_18_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           longhorn:
             ranges:
               - '1.11.2'
@@ -511,7 +536,7 @@ projects:
               - The matrix certifies Longhorn 1.11.2 with default component settings.
             sources:
               - *rancher_2145_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           k3k:
             ranges:
               - '1.1.0'
@@ -521,7 +546,7 @@ projects:
               - The support matrix certifies k3k 1.1.0 for SUSE Virtual Cluster integration.
             sources:
               - *rancher_2145_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           terraform-provider-rancher2:
             ranges:
               - '>=14 <15'
@@ -531,7 +556,7 @@ projects:
               - The matrix certifies Terraform Rancher2 Provider 14.x.
             sources:
               - *rancher_2145_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
       '2.14.4':
         dependencies:
           rke2:
@@ -546,7 +571,7 @@ projects:
               - Other axes remain on the 2.14.3 row because the 2.14.4 support matrix has not yet been published.
             sources:
               - *rancher_2144_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           k3s:
             ranges:
               - '1.35.7'
@@ -559,7 +584,7 @@ projects:
               - Other axes remain on the 2.14.3 row because the 2.14.4 support matrix has not yet been published.
             sources:
               - *rancher_2144_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
       '2.14.3':
         dependencies:
           rke2: &rancher_2143_kubernetes_platform
@@ -571,7 +596,7 @@ projects:
               - The Rancher 2.14.3 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.33 through 1.35 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2143_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           k3s:
             ranges:
               - '>=1.33 <1.36'
@@ -581,7 +606,7 @@ projects:
               - The Rancher 2.14.3 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.33 through 1.35 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2143_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           aks:
             ranges:
               - '>=1.33 <1.36'
@@ -591,7 +616,7 @@ projects:
               - The Rancher 2.14.3 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.33 through 1.35 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2143_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           eks:
             ranges:
               - '>=1.33 <1.36'
@@ -601,7 +626,7 @@ projects:
               - The Rancher 2.14.3 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.33 through 1.35 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2143_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           gke:
             ranges:
               - '>=1.33 <1.36'
@@ -611,7 +636,7 @@ projects:
               - The Rancher 2.14.3 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.33 through 1.35 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2143_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           ack:
             ranges:
               - '>=1.33 <1.36'
@@ -621,7 +646,7 @@ projects:
               - The Rancher 2.14.3 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.33 through 1.35 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2143_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           kubernetes:
             ranges:
               - '>=1.33 <1.36'
@@ -631,7 +656,7 @@ projects:
               - The matrix certifies importing other Kubernetes distributions from 1.33 through 1.35 into Rancher 2.14.3.
             sources:
               - *rancher_2143_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           architecture:
             ranges:
               - x86
@@ -642,7 +667,7 @@ projects:
               - The matrix supports x86 and arm64; mixed x86 and arm64 environments are explicitly experimental and unsupported.
             sources:
               - *rancher_2143_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sles: &rancher_2143_suse_linux
             ranges:
               - '16.0'
@@ -653,7 +678,7 @@ projects:
               - The matrix validates these SLES and openSUSE Leap versions for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_2143_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           opensuse-leap:
             ranges:
               - '16.0'
@@ -664,7 +689,7 @@ projects:
               - The matrix validates these SLES and openSUSE Leap versions for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_2143_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sle-micro:
             ranges:
               - '6.2'
@@ -675,7 +700,7 @@ projects:
               - The matrix validates these SLE Micro versions for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_2143_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rhel: &rancher_2143_rhel_family
             ranges:
               - '10.2'
@@ -693,7 +718,7 @@ projects:
               - The refreshed custom-node matrix also certifies RHEL 10.2 and 9.8; Oracle Linux and Rocky Linux are validated through RHEL testing.
             sources:
               - *rancher_2143_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           oracle-linux:
             ranges:
               - '10.2'
@@ -711,7 +736,7 @@ projects:
               - The refreshed custom-node matrix also certifies RHEL 10.2 and 9.8; Oracle Linux and Rocky Linux are validated through RHEL testing.
             sources:
               - *rancher_2143_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rocky-linux:
             ranges:
               - '10.2'
@@ -729,7 +754,7 @@ projects:
               - The refreshed custom-node matrix also certifies RHEL 10.2 and 9.8; Oracle Linux and Rocky Linux are validated through RHEL testing.
             sources:
               - *rancher_2143_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           amazon-linux:
             ranges:
               - '2023'
@@ -739,7 +764,7 @@ projects:
               - The matrix lists Amazon Linux 2023 as validated through RHEL testing for custom-node Rancher-provisioned RKE2 and K3s clusters; EKS certification specifically applies to Managed Node Groups.
             sources:
               - *rancher_2143_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           ubuntu:
             ranges:
               - '24.04'
@@ -750,7 +775,7 @@ projects:
               - The matrix validates Ubuntu 24.04 and 22.04 for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_2143_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           harvester:
             ranges:
               - '1.8'
@@ -760,7 +785,7 @@ projects:
               - The Harvester 1.8 support matrix pairs Harvester 1.8 with Rancher 2.14.
             sources:
               - *harvester_18_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           longhorn:
             ranges:
               - '1.11.2'
@@ -770,7 +795,7 @@ projects:
               - The matrix certifies Longhorn 1.11.2 with default component settings.
             sources:
               - *rancher_2143_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           k3k: &rancher_2143_k3k
             ranges:
               - '1.1.0'
@@ -780,7 +805,7 @@ projects:
               - The support matrix certifies k3k 1.1.0 for SUSE Virtual Cluster integration.
             sources:
               - *rancher_2143_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           terraform-provider-rancher2:
             ranges:
               - '>=14 <15'
@@ -790,7 +815,7 @@ projects:
               - The matrix certifies Terraform Rancher2 Provider 14.x.
             sources:
               - *rancher_2143_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
       '2.13.9':
         dependencies:
           rke2:
@@ -802,7 +827,7 @@ projects:
               - The Rancher 2.13.9 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.32 through 1.34 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2139_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           k3s:
             ranges:
               - '>=1.32 <1.35'
@@ -813,7 +838,7 @@ projects:
               - ARM64 provisioning has a narrower certified version range; see the k3s-arm64 entry.
             sources:
               - *rancher_2139_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           aks:
             ranges:
               - '>=1.32 <1.35'
@@ -823,7 +848,7 @@ projects:
               - The Rancher 2.13.9 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.32 through 1.34 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2139_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           eks:
             ranges:
               - '>=1.32 <1.35'
@@ -833,7 +858,7 @@ projects:
               - The Rancher 2.13.9 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.32 through 1.34 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2139_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           gke:
             ranges:
               - '>=1.32 <1.35'
@@ -843,7 +868,7 @@ projects:
               - The Rancher 2.13.9 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.32 through 1.34 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2139_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           ack:
             ranges:
               - '>=1.32 <1.35'
@@ -853,7 +878,7 @@ projects:
               - The Rancher 2.13.9 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.32 through 1.34 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2139_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           kubernetes:
             ranges:
               - '>=1.32 <1.35'
@@ -863,7 +888,7 @@ projects:
               - The matrix certifies importing other Kubernetes distributions from 1.32 through 1.34 into Rancher 2.13.9.
             sources:
               - *rancher_2139_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           architecture:
             ranges:
               - 'x86'
@@ -874,7 +899,7 @@ projects:
               - The matrix supports x86 and arm64; mixed x86 and arm64 environments are explicitly experimental and unsupported.
             sources:
               - *rancher_2139_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sles:
             ranges:
               - '16.0'
@@ -885,7 +910,7 @@ projects:
               - The matrix validates these SLES and openSUSE Leap versions for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_2139_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           opensuse-leap:
             ranges:
               - '16.0'
@@ -896,7 +921,7 @@ projects:
               - The matrix validates these SLES and openSUSE Leap versions for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_2139_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sle-micro:
             ranges:
               - '6.2'
@@ -907,7 +932,7 @@ projects:
               - The matrix validates these SLE Micro versions for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_2139_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rhel:
             ranges:
               - '10.1'
@@ -922,7 +947,7 @@ projects:
               - The matrix validates these RHEL versions for custom-node Rancher-provisioned RKE2 and K3s clusters and treats Oracle Linux and Rocky Linux as validated through RHEL testing; node-driver certification varies by provider.
             sources:
               - *rancher_2139_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           oracle-linux:
             ranges:
               - '10.1'
@@ -937,7 +962,7 @@ projects:
               - The matrix validates these RHEL versions for custom-node Rancher-provisioned RKE2 and K3s clusters and treats Oracle Linux and Rocky Linux as validated through RHEL testing; node-driver certification varies by provider.
             sources:
               - *rancher_2139_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rocky-linux:
             ranges:
               - '10.1'
@@ -952,7 +977,7 @@ projects:
               - The matrix validates these RHEL versions for custom-node Rancher-provisioned RKE2 and K3s clusters and treats Oracle Linux and Rocky Linux as validated through RHEL testing; node-driver certification varies by provider.
             sources:
               - *rancher_2139_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           amazon-linux:
             ranges:
               - '2023'
@@ -962,7 +987,7 @@ projects:
               - The matrix lists Amazon Linux 2023 as validated through RHEL testing for custom-node Rancher-provisioned RKE2 and K3s clusters; EKS certification specifically applies to Managed Node Groups.
             sources:
               - *rancher_2139_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           ubuntu:
             ranges:
               - '24.04'
@@ -973,7 +998,7 @@ projects:
               - The matrix validates Ubuntu 24.04 and 22.04 for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_2139_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           harvester:
             ranges:
               - '1.7'
@@ -983,7 +1008,7 @@ projects:
               - The Harvester 1.7 support matrix pairs Harvester 1.7 with Rancher 2.13.
             sources:
               - *harvester_17_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           longhorn:
             ranges:
               - '1.11.2'
@@ -993,7 +1018,7 @@ projects:
               - The matrix certifies Longhorn 1.11.2 with default component settings.
             sources:
               - *rancher_2139_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           k3k:
             ranges:
               - '1.0.2'
@@ -1003,7 +1028,7 @@ projects:
               - The support matrix certifies k3k 1.0.2 for SUSE Virtual Cluster integration.
             sources:
               - *rancher_2139_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           terraform-provider-rancher2:
             ranges:
               - '>=13 <14'
@@ -1013,7 +1038,7 @@ projects:
               - The matrix certifies Terraform Rancher2 Provider 13.x.
             sources:
               - *rancher_2139_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           k3s-arm64:
             ranges:
               - '>=1.33 <1.35'
@@ -1023,7 +1048,7 @@ projects:
               - The K3s matrix distinguishes ARM64 from x86 provisioning; earlier Kubernetes minors in the general K3s range are certified for x86 only.
             sources:
               - *rancher_2139_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
       '2.13.8':
         dependencies:
           rke2:
@@ -1038,7 +1063,7 @@ projects:
               - Other axes remain on the 2.13.7 row because the 2.13.8 support matrix has not yet been published.
             sources:
               - *rancher_2138_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           k3s:
             ranges:
               - '1.34.10'
@@ -1051,7 +1076,7 @@ projects:
               - Other axes remain on the 2.13.7 row because the 2.13.8 support matrix has not yet been published.
             sources:
               - *rancher_2138_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
       '2.13.7':
         dependencies:
           rke2: &rancher_2137_kubernetes_platform
@@ -1063,7 +1088,7 @@ projects:
               - The Rancher 2.13.7 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.32 through 1.34 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2137_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           k3s:
             ranges:
               - '>=1.32 <1.35'
@@ -1074,7 +1099,7 @@ projects:
               - ARM64 provisioning has a narrower certified version range; see the k3s-arm64 entry.
             sources:
               - *rancher_2137_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           aks:
             ranges:
               - '>=1.32 <1.35'
@@ -1084,7 +1109,7 @@ projects:
               - The Rancher 2.13.7 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.32 through 1.34 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2137_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           eks:
             ranges:
               - '>=1.32 <1.35'
@@ -1094,7 +1119,7 @@ projects:
               - The Rancher 2.13.7 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.32 through 1.34 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2137_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           gke:
             ranges:
               - '>=1.32 <1.35'
@@ -1104,7 +1129,7 @@ projects:
               - The Rancher 2.13.7 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.32 through 1.34 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2137_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           ack:
             ranges:
               - '>=1.32 <1.35'
@@ -1114,7 +1139,7 @@ projects:
               - The Rancher 2.13.7 matrix certifies RKE2, K3s, AKS, EKS, GKE, and ACK Kubernetes 1.32 through 1.34 for provisioned or imported downstream clusters.
             sources:
               - *rancher_2137_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           kubernetes:
             ranges:
               - '>=1.32 <1.35'
@@ -1124,7 +1149,7 @@ projects:
               - The matrix certifies importing other Kubernetes distributions from 1.32 through 1.34 into Rancher 2.13.7.
             sources:
               - *rancher_2137_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           architecture:
             ranges:
               - x86
@@ -1135,7 +1160,7 @@ projects:
               - The matrix supports x86 and arm64; mixed x86 and arm64 environments are explicitly experimental and unsupported.
             sources:
               - *rancher_2137_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sles: &rancher_2137_suse_linux
             ranges:
               - '16.0'
@@ -1146,7 +1171,7 @@ projects:
               - The matrix validates these SLES and openSUSE Leap versions for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_2137_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           opensuse-leap:
             ranges:
               - '16.0'
@@ -1157,7 +1182,7 @@ projects:
               - The matrix validates these SLES and openSUSE Leap versions for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_2137_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sle-micro:
             ranges:
               - '6.2'
@@ -1168,7 +1193,7 @@ projects:
               - The matrix validates these SLE Micro versions for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_2137_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rhel: &rancher_2137_rhel_family
             ranges:
               - '10.1'
@@ -1183,7 +1208,7 @@ projects:
               - The matrix validates these RHEL versions for custom-node Rancher-provisioned RKE2 and K3s clusters and treats Oracle Linux and Rocky Linux as validated through RHEL testing; node-driver certification varies by provider.
             sources:
               - *rancher_2137_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           oracle-linux:
             ranges:
               - '10.1'
@@ -1198,7 +1223,7 @@ projects:
               - The matrix validates these RHEL versions for custom-node Rancher-provisioned RKE2 and K3s clusters and treats Oracle Linux and Rocky Linux as validated through RHEL testing; node-driver certification varies by provider.
             sources:
               - *rancher_2137_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rocky-linux:
             ranges:
               - '10.1'
@@ -1213,7 +1238,7 @@ projects:
               - The matrix validates these RHEL versions for custom-node Rancher-provisioned RKE2 and K3s clusters and treats Oracle Linux and Rocky Linux as validated through RHEL testing; node-driver certification varies by provider.
             sources:
               - *rancher_2137_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           amazon-linux:
             ranges:
               - '2023'
@@ -1223,7 +1248,7 @@ projects:
               - The matrix lists Amazon Linux 2023 as validated through RHEL testing for custom-node Rancher-provisioned RKE2 and K3s clusters; EKS certification specifically applies to Managed Node Groups.
             sources:
               - *rancher_2137_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           ubuntu:
             ranges:
               - '24.04'
@@ -1234,7 +1259,7 @@ projects:
               - The matrix validates Ubuntu 24.04 and 22.04 for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_2137_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           harvester:
             ranges:
               - '1.7'
@@ -1244,7 +1269,7 @@ projects:
               - The Harvester 1.7 support matrix pairs Harvester 1.7 with Rancher 2.13.
             sources:
               - *harvester_17_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           longhorn:
             ranges:
               - '1.11.2'
@@ -1254,7 +1279,7 @@ projects:
               - The matrix certifies Longhorn 1.11.2 with default component settings.
             sources:
               - *rancher_2137_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           k3k: &rancher_2137_k3k
             ranges:
               - '1.0.2'
@@ -1264,7 +1289,7 @@ projects:
               - The support matrix certifies k3k 1.0.2 for SUSE Virtual Cluster integration.
             sources:
               - *rancher_2137_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           terraform-provider-rancher2:
             ranges:
               - '>=13 <14'
@@ -1274,7 +1299,7 @@ projects:
               - The matrix certifies Terraform Rancher2 Provider 13.x.
             sources:
               - *rancher_2137_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           k3s-arm64:
             ranges:
               - '>=1.33 <1.35'
@@ -1284,7 +1309,7 @@ projects:
               - The K3s matrix distinguishes ARM64 from x86 provisioning; earlier Kubernetes minors in the general K3s range are certified for x86 only.
             sources:
               - *rancher_2137_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
       '2.12.13':
         dependencies:
           rke2:
@@ -1296,7 +1321,7 @@ projects:
               - The Rancher 2.12.13 matrix certifies RKE2, K3s, AKS, EKS, and GKE Kubernetes 1.31 through 1.33 for provisioned or imported downstream clusters.
             sources:
               - *rancher_21213_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           k3s:
             ranges:
               - '>=1.31 <1.34'
@@ -1307,7 +1332,7 @@ projects:
               - ARM64 provisioning has a narrower certified version range; see the k3s-arm64 entry.
             sources:
               - *rancher_21213_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           aks:
             ranges:
               - '>=1.31 <1.34'
@@ -1317,7 +1342,7 @@ projects:
               - The Rancher 2.12.13 matrix certifies RKE2, K3s, AKS, EKS, and GKE Kubernetes 1.31 through 1.33 for provisioned or imported downstream clusters.
             sources:
               - *rancher_21213_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           eks:
             ranges:
               - '>=1.31 <1.34'
@@ -1327,7 +1352,7 @@ projects:
               - The Rancher 2.12.13 matrix certifies RKE2, K3s, AKS, EKS, and GKE Kubernetes 1.31 through 1.33 for provisioned or imported downstream clusters.
             sources:
               - *rancher_21213_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           gke:
             ranges:
               - '>=1.31 <1.34'
@@ -1337,7 +1362,7 @@ projects:
               - The Rancher 2.12.13 matrix certifies RKE2, K3s, AKS, EKS, and GKE Kubernetes 1.31 through 1.33 for provisioned or imported downstream clusters.
             sources:
               - *rancher_21213_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           kubernetes:
             ranges:
               - '>=1.31 <1.34'
@@ -1347,7 +1372,7 @@ projects:
               - The matrix certifies importing other Kubernetes distributions from 1.31 through 1.33 into Rancher 2.12.13.
             sources:
               - *rancher_21213_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           architecture:
             ranges:
               - 'x86'
@@ -1358,7 +1383,7 @@ projects:
               - The matrix supports x86 and arm64; mixed x86 and arm64 environments are explicitly experimental and unsupported.
             sources:
               - *rancher_21213_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sles:
             ranges:
               - '15 SP7'
@@ -1369,7 +1394,7 @@ projects:
               - The matrix validates these SLES and openSUSE Leap versions for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_21213_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           opensuse-leap:
             ranges:
               - '15 SP7'
@@ -1380,7 +1405,7 @@ projects:
               - The matrix validates these SLES and openSUSE Leap versions for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_21213_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sle-micro:
             ranges:
               - '6.1'
@@ -1391,7 +1416,7 @@ projects:
               - The matrix validates these SLE Micro versions for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_21213_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rhel:
             ranges:
               - '10.0'
@@ -1405,7 +1430,7 @@ projects:
               - The matrix validates these RHEL versions for custom-node Rancher-provisioned RKE2 and K3s clusters and treats Oracle Linux and Rocky Linux as validated through RHEL testing; node-driver certification varies by provider.
             sources:
               - *rancher_21213_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           oracle-linux:
             ranges:
               - '10.0'
@@ -1419,7 +1444,7 @@ projects:
               - The matrix validates these RHEL versions for custom-node Rancher-provisioned RKE2 and K3s clusters and treats Oracle Linux and Rocky Linux as validated through RHEL testing; node-driver certification varies by provider.
             sources:
               - *rancher_21213_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rocky-linux:
             ranges:
               - '10.0'
@@ -1433,7 +1458,7 @@ projects:
               - The matrix validates these RHEL versions for custom-node Rancher-provisioned RKE2 and K3s clusters and treats Oracle Linux and Rocky Linux as validated through RHEL testing; node-driver certification varies by provider.
             sources:
               - *rancher_21213_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           amazon-linux:
             ranges:
               - '2023'
@@ -1443,7 +1468,7 @@ projects:
               - The matrix lists Amazon Linux 2023 as validated through RHEL testing for custom-node Rancher-provisioned RKE2 and K3s clusters; EKS certification specifically applies to Managed Node Groups.
             sources:
               - *rancher_21213_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           ubuntu:
             ranges:
               - '24.04'
@@ -1454,7 +1479,7 @@ projects:
               - The matrix validates Ubuntu 24.04 and 22.04 for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_21213_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           harvester:
             ranges:
               - '1.6'
@@ -1464,7 +1489,7 @@ projects:
               - The Harvester 1.6 support matrix pairs Harvester 1.6 with Rancher 2.12.
             sources:
               - *harvester_16_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           longhorn:
             ranges:
               - '1.11.2'
@@ -1474,7 +1499,7 @@ projects:
               - The matrix certifies Longhorn 1.11.2 with default component settings.
             sources:
               - *rancher_21213_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           k3k:
             ranges:
               - '1.0.0'
@@ -1484,7 +1509,7 @@ projects:
               - The support matrix certifies k3k 1.0.0 for SUSE Virtual Cluster integration.
             sources:
               - *rancher_21213_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           terraform-provider-rancher2:
             ranges:
               - '>=8 <9'
@@ -1494,7 +1519,7 @@ projects:
               - The matrix certifies Terraform Rancher2 Provider 8.x.
             sources:
               - *rancher_21213_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           k3s-arm64:
             ranges:
               - '1.33'
@@ -1504,7 +1529,7 @@ projects:
               - The K3s matrix distinguishes ARM64 from x86 provisioning; earlier Kubernetes minors in the general K3s range are certified for x86 only.
             sources:
               - *rancher_21213_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
       '2.12.12':
         dependencies:
           rke2:
@@ -1519,7 +1544,7 @@ projects:
               - Other axes remain on the 2.12.11 row because the 2.12.12 support matrix has not yet been published.
             sources:
               - *rancher_21212_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           k3s:
             ranges:
               - '1.33.13'
@@ -1532,7 +1557,7 @@ projects:
               - Other axes remain on the 2.12.11 row because the 2.12.12 support matrix has not yet been published.
             sources:
               - *rancher_21212_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
       '2.12.11':
         dependencies:
           rke2: &rancher_21211_kubernetes_platform
@@ -1544,7 +1569,7 @@ projects:
               - The Rancher 2.12.11 matrix certifies RKE2, K3s, AKS, EKS, and GKE Kubernetes 1.31 through 1.33 for provisioned or imported downstream clusters.
             sources:
               - *rancher_21211_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           k3s:
             ranges:
               - '>=1.31 <1.34'
@@ -1555,7 +1580,7 @@ projects:
               - ARM64 provisioning has a narrower certified version range; see the k3s-arm64 entry.
             sources:
               - *rancher_21211_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           aks:
             ranges:
               - '>=1.31 <1.34'
@@ -1565,7 +1590,7 @@ projects:
               - The Rancher 2.12.11 matrix certifies RKE2, K3s, AKS, EKS, and GKE Kubernetes 1.31 through 1.33 for provisioned or imported downstream clusters.
             sources:
               - *rancher_21211_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           eks:
             ranges:
               - '>=1.31 <1.34'
@@ -1575,7 +1600,7 @@ projects:
               - The Rancher 2.12.11 matrix certifies RKE2, K3s, AKS, EKS, and GKE Kubernetes 1.31 through 1.33 for provisioned or imported downstream clusters.
             sources:
               - *rancher_21211_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           gke:
             ranges:
               - '>=1.31 <1.34'
@@ -1585,7 +1610,7 @@ projects:
               - The Rancher 2.12.11 matrix certifies RKE2, K3s, AKS, EKS, and GKE Kubernetes 1.31 through 1.33 for provisioned or imported downstream clusters.
             sources:
               - *rancher_21211_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           kubernetes:
             ranges:
               - '>=1.31 <1.34'
@@ -1595,7 +1620,7 @@ projects:
               - The matrix certifies importing other Kubernetes distributions from 1.31 through 1.33 into Rancher 2.12.11.
             sources:
               - *rancher_21211_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           architecture:
             ranges:
               - x86
@@ -1606,7 +1631,7 @@ projects:
               - The matrix supports x86 and arm64; mixed x86 and arm64 environments are explicitly experimental and unsupported.
             sources:
               - *rancher_21211_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sles: &rancher_21211_suse_linux
             ranges:
               - 15 SP7
@@ -1617,7 +1642,7 @@ projects:
               - The matrix validates these SLES and openSUSE Leap versions for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_21211_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           opensuse-leap:
             ranges:
               - 15 SP7
@@ -1628,7 +1653,7 @@ projects:
               - The matrix validates these SLES and openSUSE Leap versions for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_21211_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sle-micro:
             ranges:
               - '6.1'
@@ -1639,7 +1664,7 @@ projects:
               - The matrix validates these SLE Micro versions for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_21211_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rhel: &rancher_21211_rhel_family
             ranges:
               - '10.0'
@@ -1653,7 +1678,7 @@ projects:
               - The matrix validates these RHEL versions for custom-node Rancher-provisioned RKE2 and K3s clusters and treats Oracle Linux and Rocky Linux as validated through RHEL testing; node-driver certification varies by provider.
             sources:
               - *rancher_21211_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           oracle-linux:
             ranges:
               - '10.0'
@@ -1667,7 +1692,7 @@ projects:
               - The matrix validates these RHEL versions for custom-node Rancher-provisioned RKE2 and K3s clusters and treats Oracle Linux and Rocky Linux as validated through RHEL testing; node-driver certification varies by provider.
             sources:
               - *rancher_21211_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rocky-linux:
             ranges:
               - '10.0'
@@ -1681,7 +1706,7 @@ projects:
               - The matrix validates these RHEL versions for custom-node Rancher-provisioned RKE2 and K3s clusters and treats Oracle Linux and Rocky Linux as validated through RHEL testing; node-driver certification varies by provider.
             sources:
               - *rancher_21211_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           amazon-linux:
             ranges:
               - '2023'
@@ -1691,7 +1716,7 @@ projects:
               - The matrix lists Amazon Linux 2023 as validated through RHEL testing for custom-node Rancher-provisioned RKE2 and K3s clusters; EKS certification specifically applies to Managed Node Groups.
             sources:
               - *rancher_21211_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           ubuntu:
             ranges:
               - '24.04'
@@ -1702,7 +1727,7 @@ projects:
               - The matrix validates Ubuntu 24.04 and 22.04 for custom-node Rancher-provisioned RKE2 and K3s clusters; node-driver certification varies by provider.
             sources:
               - *rancher_21211_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           harvester:
             ranges:
               - '1.6'
@@ -1712,7 +1737,7 @@ projects:
               - The Harvester 1.6 support matrix pairs Harvester 1.6 with Rancher 2.12.
             sources:
               - *harvester_16_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           longhorn:
             ranges:
               - '1.11.2'
@@ -1722,7 +1747,7 @@ projects:
               - The matrix certifies Longhorn 1.11.2 with default component settings.
             sources:
               - *rancher_21211_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           k3k: &rancher_21211_k3k
             ranges:
               - '1.0.0'
@@ -1732,7 +1757,7 @@ projects:
               - The support matrix certifies k3k 1.0.0 for SUSE Virtual Cluster integration.
             sources:
               - *rancher_21211_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           terraform-provider-rancher2:
             ranges:
               - '>=8 <9'
@@ -1742,7 +1767,7 @@ projects:
               - The matrix certifies Terraform Rancher2 Provider 8.x.
             sources:
               - *rancher_21211_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           k3s-arm64:
             ranges:
               - '1.33'
@@ -1752,4 +1777,4 @@ projects:
               - The K3s matrix distinguishes ARM64 from x86 provisioning; earlier Kubernetes minors in the general K3s range are certified for x86 only.
             sources:
               - *rancher_21211_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'

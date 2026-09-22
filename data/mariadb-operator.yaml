@@ -1,17 +1,22 @@
+x-mariadb-operator-2610-source: &mariadb_operator_2610_source
+  title: MariaDB Operator 26.10.1 Compatibility
+  url: https://github.com/mariadb-operator/mariadb-operator/blob/26.10.1/README.md
+  accessedAt: '2026-09-22'
+
 x-mariadb-operator-266-source: &mariadb_operator_266_source
   title: MariaDB Operator 26.6.0 Compatibility
   url: https://github.com/mariadb-operator/mariadb-operator/blob/26.6.0/README.md
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 x-mariadb-operator-263-source: &mariadb_operator_263_source
   title: MariaDB Operator 26.3.0 Compatibility
   url: https://github.com/mariadb-operator/mariadb-operator/blob/26.3.0/README.md
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 x-mariadb-operator-2510-source: &mariadb_operator_2510_source
   title: MariaDB Operator 25.10.4 Compatibility
   url: https://github.com/mariadb-operator/mariadb-operator/blob/25.10.4/README.md
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 projects:
   mariadb-operator:
@@ -23,7 +28,7 @@ projects:
     website: https://github.com/mariadb-operator/mariadb-operator
     description: MariaDB Community operator compatibility for Kubernetes, MariaDB Server, and MaxScale.
     versions:
-      26.6 || 26.3 || 25.10:
+      '>=26.10.1 <26.11 || 26.6 || 26.3 || 25.10':
         dependencies:
           kubernetes:
             ranges:
@@ -33,10 +38,11 @@ projects:
             notes:
               - MariaDB Operator declares compatibility with Kubernetes 1.31 or later.
             sources:
+              - *mariadb_operator_2610_source
               - *mariadb_operator_266_source
               - *mariadb_operator_263_source
               - *mariadb_operator_2510_source
-            lastVerified: 2026-09-16
+            lastVerified: 2026-09-22
           mariadb:
             ranges:
               - '>=10.6'
@@ -44,12 +50,17 @@ projects:
             confidence: high
             notes:
               - MariaDB Operator declares compatibility with MariaDB Community 10.6 or later.
+              - The 26.10 release line starts at 26.10.1 here because upstream directs users to skip 26.10.0.
               - The operator documentation limits compatibility to official MariaDB images.
             sources:
+              - *mariadb_operator_2610_source
               - *mariadb_operator_266_source
               - *mariadb_operator_263_source
               - *mariadb_operator_2510_source
-            lastVerified: 2026-09-16
+              - title: MariaDB Operator 26.10.0 release withdrawal notice
+                url: https://github.com/mariadb-operator/mariadb-operator/releases/tag/26.10.0
+                accessedAt: '2026-09-22'
+            lastVerified: 2026-09-22
           maxscale:
             ranges:
               - '>=23.08'
@@ -59,10 +70,11 @@ projects:
               - MariaDB Operator declares compatibility with MaxScale 23.08 or later.
               - The operator documentation limits compatibility to official MariaDB images.
             sources:
+              - *mariadb_operator_2610_source
               - *mariadb_operator_266_source
               - *mariadb_operator_263_source
               - *mariadb_operator_2510_source
-            lastVerified: 2026-09-16
+            lastVerified: 2026-09-22
           openshift:
             ranges:
               - '>=4.18'
@@ -72,7 +84,8 @@ projects:
               - MariaDB Operator declares compatibility with OpenShift 4.18 or later.
               - OpenShift installation is managed separately through the mariadb-operator-helm repository.
             sources:
+              - *mariadb_operator_2610_source
               - *mariadb_operator_266_source
               - *mariadb_operator_263_source
               - *mariadb_operator_2510_source
-            lastVerified: 2026-09-16
+            lastVerified: 2026-09-22

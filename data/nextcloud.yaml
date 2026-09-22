@@ -1,17 +1,17 @@
 x-nextcloud-35-requirements-source: &nextcloud_35_requirements_source
   title: Nextcloud 35 System requirements
   url: https://docs.nextcloud.com/server/35/admin_manual/installation/system_requirements.html
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 x-nextcloud-34-requirements-source: &nextcloud_34_requirements_source
   title: Nextcloud 34 System requirements
   url: https://docs.nextcloud.com/server/34/admin_manual/installation/system_requirements.html
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 x-nextcloud-33-requirements-source: &nextcloud_33_requirements_source
   title: Nextcloud 33 System requirements
   url: https://docs.nextcloud.com/server/33/admin_manual/installation/system_requirements.html
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 projects:
   nextcloud:
@@ -35,8 +35,8 @@ projects:
               - *nextcloud_35_requirements_source
               - title: Nextcloud 35.0.0 PHP version check
                 url: https://github.com/nextcloud/server/blob/v35.0.0/lib/versioncheck.php
-                accessedAt: '2026-09-16'
-            lastVerified: '2026-09-16'
+                accessedAt: '2026-09-22'
+            lastVerified: '2026-09-22'
           mysql:
             ranges:
               - '8.4'
@@ -47,7 +47,7 @@ projects:
               - Nextcloud 35 system requirements list MySQL 8.4 and 9.7; MySQL 8.0 is no longer listed.
             sources:
               - *nextcloud_35_requirements_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           mariadb:
             ranges:
               - '10.11'
@@ -60,7 +60,7 @@ projects:
               - Nextcloud 35 system requirements list MariaDB 10.11, 11.4, 11.8, and 12.3; MariaDB 10.6 is no longer listed.
             sources:
               - *nextcloud_35_requirements_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           postgresql:
             ranges:
               - '>=14 <19'
@@ -70,7 +70,7 @@ projects:
               - Nextcloud 35 system requirements list PostgreSQL 14, 15, 16, 17, and 18.
             sources:
               - *nextcloud_35_requirements_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
       33 || 34:
         dependencies:
           php:
@@ -83,7 +83,7 @@ projects:
             sources:
               - *nextcloud_33_requirements_source
               - *nextcloud_34_requirements_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           mysql:
             ranges:
               - '>=8.0 <8.1'
@@ -95,7 +95,7 @@ projects:
             sources:
               - *nextcloud_33_requirements_source
               - *nextcloud_34_requirements_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           mariadb:
             ranges:
               - '>=10.6 <10.7'
@@ -109,7 +109,7 @@ projects:
             sources:
               - *nextcloud_33_requirements_source
               - *nextcloud_34_requirements_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           postgresql:
             ranges:
               - '>=14 <19'
@@ -120,4 +120,4 @@ projects:
             sources:
               - *nextcloud_33_requirements_source
               - *nextcloud_34_requirements_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'

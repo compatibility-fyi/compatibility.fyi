@@ -1,19 +1,19 @@
+x-gitlab-19-4-release-source: &gitlab_runner_194
+  title: GitLab 19.4 release notes - GitLab Runner 19.4
+  url: https://docs.gitlab.com/releases/19/gitlab-19-4-released/
+  accessedAt: '2026-09-22'
 x-gitlab-runner-version-source: &gitlab_runner_1
   title: GitLab Runner - GitLab Runner versions
   url: https://docs.gitlab.com/runner/
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 x-gitlab-19-3-release-source: &gitlab_runner_2
   title: GitLab 19.3 release notes - GitLab Runner 19.3
   url: https://docs.gitlab.com/releases/19/gitlab-19-3-released/
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 x-gitlab-19-2-release-source: &gitlab_runner_3
   title: GitLab 19.2 release notes - GitLab Runner 19.2
   url: https://docs.gitlab.com/releases/19/gitlab-19-2-released/
-  accessedAt: '2026-09-16'
-x-gitlab-19-1-release-source: &gitlab_runner_4
-  title: GitLab 19.1 release notes - GitLab Runner 19.1
-  url: https://docs.gitlab.com/releases/19/gitlab-19-1-released/
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 projects:
   gitlab-runner:
     name: GitLab Runner
@@ -24,6 +24,22 @@ projects:
     website: https://docs.gitlab.com/runner/
     description: GitLab Runner compatibility with GitLab coordinator versions.
     versions:
+      '19.4':
+        dependencies:
+          gitlab:
+            ranges:
+              - '>=19.4 <19.5'
+            relationship: coordinator
+            confidence: high
+            notes:
+              - GitLab recommends keeping GitLab Runner major.minor in sync with the GitLab major.minor version.
+              - Older or newer runners may still work, but features may be unavailable or not work properly when versions differ.
+              - GitLab 19.4 release notes include GitLab Runner 19.4.
+            sources:
+              - *gitlab_runner_1
+              - *gitlab_runner_194
+            lastVerified: '2026-09-22'
+            basis: recommended
       '19.3':
         dependencies:
           gitlab:
@@ -38,7 +54,7 @@ projects:
             sources:
               - *gitlab_runner_1
               - *gitlab_runner_2
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
             basis: recommended
       '19.2':
         dependencies:
@@ -54,21 +70,5 @@ projects:
             sources:
               - *gitlab_runner_1
               - *gitlab_runner_3
-            lastVerified: '2026-09-16'
-            basis: recommended
-      '19.1':
-        dependencies:
-          gitlab:
-            ranges:
-              - '>=19.1 <19.2'
-            relationship: coordinator
-            confidence: high
-            notes:
-              - GitLab recommends keeping GitLab Runner major.minor in sync with the GitLab major.minor version.
-              - Older or newer runners may still work, but features may be unavailable or not work properly when versions differ.
-              - GitLab 19.1 release notes include GitLab Runner 19.1.
-            sources:
-              - *gitlab_runner_1
-              - *gitlab_runner_4
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
             basis: recommended

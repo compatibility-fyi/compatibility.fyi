@@ -1,17 +1,22 @@
+x-rke2-137-source: &rke2_137_source
+  title: RKE2 1.37 Support Matrix
+  url: https://www.suse.com/suse-rke2/support-matrix/all-supported-versions/rke2-v1-37/
+  accessedAt: '2026-09-22'
+
 x-rke2-136-source: &rke2_136_source
   title: RKE2 1.36 Support Matrix
   url: https://www.suse.com/suse-rke2/support-matrix/all-supported-versions/rke2-v1-36/
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 x-rke2-135-source: &rke2_135_source
   title: RKE2 1.35 Support Matrix
   url: https://www.suse.com/suse-rke2/support-matrix/all-supported-versions/rke2-v1-35/
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 x-rke2-134-source: &rke2_134_source
   title: RKE2 1.34 Support Matrix
   url: https://www.suse.com/suse-rke2/support-matrix/all-supported-versions/rke2-v1-34/
-  accessedAt: '2026-09-16'
+  accessedAt: '2026-09-22'
 
 projects:
   rke2:
@@ -23,7 +28,7 @@ projects:
     website: https://docs.rke2.io/
     description: RKE2 compatibility for host operating systems, architectures, network plugin choices, cloud integrations, and Windows workers.
     versions:
-      1.37.0+rke2r1:
+      '1.37.0+rke2r1':
         dependencies:
           architecture:
             ranges:
@@ -32,43 +37,136 @@ projects:
             relationship: supported architecture
             confidence: high
             notes:
-              - The upstream requirements list x86_64 and arm64/aarch64; this release provides Linux binaries for both architectures.
-              - A SUSE 1.37 certification matrix was not available when verified, so earlier operating-system and cloud-integration certifications are not inherited.
+              - The support matrix certifies x86_64 and arm64 architectures.
             sources:
-              - &rke2_upstream_requirements_source
-                title: RKE2 Installation Requirements - Architecture and Windows
-                url: https://docs.rke2.io/install/requirements
-                accessedAt: 2026-09-16
-              - &rke2_137_release_source
-                title: RKE2 v1.37.0+rke2r1 release - Available CNIs and release assets
-                url: https://github.com/rancher/rke2/releases/tag/v1.37.0%2Brke2r1
-                accessedAt: 2026-09-16
-            lastVerified: 2026-09-16
+              - *rke2_137_source
+            lastVerified: '2026-09-22'
+          sles:
+            ranges:
+              - '16.0'
+              - 15 SP7
+            relationship: certified operating system
+            confidence: high
+            notes:
+              - The support matrix certifies SLES 16.0 and 15 SP7.
+            sources:
+              - *rke2_137_source
+            lastVerified: '2026-09-22'
+          sle-micro:
+            ranges:
+              - '6.2'
+              - '6.1'
+            relationship: certified operating system
+            confidence: high
+            notes:
+              - The support matrix certifies SLE Micro 6.2 and 6.1.
+            sources:
+              - *rke2_137_source
+            lastVerified: '2026-09-22'
+          rhel:
+            ranges:
+              - '10.2'
+              - '10.0'
+              - '9.8'
+              - '9.6'
+            relationship: certified operating system
+            confidence: high
+            notes:
+              - The matrix certifies these RHEL versions and treats Oracle Linux and Rocky Linux as validated through RHEL testing.
+            sources:
+              - *rke2_137_source
+            lastVerified: '2026-09-22'
+          oracle-linux:
+            ranges:
+              - '10.2'
+              - '10.0'
+              - '9.8'
+              - '9.6'
+            relationship: operating system validated through RHEL testing
+            confidence: high
+            notes:
+              - The matrix treats Oracle Linux as validated through the listed RHEL testing.
+            sources:
+              - *rke2_137_source
+            lastVerified: '2026-09-22'
+          rocky-linux:
+            ranges:
+              - '10.2'
+              - '10.0'
+              - '9.8'
+              - '9.6'
+            relationship: operating system validated through RHEL testing
+            confidence: high
+            notes:
+              - The matrix treats Rocky Linux as validated through the listed RHEL testing.
+            sources:
+              - *rke2_137_source
+            lastVerified: '2026-09-22'
+          ubuntu:
+            ranges:
+              - '26.04'
+              - '24.04'
+            relationship: certified operating system
+            confidence: high
+            notes:
+              - The support matrix certifies Ubuntu 26.04 and 24.04.
+            sources:
+              - *rke2_137_source
+            lastVerified: '2026-09-22'
           cni:
             ranges:
               - canal
               - calico
               - cilium
               - multus
-            relationship: available network plugin
+              - flannel
+            relationship: certified network plugin
             confidence: high
             notes:
-              - The release notes list Canal, Calico, Cilium, and Multus as available CNI choices.
+              - The support matrix certifies Canal, Calico, Cilium, Multus, and Flannel configurations.
             sources:
-              - *rke2_137_release_source
-            lastVerified: 2026-09-16
+              - *rke2_137_source
+            lastVerified: '2026-09-22'
+          vsphere-cpi:
+            ranges:
+              - '1.15.300'
+            relationship: supported out-of-tree cloud provider integration
+            confidence: high
+            notes:
+              - The support matrix lists vSphere CPI chart 1.15.300 and cautions against upgrading with in-tree cloud providers.
+            sources:
+              - *rke2_137_source
+            lastVerified: '2026-09-22'
+          vsphere-csi:
+            ranges:
+              - '3.7.2-rancher700'
+            relationship: supported out-of-tree storage integration
+            confidence: high
+            notes:
+              - The support matrix lists vSphere CSI chart 3.7.2-rancher700.
+            sources:
+              - *rke2_137_source
+            lastVerified: '2026-09-22'
+          container-runtime:
+            ranges:
+              - nvidia-container-runtime
+            relationship: additionally supported runtime integration
+            confidence: high
+            notes:
+              - The support matrix lists NVIDIA Container Runtime; Docker CRI is explicitly limited to K3s.
+            sources:
+              - *rke2_137_source
+            lastVerified: '2026-09-22'
           windows-server:
             ranges:
               - '2022'
-            relationship: tested Windows worker operating system
+            relationship: supported Windows worker operating system
             confidence: high
             notes:
-              - The upstream installation requirements identify Windows Server 2022 LTSC amd64, OS build 20348.169 and subsequent non-major releases, as tested.
-              - Windows nodes are workers only; server nodes must run Linux, and Windows workers require Calico or Flannel.
+              - Windows Server 2022 workers are supported in Linux control-plane clusters and require Calico or Flannel CNI.
             sources:
-              - *rke2_upstream_requirements_source
-            lastVerified: 2026-09-16
-            basis: tested
+              - *rke2_137_source
+            lastVerified: '2026-09-22'
           windows-cni:
             ranges:
               - calico
@@ -76,10 +174,10 @@ projects:
             relationship: Windows worker network plugin
             confidence: high
             notes:
-              - The upstream requirements require Calico or Flannel for Windows workers; control-plane nodes must run Linux.
+              - The support matrix requires Calico or Flannel for Windows workers; the control plane must run on Linux.
             sources:
-              - *rke2_upstream_requirements_source
-            lastVerified: 2026-09-16
+              - *rke2_137_source
+            lastVerified: '2026-09-22'
       '1.36.4+rke2r1':
         dependencies:
           architecture:
@@ -92,7 +190,7 @@ projects:
               - The support matrix certifies x86_64 and arm64 architectures.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sles:
             ranges:
               - '16.0'
@@ -104,7 +202,7 @@ projects:
               - The support matrix certifies SLES 16.0, 15 SP7, and 15 SP6.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sle-micro:
             ranges:
               - '6.2'
@@ -116,7 +214,7 @@ projects:
               - The support matrix certifies SLE Micro 6.2, 6.1, and 6.0.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rhel:
             ranges:
               - '10.2'
@@ -130,7 +228,7 @@ projects:
               - The matrix certifies these RHEL versions and treats Oracle Linux and Rocky Linux as validated through RHEL testing.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           oracle-linux:
             ranges:
               - '10.2'
@@ -144,7 +242,7 @@ projects:
               - The matrix treats Oracle Linux as validated through the listed RHEL testing.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rocky-linux:
             ranges:
               - '10.2'
@@ -158,7 +256,7 @@ projects:
               - The matrix treats Rocky Linux as validated through the listed RHEL testing.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           ubuntu:
             ranges:
               - '26.04'
@@ -170,7 +268,7 @@ projects:
               - The support matrix certifies Ubuntu 26.04, 24.04 and 22.04.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           cni:
             ranges:
               - canal
@@ -184,7 +282,7 @@ projects:
               - The support matrix certifies Canal, Calico, Cilium, Multus, and Flannel configurations.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           vsphere-cpi:
             ranges:
               - '1.15.300'
@@ -194,7 +292,7 @@ projects:
               - The support matrix lists vSphere CPI chart 1.15.300 and cautions against upgrading with in-tree cloud providers.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           vsphere-csi:
             ranges:
               - '3.7.2-rancher700'
@@ -204,7 +302,7 @@ projects:
               - The support matrix lists vSphere CSI chart 3.7.2-rancher700.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           container-runtime:
             ranges:
               - nvidia-container-runtime
@@ -214,7 +312,7 @@ projects:
               - The support matrix lists NVIDIA Container Runtime; Docker CRI is explicitly limited to K3s.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           windows-server:
             ranges:
               - '2022'
@@ -224,7 +322,7 @@ projects:
               - Windows Server 2022 workers are supported in Linux control-plane clusters and require Calico or Flannel CNI.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           windows-cni:
             ranges:
               - calico
@@ -235,7 +333,7 @@ projects:
               - The support matrix requires Calico or Flannel for Windows workers; the control plane must run on Linux.
             sources:
               - *rke2_136_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
       '1.35.8+rke2r1':
         dependencies:
           architecture:
@@ -248,7 +346,7 @@ projects:
               - The support matrix certifies x86_64 and arm64 architectures.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sles:
             ranges:
               - '16.0'
@@ -260,7 +358,7 @@ projects:
               - The support matrix certifies SLES 16.0, 15 SP7, and 15 SP6.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sle-micro:
             ranges:
               - '6.2'
@@ -272,7 +370,7 @@ projects:
               - The support matrix certifies SLE Micro 6.2, 6.1, and 6.0.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           opensuse-leap:
             ranges:
               - '15.7'
@@ -284,7 +382,7 @@ projects:
               - The matrix lists openSUSE Leap 15.7, 15.6, and 15.5 as validated through SUSE Linux Enterprise testing.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rhel:
             ranges:
               - '10.2'
@@ -303,7 +401,7 @@ projects:
               - The matrix certifies these RHEL versions and treats Oracle Linux and Rocky Linux as validated through RHEL testing.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           oracle-linux:
             ranges:
               - '10.2'
@@ -322,7 +420,7 @@ projects:
               - The matrix treats Oracle Linux as validated through the listed RHEL testing.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rocky-linux:
             ranges:
               - '10.2'
@@ -341,7 +439,7 @@ projects:
               - The matrix treats Rocky Linux as validated through the listed RHEL testing.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           ubuntu:
             ranges:
               - '26.04'
@@ -354,7 +452,7 @@ projects:
               - The support matrix certifies Ubuntu 26.04, 24.04, 22.04, and 20.04.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           cni:
             ranges:
               - canal
@@ -368,7 +466,7 @@ projects:
               - The support matrix certifies Canal, Calico, Cilium, Multus, and Flannel configurations.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           vsphere-cpi:
             ranges:
               - '1.15.300'
@@ -378,7 +476,7 @@ projects:
               - The support matrix lists vSphere CPI chart 1.15.300 and cautions against upgrading with in-tree cloud providers.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           vsphere-csi:
             ranges:
               - '3.7.2-rancher700'
@@ -388,7 +486,7 @@ projects:
               - The support matrix lists vSphere CSI chart 3.7.2-rancher700.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           container-runtime:
             ranges:
               - nvidia-container-runtime
@@ -398,7 +496,7 @@ projects:
               - The support matrix lists NVIDIA Container Runtime; Docker CRI is explicitly limited to K3s.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           windows-server:
             ranges:
               - '2019'
@@ -409,7 +507,7 @@ projects:
               - Windows Server 2019 LTSC and 2022 workers are supported in Linux control-plane clusters and require Calico or Flannel CNI.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           windows-cni:
             ranges:
               - calico
@@ -420,7 +518,7 @@ projects:
               - The support matrix requires Calico or Flannel for Windows workers; the control plane must run on Linux.
             sources:
               - *rke2_135_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
       '1.34.11+rke2r1':
         dependencies:
           architecture:
@@ -433,7 +531,7 @@ projects:
               - The support matrix certifies x86_64 and arm64 architectures.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sles:
             ranges:
               - '16.0'
@@ -446,7 +544,7 @@ projects:
               - The support matrix certifies SLES 16.0, 15 SP7, 15 SP6, and 15 SP5.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           sle-micro:
             ranges:
               - '6.1'
@@ -458,7 +556,7 @@ projects:
               - The support matrix certifies SLE Micro 6.1, 6.0, and 5.5.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           opensuse-leap:
             ranges:
               - '15.7'
@@ -470,7 +568,7 @@ projects:
               - The matrix lists openSUSE Leap 15.7, 15.6, and 15.5 as validated through SUSE Linux Enterprise testing.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rhel:
             ranges:
               - '10.2'
@@ -489,7 +587,7 @@ projects:
               - The matrix certifies these RHEL versions and treats Oracle Linux and Rocky Linux as validated through RHEL testing.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           oracle-linux:
             ranges:
               - '10.2'
@@ -508,7 +606,7 @@ projects:
               - The matrix treats Oracle Linux as validated through the listed RHEL testing.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           rocky-linux:
             ranges:
               - '10.2'
@@ -527,7 +625,7 @@ projects:
               - The matrix treats Rocky Linux as validated through the listed RHEL testing.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           ubuntu:
             ranges:
               - '26.04'
@@ -540,7 +638,7 @@ projects:
               - The support matrix certifies Ubuntu 26.04, 24.04, 22.04, and 20.04.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           cni:
             ranges:
               - canal
@@ -554,7 +652,7 @@ projects:
               - The support matrix certifies Canal, Calico, Cilium, Multus, and Flannel configurations.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           vsphere-cpi:
             ranges:
               - '1.15.300'
@@ -564,7 +662,7 @@ projects:
               - The support matrix lists vSphere CPI chart 1.15.300 and cautions against upgrading with in-tree cloud providers.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           vsphere-csi:
             ranges:
               - '3.7.2-rancher700'
@@ -574,7 +672,7 @@ projects:
               - The support matrix lists vSphere CSI chart 3.7.2-rancher700.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           container-runtime:
             ranges:
               - nvidia-container-runtime
@@ -584,7 +682,7 @@ projects:
               - The support matrix lists NVIDIA Container Runtime; Docker CRI is explicitly limited to K3s.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           windows-server:
             ranges:
               - '2019'
@@ -595,7 +693,7 @@ projects:
               - Windows Server 2019 LTSC and 2022 workers are supported in Linux control-plane clusters and require Calico or Flannel CNI.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
           windows-cni:
             ranges:
               - calico
@@ -606,4 +704,4 @@ projects:
               - The support matrix requires Calico or Flannel for Windows workers; the control plane must run on Linux.
             sources:
               - *rke2_134_source
-            lastVerified: '2026-09-16'
+            lastVerified: '2026-09-22'
