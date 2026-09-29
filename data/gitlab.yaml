@@ -1,19 +1,19 @@
 x-gitlab-19-4-requirements-source: &gitlab_194_requirements
   title: GitLab 19.4.0 tagged requirements
   url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.4.0-ee/doc/install/requirements.md
-  accessedAt: '2026-09-22'
+  accessedAt: '2026-09-29'
 x-gitlab-19-4-pipeline-source: &gitlab_194_pipeline
   title: GitLab 19.4.0 tagged pipeline compatibility tests
   url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.4.0-ee/doc/development/pipelines/_index.md
-  accessedAt: '2026-09-22'
+  accessedAt: '2026-09-29'
 x-gitlab-19-requirements-source: &gitlab_1
   title: GitLab 19.3.2 tagged requirements
   url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.3.2-ee/doc/install/requirements.md
-  accessedAt: '2026-09-22'
+  accessedAt: '2026-09-29'
 x-gitlab-19-pipeline-source: &gitlab_2
   title: GitLab 19.3.2 tagged pipeline compatibility tests
   url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.3.2-ee/doc/development/pipelines/_index.md
-  accessedAt: '2026-09-22'
+  accessedAt: '2026-09-29'
 projects:
   gitlab:
     name: GitLab
@@ -35,7 +35,7 @@ projects:
               - GitLab 19.x requirements list PostgreSQL 17.x as both the minimum and maximum supported PostgreSQL version.
             sources:
               - *gitlab_194_requirements
-            lastVerified: '2026-09-22'
+            lastVerified: '2026-09-29'
           redis:
             ranges:
               - '>=7 <8'
@@ -45,7 +45,7 @@ projects:
               - GitLab 19.x requirements recommend Redis 7.2 and require Redis 7.0 or newer.
             sources:
               - *gitlab_194_requirements
-            lastVerified: '2026-09-22'
+            lastVerified: '2026-09-29'
           valkey:
             ranges:
               - '7.2'
@@ -56,7 +56,7 @@ projects:
             sources:
               - *gitlab_194_requirements
               - *gitlab_194_pipeline
-            lastVerified: '2026-09-22'
+            lastVerified: '2026-09-29'
           postgresql-helm-deployment:
             ranges:
               - '>=17 <18'
@@ -67,8 +67,8 @@ projects:
             sources:
               - title: GitLab 19.4.0 tagged requirements
                 url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.4.0-ee/doc/install/requirements.md
-                accessedAt: '2026-09-22'
-            lastVerified: '2026-09-22'
+                accessedAt: '2026-09-29'
+            lastVerified: '2026-09-29'
           valkey-helm-deployment:
             ranges:
               - '7.2'
@@ -79,11 +79,11 @@ projects:
             sources:
               - title: GitLab 19.4.0 tagged requirements
                 url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.4.0-ee/doc/install/requirements.md
-                accessedAt: '2026-09-22'
+                accessedAt: '2026-09-29'
               - title: GitLab 19.4.0 tagged pipeline compatibility tests
                 url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.4.0-ee/doc/development/pipelines/_index.md
-                accessedAt: '2026-09-22'
-            lastVerified: '2026-09-22'
+                accessedAt: '2026-09-29'
+            lastVerified: '2026-09-29'
       '19.3':
         dependencies:
           postgresql:
@@ -95,7 +95,7 @@ projects:
               - GitLab 19.x requirements list PostgreSQL 17.x as both the minimum and maximum supported PostgreSQL version.
             sources:
               - *gitlab_1
-            lastVerified: '2026-09-22'
+            lastVerified: '2026-09-29'
           redis:
             ranges:
               - '>=7 <8'
@@ -105,7 +105,7 @@ projects:
               - GitLab 19.x requirements recommend Redis 7.2 and require Redis 7.0 or newer.
             sources:
               - *gitlab_1
-            lastVerified: '2026-09-22'
+            lastVerified: '2026-09-29'
           valkey:
             ranges:
               - '7.2'
@@ -116,7 +116,7 @@ projects:
             sources:
               - *gitlab_1
               - *gitlab_2
-            lastVerified: '2026-09-22'
+            lastVerified: '2026-09-29'
           postgresql-linux-package-fresh-install:
             ranges:
               - '>=17 <18'
@@ -129,11 +129,11 @@ projects:
             sources:
               - title: GitLab 19.3 release notes - PostgreSQL 18.4 for fresh Linux-package installs
                 url: https://docs.gitlab.com/releases/19/gitlab-19-3-released/
-                accessedAt: '2026-09-22'
+                accessedAt: '2026-09-29'
               - title: PostgreSQL versions shipped with the GitLab Linux package
                 url: https://docs.gitlab.com/administration/package_information/postgresql_versions/
-                accessedAt: '2026-09-22'
-            lastVerified: '2026-09-22'
+                accessedAt: '2026-09-29'
+            lastVerified: '2026-09-29'
           postgresql-helm-deployment:
             ranges:
               - '>=17 <18'
@@ -144,8 +144,8 @@ projects:
             sources:
               - title: GitLab 19.3.2 tagged requirements
                 url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.3.2-ee/doc/install/requirements.md
-                accessedAt: '2026-09-22'
-            lastVerified: '2026-09-22'
+                accessedAt: '2026-09-29'
+            lastVerified: '2026-09-29'
           valkey-helm-deployment:
             ranges:
               - '7.2'
@@ -156,11 +156,11 @@ projects:
             sources:
               - title: GitLab 19.3.2 tagged requirements
                 url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.3.2-ee/doc/install/requirements.md
-                accessedAt: '2026-09-22'
+                accessedAt: '2026-09-29'
               - title: GitLab 19.3.2 tagged pipeline compatibility tests
                 url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.3.2-ee/doc/development/pipelines/_index.md
-                accessedAt: '2026-09-22'
-            lastVerified: '2026-09-22'
+                accessedAt: '2026-09-29'
+            lastVerified: '2026-09-29'
       '19.2':
         dependencies:
           postgresql:
@@ -172,7 +172,7 @@ projects:
               - GitLab 19.x requirements list PostgreSQL 17.x as both the minimum and maximum supported PostgreSQL version.
             sources:
               - *gitlab_1
-            lastVerified: '2026-09-22'
+            lastVerified: '2026-09-29'
           redis:
             ranges:
               - '>=7 <8'
@@ -182,7 +182,7 @@ projects:
               - GitLab 19.x requirements recommend Redis 7.2 and require Redis 7.0 or newer.
             sources:
               - *gitlab_1
-            lastVerified: '2026-09-22'
+            lastVerified: '2026-09-29'
           valkey:
             ranges:
               - '7.2'
@@ -193,7 +193,7 @@ projects:
             sources:
               - *gitlab_1
               - *gitlab_2
-            lastVerified: '2026-09-22'
+            lastVerified: '2026-09-29'
           postgresql-helm-deployment:
             ranges:
               - '>=17 <18'
@@ -204,8 +204,8 @@ projects:
             sources:
               - title: GitLab 19.3.2 tagged requirements
                 url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.3.2-ee/doc/install/requirements.md
-                accessedAt: '2026-09-22'
-            lastVerified: '2026-09-22'
+                accessedAt: '2026-09-29'
+            lastVerified: '2026-09-29'
           valkey-helm-deployment:
             ranges:
               - '7.2'
@@ -216,8 +216,8 @@ projects:
             sources:
               - title: GitLab 19.3.2 tagged requirements
                 url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.3.2-ee/doc/install/requirements.md
-                accessedAt: '2026-09-22'
+                accessedAt: '2026-09-29'
               - title: GitLab 19.3.2 tagged pipeline compatibility tests
                 url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.3.2-ee/doc/development/pipelines/_index.md
-                accessedAt: '2026-09-22'
-            lastVerified: '2026-09-22'
+                accessedAt: '2026-09-29'
+            lastVerified: '2026-09-29'
