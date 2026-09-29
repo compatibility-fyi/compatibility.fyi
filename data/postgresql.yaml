@@ -24,8 +24,8 @@ x-timescaledb-223-support-source: &timescaledb_223_support_source
   accessedAt: '2026-09-29'
 
 x-timescaledb-230-support-source: &timescaledb_230_support_source
-  title: TimescaleDB 2.30.1 PostgreSQL version check
-  url: https://github.com/timescale/timescaledb/blob/2.30.1/CMakeLists.txt
+  title: TimescaleDB 2.30.2 PostgreSQL version check
+  url: https://github.com/timescale/timescaledb/blob/2.30.2/CMakeLists.txt
   accessedAt: '2026-09-29'
 
 x-pg-cron-160-support-source: &pg_cron_160_support_source
