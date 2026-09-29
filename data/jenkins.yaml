@@ -38,7 +38,7 @@ projects:
                 url: https://www.jenkins.io/doc/book/platform-information/support-policy-java/
                 accessedAt: '2026-09-29'
               - title: Jenkins 2.584 changelog
-                url: https://www.jenkins.io/changelog/2.584/
+                url: https://www.jenkins.io/changelog/#v2.584
                 accessedAt: '2026-09-29'
             lastVerified: '2026-09-29'
       '2.568':
