@@ -1,12 +1,12 @@
 x-jenkins-java-support-source: &jenkins_java_support_source
   title: Jenkins Java Support Policy
   url: https://www.jenkins.io/doc/book/platform-information/support-policy-java/
-  accessedAt: '2026-09-29'
+  accessedAt: '2026-10-01'
 
-x-jenkins-2568-source: &jenkins_2568_source
-  title: Jenkins 2.568.3 changelog
-  url: https://www.jenkins.io/changelog/2.568.3/
-  accessedAt: '2026-09-29'
+x-jenkins-25801-source: &jenkins_25801_source
+  title: Jenkins 2.580.1 changelog
+  url: https://www.jenkins.io/changelog/2.580.1/
+  accessedAt: '2026-10-01'
 
 projects:
   jenkins:
@@ -33,15 +33,15 @@ projects:
             sources:
               - title: Jenkins 2.584 tagged Java test configurations
                 url: https://github.com/jenkinsci/jenkins/blob/jenkins-2.584/Jenkinsfile
-                accessedAt: '2026-09-29'
+                accessedAt: '2026-10-01'
               - title: Jenkins Java Support Policy
                 url: https://www.jenkins.io/doc/book/platform-information/support-policy-java/
-                accessedAt: '2026-09-29'
+                accessedAt: '2026-10-01'
               - title: Jenkins 2.584 changelog
                 url: https://www.jenkins.io/changelog/#v2.584
-                accessedAt: '2026-09-29'
-            lastVerified: '2026-09-29'
-      '2.568':
+                accessedAt: '2026-10-01'
+            lastVerified: '2026-10-01'
+      '2.580.1':
         dependencies:
           java:
             ranges:
@@ -50,14 +50,14 @@ projects:
             relationship: controller, agent, and CLI runtime
             confidence: high
             notes:
-              - Jenkins LTS 2.568.1 through 2.568.3 list Java 21 and Java 25 as their tested JDK configurations.
+              - Jenkins LTS 2.580.1 lists Java 21 and Java 25 as its tested JDK configurations.
               - The same Java requirement applies to Jenkins controllers, all agent types, CLI clients, and other Jenkins system components.
               - JDK versions used by jobs and build tools are independent and are not modeled by this entry.
             sources:
-              - *jenkins_2568_source
-              - title: Jenkins 2.568.3 tagged Java test configurations
-                url: https://github.com/jenkinsci/jenkins/blob/jenkins-2.568.3/Jenkinsfile
-                accessedAt: '2026-09-29'
+              - *jenkins_25801_source
+              - title: Jenkins 2.580.1 tagged Java test configurations
+                url: https://github.com/jenkinsci/jenkins/blob/jenkins-2.580.1/Jenkinsfile
+                accessedAt: '2026-10-01'
               - *jenkins_java_support_source
-            lastVerified: '2026-09-29'
+            lastVerified: '2026-10-01'
             basis: tested

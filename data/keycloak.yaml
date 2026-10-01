@@ -6,6 +6,98 @@ projects:
       - Identity
     website: https://www.keycloak.org/
     versions:
+      '26.8':
+        dependencies:
+          postgresql:
+            ranges:
+              - '>=14.0.0 <19.0.0'
+            relationship: database
+            confidence: high
+            notes:
+              - Keycloak 26.8 supported configurations list PostgreSQL 18.x, 17.x, 16.x, 15.x, and 14.x.
+            sources:
+              - title: Keycloak 26.8.0 supported database versions
+                url: https://raw.githubusercontent.com/keycloak/keycloak/26.8.0/docs/guides/server/templates/databases.adoc
+                accessedAt: '2026-10-01'
+            lastVerified: '2026-10-01'
+          amazon-aurora-postgresql:
+            ranges:
+              - '>=15.0.0 <18.0.0'
+            relationship: database
+            confidence: high
+            notes:
+              - Keycloak 26.8 supported configurations list Amazon Aurora PostgreSQL 17.x, 16.x, and 15.x.
+            sources:
+              - title: Keycloak 26.8.0 supported database versions
+                url: https://raw.githubusercontent.com/keycloak/keycloak/26.8.0/docs/guides/server/templates/databases.adoc
+                accessedAt: '2026-10-01'
+            lastVerified: '2026-10-01'
+          enterprisedb-advanced:
+            ranges:
+              - '>=17.0.0 <19.0.0'
+            relationship: database
+            confidence: high
+            notes:
+              - Keycloak 26.8 supported configurations list EnterpriseDB Advanced 18.x and 17.x.
+            sources:
+              - title: Keycloak 26.8.0 supported database versions
+                url: https://raw.githubusercontent.com/keycloak/keycloak/26.8.0/docs/guides/server/templates/databases.adoc
+                accessedAt: '2026-10-01'
+            lastVerified: '2026-10-01'
+          mariadb:
+            ranges:
+              - '>=10.6.0 <10.7.0'
+              - '>=10.11.0 <10.12.0'
+              - '>=11.4.0 <11.5.0'
+              - '>=11.8.0 <11.9.0'
+            relationship: database
+            confidence: high
+            notes:
+              - Keycloak 26.8 supported configurations list MariaDB Server 11.8 LTS, 11.4 LTS, 10.11 LTS, and 10.6 LTS.
+            sources:
+              - title: Keycloak 26.8.0 supported database versions
+                url: https://raw.githubusercontent.com/keycloak/keycloak/26.8.0/docs/guides/server/templates/databases.adoc
+                accessedAt: '2026-10-01'
+            lastVerified: '2026-10-01'
+          mssql:
+            ranges:
+              - '>=2019.0.0 <2020.0.0'
+              - '>=2022.0.0 <2023.0.0'
+            relationship: database
+            confidence: high
+            notes:
+              - Keycloak 26.8 supported configurations list Microsoft SQL Server 2022 and 2019.
+            sources:
+              - title: Keycloak 26.8.0 supported database versions
+                url: https://raw.githubusercontent.com/keycloak/keycloak/26.8.0/docs/guides/server/templates/databases.adoc
+                accessedAt: '2026-10-01'
+            lastVerified: '2026-10-01'
+          mysql:
+            ranges:
+              - '>=8.0.0 <8.1.0'
+              - '>=8.4.0 <8.5.0'
+            relationship: database
+            confidence: high
+            notes:
+              - Keycloak 26.8 supported configurations list MySQL 8.4 LTS and 8.0 LTS.
+            sources:
+              - title: Keycloak 26.8.0 supported database versions
+                url: https://raw.githubusercontent.com/keycloak/keycloak/26.8.0/docs/guides/server/templates/databases.adoc
+                accessedAt: '2026-10-01'
+            lastVerified: '2026-10-01'
+          oracle:
+            ranges:
+              - '>=19.3.0 <20.0.0'
+              - '>=23.5.0 <24.0.0'
+            relationship: database
+            confidence: high
+            notes:
+              - Keycloak 26.8 supported configurations list Oracle Database 23.x from 23.5 and 19c from 19.3.
+            sources:
+              - title: Keycloak 26.8.0 supported database versions
+                url: https://raw.githubusercontent.com/keycloak/keycloak/26.8.0/docs/guides/server/templates/databases.adoc
+                accessedAt: '2026-10-01'
+            lastVerified: '2026-10-01'
       '26.7':
         dependencies:
           postgresql:
@@ -18,11 +110,11 @@ projects:
             sources:
               - title: Keycloak 26.7.0 supported database versions
                 url: https://raw.githubusercontent.com/keycloak/keycloak/26.7.0/docs/guides/server/templates/databases.adoc
-                accessedAt: '2026-09-29'
+                accessedAt: '2026-10-01'
               - title: Keycloak 26.7.4 supported database versions
                 url: https://raw.githubusercontent.com/keycloak/keycloak/26.7.4/docs/guides/server/templates/databases.adoc
-                accessedAt: '2026-09-29'
-            lastVerified: '2026-09-29'
+                accessedAt: '2026-10-01'
+            lastVerified: '2026-10-01'
           amazon-aurora-postgresql:
             ranges:
               - '>=15.0.0 <18.0.0'
@@ -33,11 +125,11 @@ projects:
             sources:
               - title: Keycloak 26.7.0 supported database versions
                 url: https://raw.githubusercontent.com/keycloak/keycloak/26.7.0/docs/guides/server/templates/databases.adoc
-                accessedAt: '2026-09-29'
+                accessedAt: '2026-10-01'
               - title: Keycloak 26.7.4 supported database versions
                 url: https://raw.githubusercontent.com/keycloak/keycloak/26.7.4/docs/guides/server/templates/databases.adoc
-                accessedAt: '2026-09-29'
-            lastVerified: '2026-09-29'
+                accessedAt: '2026-10-01'
+            lastVerified: '2026-10-01'
           enterprisedb-advanced:
             ranges:
               - '>=17.0.0 <19.0.0'
@@ -48,11 +140,11 @@ projects:
             sources:
               - title: Keycloak 26.7.0 supported database versions
                 url: https://raw.githubusercontent.com/keycloak/keycloak/26.7.0/docs/guides/server/templates/databases.adoc
-                accessedAt: '2026-09-29'
+                accessedAt: '2026-10-01'
               - title: Keycloak 26.7.4 supported database versions
                 url: https://raw.githubusercontent.com/keycloak/keycloak/26.7.4/docs/guides/server/templates/databases.adoc
-                accessedAt: '2026-09-29'
-            lastVerified: '2026-09-29'
+                accessedAt: '2026-10-01'
+            lastVerified: '2026-10-01'
           mariadb:
             ranges:
               - '>=10.6.0 <10.7.0'
@@ -66,11 +158,11 @@ projects:
             sources:
               - title: Keycloak 26.7.0 supported database versions
                 url: https://raw.githubusercontent.com/keycloak/keycloak/26.7.0/docs/guides/server/templates/databases.adoc
-                accessedAt: '2026-09-29'
+                accessedAt: '2026-10-01'
               - title: Keycloak 26.7.4 supported database versions
                 url: https://raw.githubusercontent.com/keycloak/keycloak/26.7.4/docs/guides/server/templates/databases.adoc
-                accessedAt: '2026-09-29'
-            lastVerified: '2026-09-29'
+                accessedAt: '2026-10-01'
+            lastVerified: '2026-10-01'
           mssql:
             ranges:
               - '>=2019.0.0 <2020.0.0'
@@ -82,11 +174,11 @@ projects:
             sources:
               - title: Keycloak 26.7.0 supported database versions
                 url: https://raw.githubusercontent.com/keycloak/keycloak/26.7.0/docs/guides/server/templates/databases.adoc
-                accessedAt: '2026-09-29'
+                accessedAt: '2026-10-01'
               - title: Keycloak 26.7.4 supported database versions
                 url: https://raw.githubusercontent.com/keycloak/keycloak/26.7.4/docs/guides/server/templates/databases.adoc
-                accessedAt: '2026-09-29'
-            lastVerified: '2026-09-29'
+                accessedAt: '2026-10-01'
+            lastVerified: '2026-10-01'
           mysql:
             ranges:
               - '>=8.0.0 <8.1.0'
@@ -98,11 +190,11 @@ projects:
             sources:
               - title: Keycloak 26.7.0 supported database versions
                 url: https://raw.githubusercontent.com/keycloak/keycloak/26.7.0/docs/guides/server/templates/databases.adoc
-                accessedAt: '2026-09-29'
+                accessedAt: '2026-10-01'
               - title: Keycloak 26.7.4 supported database versions
                 url: https://raw.githubusercontent.com/keycloak/keycloak/26.7.4/docs/guides/server/templates/databases.adoc
-                accessedAt: '2026-09-29'
-            lastVerified: '2026-09-29'
+                accessedAt: '2026-10-01'
+            lastVerified: '2026-10-01'
           oracle:
             ranges:
               - '>=19.3.0 <20.0.0'
@@ -114,8 +206,8 @@ projects:
             sources:
               - title: Keycloak 26.7.0 supported database versions
                 url: https://raw.githubusercontent.com/keycloak/keycloak/26.7.0/docs/guides/server/templates/databases.adoc
-                accessedAt: '2026-09-29'
+                accessedAt: '2026-10-01'
               - title: Keycloak 26.7.4 supported database versions
                 url: https://raw.githubusercontent.com/keycloak/keycloak/26.7.4/docs/guides/server/templates/databases.adoc
-                accessedAt: '2026-09-29'
-            lastVerified: '2026-09-29'
+                accessedAt: '2026-10-01'
+            lastVerified: '2026-10-01'
