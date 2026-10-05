@@ -1,17 +1,17 @@
 x-kafka-4-3-java-source: &kafka_4_3_java_source
   title: Apache Kafka 4.3 Java Version
   url: https://kafka.apache.org/43/operations/java-version/
-  accessedAt: '2026-10-01'
+  accessedAt: '2026-10-05'
 
 x-kafka-4-2-java-source: &kafka_4_2_java_source
   title: Apache Kafka 4.2 Java Version
   url: https://kafka.apache.org/42/operations/java-version/
-  accessedAt: '2026-10-01'
+  accessedAt: '2026-10-05'
 
 x-kafka-4-1-java-source: &kafka_4_1_java_source
   title: Apache Kafka 4.1 Java Version
   url: https://kafka.apache.org/41/operations/java-version/
-  accessedAt: '2026-10-01'
+  accessedAt: '2026-10-05'
 
 projects:
   apache-kafka:
@@ -37,7 +37,7 @@ projects:
               - Java versions newer than the most recent LTS release receive only best-effort support and are not modeled.
             sources:
               - *kafka_4_3_java_source
-            lastVerified: '2026-10-01'
+            lastVerified: '2026-10-05'
           java-client:
             ranges:
               - '11'
@@ -51,7 +51,7 @@ projects:
               - This entry does not imply Java 11 support for brokers, Connect, or command-line tools.
             sources:
               - *kafka_4_3_java_source
-            lastVerified: '2026-10-01'
+            lastVerified: '2026-10-05'
       '4.2':
         dependencies:
           java:
@@ -66,7 +66,7 @@ projects:
               - Java versions newer than the most recent LTS release receive only best-effort support and are not modeled.
             sources:
               - *kafka_4_2_java_source
-            lastVerified: '2026-10-01'
+            lastVerified: '2026-10-05'
           java-client:
             ranges:
               - '11'
@@ -80,7 +80,7 @@ projects:
               - This entry does not imply Java 11 support for brokers, Connect, or command-line tools.
             sources:
               - *kafka_4_2_java_source
-            lastVerified: '2026-10-01'
+            lastVerified: '2026-10-05'
       '4.1':
         dependencies:
           java:
@@ -94,7 +94,7 @@ projects:
               - Java versions newer than the most recent LTS release receive only best-effort support and are not modeled.
             sources:
               - *kafka_4_1_java_source
-            lastVerified: '2026-10-01'
+            lastVerified: '2026-10-05'
           java-client:
             ranges:
               - '11'
@@ -107,4 +107,4 @@ projects:
               - This entry does not imply Java 11 support for brokers, Connect, or command-line tools.
             sources:
               - *kafka_4_1_java_source
-            lastVerified: '2026-10-01'
+            lastVerified: '2026-10-05'
