@@ -1,31 +1,31 @@
 x-mysql-single-release-source: &mysql_single_release_source
   title: MySQL single release model for Shell, Router, and Connectors
   url: https://blogs.oracle.com/mysql/mysql-release-models-lts-innovation-and-single-release
-  accessedAt: 2026-10-05
+  accessedAt: 2026-10-08
 x-mysql-shell-267-source: &mysql_shell_267_source
   title: MySQL Shell 26.7 compatibility and discontinued release series
   url: https://dev.mysql.com/doc/relnotes/mysql-shell/26.7/en/
-  accessedAt: '2026-10-05'
+  accessedAt: '2026-10-08'
 
 x-mysql-router-267-source: &mysql_router_267_source
   title: MySQL Router 26.7 Compatibility
   url: https://dev.mysql.com/doc/mysql-router/26.7/en/mysql-router-general.html
-  accessedAt: '2026-10-05'
+  accessedAt: '2026-10-08'
 
 x-mysql-connector-j-267-source: &mysql_connector_j_267_source
   title: MySQL Connector/J 26.7 Compatibility
   url: https://dev.mysql.com/doc/connector-j/en/connector-j-versions.html
-  accessedAt: '2026-10-05'
+  accessedAt: '2026-10-08'
 
 x-mysql-connector-python-267-source: &mysql_connector_python_267_source
   title: MySQL Connector/Python 26.7.0 Release Notes
   url: https://dev.mysql.com/doc/relnotes/connector-python/en/news-26-7-0.html
-  accessedAt: '2026-10-05'
+  accessedAt: '2026-10-08'
 
 x-mysql-connector-python-source: &mysql_connector_python_source
   title: MySQL Connector/Python Version Reference
   url: https://dev.mysql.com/doc/connector-python/en/connector-python-versions.html
-  accessedAt: '2026-10-05'
+  accessedAt: '2026-10-08'
 
 projects:
   mysql:
@@ -48,7 +48,7 @@ projects:
               - Upstream discontinued Shell 8.4 and 9.7 when Shell adopted the single release model in 26.7.
             sources:
               - *mysql_shell_267_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'
           mysql-router:
             ranges:
               - '26.7'
@@ -60,7 +60,7 @@ projects:
             sources:
               - *mysql_router_267_source
               - *mysql_single_release_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'
           mysql-connector-j:
             ranges:
               - '26.7'
@@ -71,7 +71,7 @@ projects:
             sources:
               - *mysql_connector_j_267_source
               - *mysql_single_release_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'
           mysql-connector-python:
             ranges:
               - '26.7'
@@ -83,7 +83,7 @@ projects:
               - *mysql_connector_python_267_source
               - *mysql_connector_python_source
               - *mysql_single_release_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'
       '9.7':
         dependencies:
           mysql-shell:
@@ -96,7 +96,7 @@ projects:
               - Upstream discontinued Shell 8.4 and 9.7 when Shell adopted the single release model in 26.7.
             sources:
               - *mysql_shell_267_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'
           mysql-router:
             ranges:
               - '26.7'
@@ -108,7 +108,7 @@ projects:
             sources:
               - *mysql_router_267_source
               - *mysql_single_release_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'
           mysql-connector-j:
             ranges:
               - '26.7'
@@ -119,7 +119,7 @@ projects:
             sources:
               - *mysql_connector_j_267_source
               - *mysql_single_release_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'
           mysql-connector-python:
             ranges:
               - '26.7'
@@ -131,7 +131,7 @@ projects:
               - *mysql_connector_python_267_source
               - *mysql_connector_python_source
               - *mysql_single_release_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'
       '8.4':
         dependencies:
           mysql-shell:
@@ -144,7 +144,7 @@ projects:
               - Upstream discontinued Shell 8.4 and 9.7 when Shell adopted the single release model in 26.7.
             sources:
               - *mysql_shell_267_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'
           mysql-router:
             ranges:
               - '26.7'
@@ -156,7 +156,7 @@ projects:
             sources:
               - *mysql_router_267_source
               - *mysql_single_release_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'
           mysql-connector-j:
             ranges:
               - '26.7'
@@ -167,7 +167,7 @@ projects:
             sources:
               - *mysql_connector_j_267_source
               - *mysql_single_release_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'
           mysql-connector-python:
             ranges:
               - '26.7'
@@ -179,4 +179,4 @@ projects:
               - *mysql_connector_python_267_source
               - *mysql_connector_python_source
               - *mysql_single_release_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'

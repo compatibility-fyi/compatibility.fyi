@@ -1,12 +1,12 @@
 x-jenkins-java-support-source: &jenkins_java_support_source
   title: Jenkins Java Support Policy
   url: https://www.jenkins.io/doc/book/platform-information/support-policy-java/
-  accessedAt: '2026-10-05'
+  accessedAt: '2026-10-08'
 
 x-jenkins-25801-source: &jenkins_25801_source
   title: Jenkins 2.580.1 changelog
   url: https://www.jenkins.io/changelog/2.580.1/
-  accessedAt: '2026-10-05'
+  accessedAt: '2026-10-08'
 
 projects:
   jenkins:
@@ -18,7 +18,7 @@ projects:
     website: https://www.jenkins.io/
     description: Jenkins weekly and LTS compatibility for the Java runtime used by controllers, agents, and CLI clients.
     versions:
-      '2.584':
+      '2.585':
         dependencies:
           java:
             ranges:
@@ -28,19 +28,19 @@ projects:
             basis: tested
             confidence: high
             notes:
-              - Jenkins weekly 2.584 tests Java 21 and Java 25 in its tagged build configuration, consistent with the Java support policy for weekly releases since 2.545.
+              - Jenkins weekly 2.585 tests Java 21 and Java 25 in its tagged build configuration, consistent with the Java support policy for weekly releases since 2.545.
               - These runtime requirements apply to controllers, agents, and CLI clients; JDK versions used by jobs and build tools are independent.
             sources:
-              - title: Jenkins 2.584 tagged Java test configurations
-                url: https://github.com/jenkinsci/jenkins/blob/jenkins-2.584/Jenkinsfile
-                accessedAt: '2026-10-05'
+              - title: Jenkins 2.585 tagged Java test configurations
+                url: https://github.com/jenkinsci/jenkins/blob/jenkins-2.585/Jenkinsfile
+                accessedAt: '2026-10-08'
               - title: Jenkins Java Support Policy
                 url: https://www.jenkins.io/doc/book/platform-information/support-policy-java/
-                accessedAt: '2026-10-05'
-              - title: Jenkins 2.584 changelog
-                url: https://www.jenkins.io/changelog/#v2.584
-                accessedAt: '2026-10-05'
-            lastVerified: '2026-10-05'
+                accessedAt: '2026-10-08'
+              - title: Jenkins 2.585 changelog
+                url: https://www.jenkins.io/changelog/#v2.585
+                accessedAt: '2026-10-08'
+            lastVerified: '2026-10-08'
       '2.580.1':
         dependencies:
           java:
@@ -57,7 +57,7 @@ projects:
               - *jenkins_25801_source
               - title: Jenkins 2.580.1 tagged Java test configurations
                 url: https://github.com/jenkinsci/jenkins/blob/jenkins-2.580.1/Jenkinsfile
-                accessedAt: '2026-10-05'
+                accessedAt: '2026-10-08'
               - *jenkins_java_support_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'
             basis: tested

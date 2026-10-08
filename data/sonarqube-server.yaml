@@ -1,32 +1,32 @@
 x-sonarqube-2026-4-host-source: &sonarqube_2026_4_host_source
   title: SonarQube Server 2026.4 host requirements
   url: https://docs.sonarsource.com/sonarqube-server/2026.4/server-installation/server-host-requirements
-  accessedAt: '2026-10-05'
+  accessedAt: '2026-10-08'
 
 x-sonarqube-2026-4-database-source: &sonarqube_2026_4_database_source
   title: SonarQube Server 2026.4 database requirements
   url: https://docs.sonarsource.com/sonarqube-server/2026.4/server-installation/installing-the-database
-  accessedAt: '2026-10-05'
+  accessedAt: '2026-10-08'
 
 x-sonarqube-2026-4-helm-source: &sonarqube_2026_4_helm_source
   title: SonarQube Server 2026.4.0 Helm chart compatibility
   url: https://github.com/SonarSource/helm-chart-sonarqube/blob/sonarqube-2026.4.0-sonarqube-dce-2026.4.0/charts/sonarqube/README.md
-  accessedAt: '2026-10-05'
+  accessedAt: '2026-10-08'
 
 x-sonarqube-2026-5-host-source: &sonarqube_2026_5_host_source
   title: SonarQube Server 2026.5 host requirements
   url: https://docs.sonarsource.com/sonarqube-server/2026.5/server-installation/server-host-requirements
-  accessedAt: '2026-10-05'
+  accessedAt: '2026-10-08'
 
 x-sonarqube-2026-5-database-source: &sonarqube_2026_5_database_source
   title: SonarQube Server 2026.5 database requirements
   url: https://docs.sonarsource.com/sonarqube-server/2026.5/server-installation/installing-the-database
-  accessedAt: '2026-10-05'
+  accessedAt: '2026-10-08'
 
 x-sonarqube-2026-5-helm-source: &sonarqube_2026_5_helm_source
-  title: SonarQube Server 2026.5.1001 Helm chart compatibility
-  url: https://github.com/SonarSource/helm-chart-sonarqube/blob/sonarqube-2026.5.1001-sonarqube-dce-2026.5.1001/charts/sonarqube/README.md
-  accessedAt: '2026-10-05'
+  title: SonarQube Server 2026.5.1002 Helm chart compatibility
+  url: https://github.com/SonarSource/helm-chart-sonarqube/blob/sonarqube-2026.5.1002-sonarqube-dce-2026.5.1002/charts/sonarqube/README.md
+  accessedAt: '2026-10-08'
 
 projects:
   sonarqube-server:
@@ -50,7 +50,7 @@ projects:
               - SonarQube Server 2026.5 ZIP installations support Java 21 or Java 25 and require a full JDK rather than only a JRE.
             sources:
               - *sonarqube_2026_5_host_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'
           postgresql:
             ranges:
               - '>=15 <19'
@@ -60,7 +60,7 @@ projects:
               - SonarQube Server 2026.5 supports PostgreSQL 15 through 18.
             sources:
               - *sonarqube_2026_5_database_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'
           microsoft-sql-server:
             ranges:
               - '>=14 <18'
@@ -70,7 +70,7 @@ projects:
               - SonarQube Server 2026.5 supports Microsoft SQL Server internal versions 14.0 through 17.0, corresponding to SQL Server 2017, 2019, 2022, and 2025.
             sources:
               - *sonarqube_2026_5_database_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'
           oracle:
             ranges:
               - '19c'
@@ -83,28 +83,28 @@ projects:
               - SonarQube Server 2026.5 supports Oracle 19c, 21c, 26ai, and XE editions.
             sources:
               - *sonarqube_2026_5_database_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'
           kubernetes:
             ranges:
               - '>=1.34 <1.38'
             relationship: Helm deployment platform
             confidence: high
             notes:
-              - The SonarQube Server 2026.5.1 Helm chart 2026.5.1001 supports Kubernetes 1.34 through 1.37.
+              - The SonarQube Server 2026.5.1 Helm chart 2026.5.1002 supports Kubernetes 1.34 through 1.37.
               - This platform range applies to non-OpenShift Kubernetes clusters deployed through the official SonarQube Helm chart.
             sources:
               - *sonarqube_2026_5_helm_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'
           openshift:
             ranges:
               - '>=4.19 <4.23'
             relationship: Helm deployment platform
             confidence: high
             notes:
-              - The SonarQube Server 2026.5.1 Helm chart 2026.5.1001 supports OpenShift 4.19 through 4.22 as a separately validated platform, including its embedded Kubernetes version.
+              - The SonarQube Server 2026.5.1 Helm chart 2026.5.1002 supports OpenShift 4.19 through 4.22 as a separately validated platform, including its embedded Kubernetes version.
             sources:
               - *sonarqube_2026_5_helm_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'
       '2026.4':
         dependencies:
           java:
@@ -117,7 +117,7 @@ projects:
               - SonarQube Server 2026.4 supports Java 21 or Java 25 and requires a full JDK rather than only a JRE.
             sources:
               - *sonarqube_2026_4_host_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'
           postgresql:
             ranges:
               - '>=14 <19'
@@ -127,7 +127,7 @@ projects:
               - SonarQube Server 2026.4 supports PostgreSQL 14 through 18.
             sources:
               - *sonarqube_2026_4_database_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'
           microsoft-sql-server:
             ranges:
               - '>=14 <17'
@@ -137,7 +137,7 @@ projects:
               - SonarQube Server 2026.4 supports Microsoft SQL Server internal versions 14.0 through 16.0, corresponding to SQL Server 2017, 2019, and 2022.
             sources:
               - *sonarqube_2026_4_database_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'
           oracle:
             ranges:
               - '19c'
@@ -150,7 +150,7 @@ projects:
               - SonarQube Server 2026.4 supports Oracle 19c, 21c, 23ai, and XE editions.
             sources:
               - *sonarqube_2026_4_database_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'
           kubernetes:
             ranges:
               - '>=1.32 <1.36'
@@ -161,7 +161,7 @@ projects:
               - This platform range applies to non-OpenShift Kubernetes clusters deployed through the official SonarQube Helm chart.
             sources:
               - *sonarqube_2026_4_helm_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'
           openshift:
             ranges:
               - '>=4.17 <4.21'
@@ -171,7 +171,7 @@ projects:
               - The SonarQube Server 2026.4.0 Helm chart supports OpenShift 4.17 through 4.20 as a separately validated platform, including its embedded Kubernetes version.
             sources:
               - *sonarqube_2026_4_helm_source
-            lastVerified: '2026-10-05'
+            lastVerified: '2026-10-08'
       '2026.1':
         dependencies:
           java:
@@ -185,8 +185,8 @@ projects:
             sources:
               - title: SonarQube Server 2026.1 host requirements
                 url: https://docs.sonarsource.com/sonarqube-server/2026.1/server-installation/server-host-requirements
-                accessedAt: '2026-10-05'
-            lastVerified: '2026-10-05'
+                accessedAt: '2026-10-08'
+            lastVerified: '2026-10-08'
           postgresql:
             ranges:
               - '>=14 <19'
@@ -197,8 +197,8 @@ projects:
             sources:
               - title: SonarQube Server 2026.1 database requirements
                 url: https://docs.sonarsource.com/sonarqube-server/2026.1/server-installation/installing-the-database
-                accessedAt: '2026-10-05'
-            lastVerified: '2026-10-05'
+                accessedAt: '2026-10-08'
+            lastVerified: '2026-10-08'
           microsoft-sql-server:
             ranges:
               - '>=14 <17'
@@ -209,8 +209,8 @@ projects:
             sources:
               - title: SonarQube Server 2026.1 database requirements
                 url: https://docs.sonarsource.com/sonarqube-server/2026.1/server-installation/installing-the-database
-                accessedAt: '2026-10-05'
-            lastVerified: '2026-10-05'
+                accessedAt: '2026-10-08'
+            lastVerified: '2026-10-08'
           oracle:
             ranges:
               - 19c
@@ -224,8 +224,8 @@ projects:
             sources:
               - title: SonarQube Server 2026.1 database requirements
                 url: https://docs.sonarsource.com/sonarqube-server/2026.1/server-installation/installing-the-database
-                accessedAt: '2026-10-05'
-            lastVerified: '2026-10-05'
+                accessedAt: '2026-10-08'
+            lastVerified: '2026-10-08'
           kubernetes:
             ranges:
               - '>=1.32 <1.36'
@@ -237,8 +237,8 @@ projects:
             sources:
               - title: SonarQube Server 2026.1.0 Helm chart compatibility
                 url: https://github.com/SonarSource/helm-chart-sonarqube/blob/sonarqube-2026.1.0-sonarqube-dce-2026.1.0/charts/sonarqube/README.md
-                accessedAt: '2026-10-05'
-            lastVerified: '2026-10-05'
+                accessedAt: '2026-10-08'
+            lastVerified: '2026-10-08'
           openshift:
             ranges:
               - '>=4.17 <4.21'
@@ -250,5 +250,5 @@ projects:
             sources:
               - title: SonarQube Server 2026.1.0 Helm chart compatibility
                 url: https://github.com/SonarSource/helm-chart-sonarqube/blob/sonarqube-2026.1.0-sonarqube-dce-2026.1.0/charts/sonarqube/README.md
-                accessedAt: '2026-10-05'
-            lastVerified: '2026-10-05'
+                accessedAt: '2026-10-08'
+            lastVerified: '2026-10-08'
