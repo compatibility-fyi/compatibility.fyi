@@ -11,8 +11,6 @@ export default defineConfig({
     }),
   ],
   test: {
-    // Workers cannot read Vitest 5.0.4's host filesystem module cache.
-    fsModuleCache: false,
     globals: true,
     include: ['tests/**/*.test.ts'],
   },
