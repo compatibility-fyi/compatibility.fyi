@@ -1,7 +1,7 @@
 x-helm-version-skew-source: &helm_version_skew_source
   title: Helm Version Support Policy
   url: https://helm.sh/docs/topics/version_skew/
-  accessedAt: '2026-10-08'
+  accessedAt: '2026-10-15'
 
 projects:
   helm:
@@ -23,10 +23,10 @@ projects:
               - Helm version support policy lists Helm 4.3.x as supporting Kubernetes 1.37.x through 1.34.x.
             sources:
               - *helm_version_skew_source
-              - title: Helm v4.3.0 release
-                url: https://github.com/helm/helm/releases/tag/v4.3.0
-                accessedAt: 2026-10-08
-            lastVerified: '2026-10-08'
+              - title: Helm v4.3.1 release
+                url: https://github.com/helm/helm/releases/tag/v4.3.1
+                accessedAt: 2026-10-15
+            lastVerified: '2026-10-15'
       '3.22':
         dependencies:
           kubernetes:
@@ -39,8 +39,8 @@ projects:
             sources:
               - title: Helm 3 Version Support Policy
                 url: https://helm.sh/docs/v3/topics/version_skew/
-                accessedAt: '2026-10-08'
+                accessedAt: '2026-10-15'
               - title: Helm v3.22.0 release
                 url: https://github.com/helm/helm/releases/tag/v3.22.0
-                accessedAt: '2026-10-08'
-            lastVerified: '2026-10-08'
+                accessedAt: '2026-10-15'
+            lastVerified: '2026-10-15'
