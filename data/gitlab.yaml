@@ -1,3 +1,11 @@
+x-gitlab-19-5-requirements-source: &gitlab_195_requirements
+  title: GitLab 19.5.0 tagged requirements
+  url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.5.0-ee/doc/install/requirements.md
+  accessedAt: '2026-10-15'
+x-gitlab-19-5-pipeline-source: &gitlab_195_pipeline
+  title: GitLab 19.5.0 tagged pipeline compatibility tests
+  url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.5.0-ee/doc/development/pipelines/_index.md
+  accessedAt: '2026-10-15'
 x-gitlab-19-4-requirements-source: &gitlab_194_requirements
   title: GitLab 19.4.0 tagged requirements
   url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.4.0-ee/doc/install/requirements.md
@@ -32,6 +40,66 @@ projects:
     website: https://about.gitlab.com/
     description: GitLab self-managed compatibility for PostgreSQL, Redis, and Valkey, including Helm and Linux-package deployment requirements.
     versions:
+      '19.5':
+        dependencies:
+          postgresql:
+            ranges:
+              - '>=17 <19'
+            relationship: database
+            confidence: high
+            notes:
+              - GitLab 19.x requirements list PostgreSQL 17.x as the minimum and PostgreSQL 18.x as the maximum supported version.
+            sources:
+              - *gitlab_195_requirements
+            lastVerified: '2026-10-15'
+          redis:
+            ranges:
+              - '>=7 <8'
+            relationship: cache and background jobs
+            confidence: high
+            notes:
+              - GitLab 19.x requirements recommend Redis 7.2 and require Redis 7.0 or newer.
+            sources:
+              - *gitlab_195_requirements
+            lastVerified: '2026-10-15'
+          valkey:
+            ranges:
+              - '7.2'
+            relationship: cache and background jobs
+            confidence: high
+            notes:
+              - GitLab 19.5.0 requirements specify Valkey 7.2 as the recommended and minimum version, and weekly pipelines test the 7.2 release line. No broader Valkey minor-version support is inferred.
+            sources:
+              - *gitlab_195_requirements
+              - *gitlab_195_pipeline
+            lastVerified: '2026-10-15'
+          postgresql-helm-deployment:
+            ranges:
+              - '>=17 <19'
+            relationship: Helm deployment external database
+            confidence: high
+            notes:
+              - GitLab 19.x requirements map Helm chart 10.x to GitLab 19.x and list PostgreSQL 17.x through 18.x as the supported database range.
+            sources:
+              - title: GitLab 19.5.0 tagged requirements
+                url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.5.0-ee/doc/install/requirements.md
+                accessedAt: '2026-10-15'
+            lastVerified: '2026-10-15'
+          valkey-helm-deployment:
+            ranges:
+              - '7.2'
+            relationship: Helm deployment external cache and background jobs
+            confidence: high
+            notes:
+              - GitLab Helm chart 10.x maps to GitLab 19.x; GitLab 19.5.0 requirements and weekly compatibility pipelines document Valkey 7.2. No broader Valkey minor-version support is inferred.
+            sources:
+              - title: GitLab 19.5.0 tagged requirements
+                url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.5.0-ee/doc/install/requirements.md
+                accessedAt: '2026-10-15'
+              - title: GitLab 19.5.0 tagged pipeline compatibility tests
+                url: https://gitlab.com/gitlab-org/gitlab/-/blob/v19.5.0-ee/doc/development/pipelines/_index.md
+                accessedAt: '2026-10-15'
+            lastVerified: '2026-10-15'
       '19.4':
         dependencies:
           postgresql:

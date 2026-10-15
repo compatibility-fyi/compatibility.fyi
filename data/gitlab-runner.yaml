@@ -24,6 +24,20 @@ projects:
     website: https://docs.gitlab.com/runner/
     description: GitLab Runner compatibility with GitLab coordinator versions.
     versions:
+      '19.5':
+        dependencies:
+          gitlab:
+            ranges:
+              - '>=19.5 <19.6'
+            relationship: coordinator
+            confidence: high
+            notes:
+              - GitLab recommends keeping GitLab Runner major.minor in sync with the GitLab major.minor version.
+              - Older or newer runners may still work, but features may be unavailable or not work properly when versions differ.
+            sources:
+              - *gitlab_runner_1
+            lastVerified: '2026-10-15'
+            basis: recommended
       '19.4':
         dependencies:
           gitlab:
