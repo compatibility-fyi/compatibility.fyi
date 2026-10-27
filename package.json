@@ -31,8 +31,7 @@
     "sharp": "0.35.5",
     "miniflare": {
       "undici": "7.30.1"
-    },
-    "zod": "4.6.7"
+    }
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.43.2",
