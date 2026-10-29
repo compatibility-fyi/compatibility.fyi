@@ -1,17 +1,17 @@
+x-kafka-4-4-java-source: &kafka_4_4_java_source
+  title: Apache Kafka 4.4 Java Version
+  url: https://kafka.apache.org/44/operations/java-version/
+  accessedAt: '2026-10-29'
+
 x-kafka-4-3-java-source: &kafka_4_3_java_source
   title: Apache Kafka 4.3 Java Version
   url: https://kafka.apache.org/43/operations/java-version/
-  accessedAt: '2026-10-15'
+  accessedAt: '2026-10-29'
 
 x-kafka-4-2-java-source: &kafka_4_2_java_source
   title: Apache Kafka 4.2 Java Version
   url: https://kafka.apache.org/42/operations/java-version/
-  accessedAt: '2026-10-15'
-
-x-kafka-4-1-java-source: &kafka_4_1_java_source
-  title: Apache Kafka 4.1 Java Version
-  url: https://kafka.apache.org/41/operations/java-version/
-  accessedAt: '2026-10-15'
+  accessedAt: '2026-10-29'
 
 projects:
   apache-kafka:
@@ -23,6 +23,35 @@ projects:
     website: https://kafka.apache.org/
     description: Apache Kafka release-line compatibility for server-side and client-side Java runtimes.
     versions:
+      '4.4':
+        dependencies:
+          java:
+            ranges:
+              - '17'
+              - '21'
+              - '25'
+            relationship: broker, Connect, and command-line tools runtime
+            confidence: high
+            notes:
+              - Apache Kafka 4.4 fully supports Java 17, Java 21, and Java 25 across its modules.
+              - Java versions newer than the most recent LTS release receive only best-effort support and are not modeled.
+            sources:
+              - *kafka_4_4_java_source
+            lastVerified: '2026-10-29'
+          java-client:
+            ranges:
+              - '11'
+              - '17'
+              - '21'
+              - '25'
+            relationship: clients, Streams, and related modules runtime
+            confidence: high
+            notes:
+              - Apache Kafka 4.4 supports Java 11 for clients, Streams, and related modules in addition to the fully supported Java versions.
+              - This entry does not imply Java 11 support for brokers, Connect, or command-line tools.
+            sources:
+              - *kafka_4_4_java_source
+            lastVerified: '2026-10-29'
       '4.3':
         dependencies:
           java:
@@ -37,7 +66,7 @@ projects:
               - Java versions newer than the most recent LTS release receive only best-effort support and are not modeled.
             sources:
               - *kafka_4_3_java_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           java-client:
             ranges:
               - '11'
@@ -51,7 +80,7 @@ projects:
               - This entry does not imply Java 11 support for brokers, Connect, or command-line tools.
             sources:
               - *kafka_4_3_java_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
       '4.2':
         dependencies:
           java:
@@ -66,7 +95,7 @@ projects:
               - Java versions newer than the most recent LTS release receive only best-effort support and are not modeled.
             sources:
               - *kafka_4_2_java_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           java-client:
             ranges:
               - '11'
@@ -80,31 +109,4 @@ projects:
               - This entry does not imply Java 11 support for brokers, Connect, or command-line tools.
             sources:
               - *kafka_4_2_java_source
-            lastVerified: '2026-10-15'
-      '4.1':
-        dependencies:
-          java:
-            ranges:
-              - '17'
-              - '21'
-            relationship: broker, Connect, and command-line tools runtime
-            confidence: high
-            notes:
-              - Apache Kafka 4.1 fully supports Java 17 and Java 21 across its modules.
-              - Java versions newer than the most recent LTS release receive only best-effort support and are not modeled.
-            sources:
-              - *kafka_4_1_java_source
-            lastVerified: '2026-10-15'
-          java-client:
-            ranges:
-              - '11'
-              - '17'
-              - '21'
-            relationship: clients, Streams, and related modules runtime
-            confidence: high
-            notes:
-              - Apache Kafka 4.1 supports Java 11 for clients, Streams, and related modules in addition to the fully supported Java versions.
-              - This entry does not imply Java 11 support for brokers, Connect, or command-line tools.
-            sources:
-              - *kafka_4_1_java_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'

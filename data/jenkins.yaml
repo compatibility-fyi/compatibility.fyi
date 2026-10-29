@@ -1,12 +1,12 @@
 x-jenkins-java-support-source: &jenkins_java_support_source
   title: Jenkins Java Support Policy
   url: https://www.jenkins.io/doc/book/platform-information/support-policy-java/
-  accessedAt: '2026-10-15'
+  accessedAt: '2026-10-29'
 
-x-jenkins-25801-source: &jenkins_25801_source
-  title: Jenkins 2.580.1 changelog
-  url: https://www.jenkins.io/changelog/2.580.1/
-  accessedAt: '2026-10-15'
+x-jenkins-25802-source: &jenkins_25802_source
+  title: Jenkins 2.580.2 changelog
+  url: https://www.jenkins.io/changelog/2.580.2/
+  accessedAt: '2026-10-29'
 
 projects:
   jenkins:
@@ -18,7 +18,7 @@ projects:
     website: https://www.jenkins.io/
     description: Jenkins weekly and LTS compatibility for the Java runtime used by controllers, agents, and CLI clients.
     versions:
-      '2.586':
+      '2.588':
         dependencies:
           java:
             ranges:
@@ -28,20 +28,20 @@ projects:
             basis: tested
             confidence: high
             notes:
-              - Jenkins weekly 2.586 tests Java 21 and Java 25 in its tagged build configuration, consistent with the Java support policy for weekly releases since 2.545.
+              - Jenkins weekly 2.588 tests Java 21 and Java 25 in its tagged build configuration, consistent with the Java support policy for weekly releases since 2.545.
               - These runtime requirements apply to controllers, agents, and CLI clients; JDK versions used by jobs and build tools are independent.
             sources:
-              - title: Jenkins 2.586 tagged Java test configurations
-                url: https://github.com/jenkinsci/jenkins/blob/jenkins-2.586/Jenkinsfile
-                accessedAt: '2026-10-15'
+              - title: Jenkins 2.588 tagged Java test configurations
+                url: https://github.com/jenkinsci/jenkins/blob/jenkins-2.588/Jenkinsfile
+                accessedAt: '2026-10-29'
               - title: Jenkins Java Support Policy
                 url: https://www.jenkins.io/doc/book/platform-information/support-policy-java/
-                accessedAt: '2026-10-15'
-              - title: Jenkins 2.586 changelog
-                url: https://www.jenkins.io/changelog/#v2.586
-                accessedAt: '2026-10-15'
-            lastVerified: '2026-10-15'
-      '2.580.1':
+                accessedAt: '2026-10-29'
+              - title: Jenkins 2.588 changelog
+                url: https://www.jenkins.io/changelog/#v2.588
+                accessedAt: '2026-10-29'
+            lastVerified: '2026-10-29'
+      '2.580.2':
         dependencies:
           java:
             ranges:
@@ -50,14 +50,14 @@ projects:
             relationship: controller, agent, and CLI runtime
             confidence: high
             notes:
-              - Jenkins LTS 2.580.1 lists Java 21 and Java 25 as its tested JDK configurations.
+              - Jenkins LTS 2.580.2 lists Java 21 and Java 25 as its tested JDK configurations.
               - The same Java requirement applies to Jenkins controllers, all agent types, CLI clients, and other Jenkins system components.
               - JDK versions used by jobs and build tools are independent and are not modeled by this entry.
             sources:
-              - *jenkins_25801_source
-              - title: Jenkins 2.580.1 tagged Java test configurations
-                url: https://github.com/jenkinsci/jenkins/blob/jenkins-2.580.1/Jenkinsfile
-                accessedAt: '2026-10-15'
+              - *jenkins_25802_source
+              - title: Jenkins 2.580.2 tagged Java test configurations
+                url: https://github.com/jenkinsci/jenkins/blob/jenkins-2.580.2/Jenkinsfile
+                accessedAt: '2026-10-29'
               - *jenkins_java_support_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
             basis: tested

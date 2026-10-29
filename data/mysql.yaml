@@ -1,31 +1,40 @@
+x-mysql-2610-release-source: &mysql_2610_release_source
+  title: MySQL October 2026 GA releases
+  url: https://blogs.oracle.com/mysql/mysql-october-2026-ga-releases-now-available
+  accessedAt: '2026-10-29'
+x-mysql-lifecycle-source: &mysql_lifecycle_source
+  title: MySQL Innovation and LTS support lifecycle
+  url: https://dev.mysql.com/doc/refman/8.4/en/mysql-releases.html
+  accessedAt: '2026-10-29'
+
 x-mysql-single-release-source: &mysql_single_release_source
   title: MySQL single release model for Shell, Router, and Connectors
   url: https://blogs.oracle.com/mysql/mysql-release-models-lts-innovation-and-single-release
-  accessedAt: 2026-10-15
-x-mysql-shell-267-source: &mysql_shell_267_source
-  title: MySQL Shell 26.7 compatibility and discontinued release series
-  url: https://dev.mysql.com/doc/relnotes/mysql-shell/26.7/en/
-  accessedAt: '2026-10-15'
+  accessedAt: 2026-10-29
+x-mysql-shell-2610-source: &mysql_shell_2610_source
+  title: MySQL Shell 26.10 release notes and supported-server policy
+  url: https://dev.mysql.com/doc/relnotes/mysql-shell/26.10/en/
+  accessedAt: '2026-10-29'
 
-x-mysql-router-267-source: &mysql_router_267_source
-  title: MySQL Router 26.7 Compatibility
-  url: https://dev.mysql.com/doc/mysql-router/26.7/en/mysql-router-general.html
-  accessedAt: '2026-10-15'
+x-mysql-router-2610-source: &mysql_router_2610_source
+  title: MySQL Router 26.10 Compatibility
+  url: https://dev.mysql.com/doc/mysql-router/26.10/en/mysql-router-general.html
+  accessedAt: '2026-10-29'
 
-x-mysql-connector-j-267-source: &mysql_connector_j_267_source
-  title: MySQL Connector/J 26.7 Compatibility
+x-mysql-connector-j-2610-source: &mysql_connector_j_2610_source
+  title: MySQL Connector/J 26.10 Compatibility
   url: https://dev.mysql.com/doc/connector-j/en/connector-j-versions.html
-  accessedAt: '2026-10-15'
+  accessedAt: '2026-10-29'
 
-x-mysql-connector-python-267-source: &mysql_connector_python_267_source
-  title: MySQL Connector/Python 26.7.0 Release Notes
-  url: https://dev.mysql.com/doc/relnotes/connector-python/en/news-26-7-0.html
-  accessedAt: '2026-10-15'
+x-mysql-connector-python-2610-source: &mysql_connector_python_2610_source
+  title: MySQL Connector/Python 26.10.0 Release Notes
+  url: https://dev.mysql.com/doc/relnotes/connector-python/en/news-26-10-0.html
+  accessedAt: '2026-10-29'
 
 x-mysql-connector-python-source: &mysql_connector_python_source
   title: MySQL Connector/Python Version Reference
   url: https://dev.mysql.com/doc/connector-python/en/connector-python-versions.html
-  accessedAt: '2026-10-15'
+  accessedAt: '2026-10-29'
 
 projects:
   mysql:
@@ -36,147 +45,153 @@ projects:
     website: https://www.mysql.com/
     description: MySQL Server compatibility with official administration, routing, and client tools.
     versions:
-      '26.7':
+      '26.10':
         dependencies:
           mysql-shell:
             ranges:
-              - '26.7'
+              - '26.10'
             relationship: administration client
             confidence: high
             notes:
-              - MySQL Shell 26.7 supports MySQL Server 8.4, 9.7, and 26.7.
-              - Upstream discontinued Shell 8.4 and 9.7 when Shell adopted the single release model in 26.7.
+              - MySQL Shell 26.10 supports MySQL Server 8.4, 9.7, and 26.10.
+              - The single release policy replaces Shell 26.7 with 26.10 and supports all active MySQL Server release lines.
             sources:
-              - *mysql_shell_267_source
-            lastVerified: '2026-10-15'
+              - *mysql_shell_2610_source
+              - *mysql_2610_release_source
+              - *mysql_lifecycle_source
+            lastVerified: '2026-10-29'
           mysql-router:
             ranges:
-              - '26.7'
+              - '26.10'
             relationship: routing proxy
             confidence: high
             notes:
-              - MySQL Router 26.7 officially supports MySQL Server 8.4, 9.7, and 26.7.
+              - MySQL Router 26.10 officially supports MySQL Server 8.4, 9.7, and 26.10.
               - Upstream discontinued the separate Router 8.4 and 9.7 series when adopting the single release model.
             sources:
-              - *mysql_router_267_source
+              - *mysql_router_2610_source
               - *mysql_single_release_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           mysql-connector-j:
             ranges:
-              - '26.7'
+              - '26.10'
             relationship: Java client driver
             confidence: high
             notes:
-              - MySQL Connector/J 26.7 supports MySQL Server 8.4 and newer and requires JRE 8 or newer.
+              - MySQL Connector/J 26.10 supports MySQL Server 8.4 and newer and requires JRE 8 or newer.
             sources:
-              - *mysql_connector_j_267_source
+              - *mysql_connector_j_2610_source
               - *mysql_single_release_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           mysql-connector-python:
             ranges:
-              - '26.7'
+              - '26.10'
             relationship: Python client driver
             confidence: high
             notes:
-              - MySQL Connector/Python 26.7 retains support for MySQL Server 8.0 and newer; its release aligns the version with Server 26.7 without functional changes.
+              - MySQL Connector/Python 26.10 supports MySQL Server 8.0 and newer according to the Connector/Python version reference.
             sources:
-              - *mysql_connector_python_267_source
+              - *mysql_connector_python_2610_source
               - *mysql_connector_python_source
               - *mysql_single_release_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
       '9.7':
         dependencies:
           mysql-shell:
             ranges:
-              - '26.7'
+              - '26.10'
             relationship: administration client
             confidence: high
             notes:
-              - MySQL Shell 26.7 supports MySQL Server 8.4, 9.7, and 26.7.
-              - Upstream discontinued Shell 8.4 and 9.7 when Shell adopted the single release model in 26.7.
+              - MySQL Shell 26.10 supports MySQL Server 8.4, 9.7, and 26.10.
+              - The single release policy replaces Shell 26.7 with 26.10 and supports all active MySQL Server release lines.
             sources:
-              - *mysql_shell_267_source
-            lastVerified: '2026-10-15'
+              - *mysql_shell_2610_source
+              - *mysql_2610_release_source
+              - *mysql_lifecycle_source
+            lastVerified: '2026-10-29'
           mysql-router:
             ranges:
-              - '26.7'
+              - '26.10'
             relationship: routing proxy
             confidence: high
             notes:
-              - MySQL Router 26.7 officially supports MySQL Server 8.4, 9.7, and 26.7.
+              - MySQL Router 26.10 officially supports MySQL Server 8.4, 9.7, and 26.10.
               - Upstream discontinued the separate Router 8.4 and 9.7 series when adopting the single release model.
             sources:
-              - *mysql_router_267_source
+              - *mysql_router_2610_source
               - *mysql_single_release_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           mysql-connector-j:
             ranges:
-              - '26.7'
+              - '26.10'
             relationship: Java client driver
             confidence: high
             notes:
-              - MySQL Connector/J 26.7 supports MySQL Server 8.4 and newer and requires JRE 8 or newer.
+              - MySQL Connector/J 26.10 supports MySQL Server 8.4 and newer and requires JRE 8 or newer.
             sources:
-              - *mysql_connector_j_267_source
+              - *mysql_connector_j_2610_source
               - *mysql_single_release_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           mysql-connector-python:
             ranges:
-              - '26.7'
+              - '26.10'
             relationship: Python client driver
             confidence: high
             notes:
-              - MySQL Connector/Python 26.7 retains support for MySQL Server 8.0 and newer; its release aligns the version with Server 26.7 without functional changes.
+              - MySQL Connector/Python 26.10 supports MySQL Server 8.0 and newer according to the Connector/Python version reference.
             sources:
-              - *mysql_connector_python_267_source
+              - *mysql_connector_python_2610_source
               - *mysql_connector_python_source
               - *mysql_single_release_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
       '8.4':
         dependencies:
           mysql-shell:
             ranges:
-              - '26.7'
+              - '26.10'
             relationship: administration client
             confidence: high
             notes:
-              - MySQL Shell 26.7 supports MySQL Server 8.4, 9.7, and 26.7.
-              - Upstream discontinued Shell 8.4 and 9.7 when Shell adopted the single release model in 26.7.
+              - MySQL Shell 26.10 supports MySQL Server 8.4, 9.7, and 26.10.
+              - The single release policy replaces Shell 26.7 with 26.10 and supports all active MySQL Server release lines.
             sources:
-              - *mysql_shell_267_source
-            lastVerified: '2026-10-15'
+              - *mysql_shell_2610_source
+              - *mysql_2610_release_source
+              - *mysql_lifecycle_source
+            lastVerified: '2026-10-29'
           mysql-router:
             ranges:
-              - '26.7'
+              - '26.10'
             relationship: routing proxy
             confidence: high
             notes:
-              - MySQL Router 26.7 officially supports MySQL Server 8.4, 9.7, and 26.7.
+              - MySQL Router 26.10 officially supports MySQL Server 8.4, 9.7, and 26.10.
               - Upstream discontinued the separate Router 8.4 and 9.7 series when adopting the single release model.
             sources:
-              - *mysql_router_267_source
+              - *mysql_router_2610_source
               - *mysql_single_release_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           mysql-connector-j:
             ranges:
-              - '26.7'
+              - '26.10'
             relationship: Java client driver
             confidence: high
             notes:
-              - MySQL Connector/J 26.7 supports MySQL Server 8.4 and newer and requires JRE 8 or newer.
+              - MySQL Connector/J 26.10 supports MySQL Server 8.4 and newer and requires JRE 8 or newer.
             sources:
-              - *mysql_connector_j_267_source
+              - *mysql_connector_j_2610_source
               - *mysql_single_release_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           mysql-connector-python:
             ranges:
-              - '26.7'
+              - '26.10'
             relationship: Python client driver
             confidence: high
             notes:
-              - MySQL Connector/Python 26.7 retains support for MySQL Server 8.0 and newer; its release aligns the version with Server 26.7 without functional changes.
+              - MySQL Connector/Python 26.10 supports MySQL Server 8.0 and newer according to the Connector/Python version reference.
             sources:
-              - *mysql_connector_python_267_source
+              - *mysql_connector_python_2610_source
               - *mysql_connector_python_source
               - *mysql_single_release_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'

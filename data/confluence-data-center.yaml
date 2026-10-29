@@ -1,27 +1,27 @@
 x-confluence-110-supported-platforms-source: &confluence_110_supported_platforms_source
   title: Confluence Data Center 11.0 Supported Platforms
   url: https://confluence.atlassian.com/doc/supported-platforms-207488198.html
-  accessedAt: '2026-10-15'
+  accessedAt: '2026-10-29'
 
 x-confluence-102-supported-platforms-source: &confluence_102_supported_platforms_source
   title: Confluence Data Center 10.2 Supported Platforms
   url: https://confluence.atlassian.com/conf102/supported-platforms-1875249703.html
-  accessedAt: '2026-10-15'
+  accessedAt: '2026-10-29'
 
 x-confluence-101-supported-platforms-source: &confluence_101_supported_platforms_source
   title: Confluence Data Center 10.1 Supported Platforms
   url: https://confluence.atlassian.com/conf101/supported-platforms-1652926442.html
-  accessedAt: '2026-10-15'
+  accessedAt: '2026-10-29'
 
 x-confluence-100-supported-platforms-source: &confluence_100_supported_platforms_source
   title: Confluence Data Center 10.0 Supported Platforms
   url: https://confluence.atlassian.com/conf100/supported-platforms-1627458426.html
-  accessedAt: '2026-10-15'
+  accessedAt: '2026-10-29'
 
 x-confluence-95-supported-platforms-source: &confluence_95_supported_platforms_source
   title: Confluence Data Center 9.5 Supported Platforms
   url: https://confluence.atlassian.com/conf95/supported-platforms-1573751925.html
-  accessedAt: '2026-10-15'
+  accessedAt: '2026-10-29'
 
 projects:
   confluence-data-center:
@@ -45,7 +45,7 @@ projects:
               - Confluence Data Center 11.0 supports Java 25 for Oracle JRE/JDK and Temurin; Java 21 support was removed.
             sources:
               - *confluence_110_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           postgresql:
             ranges:
               - '>=17 <18'
@@ -55,7 +55,7 @@ projects:
               - Confluence Data Center 11.0 supports PostgreSQL 17; PostgreSQL 16 support was removed.
             sources:
               - *confluence_110_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           amazon-aurora-postgresql:
             ranges:
               - '>=17 <18'
@@ -66,7 +66,7 @@ projects:
               - Only a PostgreSQL-compatible cluster with one writer replicating to zero or more readers is supported.
             sources:
               - *confluence_110_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           azure-postgresql:
             ranges:
               - '>=17 <18'
@@ -76,7 +76,7 @@ projects:
               - Confluence Data Center 11.0 supports Azure PostgreSQL Flexible Server 17 with one primary node only.
             sources:
               - *confluence_110_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           mysql:
             ranges:
               - '>=8.4 <8.5'
@@ -88,7 +88,7 @@ projects:
               - Confluence does not support MySQL variants such as MariaDB or Percona Server.
             sources:
               - *confluence_110_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           oracle:
             ranges:
               - '>=26 <27'
@@ -99,7 +99,7 @@ projects:
               - Confluence Data Center 11.0 supports Oracle AI Database 26ai; Oracle 19c support was removed.
             sources:
               - *confluence_110_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           microsoft-sql-server:
             ranges:
               - '>=2022 <2023'
@@ -111,7 +111,7 @@ projects:
               - Azure SQL is also supported but is not modeled because the matrix does not specify a product version.
             sources:
               - *confluence_110_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
       '10.2':
         dependencies:
           java:
@@ -123,7 +123,7 @@ projects:
               - Confluence Data Center 10.2 supported platforms list Java 21 for Oracle JRE/JDK and Temurin.
             sources:
               - *confluence_102_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           postgresql:
             ranges:
               - '>=16 <18'
@@ -133,7 +133,7 @@ projects:
               - Confluence Data Center 10.2 supported platforms list PostgreSQL 16 as deprecated and PostgreSQL 17 as supported.
             sources:
               - *confluence_102_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           amazon-aurora-postgresql:
             ranges:
               - '>=16 <18'
@@ -144,7 +144,7 @@ projects:
               - Atlassian notes that Amazon Aurora is only supported with Confluence Data Center.
             sources:
               - *confluence_102_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           azure-postgresql:
             ranges:
               - '>=16 <18'
@@ -155,7 +155,7 @@ projects:
               - Atlassian documents Azure PostgreSQL Flexible Server support for one primary node only.
             sources:
               - *confluence_102_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           mysql:
             ranges:
               - '>=8.4 <8.5'
@@ -166,7 +166,7 @@ projects:
               - Atlassian notes that Confluence will not work on MySQL variants such as MariaDB or Percona Server.
             sources:
               - *confluence_102_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           oracle:
             ranges:
               - '>=19 <20'
@@ -179,7 +179,7 @@ projects:
               - Confluence Data Center 10.2 supported platforms list Oracle 19c as deprecated and Oracle AI Database 26ai as supported.
             sources:
               - *confluence_102_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           microsoft-sql-server:
             ranges:
               - '>=2019 <2020'
@@ -191,7 +191,7 @@ projects:
               - Azure SQL is also listed as supported but is not modeled here because it does not have a product version in the Atlassian matrix.
             sources:
               - *confluence_102_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
       '10.1':
         dependencies:
           java:
@@ -203,7 +203,7 @@ projects:
               - Confluence Data Center 10.1 supported platforms list Java 21 for Oracle JRE/JDK and Temurin.
             sources:
               - *confluence_101_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           postgresql:
             ranges:
               - '>=16 <18'
@@ -213,7 +213,7 @@ projects:
               - Confluence Data Center 10.1 supported platforms list PostgreSQL 16 and 17.
             sources:
               - *confluence_101_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           amazon-aurora-postgresql:
             ranges:
               - '>=16 <18'
@@ -224,7 +224,7 @@ projects:
               - Atlassian notes that Amazon Aurora is only supported with Confluence Data Center.
             sources:
               - *confluence_101_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           azure-postgresql:
             ranges:
               - '>=16 <18'
@@ -235,7 +235,7 @@ projects:
               - Atlassian documents Azure PostgreSQL Flexible Server support for one primary node only.
             sources:
               - *confluence_101_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           mysql:
             ranges:
               - '>=8.4 <8.5'
@@ -246,7 +246,7 @@ projects:
               - Atlassian notes that Confluence will not work on MySQL variants such as MariaDB or Percona Server.
             sources:
               - *confluence_101_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           oracle:
             ranges:
               - '>=19 <20'
@@ -257,7 +257,7 @@ projects:
               - Confluence Data Center 10.1 supported platforms list Oracle 19c.
             sources:
               - *confluence_101_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           microsoft-sql-server:
             ranges:
               - '>=2019 <2020'
@@ -269,7 +269,7 @@ projects:
               - Azure SQL is also listed as supported but is not modeled here because it does not have a product version in the Atlassian matrix.
             sources:
               - *confluence_101_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
       '10.0':
         dependencies:
           java:
@@ -281,7 +281,7 @@ projects:
               - Confluence Data Center 10.0 supported platforms list Java 21 for Oracle JRE/JDK and Temurin.
             sources:
               - *confluence_100_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           postgresql:
             ranges:
               - '>=16 <18'
@@ -291,7 +291,7 @@ projects:
               - Confluence Data Center 10.0 supported platforms list PostgreSQL 16 and 17.
             sources:
               - *confluence_100_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           amazon-aurora-postgresql:
             ranges:
               - '>=16 <18'
@@ -302,7 +302,7 @@ projects:
               - Atlassian notes that Amazon Aurora is only supported with Confluence Data Center.
             sources:
               - *confluence_100_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           azure-postgresql:
             ranges:
               - '>=16 <18'
@@ -313,7 +313,7 @@ projects:
               - Atlassian documents Azure PostgreSQL Flexible Server support for one primary node only.
             sources:
               - *confluence_100_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           mysql:
             ranges:
               - '>=8.4 <8.5'
@@ -324,7 +324,7 @@ projects:
               - Atlassian notes that Confluence will not work on MySQL variants such as MariaDB or Percona Server.
             sources:
               - *confluence_100_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           oracle:
             ranges:
               - '>=19 <20'
@@ -335,7 +335,7 @@ projects:
               - Confluence Data Center 10.0 supported platforms list Oracle 19c.
             sources:
               - *confluence_100_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           microsoft-sql-server:
             ranges:
               - '>=2019 <2020'
@@ -347,7 +347,7 @@ projects:
               - Azure SQL is also listed as supported but is not modeled here because it does not have a product version in the Atlassian matrix.
             sources:
               - *confluence_100_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
       '9.5':
         dependencies:
           java:
@@ -360,7 +360,7 @@ projects:
               - Confluence Data Center 9.5 supported platforms list Java 17 as deprecated and Java 21 as supported for Oracle JRE/JDK and Temurin.
             sources:
               - *confluence_95_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           postgresql:
             ranges:
               - '>=15 <17'
@@ -370,7 +370,7 @@ projects:
               - Confluence Data Center 9.5 supported platforms list PostgreSQL 15 as deprecated and PostgreSQL 16 as supported.
             sources:
               - *confluence_95_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           amazon-aurora-postgresql:
             ranges:
               - '>=15 <17'
@@ -381,7 +381,7 @@ projects:
               - Atlassian notes that Amazon Aurora is only supported with Confluence Data Center.
             sources:
               - *confluence_95_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           azure-postgresql:
             ranges:
               - '>=15 <17'
@@ -392,7 +392,7 @@ projects:
               - Atlassian documents Azure PostgreSQL Flexible Server support for one primary node only.
             sources:
               - *confluence_95_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           mysql:
             ranges:
               - '>=8.4 <8.5'
@@ -403,7 +403,7 @@ projects:
               - Atlassian notes that Confluence will not work on MySQL variants such as MariaDB or Percona Server.
             sources:
               - *confluence_95_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           oracle:
             ranges:
               - '>=19 <20'
@@ -414,7 +414,7 @@ projects:
               - Confluence Data Center 9.5 supported platforms list Oracle 19c.
             sources:
               - *confluence_95_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
           microsoft-sql-server:
             ranges:
               - '>=2019 <2020'
@@ -426,4 +426,4 @@ projects:
               - Azure SQL is also listed as supported but is not modeled here because it does not have a product version in the Atlassian matrix.
             sources:
               - *confluence_95_supported_platforms_source
-            lastVerified: '2026-10-15'
+            lastVerified: '2026-10-29'
