@@ -1,17 +1,17 @@
 x-flux-release-210-source: &flux_release_210_source
   title: Flux v2.10 GitHub Release - Kubernetes compatibility
   url: https://github.com/fluxcd/flux2/releases/tag/v2.10.0
-  accessedAt: '2026-10-29'
+  accessedAt: '2026-10-31'
 
 x-flux-release-29-source: &flux_release_29_source
   title: Flux v2.9 GitHub Release - Kubernetes compatibility
   url: https://github.com/fluxcd/flux2/releases/tag/v2.9.0
-  accessedAt: '2026-10-29'
+  accessedAt: '2026-10-31'
 
 x-flux-release-28-source: &flux_release_28_source
   title: Flux v2.8 GitHub Release - Kubernetes compatibility
   url: https://github.com/fluxcd/flux2/releases/tag/v2.8.0
-  accessedAt: '2026-10-29'
+  accessedAt: '2026-10-31'
 
 projects:
   flux:
@@ -35,7 +35,7 @@ projects:
               - Flux v2.10 release notes require Kubernetes 1.35.2 or later on the 1.35 line, 1.36.1 or later on the 1.36 line, and 1.37.0 or later on the 1.37 line.
             sources:
               - *flux_release_210_source
-            lastVerified: '2026-10-29'
+            lastVerified: '2026-10-31'
       '2.9':
         dependencies:
           kubernetes:
@@ -47,7 +47,7 @@ projects:
               - Flux v2.9 release notes require Kubernetes 1.34.1 or later on the 1.34 line and support Kubernetes 1.35 and 1.36 from their initial patch releases.
             sources:
               - *flux_release_29_source
-            lastVerified: '2026-10-29'
+            lastVerified: '2026-10-31'
       '2.8':
         dependencies:
           kubernetes:
@@ -60,4 +60,4 @@ projects:
               - Flux v2.8 release notes list Kubernetes 1.33 through 1.35, with Kubernetes 1.34 support starting at 1.34.1.
             sources:
               - *flux_release_28_source
-            lastVerified: '2026-10-29'
+            lastVerified: '2026-10-31'

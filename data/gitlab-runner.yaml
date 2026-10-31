@@ -1,15 +1,15 @@
 x-gitlab-19-4-release-source: &gitlab_runner_194
   title: GitLab 19.4 release notes - GitLab Runner 19.4
   url: https://docs.gitlab.com/releases/19/gitlab-19-4-released/
-  accessedAt: '2026-10-29'
+  accessedAt: '2026-10-31'
 x-gitlab-runner-version-source: &gitlab_runner_1
   title: GitLab Runner - GitLab Runner versions
   url: https://docs.gitlab.com/runner/
-  accessedAt: '2026-10-29'
+  accessedAt: '2026-10-31'
 x-gitlab-19-3-release-source: &gitlab_runner_2
   title: GitLab 19.3 release notes - GitLab Runner 19.3
   url: https://docs.gitlab.com/releases/19/gitlab-19-3-released/
-  accessedAt: '2026-10-29'
+  accessedAt: '2026-10-31'
 projects:
   gitlab-runner:
     name: GitLab Runner
@@ -34,8 +34,8 @@ projects:
               - *gitlab_runner_1
               - title: GitLab Runner 19.5.0 changelog
                 url: https://gitlab.com/gitlab-org/gitlab-runner/-/blob/v19.5.0/CHANGELOG.md
-                accessedAt: '2026-10-29'
-            lastVerified: '2026-10-29'
+                accessedAt: '2026-10-31'
+            lastVerified: '2026-10-31'
             basis: recommended
       '19.4':
         dependencies:
@@ -51,7 +51,7 @@ projects:
             sources:
               - *gitlab_runner_1
               - *gitlab_runner_194
-            lastVerified: '2026-10-29'
+            lastVerified: '2026-10-31'
             basis: recommended
       '19.3':
         dependencies:
@@ -67,5 +67,5 @@ projects:
             sources:
               - *gitlab_runner_1
               - *gitlab_runner_2
-            lastVerified: '2026-10-29'
+            lastVerified: '2026-10-31'
             basis: recommended

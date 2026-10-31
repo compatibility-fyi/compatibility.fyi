@@ -21,12 +21,12 @@ projects:
               - &grafana_133_1
                 title: Grafana 13.3.0 installation requirements
                 url: https://github.com/grafana/grafana/blob/v13.3.0/docs/sources/setup-grafana/installation/_index.md
-                accessedAt: '2026-10-29'
+                accessedAt: '2026-10-31'
               - &grafana_133_4
                 title: PostgreSQL versioning policy and supported releases
                 url: https://www.postgresql.org/support/versioning/
-                accessedAt: '2026-10-29'
-            lastVerified: '2026-10-29'
+                accessedAt: '2026-10-31'
+            lastVerified: '2026-10-31'
           sqlite:
             ranges: &grafana_133_5
               - '3'
@@ -37,7 +37,7 @@ projects:
               - SQLite is not recommended for production environments; the tagged requirements limit its recommended use to local development and small evaluation instances.
             sources:
               - *grafana_133_1
-            lastVerified: '2026-10-29'
+            lastVerified: '2026-10-31'
           mysql:
             ranges: &grafana_133_8
               - '8.4'
@@ -52,12 +52,12 @@ projects:
               - &grafana_133_10
                 title: MySQL LTS release support policy
                 url: https://dev.mysql.com/doc/refman/8.4/en/mysql-releases.html
-                accessedAt: '2026-10-29'
+                accessedAt: '2026-10-31'
               - &grafana_133_11
                 title: MySQL 8.4.0 LTS release notes
                 url: https://dev.mysql.com/doc/relnotes/mysql/8.4/en/news-8-4-0.html
-                accessedAt: '2026-10-29'
-            lastVerified: '2026-10-29'
+                accessedAt: '2026-10-31'
+            lastVerified: '2026-10-31'
       '13.2':
         dependencies:
           postgresql:
@@ -72,12 +72,12 @@ projects:
               - &grafana_1
                 title: Grafana 13.2.5 installation requirements
                 url: https://github.com/grafana/grafana/blob/v13.2.5/docs/sources/setup-grafana/installation/_index.md
-                accessedAt: '2026-10-29'
+                accessedAt: '2026-10-31'
               - &grafana_4
                 title: PostgreSQL versioning policy and supported releases
                 url: https://www.postgresql.org/support/versioning/
-                accessedAt: '2026-10-29'
-            lastVerified: '2026-10-29'
+                accessedAt: '2026-10-31'
+            lastVerified: '2026-10-31'
           sqlite:
             ranges: &grafana_5
               - '3'
@@ -88,7 +88,7 @@ projects:
               - SQLite is not recommended for production environments; the tagged requirements limit its recommended use to local development and small evaluation instances.
             sources:
               - *grafana_1
-            lastVerified: '2026-10-29'
+            lastVerified: '2026-10-31'
           mysql:
             ranges: &grafana_8
               - '8.4'
@@ -103,12 +103,12 @@ projects:
               - &grafana_10
                 title: MySQL LTS release support policy
                 url: https://dev.mysql.com/doc/refman/8.4/en/mysql-releases.html
-                accessedAt: '2026-10-29'
+                accessedAt: '2026-10-31'
               - &grafana_11
                 title: MySQL 8.4.0 LTS release notes
                 url: https://dev.mysql.com/doc/relnotes/mysql/8.4/en/news-8-4-0.html
-                accessedAt: '2026-10-29'
-            lastVerified: '2026-10-29'
+                accessedAt: '2026-10-31'
+            lastVerified: '2026-10-31'
       '13.1':
         dependencies:
           postgresql:
@@ -120,9 +120,9 @@ projects:
               - &grafana_7
                 title: Grafana 13.1.9 installation requirements
                 url: https://github.com/grafana/grafana/blob/v13.1.9/docs/sources/setup-grafana/installation/_index.md
-                accessedAt: '2026-10-29'
+                accessedAt: '2026-10-31'
               - *grafana_4
-            lastVerified: '2026-10-29'
+            lastVerified: '2026-10-31'
           sqlite:
             ranges: *grafana_5
             relationship: embedded configuration database
@@ -130,7 +130,7 @@ projects:
             notes: *grafana_6
             sources:
               - *grafana_7
-            lastVerified: '2026-10-29'
+            lastVerified: '2026-10-31'
           mysql:
             ranges: *grafana_8
             relationship: configuration database
@@ -140,7 +140,7 @@ projects:
               - *grafana_7
               - *grafana_10
               - *grafana_11
-            lastVerified: '2026-10-29'
+            lastVerified: '2026-10-31'
       '13.0':
         dependencies:
           postgresql:
@@ -152,9 +152,9 @@ projects:
               - &grafana_12
                 title: Grafana 13.0.12 installation requirements
                 url: https://github.com/grafana/grafana/blob/v13.0.12/docs/sources/setup-grafana/installation/_index.md
-                accessedAt: '2026-10-29'
+                accessedAt: '2026-10-31'
               - *grafana_4
-            lastVerified: '2026-10-29'
+            lastVerified: '2026-10-31'
           sqlite:
             ranges: *grafana_5
             relationship: embedded configuration database
@@ -162,7 +162,7 @@ projects:
             notes: *grafana_6
             sources:
               - *grafana_12
-            lastVerified: '2026-10-29'
+            lastVerified: '2026-10-31'
           mysql:
             ranges: *grafana_8
             relationship: configuration database
@@ -172,7 +172,7 @@ projects:
               - *grafana_12
               - *grafana_10
               - *grafana_11
-            lastVerified: '2026-10-29'
+            lastVerified: '2026-10-31'
       '12.4':
         dependencies:
           postgresql:
@@ -184,9 +184,9 @@ projects:
               - &grafana_13
                 title: Grafana 12.4.14 installation requirements
                 url: https://github.com/grafana/grafana/blob/v12.4.14/docs/sources/setup-grafana/installation/_index.md
-                accessedAt: '2026-10-29'
+                accessedAt: '2026-10-31'
               - *grafana_4
-            lastVerified: '2026-10-29'
+            lastVerified: '2026-10-31'
           sqlite:
             ranges: *grafana_5
             relationship: embedded configuration database
@@ -195,7 +195,7 @@ projects:
               - Grafana uses SQLite 3 by default; high availability requires MySQL or PostgreSQL.
             sources:
               - *grafana_13
-            lastVerified: '2026-10-29'
+            lastVerified: '2026-10-31'
           mysql:
             ranges: *grafana_8
             relationship: configuration database
@@ -205,4 +205,4 @@ projects:
               - *grafana_13
               - *grafana_10
               - *grafana_11
-            lastVerified: '2026-10-29'
+            lastVerified: '2026-10-31'
