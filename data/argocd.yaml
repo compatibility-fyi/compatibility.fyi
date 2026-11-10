@@ -1,7 +1,7 @@
 x-argocd-install-source: &argocd_install_source
-  title: Argo CD v3.5.6 tagged tested Kubernetes versions
-  url: https://github.com/argoproj/argo-cd/blob/v3.5.6/docs/operator-manual/tested-kubernetes-versions.md
-  accessedAt: '2026-10-31'
+  title: Argo CD v3.6.1 tagged tested Kubernetes versions
+  url: https://github.com/argoproj/argo-cd/blob/v3.6.1/docs/operator-manual/tested-kubernetes-versions.md
+  accessedAt: '2026-11-10'
 
 projects:
   argocd:
@@ -13,6 +13,19 @@ projects:
     website: https://argo-cd.readthedocs.io/
     description: Declarative GitOps continuous delivery compatibility for Kubernetes versions.
     versions:
+      '3.6':
+        dependencies:
+          kubernetes:
+            ranges:
+              - '>=1.34 <1.38'
+            relationship: runtime
+            confidence: high
+            notes:
+              - Argo CD installation docs list Argo CD 3.6 as tested with Kubernetes v1.37, v1.36, v1.35, and v1.34.
+            sources:
+              - *argocd_install_source
+            lastVerified: '2026-11-10'
+            basis: tested
       '3.5':
         dependencies:
           kubernetes:
@@ -24,7 +37,7 @@ projects:
               - Argo CD installation docs list Argo CD 3.5 as tested with Kubernetes v1.36, v1.35, v1.34, and v1.33.
             sources:
               - *argocd_install_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
             basis: tested
       '3.4':
         dependencies:
@@ -37,18 +50,5 @@ projects:
               - Argo CD installation docs list Argo CD 3.4 as tested with Kubernetes v1.35, v1.34, v1.33, and v1.32.
             sources:
               - *argocd_install_source
-            lastVerified: '2026-10-31'
-            basis: tested
-      '3.3':
-        dependencies:
-          kubernetes:
-            ranges:
-              - '>=1.32 <1.36'
-            relationship: runtime
-            confidence: high
-            notes:
-              - Argo CD installation docs list Argo CD 3.3 as tested with Kubernetes v1.35, v1.34, v1.33, and v1.32.
-            sources:
-              - *argocd_install_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
             basis: tested

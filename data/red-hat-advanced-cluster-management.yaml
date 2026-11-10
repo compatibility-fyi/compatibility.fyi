@@ -1,42 +1,42 @@
 x-rhacm-216-source: &rhacm_216_source
   title: Red Hat Advanced Cluster Management for Kubernetes 2.16 Support Matrix
   url: https://access.redhat.com/articles/7136928
-  accessedAt: '2026-10-31'
+  accessedAt: '2026-11-10'
 
 x-rhacm-215-source: &rhacm_215_source
   title: Red Hat Advanced Cluster Management for Kubernetes 2.15 Support Matrix
   url: https://access.redhat.com/articles/7133095
-  accessedAt: '2026-10-31'
+  accessedAt: '2026-11-10'
 
 x-rhacm-214-source: &rhacm_214_source
   title: Red Hat Advanced Cluster Management for Kubernetes 2.14 Support Matrix
   url: https://access.redhat.com/articles/7120842
-  accessedAt: '2026-10-31'
+  accessedAt: '2026-11-10'
 
 x-rhacm-213-source: &rhacm_213_source
   title: Red Hat Advanced Cluster Management for Kubernetes 2.13 Support Matrix
   url: https://access.redhat.com/articles/7099672
-  accessedAt: '2026-10-31'
+  accessedAt: '2026-11-10'
 
 x-mce-211-source: &mce_211_source
   title: The multicluster engine for Kubernetes operator 2.11 Support Matrix
   url: https://access.redhat.com/articles/7136929
-  accessedAt: '2026-10-31'
+  accessedAt: '2026-11-10'
 
 x-mce-210-source: &mce_210_source
   title: The multicluster engine for Kubernetes operator 2.10 Support Matrix
   url: https://access.redhat.com/articles/7133096
-  accessedAt: '2026-10-31'
+  accessedAt: '2026-11-10'
 
 x-mce-29-source: &mce_29_source
   title: The multicluster engine for Kubernetes operator 2.9 Support Matrix
   url: https://access.redhat.com/articles/7120837
-  accessedAt: '2026-10-31'
+  accessedAt: '2026-11-10'
 
 x-mce-28-source: &mce_28_source
   title: The multicluster engine for Kubernetes operator 2.8 Support Matrix
   url: https://access.redhat.com/articles/7099674
-  accessedAt: '2026-10-31'
+  accessedAt: '2026-11-10'
 
 projects:
   red-hat-advanced-cluster-management:
@@ -48,6 +48,22 @@ projects:
     website: https://www.redhat.com/en/technologies/management/advanced-cluster-management
     description: Red Hat Advanced Cluster Management compatibility for bundled MCE and hosted control planes.
     versions:
+      '5.0':
+        dependencies:
+          openshift-management-cluster:
+            ranges:
+              - '4.22'
+              - '5.0'
+            relationship: hub runtime
+            confidence: high
+            notes:
+              - The official operator lifecycle lists OpenShift 4.22 and 5.0 as supported platforms for RHACM 5.0, generally available on November 6, 2026.
+              - This entry covers the RHACM hub runtime only; hosted-control-plane and MCE version coverage requires separate release-specific evidence.
+            sources:
+              - title: Red Hat OpenShift Operator Life Cycles - RHACM 5.0
+                url: https://access.redhat.com/support/policy/updates/openshift_operators
+                accessedAt: '2026-11-10'
+            lastVerified: '2026-11-10'
       '2.17':
         dependencies:
           multicluster-engine:
@@ -60,11 +76,11 @@ projects:
             sources:
               - title: RHACM 2.17 operator MCE subscription channel
                 url: https://github.com/stolostron/multiclusterhub-operator/blob/8cd81252a1b2e3375878bb8b24aa9c2307c36ee8/pkg/multiclusterengine/multiclusterengine.go
-                accessedAt: 2026-10-31
+                accessedAt: 2026-11-10
               - title: RHACM operator component version 2.17.0
                 url: https://github.com/stolostron/multiclusterhub-operator/blob/8cd81252a1b2e3375878bb8b24aa9c2307c36ee8/COMPONENT_VERSION
-                accessedAt: 2026-10-31
-            lastVerified: '2026-10-31'
+                accessedAt: 2026-11-10
+            lastVerified: '2026-11-10'
             basis: bundled
           openshift-management-cluster:
             ranges:
@@ -77,11 +93,11 @@ projects:
             sources:
               - title: OpenShift 4.22 hosted control planes support matrices
                 url: https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/hosted_control_planes/preparing-to-deploy-hosted-control-planes
-                accessedAt: 2026-10-31
+                accessedAt: 2026-11-10
               - title: Red Hat OpenShift Operator Life Cycles - RHACM and MCE
                 url: https://access.redhat.com/support/policy/updates/openshift_operators
-                accessedAt: 2026-10-31
-            lastVerified: '2026-10-31'
+                accessedAt: 2026-11-10
+            lastVerified: '2026-11-10'
           openshift-hosted-cluster:
             ranges:
               - '>=4.20 <4.23'
@@ -93,8 +109,8 @@ projects:
             sources:
               - title: OpenShift 4.22 hosted control planes support matrices
                 url: https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/hosted_control_planes/preparing-to-deploy-hosted-control-planes
-                accessedAt: 2026-10-31
-            lastVerified: '2026-10-31'
+                accessedAt: 2026-11-10
+            lastVerified: '2026-11-10'
           openshift-hosted-cluster-bare-metal-arm64:
             ranges:
               - '>=4.21 <4.23'
@@ -105,8 +121,8 @@ projects:
             sources:
               - title: OpenShift 4.22 hosted control planes support matrices
                 url: https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/hosted_control_planes/preparing-to-deploy-hosted-control-planes
-                accessedAt: 2026-10-31
-            lastVerified: 2026-10-31
+                accessedAt: 2026-11-10
+            lastVerified: 2026-11-10
           openshift-hosted-cluster-virtualization-s390x:
             ranges:
               - '4.22'
@@ -117,8 +133,8 @@ projects:
             sources:
               - title: OpenShift 4.22 hosted control planes support matrices
                 url: https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/hosted_control_planes/preparing-to-deploy-hosted-control-planes
-                accessedAt: 2026-10-31
-            lastVerified: 2026-10-31
+                accessedAt: 2026-11-10
+            lastVerified: 2026-11-10
       '2.16':
         dependencies:
           multicluster-engine:
@@ -131,7 +147,7 @@ projects:
             sources:
               - *rhacm_216_source
               - *mce_211_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
             basis: bundled
           openshift-management-cluster:
             ranges:
@@ -142,7 +158,7 @@ projects:
               - RHACM 2.16 lists OpenShift 4.19 through 4.22 as supported hub and managed cluster versions.
             sources:
               - *rhacm_216_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
           openshift-hosted-cluster:
             ranges:
               - '>=4.19 <4.22'
@@ -153,7 +169,7 @@ projects:
             sources:
               - *mce_211_source
               - *rhacm_216_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
       '2.15':
         dependencies:
           multicluster-engine:
@@ -166,7 +182,7 @@ projects:
             sources:
               - *rhacm_215_source
               - *mce_210_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
             basis: bundled
           openshift-management-cluster:
             ranges:
@@ -178,7 +194,7 @@ projects:
             sources:
               - *mce_210_source
               - *rhacm_215_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
           openshift-hosted-cluster:
             ranges:
               - '>=4.18 <4.21'
@@ -189,7 +205,7 @@ projects:
             sources:
               - *mce_210_source
               - *rhacm_215_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
       '2.14':
         dependencies:
           multicluster-engine:
@@ -202,7 +218,7 @@ projects:
             sources:
               - *rhacm_214_source
               - *mce_29_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
             basis: bundled
           openshift-management-cluster:
             ranges:
@@ -213,7 +229,7 @@ projects:
               - RHACM 2.14 lists OpenShift 4.17 through 4.20 as supported hub and managed cluster versions.
             sources:
               - *rhacm_214_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
           openshift-hosted-cluster:
             ranges:
               - '>=4.17 <4.20'
@@ -224,7 +240,7 @@ projects:
             sources:
               - *mce_29_source
               - *rhacm_214_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
       '2.13':
         dependencies:
           multicluster-engine:
@@ -237,7 +253,7 @@ projects:
             sources:
               - *rhacm_213_source
               - *mce_28_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
             basis: bundled
           openshift-management-cluster:
             ranges:
@@ -249,7 +265,7 @@ projects:
             sources:
               - *mce_28_source
               - *rhacm_213_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
           openshift-hosted-cluster:
             ranges:
               - '>=4.16 <4.19'
@@ -261,7 +277,7 @@ projects:
             sources:
               - *mce_28_source
               - *rhacm_213_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
           openshift-hosted-cluster-aws-arm64:
             ranges:
               - '>=4.17 <4.19'
@@ -272,7 +288,7 @@ projects:
             sources:
               - *mce_28_source
               - *rhacm_213_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
           openshift-hosted-cluster-ibm-power:
             ranges:
               - '>=4.17 <4.19'
@@ -283,7 +299,7 @@ projects:
             sources:
               - *mce_28_source
               - *rhacm_213_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
           openshift-hosted-cluster-ibm-z:
             ranges:
               - '>=4.17 <4.19'
@@ -294,4 +310,4 @@ projects:
             sources:
               - *mce_28_source
               - *rhacm_213_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'

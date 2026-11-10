@@ -1,7 +1,12 @@
 x-ansible-core-support-matrix-source: &ansible_core_support_matrix_source
   title: Ansible Core Support Matrix
   url: https://docs.ansible.com/projects/ansible/latest/reference_appendices/release_and_maintenance.html#ansible-core-support-matrix
-  accessedAt: '2026-10-31'
+  accessedAt: '2026-11-10'
+
+x-ansible-core-222-source: &ansible_core_222_source
+  title: Ansible Core 2.22.0 supported controller and target Python versions
+  url: https://github.com/ansible/ansible/blob/v2.22.0/test/lib/ansible_test/_util/target/common/constants.py
+  accessedAt: '2026-11-10'
 
 projects:
   ansible-core:
@@ -13,6 +18,41 @@ projects:
     website: https://docs.ansible.com/projects/ansible-core/
     description: Ansible Core compatibility for control node Python, target node Python, and target node PowerShell versions.
     versions:
+      '2.22':
+        dependencies:
+          python-control-node:
+            ranges:
+              - '>=3.13 <3.16'
+            relationship: control node runtime
+            confidence: high
+            notes:
+              - Ansible Core 2.22.0 tagged supported-version constants establish control node support for Python 3.13 through 3.15.
+            sources:
+              - *ansible_core_support_matrix_source
+              - *ansible_core_222_source
+            lastVerified: '2026-11-10'
+          python-target-node:
+            ranges:
+              - '>=3.9 <3.16'
+            relationship: target node runtime
+            confidence: high
+            notes:
+              - Ansible Core 2.22.0 tagged supported-version constants establish target node support for Python 3.9 through 3.15.
+            sources:
+              - *ansible_core_support_matrix_source
+              - *ansible_core_222_source
+            lastVerified: '2026-11-10'
+          powershell-target-node:
+            ranges:
+              - '5.1'
+              - '7.6'
+            relationship: target node runtime
+            confidence: high
+            notes:
+              - Ansible Core 2.22 supports Windows PowerShell 5.1 and PowerShell 7.6 LTS on target nodes; the detailed PowerShell policy narrows the summary matrix’s 5.1–7 label to these release lines.
+            sources:
+              - *ansible_core_support_matrix_source
+            lastVerified: '2026-11-10'
       '2.21':
         dependencies:
           python-control-node:
@@ -24,7 +64,7 @@ projects:
               - Ansible Core support matrix lists ansible-core 2.21 control node support for Python 3.12 through 3.14.
             sources:
               - *ansible_core_support_matrix_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
           python-target-node:
             ranges:
               - '>=3.9 <3.15'
@@ -34,7 +74,7 @@ projects:
               - Ansible Core support matrix lists ansible-core 2.21 target node support for Python 3.9 through 3.14.
             sources:
               - *ansible_core_support_matrix_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
           powershell-target-node:
             ranges:
               - '5.1'
@@ -45,7 +85,7 @@ projects:
               - Ansible Core 2.21 supports Windows PowerShell 5.1 and PowerShell 7.6 LTS on target nodes; the detailed PowerShell policy narrows the summary matrix’s 5.1–7 label to these release lines.
             sources:
               - *ansible_core_support_matrix_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
       '2.20':
         dependencies:
           python-control-node:
@@ -57,7 +97,7 @@ projects:
               - Ansible Core support matrix lists ansible-core 2.20 control node support for Python 3.12 through 3.14.
             sources:
               - *ansible_core_support_matrix_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
           python-target-node:
             ranges:
               - '>=3.9 <3.15'
@@ -67,7 +107,7 @@ projects:
               - Ansible Core support matrix lists ansible-core 2.20 target node support for Python 3.9 through 3.14.
             sources:
               - *ansible_core_support_matrix_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
           powershell-target-node:
             ranges:
               - '>=5.1 <5.2'
@@ -77,36 +117,4 @@ projects:
               - Ansible Core support matrix lists ansible-core 2.20 target node support for Windows PowerShell 5.1.
             sources:
               - *ansible_core_support_matrix_source
-            lastVerified: '2026-10-31'
-      '2.19':
-        dependencies:
-          python-control-node:
-            ranges:
-              - '>=3.11 <3.14'
-            relationship: control node runtime
-            confidence: high
-            notes:
-              - Ansible Core support matrix lists ansible-core 2.19 control node support for Python 3.11 through 3.13.
-            sources:
-              - *ansible_core_support_matrix_source
-            lastVerified: '2026-10-31'
-          python-target-node:
-            ranges:
-              - '>=3.8 <3.14'
-            relationship: target node runtime
-            confidence: high
-            notes:
-              - Ansible Core support matrix lists ansible-core 2.19 target node support for Python 3.8 through 3.13.
-            sources:
-              - *ansible_core_support_matrix_source
-            lastVerified: '2026-10-31'
-          powershell-target-node:
-            ranges:
-              - '>=5.1 <5.2'
-            relationship: target node runtime
-            confidence: high
-            notes:
-              - Ansible Core support matrix lists ansible-core 2.19 target node support for Windows PowerShell 5.1.
-            sources:
-              - *ansible_core_support_matrix_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'

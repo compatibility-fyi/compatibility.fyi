@@ -1,12 +1,12 @@
 x-neuvector-56-source: &neuvector_56_source
   title: SUSE Security 5.6 System Requirements
   url: https://documentation.suse.com/cloudnative/security/5.6/en/requirements.html
-  accessedAt: '2026-10-31'
+  accessedAt: '2026-11-10'
 
 x-neuvector-55-source: &neuvector_55_source
   title: SUSE Security 5.5 System Requirements
   url: https://documentation.suse.com/cloudnative/security/5.5/en/requirements.html
-  accessedAt: '2026-10-31'
+  accessedAt: '2026-11-10'
 
 projects:
   neuvector:
@@ -29,7 +29,7 @@ projects:
               - The SUSE Security 5.6 requirements state that Kubernetes 1.19 through 1.36 are tested with every release.
             sources:
               - *neuvector_56_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
             basis: tested
           openshift:
             ranges:
@@ -40,7 +40,7 @@ projects:
               - The SUSE Security 5.6 requirements state that Red Hat OpenShift 4.6 through 4.22 are tested with every release.
             sources:
               - *neuvector_56_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
             basis: tested
           architecture:
             ranges:
@@ -52,7 +52,7 @@ projects:
               - The requirements list AMD64 and Arm architectures as supported.
             sources:
               - *neuvector_56_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
           ip-stack:
             ranges:
               - ipv4
@@ -62,7 +62,7 @@ projects:
               - The requirements explicitly state that IPv6 is unsupported.
             sources:
               - *neuvector_56_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
       '5.5':
         dependencies:
           kubernetes:
@@ -74,7 +74,7 @@ projects:
               - The SUSE Security 5.5 requirements state that Kubernetes 1.19 through 1.32 are tested with every release.
             sources:
               - *neuvector_55_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
             basis: tested
           openshift:
             ranges:
@@ -85,7 +85,7 @@ projects:
               - The SUSE Security 5.5 requirements state that Red Hat OpenShift 4.6 through 4.16 are tested with every release.
             sources:
               - *neuvector_55_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
             basis: tested
           docker:
             ranges:
@@ -96,7 +96,7 @@ projects:
               - The requirements support Docker runtime 1.9.0 and later; Docker on macOS and Windows is explicitly unsupported.
             sources:
               - *neuvector_55_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
           docker-api:
             ranges:
               - '1.21'
@@ -106,7 +106,7 @@ projects:
               - The requirements list Docker API version 1.21 for Community Edition and Enterprise Edition; they do not state an open-ended API version range.
             sources:
               - *neuvector_55_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
           architecture:
             ranges:
               - amd64
@@ -117,7 +117,7 @@ projects:
               - The requirements list AMD64 and Arm architectures as supported.
             sources:
               - *neuvector_55_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
           ip-stack:
             ranges:
               - ipv4
@@ -127,4 +127,4 @@ projects:
               - The requirements explicitly state that IPv6 is unsupported.
             sources:
               - *neuvector_55_source
-            lastVerified: '2026-10-31'
+            lastVerified: '2026-11-10'
