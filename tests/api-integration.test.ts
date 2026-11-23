@@ -55,12 +55,12 @@ describe('Worker with the generated YAML dataset', () => {
   it.each([
     ['argocd', '3.5', 'kubernetes', '1.37', 'unknown', 'tested', 'dependency-version-not-covered'],
     ['longhorn', '1.12.0', 'kubernetes', '1.36.1', 'compatible', 'tested', null],
-    ['gitlab-runner', '19.3', 'gitlab', '19.3.2', 'unknown', 'recommended', 'recommendation-only'],
+    ['gitlab-runner', '19.6', 'gitlab', '19.6.0', 'unknown', 'recommended', 'recommendation-only'],
     [
       'gitlab-runner',
-      '19.3',
+      '19.6',
       'gitlab',
-      '19.2.6',
+      '19.5.6',
       'unknown',
       'recommended',
       'dependency-version-not-covered',
