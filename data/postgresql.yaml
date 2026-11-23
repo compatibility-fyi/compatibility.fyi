@@ -1,47 +1,54 @@
 x-postgis-release-source: &postgis_release_source
   title: PostGIS 3.6 Release Notes
-  url: https://postgis.net/docs/release_notes.html
-  accessedAt: '2026-11-10'
+  url: https://postgis.net/docs/manual-3.6/en/release_notes.html
+  accessedAt: '2026-11-23'
 
 x-postgis-37-release-source: &postgis_37_release_source
   title: PostGIS 3.7.0 release and PostgreSQL requirements
   url: https://postgis.net/2026/10/PostGIS-3.7.0/
-  accessedAt: '2026-11-10'
+  accessedAt: '2026-11-23'
 
 x-postgis-support-source: &postgis_support_source
   title: PostGIS 3.6 Installation Requirements
   url: https://postgis.net/docs/manual-3.6/en/postgis_installation.html
-  accessedAt: '2026-11-10'
+  accessedAt: '2026-11-23'
 
 x-pgvector-080-support-source: &pgvector_080_support_source
   title: pgvector 0.8.0 Installation
   url: https://github.com/pgvector/pgvector/blob/v0.8.0/README.md
-  accessedAt: '2026-11-10'
+  accessedAt: '2026-11-23'
 
 x-pgvector-087-support-source: &pgvector_087_support_source
   title: pgvector 0.8.7 Installation
   url: https://github.com/pgvector/pgvector/blob/v0.8.7/README.md
-  accessedAt: '2026-11-10'
+  accessedAt: '2026-11-23'
 
 x-timescaledb-223-support-source: &timescaledb_223_support_source
   title: TimescaleDB 2.23.0 Release
   url: https://github.com/timescale/timescaledb/releases/tag/2.23.0
-  accessedAt: '2026-11-10'
-
-x-timescaledb-231-support-source: &timescaledb_231_support_source
-  title: TimescaleDB 2.31.0 PostgreSQL version check
-  url: https://github.com/timescale/timescaledb/blob/2.31.0/CMakeLists.txt
-  accessedAt: '2026-11-10'
+  accessedAt: '2026-11-23'
 
 x-pg-cron-160-support-source: &pg_cron_160_support_source
   title: pg_cron 1.6.0 Installation
   url: https://github.com/citusdata/pg_cron/blob/v1.6.0/README.md
-  accessedAt: '2026-11-10'
+  accessedAt: '2026-11-23'
 
 x-pg-cron-168-support-source: &pg_cron_168_support_source
   title: pg_cron 1.6.8 Installation
   url: https://github.com/citusdata/pg_cron/blob/v1.6.8/README.md
-  accessedAt: '2026-11-10'
+  accessedAt: '2026-11-23'
+x-timescaledb-2321-support-source: &timescaledb_2321_support_source
+  title: TimescaleDB 2.32.1 PostgreSQL version check
+  url: https://github.com/timescale/timescaledb/blob/2.32.1/CMakeLists.txt
+  accessedAt: 2026-11-23
+x-timescaledb-232-release-source: &timescaledb_232_release_source
+  title: TimescaleDB 2.32.0 PostgreSQL patch compatibility limits
+  url: https://github.com/timescale/timescaledb/releases/tag/2.32.0
+  accessedAt: 2026-11-23
+x-timescaledb-2321-release-source: &timescaledb_2321_release_source
+  title: TimescaleDB 2.32.1 fixes compatibility with PostgreSQL 18.7, 17.12, and 16.16
+  url: https://github.com/timescale/timescaledb/releases/tag/2.32.1
+  accessedAt: 2026-11-23
 
 projects:
   postgresql:
@@ -52,7 +59,25 @@ projects:
     website: https://www.postgresql.org/
     description: PostgreSQL compatibility for popular independently versioned extensions.
     versions:
-      '18':
+      '19':
+        dependencies:
+          postgis:
+            ranges:
+              - '3.7'
+            relationship: extension
+            confidence: high
+            notes:
+              - PostGIS 3.7 supports PostgreSQL 14 through 19. PostgreSQL 19 became generally available on November 19, 2026.
+              - Other extension compatibility with PostgreSQL 19 is not inferred from older PostgreSQL support.
+            sources:
+              - title: PostGIS 3.7.0 release and PostgreSQL requirements
+                url: https://postgis.net/2026/10/PostGIS-3.7.0/
+                accessedAt: 2026-11-23
+              - title: PostgreSQL 19 general availability announcement
+                url: https://www.postgresql.org/about/news/postgresql-19-released-3449/
+                accessedAt: 2026-11-23
+            lastVerified: 2026-11-23
+      '>=18.7 <19':
         dependencies:
           postgis:
             ranges:
@@ -62,12 +87,11 @@ projects:
             confidence: high
             notes:
               - The PostGIS 3.6 release line supports PostgreSQL 12 through 18; PostGIS 3.7 supports PostgreSQL 14 through 19.
-              - PostgreSQL 19 remains a release candidate and is not represented as a production target.
             sources:
               - *postgis_release_source
               - *postgis_support_source
               - *postgis_37_release_source
-            lastVerified: '2026-11-10'
+            lastVerified: '2026-11-23'
           pgvector-linux-macos:
             ranges:
               - '>=0.8.1 <0.9'
@@ -78,22 +102,25 @@ projects:
             sources:
               - title: pgvector 0.8.7 changelog - PostgreSQL 18 support added in 0.8.1
                 url: https://github.com/pgvector/pgvector/blob/v0.8.7/CHANGELOG.md
-                accessedAt: 2026-11-10
+                accessedAt: 2026-11-23
               - title: pgvector 0.8.7 installation
                 url: https://github.com/pgvector/pgvector/blob/v0.8.7/README.md
-                accessedAt: 2026-11-10
-            lastVerified: '2026-11-10'
+                accessedAt: 2026-11-23
+            lastVerified: '2026-11-23'
           timescaledb:
             ranges:
-              - '>=2.23 <2.32'
+              - '>=2.32.1 <2.33'
             relationship: extension
             confidence: high
             notes:
-              - TimescaleDB 2.23 introduced PostgreSQL 18 support alongside PostgreSQL 16 and 17, and the 2.31 release line continues to support all three PostgreSQL majors.
+              - PostgreSQL 18.7 and later in the 18 release line require TimescaleDB 2.32.1 or later in the verified 2.32 line.
+              - TimescaleDB 2.32.1 release notes document that background scheduler jobs fail with earlier TimescaleDB patches on PostgreSQL 18.7, 17.12, and 16.16 and later patches. Older TimescaleDB versions are intentionally outside this supported range.
             sources:
               - *timescaledb_223_support_source
-              - *timescaledb_231_support_source
-            lastVerified: '2026-11-10'
+              - *timescaledb_2321_support_source
+              - *timescaledb_232_release_source
+              - *timescaledb_2321_release_source
+            lastVerified: '2026-11-23'
           pg-cron:
             ranges:
               - '>=1.6.6 <1.7'
@@ -104,12 +131,12 @@ projects:
             sources:
               - title: pg_cron 1.6.6 release
                 url: https://github.com/citusdata/pg_cron/releases/tag/v1.6.6
-                accessedAt: 2026-11-10
+                accessedAt: 2026-11-23
               - title: pg_cron 1.6.8 installation
                 url: https://github.com/citusdata/pg_cron/blob/v1.6.8/README.md
-                accessedAt: 2026-11-10
-            lastVerified: '2026-11-10'
-      '17':
+                accessedAt: 2026-11-23
+            lastVerified: '2026-11-23'
+      '>=18 <18.7':
         dependencies:
           postgis:
             ranges:
@@ -119,12 +146,70 @@ projects:
             confidence: high
             notes:
               - The PostGIS 3.6 release line supports PostgreSQL 12 through 18; PostGIS 3.7 supports PostgreSQL 14 through 19.
-              - PostgreSQL 19 remains a release candidate and is not represented as a production target.
             sources:
               - *postgis_release_source
               - *postgis_support_source
               - *postgis_37_release_source
-            lastVerified: '2026-11-10'
+            lastVerified: '2026-11-23'
+          pgvector-linux-macos:
+            ranges:
+              - '>=0.8.1 <0.9'
+            relationship: extension on Linux and macOS
+            confidence: high
+            notes:
+              - PostgreSQL 18 support was introduced in pgvector 0.8.1; 0.8.0 does not include that support. This dependency key covers Linux and macOS; Windows support is not modeled.
+            sources:
+              - title: pgvector 0.8.7 changelog - PostgreSQL 18 support added in 0.8.1
+                url: https://github.com/pgvector/pgvector/blob/v0.8.7/CHANGELOG.md
+                accessedAt: 2026-11-23
+              - title: pgvector 0.8.7 installation
+                url: https://github.com/pgvector/pgvector/blob/v0.8.7/README.md
+                accessedAt: 2026-11-23
+            lastVerified: '2026-11-23'
+          timescaledb:
+            ranges:
+              - '>=2.23 <2.33'
+            relationship: extension
+            confidence: high
+            notes:
+              - TimescaleDB 2.23 through 2.32 support PostgreSQL 18; the 2.32.0 release notes limit that patch to PostgreSQL 18.6 and earlier.
+              - TimescaleDB 2.32.1 restores support for newer PostgreSQL patches and remains backward compatible with older PostgreSQL patches.
+            sources:
+              - *timescaledb_223_support_source
+              - *timescaledb_2321_support_source
+              - *timescaledb_232_release_source
+              - *timescaledb_2321_release_source
+            lastVerified: '2026-11-23'
+          pg-cron:
+            ranges:
+              - '>=1.6.6 <1.7'
+            relationship: extension
+            confidence: high
+            notes:
+              - pg_cron 1.6.6 introduced PostgreSQL 18 compatibility in the 1.6 release line.
+            sources:
+              - title: pg_cron 1.6.6 release
+                url: https://github.com/citusdata/pg_cron/releases/tag/v1.6.6
+                accessedAt: 2026-11-23
+              - title: pg_cron 1.6.8 installation
+                url: https://github.com/citusdata/pg_cron/blob/v1.6.8/README.md
+                accessedAt: 2026-11-23
+            lastVerified: '2026-11-23'
+      '>=17.12 <18':
+        dependencies:
+          postgis:
+            ranges:
+              - '3.6'
+              - '3.7'
+            relationship: extension
+            confidence: high
+            notes:
+              - The PostGIS 3.6 release line supports PostgreSQL 12 through 18; PostGIS 3.7 supports PostgreSQL 14 through 19.
+            sources:
+              - *postgis_release_source
+              - *postgis_support_source
+              - *postgis_37_release_source
+            lastVerified: '2026-11-23'
           pgvector-linux-macos:
             ranges:
               - '0.8'
@@ -135,18 +220,21 @@ projects:
             sources:
               - *pgvector_080_support_source
               - *pgvector_087_support_source
-            lastVerified: '2026-11-10'
+            lastVerified: '2026-11-23'
           timescaledb:
             ranges:
-              - '>=2.23 <2.32'
+              - '>=2.32.1 <2.33'
             relationship: extension
             confidence: high
             notes:
-              - TimescaleDB 2.23 introduced PostgreSQL 18 support alongside PostgreSQL 16 and 17, and the 2.31 release line continues to support all three PostgreSQL majors.
+              - PostgreSQL 17.12 and later in the 17 release line require TimescaleDB 2.32.1 or later in the verified 2.32 line.
+              - TimescaleDB 2.32.1 release notes document that background scheduler jobs fail with earlier TimescaleDB patches on PostgreSQL 18.7, 17.12, and 16.16 and later patches. Older TimescaleDB versions are intentionally outside this supported range.
             sources:
               - *timescaledb_223_support_source
-              - *timescaledb_231_support_source
-            lastVerified: '2026-11-10'
+              - *timescaledb_2321_support_source
+              - *timescaledb_232_release_source
+              - *timescaledb_2321_release_source
+            lastVerified: '2026-11-23'
           pg-cron:
             ranges:
               - '>=1.6.3 <1.7'
@@ -157,12 +245,12 @@ projects:
             sources:
               - title: pg_cron 1.6.3 release
                 url: https://github.com/citusdata/pg_cron/releases/tag/v1.6.3
-                accessedAt: 2026-11-10
+                accessedAt: 2026-11-23
               - title: pg_cron 1.6.8 installation
                 url: https://github.com/citusdata/pg_cron/blob/v1.6.8/README.md
-                accessedAt: 2026-11-10
-            lastVerified: '2026-11-10'
-      '16':
+                accessedAt: 2026-11-23
+            lastVerified: '2026-11-23'
+      '>=17 <17.12':
         dependencies:
           postgis:
             ranges:
@@ -172,12 +260,11 @@ projects:
             confidence: high
             notes:
               - The PostGIS 3.6 release line supports PostgreSQL 12 through 18; PostGIS 3.7 supports PostgreSQL 14 through 19.
-              - PostgreSQL 19 remains a release candidate and is not represented as a production target.
             sources:
               - *postgis_release_source
               - *postgis_support_source
               - *postgis_37_release_source
-            lastVerified: '2026-11-10'
+            lastVerified: '2026-11-23'
           pgvector-linux-macos:
             ranges:
               - '0.8'
@@ -188,18 +275,76 @@ projects:
             sources:
               - *pgvector_080_support_source
               - *pgvector_087_support_source
-            lastVerified: '2026-11-10'
+            lastVerified: '2026-11-23'
           timescaledb:
             ranges:
-              - '>=2.23 <2.32'
+              - '>=2.23 <2.33'
             relationship: extension
             confidence: high
             notes:
-              - TimescaleDB 2.23 introduced PostgreSQL 18 support alongside PostgreSQL 16 and 17, and the 2.31 release line continues to support all three PostgreSQL majors.
+              - TimescaleDB 2.23 through 2.32 support PostgreSQL 17; the 2.32.0 release notes limit that patch to PostgreSQL 17.11 and earlier.
+              - TimescaleDB 2.32.1 restores support for newer PostgreSQL patches and remains backward compatible with older PostgreSQL patches.
             sources:
               - *timescaledb_223_support_source
-              - *timescaledb_231_support_source
-            lastVerified: '2026-11-10'
+              - *timescaledb_2321_support_source
+              - *timescaledb_232_release_source
+              - *timescaledb_2321_release_source
+            lastVerified: '2026-11-23'
+          pg-cron:
+            ranges:
+              - '>=1.6.3 <1.7'
+            relationship: extension
+            confidence: high
+            notes:
+              - pg_cron 1.6.3 introduced PostgreSQL 17 compatibility in the 1.6 release line.
+            sources:
+              - title: pg_cron 1.6.3 release
+                url: https://github.com/citusdata/pg_cron/releases/tag/v1.6.3
+                accessedAt: 2026-11-23
+              - title: pg_cron 1.6.8 installation
+                url: https://github.com/citusdata/pg_cron/blob/v1.6.8/README.md
+                accessedAt: 2026-11-23
+            lastVerified: '2026-11-23'
+      '>=16.16 <17':
+        dependencies:
+          postgis:
+            ranges:
+              - '3.6'
+              - '3.7'
+            relationship: extension
+            confidence: high
+            notes:
+              - The PostGIS 3.6 release line supports PostgreSQL 12 through 18; PostGIS 3.7 supports PostgreSQL 14 through 19.
+            sources:
+              - *postgis_release_source
+              - *postgis_support_source
+              - *postgis_37_release_source
+            lastVerified: '2026-11-23'
+          pgvector-linux-macos:
+            ranges:
+              - '0.8'
+            relationship: extension on Linux and macOS
+            confidence: high
+            notes:
+              - The pgvector 0.8 release line documents support for PostgreSQL 13 and newer on Linux and macOS. Windows support is not covered by this dependency key.
+            sources:
+              - *pgvector_080_support_source
+              - *pgvector_087_support_source
+            lastVerified: '2026-11-23'
+          timescaledb:
+            ranges:
+              - '>=2.32.1 <2.33'
+            relationship: extension
+            confidence: high
+            notes:
+              - PostgreSQL 16.16 and later in the 16 release line require TimescaleDB 2.32.1 or later in the verified 2.32 line.
+              - TimescaleDB 2.32.1 release notes document that background scheduler jobs fail with earlier TimescaleDB patches on PostgreSQL 18.7, 17.12, and 16.16 and later patches. Older TimescaleDB versions are intentionally outside this supported range.
+            sources:
+              - *timescaledb_223_support_source
+              - *timescaledb_2321_support_source
+              - *timescaledb_232_release_source
+              - *timescaledb_2321_release_source
+            lastVerified: '2026-11-23'
           pg-cron:
             ranges:
               - '1.6'
@@ -210,4 +355,55 @@ projects:
             sources:
               - *pg_cron_160_support_source
               - *pg_cron_168_support_source
-            lastVerified: '2026-11-10'
+            lastVerified: '2026-11-23'
+      '>=16 <16.16':
+        dependencies:
+          postgis:
+            ranges:
+              - '3.6'
+              - '3.7'
+            relationship: extension
+            confidence: high
+            notes:
+              - The PostGIS 3.6 release line supports PostgreSQL 12 through 18; PostGIS 3.7 supports PostgreSQL 14 through 19.
+            sources:
+              - *postgis_release_source
+              - *postgis_support_source
+              - *postgis_37_release_source
+            lastVerified: '2026-11-23'
+          pgvector-linux-macos:
+            ranges:
+              - '0.8'
+            relationship: extension on Linux and macOS
+            confidence: high
+            notes:
+              - The pgvector 0.8 release line documents support for PostgreSQL 13 and newer on Linux and macOS. Windows support is not covered by this dependency key.
+            sources:
+              - *pgvector_080_support_source
+              - *pgvector_087_support_source
+            lastVerified: '2026-11-23'
+          timescaledb:
+            ranges:
+              - '>=2.23 <2.33'
+            relationship: extension
+            confidence: high
+            notes:
+              - TimescaleDB 2.23 through 2.32 support PostgreSQL 16; the 2.32.0 release notes limit that patch to PostgreSQL 16.15 and earlier.
+              - TimescaleDB 2.32.1 restores support for newer PostgreSQL patches and remains backward compatible with older PostgreSQL patches.
+            sources:
+              - *timescaledb_223_support_source
+              - *timescaledb_2321_support_source
+              - *timescaledb_232_release_source
+              - *timescaledb_2321_release_source
+            lastVerified: '2026-11-23'
+          pg-cron:
+            ranges:
+              - '1.6'
+            relationship: extension
+            confidence: high
+            notes:
+              - The pg_cron 1.6 release line documents support for PostgreSQL 10 and newer.
+            sources:
+              - *pg_cron_160_support_source
+              - *pg_cron_168_support_source
+            lastVerified: '2026-11-23'

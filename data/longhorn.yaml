@@ -1,22 +1,22 @@
 x-longhorn-112-source: &longhorn_112_source
   title: Longhorn 1.12.0 Best Practices - Kubernetes Version
   url: https://longhorn.io/docs/1.12.0/best-practices/
-  accessedAt: '2026-11-10'
+  accessedAt: '2026-11-23'
 
 x-longhorn-111-source: &longhorn_111_source
   title: Longhorn 1.11.3 Best Practices - Kubernetes Version
   url: https://longhorn.io/docs/1.11.3/best-practices/
-  accessedAt: '2026-11-10'
+  accessedAt: '2026-11-23'
 
 x-longhorn-110-source: &longhorn_110_source
   title: Longhorn 1.10.2 Best Practices - Kubernetes Version
   url: https://longhorn.io/docs/archives/1.10.2/best-practices/
-  accessedAt: '2026-11-10'
+  accessedAt: '2026-11-23'
 
 x-longhorn-19-source: &longhorn_19_source
   title: Longhorn 1.9.2 Best Practices - Kubernetes Version
   url: https://longhorn.io/docs/archives/1.9.2/best-practices/
-  accessedAt: '2026-11-10'
+  accessedAt: '2026-11-23'
 
 projects:
   longhorn:
@@ -32,16 +32,23 @@ projects:
         dependencies:
           kubernetes:
             ranges:
-              - '>=1.33 <1.37'
+              - '>=1.34 <1.37'
             relationship: tested runtime
             confidence: high
             notes:
-              - Longhorn 1.13.0 best practices list Kubernetes 1.33, 1.34, 1.35, and 1.36 as tested versions.
+              - Longhorn 1.13.0 release notes and its tagged Helm chart require Kubernetes 1.34 or later because CSI external-provisioner 6.3.0 raises the minimum.
+              - The best-practices page still lists Kubernetes 1.33 through 1.36 as tested; this entry keeps only tested versions that also satisfy the released minimum.
             sources:
               - title: Longhorn 1.13.0 Best Practices - Kubernetes Version
                 url: https://longhorn.io/docs/1.13.0/best-practices/
-                accessedAt: 2026-11-10
-            lastVerified: 2026-11-10
+                accessedAt: 2026-11-23
+              - title: Longhorn 1.13.0 Release Notes - Kubernetes Minimum
+                url: https://github.com/longhorn/longhorn/releases/tag/v1.13.0
+                accessedAt: 2026-11-23
+              - title: Longhorn 1.13.0 Helm Chart Kubernetes Requirement
+                url: https://github.com/longhorn/longhorn/blob/v1.13.0/chart/Chart.yaml
+                accessedAt: 2026-11-23
+            lastVerified: 2026-11-23
             basis: tested
       1.12.2:
         dependencies:
@@ -55,8 +62,8 @@ projects:
             sources:
               - title: Longhorn 1.12.2 Best Practices - Kubernetes Version
                 url: https://longhorn.io/docs/1.12.2/best-practices/
-                accessedAt: 2026-11-10
-            lastVerified: 2026-11-10
+                accessedAt: 2026-11-23
+            lastVerified: 2026-11-23
             basis: tested
       1.12.1:
         dependencies:
@@ -70,8 +77,8 @@ projects:
             sources:
               - title: Longhorn 1.12.1 Best Practices - Kubernetes Version
                 url: https://longhorn.io/docs/1.12.1/best-practices/
-                accessedAt: 2026-11-10
-            lastVerified: 2026-11-10
+                accessedAt: 2026-11-23
+            lastVerified: 2026-11-23
             basis: tested
       '1.12.0':
         dependencies:
@@ -84,7 +91,7 @@ projects:
               - Longhorn 1.12.0 best practices list Kubernetes 1.33, 1.34, 1.35, and 1.36 as tested versions.
             sources:
               - *longhorn_112_source
-            lastVerified: '2026-11-10'
+            lastVerified: '2026-11-23'
             basis: tested
       '1.11.3':
         dependencies:
@@ -97,7 +104,7 @@ projects:
               - Longhorn 1.11.3 best practices list Kubernetes 1.34, 1.35, and 1.36 as tested versions.
             sources:
               - *longhorn_111_source
-            lastVerified: '2026-11-10'
+            lastVerified: '2026-11-23'
             basis: tested
       '1.10.2':
         dependencies:
@@ -110,7 +117,7 @@ projects:
               - Longhorn 1.10.2 best practices list Kubernetes 1.30, 1.31, 1.32, and 1.33 as tested versions.
             sources:
               - *longhorn_110_source
-            lastVerified: '2026-11-10'
+            lastVerified: '2026-11-23'
             basis: tested
       '1.9.2':
         dependencies:
@@ -123,5 +130,5 @@ projects:
               - Longhorn 1.9.2 best practices list Kubernetes 1.31, 1.32, and 1.33 as tested versions.
             sources:
               - *longhorn_19_source
-            lastVerified: '2026-11-10'
+            lastVerified: '2026-11-23'
             basis: tested
